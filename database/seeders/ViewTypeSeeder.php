@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\ViewType;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ViewTypeSeeder extends Seeder
 {
@@ -14,6 +15,16 @@ class ViewTypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ViewType::insert([
+            'view_type' => 'standard',
+        ]);
+
+        ViewType::insert([
+            'view_type' => 'mountain',
+        ]);
+
+        ViewType::insert([
+            'view_type' => 'lake',
+        ]);
     }
 }
