@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('view_types', function (Blueprint $table) {
+        Schema::create('room_views', function (Blueprint $table) {
             $table->id();
-            $table->string('view_type');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('view_types');
+        Schema::dropIfExists('room_views');
     }
 };

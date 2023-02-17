@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\ViewType;
+use App\Models\RoomView;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class ViewTypeSeeder extends Seeder
+class RoomViewSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,16 +15,16 @@ class ViewTypeSeeder extends Seeder
      */
     public function run()
     {
-        ViewType::insert([
-            'view_type' => 'standard',
+        RoomView::insert([
+            'type' => 'standard',
         ]);
 
-        ViewType::insert([
-            'view_type' => 'mountain',
+        RoomView::insert([
+            'type' => 'mountain',
         ]);
 
-        ViewType::insert([
-            'view_type' => 'lake',
+        RoomView::insert([
+            'type' => 'lake',
         ]);
     }
 }

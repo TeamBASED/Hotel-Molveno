@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoomTypeSeeder;
+use Database\Seeders\RoomViewSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ViewTypeSeeder::class);
+
+        $this->call(RoomViewSeeder::class);
+        $this->call(RoomTypeSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

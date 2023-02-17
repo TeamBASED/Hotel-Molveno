@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\RoomType;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoomTypeSeeder extends Seeder
 {
@@ -14,6 +15,16 @@ class RoomTypeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        RoomType::insert([
+            'type' => 'economy',
+        ]);
+
+        RoomType::insert([
+            'type' => 'standard',
+        ]);
+
+        RoomType::insert([
+            'type' => 'luxurious',
+        ]);
     }
 }
