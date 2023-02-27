@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Database\Seeders\RoomSeeder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,7 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            $this->call(RoomSeeder::class)
         ];
     }
 }

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoomViewSeeder::class);
         $this->call(RoomTypeSeeder::class);
+        $this->call(RoomSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
