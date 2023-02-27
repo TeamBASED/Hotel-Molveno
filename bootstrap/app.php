@@ -1,4 +1,4 @@
-<button class="tertiary-button">test</button>
+<button class="edit-button">test</button>
 <?php
 
 /*

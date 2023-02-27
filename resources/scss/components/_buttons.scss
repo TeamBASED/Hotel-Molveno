@@ -36,3 +36,15 @@
     }
 
 }
+
+.edit-button {
+    background-color: $color-700;
+    color: $color-white;
+    width: 40px;
+    height: 40px;
+
+    &:hover {
+        background-color: $color-700;
+        color: $color-white;
+    }
+}
