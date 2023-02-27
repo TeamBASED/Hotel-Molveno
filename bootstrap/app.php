@@ -1,11 +1,3 @@
-<select class="filter-field" value="erg">
-
-<option value="test1">test1</option>
-<option value="test2">tersstwtg</option>
-
-
-</select>
-
 <?php
 
 /*
