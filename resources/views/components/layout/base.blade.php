@@ -13,7 +13,7 @@
 </head>
 <body>
     <!-- header import -->
-
+    <x-layout.header/>
     {{ $slot }}
 </body>
 </html>
