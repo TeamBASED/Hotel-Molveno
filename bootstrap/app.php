@@ -1,4 +1,3 @@
-<button class="edit-button">test</button>
 <?php
 
 /*
