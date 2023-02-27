@@ -17,14 +17,27 @@ class RoomSeeder extends Seeder
     public function run()
     {
         Room::insert([
-            'capacity' => Str::random(10),
+            'capacity' => '4',
             'bed_configuration' => 'double',
-            'room_number' => Str::random(25),
-            'base_price_per_night' => Str::random(200),
-            'cleaning_status_id' => Str::random(3),
-            'baby_bed_possible' => Str::random(1),
-            'window_view_id' => Str::random(3),
-            'room_type_id' =>Str::random(3),
+            'room_number' => '1',
+            'base_price_per_night' => '200',
+            'cleaning_status_id' => '1',
+            'baby_bed_possible' => '0',
+            'window_view_id' => '1',
+            'room_type_id' => '2',
+            'description' => 'awesome!',
+            'status_comment' => 'no comment',
+        ]);
+
+        Room::insert([
+            'capacity' => '4',
+            'bed_configuration' => 'double',
+            'room_number' => '2',
+            'base_price_per_night' => '200',
+            'cleaning_status_id' => '1',
+            'baby_bed_possible' => '0',
+            'window_view_id' => '1',
+            'room_type_id' => '2',
             'description' => 'awesome!',
             'status_comment' => 'no comment',
         ]);
