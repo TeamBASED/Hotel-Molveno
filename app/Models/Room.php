@@ -10,6 +10,10 @@ class Room extends Model
 {
     use HasFactory;
 
+    public static function getAllRoomData() {
+        return Room::get();
+    }
+
     public static function getRoomData() {
         $roomId = 4;
         $test = Room::where('id', $roomId)->with('cleaningStatus')->first();
