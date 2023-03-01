@@ -1,4 +1,4 @@
-@props(['href', 'content' => ''])
+@props(['href'])
 
 @isset($href)
     <button type='submit' {{$attributes->merge(['class' => 'primary-button'])}}>
