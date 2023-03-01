@@ -1,8 +1,13 @@
-<button  
-{{ $attributes->merge([
-    'class' => 'tertiary-button'
-    ])}}>
+@props(['href', 'content' => ''])
 
-{{ $slot }}
+@isset($href)
+    <button type='submit' {{$attributes->merge(['class' => 'tertiary-button'])}}>
+        {{$slot}}
+    </button>
 
-</button>
+@else
+    <a href='{{$href}}' {{$attributes->merge(['class' => 'tertiary-button'])}}>
+        {{$slot}}
+    </a>
+@endif
+
