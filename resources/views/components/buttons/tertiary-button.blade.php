@@ -1,8 +1,5 @@
-<button  
-$attributes->merge([
+<button {{ $attributes->merge([
     'class' => 'tertiary-button'
-    ])>
-
-{{ $slot }}
-
+])}}>
+    {{ $slot }}
 </button>

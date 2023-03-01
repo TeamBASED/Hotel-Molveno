@@ -1,6 +1,6 @@
 <header class="header">
     <div class="top">
-        <img src="./images/companyLogo.jpg"/>
+        <img src="/images/companyLogo.jpg"/>
         <h1>Hotel Molveno</h1>
     </div>
     <div class="bottom">
