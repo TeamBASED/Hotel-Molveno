@@ -1,8 +1,53 @@
 #rooms-overview {
+    display: flex;
+    font-family: sans-serif;
+    padding: 3% 5% 0% 5%;
+    gap: 5%;
     .left-side {
-
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        gap: 1rem;
+        .filter {
+            background-color: #F5F5F5;
+            height: 100px;
+            width:82.5;      
+        }
+        h2 {
+            text-align: center;
+            font-size: 50px;
+        }
+        .rooms-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .room-item {
+                border: solid 2px $color-600;
+                height: 150px;
+                width: 300px;
+                padding: 5px 30px 5px 15px;
+                margin-bottom: 2.9%;
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
+            }
+        }
     }
     .right-side {
-        
+        background-color: $color-700;
+        color: $color-white;
+        min-height: 500px;
+        width: 20%;
+        padding: 10px 20px;
+        h2 {
+            text-align: center;
+            font-size: 38px;
+        }
+        p {
+            font-size: 20px;
+        }
     }
 }
