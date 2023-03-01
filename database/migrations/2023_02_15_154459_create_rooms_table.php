@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('base_price_per_night');
             $table->foreignId('cleaning_status_id');
             $table->boolean('baby_bed_possible');
-            $table->foreignId('window_view_id');
+            $table->foreignId('room_view_id');
             $table->foreignId('room_type_id');
             $table->mediumText('description');
             $table->mediumText('status_comment');
