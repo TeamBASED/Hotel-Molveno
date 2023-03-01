@@ -5,18 +5,18 @@
         </h2>
         <article>
             <section class="info-section">
-                <div class="room-info-box">
-                    <div class="room-info-container"><p>Room no.&colon; {{ $room->room_number}}</p></div>
+                <div class="info-box">
+                    <div class="info-container"><p>Room no.&colon; {{ $room->room_number}}</p></div>
                     
-                    <div class="room-info-container"><p>Capacity&colon; {{ $room->capacity }}</p></div>
+                    <div class="info-container"><p>Capacity&colon; {{ $room->capacity }}</p></div>
                     
-                    <div class="room-info-container"><p>Base price per night&colon; {{ $room->base_price_per_night }}</p></div>
+                    <div class="info-container"><p>Base price per night&colon; {{ $room->base_price_per_night }}</p></div>
                     
-                    <div class="room-info-container"><p>View&colon; Mountain</p></div>
+                    <div class="info-container"><p>View&colon; Mountain</p></div>
 
-                    <div class="room-info-container"><p>Bed configuration&colon; {{ $room->bed_configuration }}</p></div>
+                    <div class="info-container container-long"><p>Bed configuration&colon; {{ $room->bed_configuration }}</p></div>
  
-                    <div class="room-info-container"><p>Description&colon; {{ $room->description }}</p></div>
+                    <div class="info-container container-long"><p>Description&colon; {{ $room->description }}</p></div>
                 </div>
                 <div class="button-container">
                     <x-buttons.primary-button>Edit</x-buttons.primary-button>
