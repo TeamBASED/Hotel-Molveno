@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoomTypeSeeder;
 use Database\Seeders\RoomViewSeeder;
+use Database\Seeders\CleaningStatusSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomViewSeeder::class);
         $this->call(RoomTypeSeeder::class);
         $this->call(RoomSeeder::class);
+        $this->call(CleaningStatusSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
