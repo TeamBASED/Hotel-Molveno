@@ -22,7 +22,7 @@ class RoomFactory extends Factory
             'bed_configuration' => fake()->randomElement(["single", "double", "king"]),
             'room_number' => fake()->unique()->numberBetween(100, 400),
             'base_price_per_night' => fake()->numberBetween(100, 1000),
-            'cleaning_status_id' => fake()->numberBetween(1, 3),
+            'cleaning_status_id' => fake()->numberBetween(1, 4),
             'baby_bed_possible' => fake()->numberBetween(0, 1),
             'room_view_id' => fake()->numberBetween(1, 3),
             'room_type_id' => fake()->numberBetween(1, 3),

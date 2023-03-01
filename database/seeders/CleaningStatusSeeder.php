@@ -16,6 +16,10 @@ class CleaningStatusSeeder extends Seeder
     public function run()
     {
         CleaningStatus::insert([
+            'status' => 'clean',
+        ]);
+
+        CleaningStatus::insert([
             'status' => 'small',
         ]);
 
