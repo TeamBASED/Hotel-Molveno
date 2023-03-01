@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+
+    function getRoomData(int $roomId) {
+        return Room::where('id', $roomId)->first();
+    }
 }
