@@ -2,14 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\CleaningStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
 {
     use HasFactory;
 
-    public static function getRoomData(int $roomId) {
-        return Room::where('id', $roomId)->first();
+    public static function getRoomData() {
+        $roomId = 4;
+        $test = Room::where('id', $roomId)->with('cleaningStatus')->first();
+        dd($test);
+        return $test;
+    }
+
+    public function cleaningStatus() {
+        return $this->belongsTo(CleaningStatus::class);
     }
 }
+

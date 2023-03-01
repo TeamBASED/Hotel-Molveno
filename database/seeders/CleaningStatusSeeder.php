@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\CleaningStatus;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class CleaningStatusSeeder extends Seeder
 {
@@ -14,6 +15,16 @@ class CleaningStatusSeeder extends Seeder
      */
     public function run()
     {
-        //
+        CleaningStatus::insert([
+            'status' => 'small',
+        ]);
+
+        CleaningStatus::insert([
+            'status' => 'medium',
+        ]);
+
+        CleaningStatus::insert([
+            'status' => 'large',
+        ]);
     }
 }

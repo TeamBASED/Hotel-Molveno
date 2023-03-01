@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CleaningStatus extends Model
 {
     use HasFactory;
+
+    public function rooms() {
+        return $this->hasMany(Room::class);
+    }
 }
