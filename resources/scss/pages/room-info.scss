@@ -2,10 +2,21 @@
     width: 70%;
     margin: 0 auto;
     h2 {
+        font-size: 2rem;
         margin: 3rem 0 2rem 0;
     }
     article {
+        display: flex;
+        flex-flow: row nowrap;
         height: 20rem;
         background-color: $color-grey-500;
+        .info-section {
+            width: 70%;
+        }
+        .roster-section {
+            width: 30%;
+            background-color: $color-grey-600;
+
+        }
     }
 }

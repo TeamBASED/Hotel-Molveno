@@ -9,7 +9,7 @@ class Room extends Model
 {
     use HasFactory;
 
-    function getRoomData(int $roomId) {
+    public static function getRoomData(int $roomId) {
         return Room::where('id', $roomId)->first();
     }
 }
