@@ -23,15 +23,13 @@ class Room extends Model
     public function roomType() {
         return $this->belongsTo(RoomType::class);
     }
+
     public static function getAllRoomData() {
         return Room::get();
     }
     
-
     public static function getRoomData(int $roomId) : Room {
         return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType'])->first();
     }
-
-
 }
 

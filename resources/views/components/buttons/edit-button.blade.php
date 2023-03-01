@@ -1,5 +1,4 @@
 <button  
-
 {{ $attributes->merge([
     'class' => 'edit-button'
     ])}}>
