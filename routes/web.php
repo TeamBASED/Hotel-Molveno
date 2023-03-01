@@ -29,6 +29,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/test', [Room::class, 'getRoomData']);
-
 require __DIR__.'/auth.php';
