@@ -11,6 +11,7 @@
         height: 20rem;
         border: 2px solid $color-600;
         margin-bottom: 1.5rem;
+        background-color: $color-grey-300;
         .info-section {
             padding: 1rem 1.5rem;
             width: 65%;
@@ -20,7 +21,6 @@
                 height: 80%;
                 .info-container {
                     color: $color-white;
-                    font-weight: bold;
                     width: 40%;
                     margin: 0.5rem 1rem 0.5rem 0;
                     padding: 0.5rem;
@@ -34,14 +34,25 @@
             }
         }
         .roster-section {
-            padding: 0.5rem;
+            padding: 1rem;
             width: 35%;
-            background-color: $color-700;
             .timeslot {
-                height: 2rem;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                height: 30px;
                 margin-top: 0.5rem;
                 color: $color-grey-600;
-                background-color: $color-white;
+                p {
+                    display: inline-block;
+                    background-color: $color-white;
+                    width: 100%;
+                    margin-right: 0.5rem;
+                    padding-left: 0.5rem;
+                }
+                button {
+                    font-size: 0.5rem;
+                }
             }
 
         }

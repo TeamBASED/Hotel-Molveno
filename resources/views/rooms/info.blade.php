@@ -25,27 +25,27 @@
             <section class="roster-section">
                 <div class="timeslot">
                     <p>Placeholder</p>
-                    <button></button>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
                 <div class="timeslot">
                     <p>Placeholder</p>
-                    <button></button>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
                 <div class="timeslot">
                     <p>Placeholder</p>
-                    <button></button>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
                 <div class="timeslot">
                     <p>Placeholder</p>
-                    <button></button>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
                 <div class="timeslot">
                     <p>Placeholder</p>
-                    <button></button>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
                 <div class="timeslot">
                     <p>Placeholder</p>
-                    <button></button>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
             </section>
         </article>
