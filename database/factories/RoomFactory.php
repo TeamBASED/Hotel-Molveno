@@ -24,7 +24,7 @@ class RoomFactory extends Factory
             'base_price_per_night' => fake()->numberBetween(100, 1000),
             'cleaning_status_id' => fake()->numberBetween(1, 3),
             'baby_bed_possible' => fake()->numberBetween(0, 1),
-            'window_view_id' => fake()->numberBetween(1, 3),
+            'room_view_id' => fake()->numberBetween(1, 3),
             'room_type_id' => fake()->numberBetween(1, 3),
             'description' => fake()->sentence(),
             'status_comment' => fake()->paragraph(),
