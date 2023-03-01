@@ -9,13 +9,40 @@
         display: flex;
         flex-flow: row nowrap;
         height: 20rem;
-        background-color: $color-grey-500;
+        border: 2px solid $color-600;
+        margin-bottom: 1.5rem;
         .info-section {
-            width: 70%;
+            padding: 1rem 1.5rem;
+            width: 65%;
+            .info-box {
+                display: flex;
+                flex-flow: row wrap;
+                height: 80%;
+                .info-container {
+                    color: $color-white;
+                    font-weight: bold;
+                    width: 40%;
+                    margin: 0.5rem 1rem 0.5rem 0;
+                    padding: 0.5rem;
+                    background-color: $color-grey-600;
+                    box-shadow: 2px 2px 8px $color-grey-600;
+                }
+            }
+            .button-container {
+                height: 20%;
+                padding-top: 0.5rem;
+            }
         }
         .roster-section {
-            width: 30%;
-            background-color: $color-grey-600;
+            padding: 0.5rem;
+            width: 35%;
+            background-color: $color-700;
+            .timeslot {
+                height: 2rem;
+                margin-top: 0.5rem;
+                color: $color-grey-600;
+                background-color: $color-white;
+            }
 
         }
     }

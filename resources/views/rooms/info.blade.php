@@ -14,9 +14,9 @@
                     
                     <div class="info-container"><p>View&colon; Mountain</p></div>
 
-                    <div class="info-container container-long"><p>Bed configuration&colon; {{ $room->bed_configuration }}</p></div>
+                    <div class="info-container"><p>Bed configuration&colon; {{ $room->bed_configuration }}</p></div>
  
-                    <div class="info-container container-long"><p>Description&colon; {{ $room->description }}</p></div>
+                    <div class="info-container"><p>Description&colon; {{ $room->description }}</p></div>
                 </div>
                 <div class="button-container">
                     <x-buttons.primary-button>Edit</x-buttons.primary-button>
