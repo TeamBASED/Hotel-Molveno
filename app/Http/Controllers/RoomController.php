@@ -12,4 +12,10 @@ class RoomController extends Controller
 
         return view('/room/info', compact(['room']));
     }
+
+    public function viewRoomOverview() {
+        $rooms = Room::getAllRoomData();
+
+        return view('/room/overview', ['rooms' => $rooms]);
+    }
 }
