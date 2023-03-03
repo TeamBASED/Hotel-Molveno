@@ -11,10 +11,14 @@
     }
 }
 
-.filter-field {
+.filter-field,
+.dropdown-select {
     background-color: $color-white;
     color: $color-400;
     border: 3px solid $color-grey-400;
+    padding: 0.5rem;
+
+    border-radius: 0.5rem;
 
     option {
 
@@ -22,7 +26,6 @@
         color: $color-400;
         border: 3px solid $color-grey-400;
 
-        border: 0px;
 
     }
 
