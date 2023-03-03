@@ -16,14 +16,7 @@ use App\Http\Controllers\RoomController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/room/{id}/info', [RoomController::class, 'showInfo']);
-
-Route::get('/overview', function () {
-    return view('room/overview');
-});
+// Breeze stuff
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,5 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Room routes
+
+Route::get('/room/overview', [RoomController::class, 'edit'])->name('room.overview');
+
+Route::get('/room/{id}/info', [RoomController::class, 'showInfo']);
+
+
 
 require __DIR__.'/auth.php';
