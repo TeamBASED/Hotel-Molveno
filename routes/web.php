@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/rooms/{id}/info', [RoomController::class, 'showInfo']);
+Route::get('/room/{id}/info', [RoomController::class, 'showInfo']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
