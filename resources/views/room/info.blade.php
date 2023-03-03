@@ -6,8 +6,6 @@
         <article>
             <section class="info-section">
                 <div class="info-box">
-
-
                     <div class="info-container"><p>Room no.&colon; {{ $room->room_number}}</p></div>
                     
                     <div class="info-container"><p>Capacity&colon; {{ $room->capacity }}</p></div>
