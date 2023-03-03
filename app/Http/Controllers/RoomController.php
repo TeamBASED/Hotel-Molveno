@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function showInfo(int $id){
+    public function viewRoomInfo(int $id){
         $room = Room::getRoomData($id);
 
         return view('/room/info', compact(['room']));
