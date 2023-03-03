@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::get('/room/{id}/info', [RoomController::class, 'showInfo']);
 
 Route::get('/overview', function () {
-    return view('rooms/overview');
+    return view('room/overview');
 });
 
 Route::get('/dashboard', function () {

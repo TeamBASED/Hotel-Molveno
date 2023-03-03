@@ -1,5 +1,5 @@
 <x-layout.base/>
-<main id="rooms-overview">
+<main id="room-overview">
     <div class="left-side">
         <div class="filter">
 
