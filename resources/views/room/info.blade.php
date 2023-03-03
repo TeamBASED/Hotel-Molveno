@@ -50,7 +50,7 @@
             </section>
         </article>
         <div class="button-container">
-            <x-buttons.primary-button>Back</x-buttons.primary-button>
+            <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
         </div>
     </main>
 </x-layout.base>
