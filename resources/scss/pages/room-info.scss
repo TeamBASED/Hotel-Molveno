@@ -1,0 +1,65 @@
+#room-info {
+    width: 70%;
+    margin: 0 auto;
+    h2 {
+        font-size: 2rem;
+        margin: 3rem 0 2rem 0;
+    }
+    article {
+        display: flex;
+        flex-flow: row nowrap;
+        height: 20rem;
+        border: 2px solid $color-600;
+        margin-bottom: 1.5rem;
+        background-color: $color-grey-300;
+        .info-section {
+            padding: 1rem 1.5rem;
+            width: 65%;
+            .info-box {
+                display: flex;
+                flex-flow: row wrap;
+                height: 80%;
+                .info-container {
+                    height: fit-content;
+                    width: 40%;
+                    margin: 0.5rem 1rem 0.5rem 0;
+                    padding: 0.5rem;                    
+                    color: $color-white;
+                    background-color: $color-grey-600;
+                    box-shadow: 2px 2px 8px $color-grey-600;
+                    p {
+                        display: inline-block;
+                        height: fit-content;
+                    }
+                }
+            }
+            .button-container {
+                height: 20%;
+                padding-top: 0.5rem;
+            }
+        }
+        .roster-section {
+            padding: 1rem;
+            width: 35%;
+            .timeslot {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                height: 30px;
+                margin-top: 0.5rem;
+                color: $color-grey-600;
+                p {
+                    display: inline-block;
+                    background-color: $color-white;
+                    width: 100%;
+                    margin-right: 0.5rem;
+                    padding-left: 0.5rem;
+                }
+                button {
+                    font-size: 0.5rem;
+                }
+            }
+
+        }
+    }
+}

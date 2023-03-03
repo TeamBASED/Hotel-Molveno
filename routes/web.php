@@ -3,6 +3,7 @@
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,10 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/room/{id}/info', [RoomController::class, 'showInfo']);
 
 Route::get('/overview', function () {
-    return view('rooms/overview');
+    return view('room/overview');
 });
 
 Route::get('/dashboard', function () {
