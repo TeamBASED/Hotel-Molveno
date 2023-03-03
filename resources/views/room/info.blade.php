@@ -6,13 +6,15 @@
         <article>
             <section class="info-section">
                 <div class="info-box">
+
+
                     <div class="info-container"><p>Room no.&colon; {{ $room->room_number}}</p></div>
                     
                     <div class="info-container"><p>Capacity&colon; {{ $room->capacity }}</p></div>
                     
                     <div class="info-container"><p>Price per night&colon; {{ $room->base_price_per_night }}</p></div>
                     
-                    <div class="info-container"><p>View&colon; Mountain</p></div>
+                    <div class="info-container"><p>View&colon; {{ $room->roomView->type }}</p></div>
 
                     <div class="info-container"><p>Bed configuration&colon; {{ $room->bed_configuration }}</p></div>
  

@@ -10,7 +10,7 @@ class RoomController extends Controller
     public function viewRoomInfo(int $id){
         $room = Room::getRoomData($id);
 
-        return view('/room/info', compact(['room']));
+        return view('/room/info', ['room' => $room]);
     }
 
     public function viewRoomOverview() {
