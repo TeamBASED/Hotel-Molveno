@@ -15,5 +15,8 @@
     <x-layout.header/>
 
     {{ $slot }}
+
+    <x-input-fields.filter-field :options="['option1','option2']"> Test </x-input-fields.filter-field>
+
 </body>
 </html>
