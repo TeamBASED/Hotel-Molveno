@@ -21,6 +21,10 @@ Route::get('/', function () {
 });
 Route::get('/room/{id}/info', [RoomController::class, 'showInfo']);
 
+Route::get('/overview', function () {
+    return view('rooms/overview');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
