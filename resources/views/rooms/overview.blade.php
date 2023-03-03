@@ -11,15 +11,9 @@
                     <h3>Room nr.</h3>
                     <h3>Price</h3>
                 </div>
-                <p>room type</p></br>
-                <p>available</p>
+                <p>room type</p>
+                <p class="margin-top">available</p>
                 <x-buttons.primary-button>Make reservation</x-buttons.primary-button>
-            </div>
-            <div class="room-item">
-                
-            </div>
-            <div class="room-item">
-                
             </div>
         </div>
     </div>
@@ -32,5 +26,9 @@
         <p>Bed configuration</p>
         <p>View</p>
         <p>Comments</p>
+        <div class="margin-top">
+            <x-buttons.secondary-button>Make reservation</x-buttons.secondary-button>
+            <x-buttons.secondary-button>Open room info</x-buttons.secondary-button>
+        </div>
     </div>
 </main>
