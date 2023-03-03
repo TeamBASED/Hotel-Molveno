@@ -23,6 +23,7 @@
             flex-wrap: wrap;
             justify-content: space-between;
             .room-item {
+                box-shadow: $color-grey-400 2px 2px 5px;
                 border: solid 2px $color-600;
                 height: 150px;
                 width: 300px;

@@ -13,6 +13,7 @@
                 </div>
                 <p>room type</p></br>
                 <p>available</p>
+                <x-buttons.primary-button>Make reservation</x-buttons.primary-button>
             </div>
             <div class="room-item">
                 

@@ -1,0 +1,29 @@
+.input-text {
+    background-color: $color-white;
+    color: $font-color;
+
+    padding: 4px;
+
+    border: 3px solid $color-grey-400;
+
+    &::placeholder {
+        color: $color-grey-400;
+    }
+}
+
+.filter-field {
+    background-color: $color-white;
+    color: $color-400;
+    border: 3px solid $color-grey-400;
+
+    option {
+
+        background-color: $color-white;
+        color: $color-400;
+        border: 3px solid $color-grey-400;
+
+        border: 0px;
+
+    }
+
+}
