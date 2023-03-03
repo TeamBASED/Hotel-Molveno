@@ -20,12 +20,17 @@
                 flex-flow: row wrap;
                 height: 80%;
                 .info-container {
-                    color: $color-white;
+                    height: fit-content;
                     width: 40%;
                     margin: 0.5rem 1rem 0.5rem 0;
-                    padding: 0.5rem;
+                    padding: 0.5rem;                    
+                    color: $color-white;
                     background-color: $color-grey-600;
                     box-shadow: 2px 2px 8px $color-grey-600;
+                    p {
+                        display: inline-block;
+                        height: fit-content;
+                    }
                 }
             }
             .button-container {

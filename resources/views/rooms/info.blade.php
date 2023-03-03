@@ -10,7 +10,7 @@
                     
                     <div class="info-container"><p>Capacity&colon; {{ $room->capacity }}</p></div>
                     
-                    <div class="info-container"><p>Base price per night&colon; {{ $room->base_price_per_night }}</p></div>
+                    <div class="info-container"><p>Price per night&colon; {{ $room->base_price_per_night }}</p></div>
                     
                     <div class="info-container"><p>View&colon; Mountain</p></div>
 
