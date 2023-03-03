@@ -1,12 +1,10 @@
-<select  
-$attributes->merge([
-    'class' => 'filter-field'
-    ])>
+@props(['options'])
 
-<option value="test1"></option>
-<option value="test2"></option>
+<select>
 
+    @foreach ($options as $option)
+        <option value={{$option}}>{{$option}}</option>
+    @endforeach
 
 </select>
-
 
