@@ -28,6 +28,20 @@ h1 {
             }
         }
     }
+    .buttons {
+        display: flex  ;
+        justify-content: space-between;
+        padding: 5rem;
+        .button{
+            font-weight: 600;
+            height: 45px;
+            width: 150px;
+        }
+        .gray-bg {
+            background-color: $color-grey-600;
+            color: $color-700;
+        }
+    }
 }
 
 #room-edit-description {

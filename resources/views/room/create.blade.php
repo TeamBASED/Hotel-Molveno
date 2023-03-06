@@ -20,6 +20,7 @@
             </form>
     </div>
     <div class="buttons">
-
+        <x-buttons.primary-button class="button gray-bg">Cancel</x-buttons.primary-button>
+        <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
     </div>
 </main>
