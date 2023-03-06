@@ -1,8 +1,8 @@
 @props(['options'])
 
-<select class="filter-field">
+<select class="dropdown-select">
 
-    <option value="all"> Select all </option>
+    <option style="display: none;"> Please select </option>
 
     @foreach ($options as $option)
         <option class="filter-field-option" value={{$option}}>{{$option}}</option>
