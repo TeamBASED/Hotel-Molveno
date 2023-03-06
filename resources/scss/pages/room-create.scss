@@ -10,21 +10,35 @@ h1 {
         width: 700px;
         form {
             display: flex;
-            .left, .right {
+            .left, .middle, .right {
                 margin-top: 2rem;
             }
-            .left {
+            .left, .middle {
                 display: flex;
                 flex-direction: column;
             }
-
+            .middle {
+                gap: 5px;
+            }
             input, select {
                 margin: 0.5rem;
                 width: 15rem;
             }
-
             select {
                 border-radius: 0;
+            }
+            label {
+                color: $color-grey-600;
+                margin: 8px;
+                font-size: 22px;
+            }
+            input[type=checkbox] {
+                border: 3px solid $color-grey-400;
+                background-color: $color-white;
+                height: 30.4px;
+                width: 30.4px;
+                margin: 8px;
+                padding: 4px;
             }
         }
     }
