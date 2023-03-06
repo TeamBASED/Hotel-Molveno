@@ -1,0 +1,50 @@
+
+h1 {
+    margin-left: 1.5rem;
+}
+
+#room-create {
+    padding: 5rem;
+    .container-create {
+        margin: 0 auto;
+        width: 700px;
+        form {
+            display: flex;
+            .left, .right {
+                margin-top: 2rem;
+            }
+            .left {
+                display: flex;
+                flex-direction: column;
+            }
+
+            input, select {
+                margin: 0.5rem;
+                width: 15rem;
+            }
+
+            select {
+                border-radius: 0;
+            }
+        }
+    }
+    .buttons {
+        display: flex  ;
+        justify-content: space-between;
+        padding: 5rem;
+        .button{
+            font-weight: 600;
+            height: 45px;
+            width: 150px;
+        }
+        .gray-bg {
+            background-color: $color-grey-600;
+            color: $color-700;
+        }
+    }
+}
+
+#room-edit-description {
+    height: 9rem;
+}
+

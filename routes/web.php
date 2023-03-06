@@ -18,6 +18,10 @@ use App\Http\Controllers\RoomController;
 
 // Breeze stuff
 
+Route::get('/create', function () {
+    return view('room/create');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
