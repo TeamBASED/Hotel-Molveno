@@ -40,6 +40,10 @@
             }
             .button-container {
                 padding-top: 0.5rem;
+                button {
+                    height: 35px;
+                    width: 120px;
+                }
             }
         }
         .reservation-schedule {
@@ -78,7 +82,8 @@
     }
     > .button-container {
         a {
-            padding: 0.6rem;
+            height: 35px;
+            width: 120px;
             text-align: center;
         }
     }
