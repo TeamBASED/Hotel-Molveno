@@ -5,24 +5,24 @@
         <form action="">
         @csrf
             <div class="left">
-                <input type="text" class="input-text" placeholder="Room number" name="room-number">
+                <input type="text" class="input-text" placeholder="Room number" name="room_number">
                 <input type="text" class="input-text" placeholder="Capacity" name="capacity">
-                <input type="text" class="input-text" placeholder="Price per night" name="price-per-night">
-                <input type="text" class="input-text" placeholder="Bed configuration" name="bed-configuration">
+                <input type="text" class="input-text" placeholder="Price per night" name="base_price_per_night">
+                <input type="text" class="input-text" placeholder="Bed configuration" name="bed_configuration">
                 <!-- view = dropdown -->
             </div>
             <div class="middle">
                 <div>
                     <label for="baby-bed">Baby bed possible:</label>
-                    <input type="checkbox" class="input-text" name="baby-bed">
+                    <input type="checkbox" class="input-text" name="baby_bed_possible">
                 </div>
-                <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="room-edit-description">
+                <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description">
             </div>
             <div class="right">
-                <select name="Room view" class="dropdown-select" name="room-view">
+                <select name="Room view" class="dropdown-select" name="room_view">
                         <option value="">Test</option>
                 </select>
-                <select name="Type" class="dropdown-select" name="type">
+                <select name="Type" class="dropdown-select" name="room_type">
                         <option value="">Test</option>
                 </select>
             </div>

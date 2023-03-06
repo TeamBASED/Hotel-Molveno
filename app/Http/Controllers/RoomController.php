@@ -21,13 +21,13 @@ class RoomController extends Controller
     public function createRoom() : Room {
         $room = Room::create([
             'room_number' => $room_number,
-            'room_type_id' => $room_type_id, 
             'capacity' => $capacity,
-            'base_price_per_night' => $base_price_per_night ,
-            'baby_bed_possible' => $baby_bed_possible,
-            'room_view_id' => $room_view_id,
+            'base_price_per_night' => $base_price_per_night,
             'bed_configuration' => $bed_configuration,
-            'description' => $description
+            'baby_bed_possible' => $baby_bed_possible,
+            'description' => $description,
+            'room_view_id' => $room_view,
+            'room_type_id' => $room_type
         ]);
         $room->save();
 
