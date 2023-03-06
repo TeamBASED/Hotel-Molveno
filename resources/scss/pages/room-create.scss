@@ -1,13 +1,11 @@
-
-h1 {
-    margin-left: 1.5rem;
-}
-
 #room-create {
     padding: 5rem;
     .container-create {
         margin: 0 auto;
         width: 700px;
+        h1 {
+            margin-left: 1.5rem;
+        }
         form {
             display: flex;
             .left, .middle, .right {
