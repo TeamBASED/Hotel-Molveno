@@ -2,17 +2,22 @@
 <main id="room-create">
     <div class="container-create">
         <h1>Create room</h1>
-        <div class="container-input">
             @csrf
             <form action="">
                 <div class="left">
-                    <x-input-fields.input-field>Room number</x-input-fields.input-field>
+                    <input type="text" class="input-text" placeholder="Room number">
+                    <input type="text" class="input-text" placeholder="Size">
+                    <select name="Room view" class="dropdown-select">
+                            <option value="">Test</option>
+                    </select>   
+                    <input type="text" class="input-text" placeholder="Price per night">
+                    <!-- view = dropdown -->
                 </div>
                 <div class="right">
-
+                    <input type="text" class="input-text" placeholder="Bed configuration">
+                    <input type="text" class="input-text" id="room-edit-description" placeholder="Room description">
                 </div>
             </form>
-        </div>
     </div>
     <div class="buttons">
 
