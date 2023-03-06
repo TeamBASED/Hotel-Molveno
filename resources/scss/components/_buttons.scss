@@ -1,50 +1,44 @@
 .primary-button {
+    display: inline-block;
     background-color: $color-700;
     color: $color-white;
-    width: 200px;
-    height: 60px;
+    padding: 5px 26px;
 
-    &:hover {
-        background-color: $color-700;
-        color: $color-white;
-    }
+    // &:hover {
+        // what should hover status do?
+    // }
 }
 
 .secondary-button {
+    display: inline-block;
     background-color: $color-white;
     color: $font-color;
-    width: 240px;
-    height: 40px;
+    padding: 5px 26px;
     border: $color-700 3px solid;
 
-    &:hover {
-        background-color: $color-white;
-        color: $font-color;
-        border: $color-700 3px solid;
-    }
+    // &:hover {
+        // what should hover status do?
+    // }
 }
 
 .tertiary-button {
+    display: inline-block;
     background-color: $color-white;
     color: $font-color;
-    width: 240px;
-    height: 40px;
+    padding: 5px 26px;
 
-    &:hover {
-        background-color: $color-white;
-        color: $font-color;
-    }
-
+    // &:hover {
+        // what should hover status do?
+    // }
 }
 
 .edit-button {
     background-color: $color-700;
     color: $color-white;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 
-    &:hover {
-        background-color: $color-700;
-        color: $color-white;
-    }
+    // &:hover {
+        // what should hover status do?
+    // }
 }
