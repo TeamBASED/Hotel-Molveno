@@ -32,6 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// for now redirect, this should be home page
+Route::get('/', function () {
+    return redirect(route('room.overview'));
+});
+
 // Room routes
 
 Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
