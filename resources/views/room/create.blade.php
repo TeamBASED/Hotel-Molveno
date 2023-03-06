@@ -22,7 +22,7 @@
                 <select name="Room view" class="dropdown-select" name="room-view">
                         <option value="">Test</option>
                 </select>
-                <select name="Size" class="dropdown-select" name="size">
+                <select name="Type" class="dropdown-select" name="type">
                         <option value="">Test</option>
                 </select>
             </div>
