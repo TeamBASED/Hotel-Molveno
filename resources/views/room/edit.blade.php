@@ -4,7 +4,7 @@
     <div class="container-edit">
         <div class="delete-button-container">
             <h1>Edit room</h1>
-            <x-buttons.primary-button class="button gray-bg">Delete</x-buttons.primary-button> 
+            <form action=""><x-buttons.primary-button class="button gray-bg">Delete</x-buttons.primary-button></form>
         </div>
             <form action="">
             @csrf

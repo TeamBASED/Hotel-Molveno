@@ -22,9 +22,7 @@ Route::get('/create', function () {
     return view('room/create');
 });
 
-Route::get('/room/edit', function () {
-    return view('room/edit');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -42,10 +40,10 @@ Route::get('/', function () {
 });
 
 // Room routes
-
 Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
-
 Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
+Route::get('/room/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
+
 
 
 
