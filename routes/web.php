@@ -22,6 +22,10 @@ Route::get('/create', function () {
     return view('room/create');
 });
 
+Route::get('/room/edit', function () {
+    return view('room/edit');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
