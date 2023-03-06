@@ -18,15 +18,17 @@ class RoomController extends Controller
         return view('room.overview', ['rooms' => $rooms]);
     }
 
-    public function createRoom(){
-        $room = new Room();
-        $room->room_number = request('room_number');
-        $room->roomType->type = request('type');
-        $room->capacity = request('capacity');
-        $room->base_price_per_night = request('base_price_per_night');
-        $room->roomView->type = request('view');
-        $room->bed_configuration = request('bed_configuration');
-        $room->description = request('description');
+    public function createRoom() : Room {
+        $room = Room::create([
+            'room_number' => $room_number,
+            'room_type_id' => $room_type_id, 
+            'capacity' => $capacity,
+            'base_price_per_night' => $base_price_per_night ,
+            'baby_bed_possible' => $baby_bed_possible,
+            'room_view_id' => $room_view_id,
+            'bed_configuration' => $bed_configuration,
+            'description' => $description
+        ]);
         $room->save();
 
         return redirect('/room/overview');
