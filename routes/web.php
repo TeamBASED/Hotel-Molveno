@@ -18,7 +18,7 @@ use App\Http\Controllers\RoomController;
 
 // Breeze stuff
 
-Route::get('/create', function () {
+Route::get('room/create', function () {
     return view('room/create');
 });
 
