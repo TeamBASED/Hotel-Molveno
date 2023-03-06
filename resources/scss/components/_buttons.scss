@@ -1,8 +1,9 @@
 .primary-button {
+    display: block;
     background-color: $color-700;
     color: $color-white;
-    width: 200px;
-    height: 60px;
+    width: 150px;
+    height: 45px;
 
     &:hover {
         background-color: $color-700;
@@ -13,8 +14,8 @@
 .secondary-button {
     background-color: $color-white;
     color: $font-color;
-    width: 240px;
-    height: 40px;
+    width: 180px;
+    height: 30px;
     border: $color-700 3px solid;
 
     &:hover {
@@ -27,8 +28,8 @@
 .tertiary-button {
     background-color: $color-white;
     color: $font-color;
-    width: 240px;
-    height: 40px;
+    width: 180px;
+    height: 30px;
 
     &:hover {
         background-color: $color-white;
@@ -40,8 +41,8 @@
 .edit-button {
     background-color: $color-700;
     color: $color-white;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 
     &:hover {
         background-color: $color-700;
