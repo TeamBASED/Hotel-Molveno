@@ -7,6 +7,8 @@
             <section class="info-section">
                 <div class="info-box">
                     <div class="info-container"><h4>Room no.&colon;</h4><p> {{ $room->room_number}}</p></div>
+
+                    <div class="info-container"><h4>Room type&colon;</h4><p>{{ $room->roomType->type }}</p></div>
                     
                     <div class="info-container"><h4>Capacity&colon;</h4><p>{{ $room->capacity }}</p></div>
                     
