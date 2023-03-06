@@ -12,7 +12,7 @@
                     
                     <div class="info-container"><p>Price per night&colon; {{ $room->base_price_per_night }}</p></div>
                     
-                    <div class="info-container"><p>View&colon; Mountain</p></div>
+                    <div class="info-container"><p>View&colon; {{ $room->roomView->type }}</p></div>
 
                     <div class="info-container"><p>Bed configuration&colon; {{ $room->bed_configuration }}</p></div>
  
@@ -50,7 +50,7 @@
             </section>
         </article>
         <div class="button-container">
-            <x-buttons.primary-button>Back</x-buttons.primary-button>
+            <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
         </div>
     </main>
 </x-layout.base>

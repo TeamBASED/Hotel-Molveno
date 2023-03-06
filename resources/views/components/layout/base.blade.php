@@ -15,5 +15,6 @@
     <x-layout.header/>
 
     {{ $slot }}
+
 </body>
 </html>
