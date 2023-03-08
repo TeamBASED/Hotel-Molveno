@@ -7,8 +7,9 @@
             <h1>Edit room</h1>
             <form action="" class="delete-form"><x-buttons.primary-button class="button gray-bg right-aligned">Delete</x-buttons.primary-button></form>
         <div class="blank"></div>
-        <form action="" method="POST" class="edit-room-form">
+        <form action="{{ route('admin.update', $room->id) }}" method="POST" class="edit-room-form">
         @csrf
+        @method('PATCH')
             <div class="left">
                 <input type="text" class="input-text" placeholder="Room number" name="number">
                 <input type="text" class="input-text" placeholder="Capacity" name="capacity">

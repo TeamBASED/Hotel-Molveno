@@ -2,7 +2,7 @@
 <main id="room-create">
     <div class="container-create">
         <h1>Create room</h1>
-        <form action="" method="POST">
+        <form action="/room/create" method="POST">
             @csrf
             <div class="left">
                 <input type="text" class="input-text" placeholder="Room number" name="room_number">
