@@ -1,4 +1,4 @@
-<x-layout.base/>
+<x-layout.base>
 <main id="room-create">
     <div class="container-create">
         <h1>Create room</h1>
@@ -25,6 +25,7 @@
                 <select name="Type" class="dropdown-select" name="type">
                         <option value="">Test</option>
                 </select>
+                <x-input-fields.dropdown-select :options="$roomTypes"/>
             </div>
         </form>
     </div>
@@ -33,3 +34,4 @@
         <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
     </div>
 </main>
+</x-layout.base>

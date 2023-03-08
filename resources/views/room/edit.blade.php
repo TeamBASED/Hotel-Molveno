@@ -24,12 +24,8 @@
                 <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="room-edit-description">
             </div>
             <div class="right">
-                <select name="Room view" class="dropdown-select" name="room-view">
-                        <option value="">Test</option>
-                </select>
-                <select name="Size" class="dropdown-select" name="size">
-                        <option value="">Test</option>
-                </select>
+                <x-input-fields.dropdown-select :options="$roomTypes"/>
+                <x-input-fields.dropdown-select :options="$roomViews"/>
             </div>
         </form>
         <div class="blank"></div>

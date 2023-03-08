@@ -30,14 +30,8 @@
         align-items: center;
     }
 
-    // .right-aligned {
-    //     justify-self: right;
-    // }
-
     input {
         width: 100%;
-        // margin-block: 0.5rem;
-
     }
 
     .buttons {
@@ -61,15 +55,12 @@
         justify-content: space-between;
     }
 
-    .edit-room-form {
-        // margin-block: 2rem;
-    }
+
 
     select {
         display: block;
         width: 100%;
         border-radius: 0;
-        // margin-block: 1rem;
     }
 
     .container-edit {
@@ -81,31 +72,6 @@
             padding-top: 0;
         }
 
-        // form {
-        //     display: flex;
-        //     margin: 0 auto;
-        //     // width: 700px;   
-
-        //     .left,
-        //     .right {
-        //         margin-top: 2rem;
-        //     }
-
-        //     .left {
-        //         display: flex;
-        //         flex-direction: column;
-        //     }
-
-        //     input,
-        //     select {
-        //         margin: 0.5rem;
-        //         width: 15rem;
-        //     }
-
-        //     select {
-        //         border-radius: 0;
-        //     }
-        // }
     }
 
     .buttons,

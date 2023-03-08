@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Room;
+use App\Models\RoomType;
+use App\Models\RoomView;
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -19,6 +21,12 @@ class RoomController extends Controller
     }
 
     public function viewRoomEdit() {
-        return view('/room/edit');
+        $roomTypes = RoomType::pluck("type");
+        $roomViews = RoomView::pluck("type");
+        
+        return view('/room/edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
+
+
+
 }
