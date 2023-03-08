@@ -1,4 +1,4 @@
-<x-layout.base/>
+<x-layout.base>
 <main id="room-edit">
 
     <div class="container-edit">
@@ -44,3 +44,4 @@
  
 
 </main>
+</x-layout.base>
