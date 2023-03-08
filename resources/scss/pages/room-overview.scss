@@ -40,25 +40,32 @@
             }
         }
     }
-    .right-side {
+    .details-section {
         background-color: $color-700;
         color: $color-white;
         min-height: 500px;
         width: 20%;
         padding: 10px 20px;
+
         h2 {
             text-align: center;
             font-size: 38px;
         }
+
         p {
             font-size: 20px;
         }
+
         div {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             font-weight: 800;
             height: 10rem;
+        }
+
+        .details-label {
+            color: $color-100;
         }
     }
 }
