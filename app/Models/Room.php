@@ -12,6 +12,17 @@ class Room extends Model
 {
     use HasFactory;
 
+    protected $fillable= [
+        'room_number', 
+        'capacity', 
+        'base_price_per_night',
+        'bed_configuration',
+        'baby_bed_possible',
+        'description',
+        'room_view_id',
+        'room_type_id'
+    ];
+
     public function cleaningStatus() {
         return $this->belongsTo(CleaningStatus::class);
     } 
