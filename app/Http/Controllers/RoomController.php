@@ -17,4 +17,8 @@ class RoomController extends Controller
 
         return view('/room/overview', ['rooms' => $rooms]);
     }
+
+    public function viewRoomEdit() {
+        return view('/room/edit');
+    }
 }

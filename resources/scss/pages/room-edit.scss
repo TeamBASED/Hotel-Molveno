@@ -1,0 +1,134 @@
+#room-edit {
+    padding: 5rem;
+
+    .three-column-mid-stretch {
+        display: grid;
+        grid-template-columns: 200px 1fr 200px;
+    }
+
+    .edit-room-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+
+        &>* {
+            margin-block: 1rem;
+            display: flex;
+            gap: 1rem;
+            flex-direction: column;
+            flex-grow: 0;
+        }
+    }
+
+    .padding-inline-5rem {
+        padding-inline: 5rem;
+    }
+
+    .delete-form {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    // .right-aligned {
+    //     justify-self: right;
+    // }
+
+    input {
+        width: 100%;
+        // margin-block: 0.5rem;
+
+    }
+
+    .buttons {
+        padding: 5rem;
+    }
+
+    .babybed {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+
+    .flex-space-between {
+        display: flex;
+        flex: 0 0 auto;
+        justify-content: space-between;
+    }
+
+    .edit-room-form {
+        // margin-block: 2rem;
+    }
+
+    select {
+        display: block;
+        width: 100%;
+        border-radius: 0;
+        // margin-block: 1rem;
+    }
+
+    .container-edit {
+
+        .delete-button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-top: 0;
+        }
+
+        // form {
+        //     display: flex;
+        //     margin: 0 auto;
+        //     // width: 700px;   
+
+        //     .left,
+        //     .right {
+        //         margin-top: 2rem;
+        //     }
+
+        //     .left {
+        //         display: flex;
+        //         flex-direction: column;
+        //     }
+
+        //     input,
+        //     select {
+        //         margin: 0.5rem;
+        //         width: 15rem;
+        //     }
+
+        //     select {
+        //         border-radius: 0;
+        //     }
+        // }
+    }
+
+    .buttons,
+    .delete-button-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 5rem 5rem 0 5rem;
+
+        .button {
+            font-weight: 600;
+            height: 45px;
+            width: 150px;
+        }
+
+        .gray-bg {
+            background-color: $color-grey-600;
+            color: $color-700;
+        }
+    }
+
+    #room-edit-description {
+        height: 9rem;
+    }
+
+
+}

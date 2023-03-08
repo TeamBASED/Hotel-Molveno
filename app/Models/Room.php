@@ -14,6 +14,10 @@ class Room extends Model
 
     public function cleaningStatus() {
         return $this->belongsTo(CleaningStatus::class);
+    } 
+
+    public static function deleteRoomData(int $roomId) {
+        $deleted = Room::where('id', '=', $roomId)->delete();
     }
 
     public function roomView() {
