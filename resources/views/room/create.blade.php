@@ -19,8 +19,8 @@
                 <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description">
             </div>
             <div class="right">
-                <x-input-fields.dropdown-select :options="$roomTypes"/>
-                <x-input-fields.dropdown-select :options="$roomViews"/>
+                <x-input-fields.dropdown-select :options="$roomTypes" :name=""/>
+                <x-input-fields.dropdown-select :options="$roomViews" :name=""/>
             </div>
         </form>
     </div>

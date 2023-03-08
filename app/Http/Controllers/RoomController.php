@@ -19,6 +19,22 @@ class RoomController extends Controller
 
         return view('room.overview', ['rooms' => $rooms]);
     }
+    
+    public function viewRoomCreate() {
+        $roomTypes = RoomType::pluck("type");
+        $roomViews = RoomView::pluck("type");
+        
+        return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+    }
+
+    public function viewRoomEdit(int $id) {
+        $room = Room::getRoomData($id);
+
+        $roomTypes = RoomType::get();
+        $roomViews = RoomView::get();
+        
+        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+    }
 
     public function createRoom() {
         $room = Room::create([
@@ -31,10 +47,10 @@ class RoomController extends Controller
             'room_view_id' => $room_view,
             'room_type_id' => $room_type
         ]);
-        $room->save();
 
         return redirect('/room/overview');
     }
+
     public function updateRoom(Request $request, int $id) {
         $room = Room::getRoomData($id);
         $room->update([
@@ -50,20 +66,4 @@ class RoomController extends Controller
 
         return redirect('/room/overview');
     }
-
-    public function viewRoomEdit() {
-        $roomTypes = RoomType::pluck("type");
-        $roomViews = RoomView::pluck("type");
-        
-        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
-    }
-
-    public function viewRoomCreate() {
-        $roomTypes = RoomType::pluck("type");
-        $roomViews = RoomView::pluck("type");
-        
-        return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
-    }
-
-
 }
