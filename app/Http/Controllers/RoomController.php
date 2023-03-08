@@ -21,8 +21,8 @@ class RoomController extends Controller
     }
     
     public function viewRoomCreate() {
-        $roomTypes = RoomType::pluck("type");
-        $roomViews = RoomView::pluck("type");
+        $roomTypes = RoomType::get();
+        $roomViews = RoomView::get();
         
         return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
@@ -36,16 +36,16 @@ class RoomController extends Controller
         return view('room.edit', ['room' => $room, 'roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
 
-    public function createRoom() {
+    public function createRoom(Request $request) {
         $room = Room::create([
-            'room_number' => $number,
-            'capacity' => $capacity,
-            'base_price_per_night' => $price,
-            'bed_configuration' => $configuration,
-            'baby_bed_possible' => $babybed,
-            'description' => $description,
-            'room_view_id' => $view,
-            'room_type_id' => $type
+            'room_number' => $request->number,
+            'capacity' => $request->capacity,
+            'base_price_per_night' => $request->price,
+            'bed_configuration' => $request->configuration,
+            'baby_bed_possible' => $request->babybed,
+            'description' => $request->description,
+            'room_view_id' => $request->view,
+            'room_type_id' => $request->type,
         ]);
 
         return redirect('/room/overview');

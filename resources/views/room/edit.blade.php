@@ -41,8 +41,6 @@
             <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
         </form>
         <div class="blank"></div>
-            
-
     </div>
     <div class="flex-space-between buttons">
         <x-buttons.primary-button class="button gray-bg">Cancel</x-buttons.primary-button>
