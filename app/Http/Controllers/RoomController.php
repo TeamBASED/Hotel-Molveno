@@ -19,7 +19,15 @@ class RoomController extends Controller
 
         return view('room.overview', ['rooms' => $rooms]);
     }
-    
+
+    public function viewRoomEdit(int $id) {
+        $roomTypes = RoomType::get();
+        $roomViews = RoomView::get();
+        $room = Room::getRoomData($id);
+
+        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room]);
+    }
+
     public function viewRoomCreate() {
         $roomTypes = RoomType::get();
         $roomViews = RoomView::get();
@@ -27,13 +35,9 @@ class RoomController extends Controller
         return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
 
-    public function viewRoomEdit(int $id) {
-        $room = Room::getRoomData($id);
-
-        $roomTypes = RoomType::get();
-        $roomViews = RoomView::get();
-        
-        return view('room.edit', ['room' => $room, 'roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+    public function handleDeleteRoom(Request $request) {
+        Room::deleteRoomData($request->id);
+        return redirect(route('room.overview'));
     }
 
     public function createRoom(Request $request) {

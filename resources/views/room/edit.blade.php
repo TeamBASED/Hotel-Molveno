@@ -5,7 +5,12 @@
         <div class="three-column-mid-stretch padding-inline-5rem">
             <div class="blank"></div>
             <h1>Edit room</h1>
-            <form action="" class="delete-form"><x-buttons.primary-button class="button gray-bg right-aligned">Delete</x-buttons.primary-button></form>
+            <form action="{{ route('room.delete') }}" method="POST" class="delete-form">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id" value="{{ $room->id }}">
+                <x-buttons.primary-button class="button gray-bg right-aligned">Delete</x-buttons.primary-button>
+            </form>
         <div class="blank"></div>
         <form action="{{ route('room.update', $room->id) }}" method="POST" class="edit-room-form">
         @csrf

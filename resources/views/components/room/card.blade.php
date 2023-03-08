@@ -2,7 +2,7 @@
     'room'    
 ])
 
-<div class="room-item">
+<div class="room-item" data-room-details="{{ json_encode($room) }}" data-room-type="{{ $room->roomType->type }}" data-room-view="{{ $room->roomView->type }}" data-cleaning-status="{{ $room->cleaningStatus->status }}">
     <div>
         <h3>Nr. {{ $room->room_number }}</h3>
         <h3>{{ $room->base_price_per_night }} per night</h3>
