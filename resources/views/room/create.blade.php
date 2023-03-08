@@ -1,4 +1,4 @@
-<x-layout.base/>
+<x-layout.base>
 <main id="room-create">
     <div class="container-create">
         <h1>Create room</h1>
@@ -19,12 +19,8 @@
                 <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="room-edit-description">
             </div>
             <div class="right">
-                <select name="Room view" class="dropdown-select" name="room-view">
-                        <option value="">Test</option>
-                </select>
-                <select name="Type" class="dropdown-select" name="type">
-                        <option value="">Test</option>
-                </select>
+                <x-input-fields.dropdown-select :options="$roomTypes"/>
+                <x-input-fields.dropdown-select :options="$roomViews"/>
             </div>
         </form>
     </div>
@@ -33,3 +29,4 @@
         <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
     </div>
 </main>
+</x-layout.base>
