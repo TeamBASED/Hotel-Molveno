@@ -11,22 +11,32 @@
         @csrf
         @method('PATCH')
             <div class="left">
-                <input type="text" class="input-text" placeholder="Room number" name="number">
-                <input type="text" class="input-text" placeholder="Capacity" name="capacity">
-                <input type="text" class="input-text" placeholder="Price per night" name="price">
-                <input type="text" class="input-text" placeholder="Bed configuration" name="configuration">
+                <input type="text" class="input-text" placeholder="Room number" name="number" value="{{old('description', $room->room_number)}}">
+                <input type="text" class="input-text" placeholder="Capacity" name="capacity" value="{{old('description', $room->capacity)}}">
+                <input type="text" class="input-text" placeholder="Price per night" name="price" value="{{old('description', $room->base_price_per_night)}}">
+                <input type="text" class="input-text" placeholder="Bed configuration" name="configuration" value="{{old('description', $room->bed_configuration)}}">
                 <!-- view = dropdown -->
             </div>
             <div class="middle">
                 <div class="babybed">
                     <label for="baby-bed">Baby bed possible:</label>
-                    <input type="checkbox" class="input-text" name="babybed">
+                    <input type="checkbox" class="input-text" name="babybed" value="babybed" {{$room->baby_bed_possible == 1 ? 'checked' : ''}}>
                 </div>
-                <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description">
+                <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description" value="{{old('description', $room->description)}}">
             </div>
             <div class="right">
-                <x-input-fields.dropdown-select :options="$roomTypes" name="type"/>
-                <x-input-fields.dropdown-select :options="$roomViews" name="view"/>
+                <select class="dropdown-select" name="select-type">
+                    @foreach ($roomTypes as $option)
+                        <option class="filter-field-option" value="{{$option->id}}" selected={{$option->id == old('select-type', $room->room_type_id) ? 'selected' : ''}}>{{$option->type}}</option>
+                    @endforeach
+                </select>
+                <select class="dropdown-select" name="select-view">
+                    @foreach ($roomViews as $option)
+                        <option class="filter-field-option" value="{{$option->id}}" selected={{$option->id == old('select-view', $room->room_view_id) ? 'selected' : ''}}>{{$option->type}}</option>
+                    @endforeach
+                </select>
+                {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> Doesn't quite work as expected or desired --}}
+                {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> Doesn't quite work as expected or desired --}}
             </div>
         </form>
         <div class="blank"></div>

@@ -33,7 +33,7 @@ class RoomController extends Controller
         $roomTypes = RoomType::get();
         $roomViews = RoomView::get();
         
-        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+        return view('room.edit', ['room' => $room, 'roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
 
     public function createRoom() {
