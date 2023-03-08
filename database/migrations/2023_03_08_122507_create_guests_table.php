@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->tinyText('first_name');
             $table->tinyText('last_name');
-            $table->int('contact_id');
+            $table->integer('contact_id');
             $table->tinyText('nationality');
             $table->tinyText('id_number');
             $table->date('date_of_birth');

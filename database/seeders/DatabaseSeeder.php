@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomTypeSeeder::class);
         $this->call(RoomSeeder::class);
         $this->call(CleaningStatusSeeder::class);
+        $this->call(RolesSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Roles;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RolesSeeder extends Seeder
 {
@@ -14,6 +15,24 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Roles::insert([
+            'title' => 'owner',
+        ]);
+
+        Roles::insert([
+            'title' => 'hotel manager',
+        ]);
+
+        Roles::insert([
+            'title' => 'head-housekeeping',
+        ]);
+
+        Roles::insert([
+            'title' => 'housekeeping',
+        ]);
+
+        Roles::insert([
+            'title' => 'reception',
+        ]);
     }
 }
