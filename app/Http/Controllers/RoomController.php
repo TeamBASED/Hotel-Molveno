@@ -38,14 +38,14 @@ class RoomController extends Controller
 
     public function createRoom() {
         $room = Room::create([
-            'room_number' => $room_number,
+            'room_number' => $number,
             'capacity' => $capacity,
-            'base_price_per_night' => $base_price_per_night,
-            'bed_configuration' => $bed_configuration,
-            'baby_bed_possible' => $baby_bed_possible,
+            'base_price_per_night' => $price,
+            'bed_configuration' => $configuration,
+            'baby_bed_possible' => $babybed,
             'description' => $description,
-            'room_view_id' => $room_view,
-            'room_type_id' => $room_type
+            'room_view_id' => $view,
+            'room_type_id' => $type
         ]);
 
         return redirect('/room/overview');
@@ -54,14 +54,14 @@ class RoomController extends Controller
     public function updateRoom(Request $request, int $id) {
         $room = Room::getRoomData($id);
         $room->update([
-            'room_number' => $request->room_number,
+            'room_number' => $request->number,
             'capacity' => $request->capacity,
-            'base_price_per_night' => $request->base_price_per_night,
-            'bed_configuration' => $request->bed_configuration,
-            'baby_bed_possible' => $request->baby_bed_possible,
+            'base_price_per_night' => $request->price,
+            'bed_configuration' => $request->configuration,
+            'baby_bed_possible' => $request->babybed,
             'description' => $request->description,
-            'room_view_id' => $request->room_view,
-            'room_type_id' => $request->room_type
+            'room_view_id' => $request->view,
+            'room_type_id' => $request->type
         ]);
 
         return redirect('/room/overview');
