@@ -7,6 +7,7 @@
             <h1>Edit room</h1>
             <form action="{{ route('room.delete') }}" method="POST" class="delete-form">
                 @csrf
+                @method('DELETE')
                 <input type="hidden" name="id" value="{{ $room->id }}">
                 <x-buttons.primary-button class="button gray-bg right-aligned">Delete</x-buttons.primary-button>
             </form>
