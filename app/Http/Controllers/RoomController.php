@@ -27,6 +27,12 @@ class RoomController extends Controller
         return view('/room/edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
 
+    public function viewRoomCreate() {
+        $roomTypes = RoomType::pluck("type");
+        $roomViews = RoomView::pluck("type");
+        
+        return view('/room/create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+    }
 
 
 }
