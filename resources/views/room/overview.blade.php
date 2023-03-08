@@ -47,7 +47,7 @@
             <p class="details-label">Cleaning status</p>
             <p id="details-cleaning-status"></p>
 
-            <div class="margin-top">
+            <div class="bottom-buttons">
                 <!-- <x-buttons.secondary-button id="details-reservation-button">Make reservation</x-buttons.secondary-button> -->
                 <x-buttons.secondary-button id="details-info-button" :href="route('room.info', ['id' => 1])">Open room info</x-buttons.secondary-button>
             </div>
