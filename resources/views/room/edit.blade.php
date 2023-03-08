@@ -2,7 +2,7 @@
 <main id="room-edit">
 
     <div class="container-edit">
-        <div class="three-column-mid-stretch">
+        <div class="three-column-mid-stretch padding-inline-5rem">
             <div class="blank"></div>
             <h1>Edit room</h1>
             <form action="" class="delete-form"><x-buttons.primary-button class="button gray-bg right-aligned">Delete</x-buttons.primary-button></form>
