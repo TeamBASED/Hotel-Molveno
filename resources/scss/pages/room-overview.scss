@@ -40,7 +40,7 @@
             }
         }
     }
-    .details-section {
+    #details-section {
         background-color: $color-700;
         color: $color-white;
         min-height: 500px;
@@ -66,6 +66,30 @@
 
         .details-label {
             color: $color-100;
+        }
+
+        #details-info-button {
+            text-align: center;
+        }
+        
+        #select-room-message {
+            display: none;
+            color: $color-100;
+            text-align: center;
+        }
+
+        &.hidden {
+            p {
+                display: none;
+            }
+
+            div {
+                display: none;
+            }
+
+            #select-room-message {
+                display: inline-block;
+            }
         }
     }
 }
