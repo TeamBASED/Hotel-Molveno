@@ -1,0 +1,34 @@
+header {
+  font-weight: 600;
+  font-family: sans-serif;
+}
+header .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+header .top img {
+  height: 100px;
+  width: 100px;
+}
+header .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #006EAD;
+  color: #fff;
+  font-size: 22px;
+  height: 60px;
+}
+header .bottom nav {
+  display: flex;
+  gap: 100px;
+  padding-left: 100px;
+}
+header .bottom .logout-link {
+  display: flex;
+  align-items: center;
+  background-color: #2b50a1;
+  height: 100%;
+  padding: 30px;
+}

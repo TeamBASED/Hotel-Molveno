@@ -1,0 +1,474 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+
+/*
+  3. Allow percentage-based heights in the application
+*/
+html,
+body {
+  height: 100%;
+}
+
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  6. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  7. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/*
+  8. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+header {
+  font-weight: 600;
+  font-family: sans-serif;
+}
+header .top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+header .top img {
+  height: 100px;
+  width: 100px;
+}
+header .bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #006EAD;
+  color: #fff;
+  font-size: 22px;
+  height: 60px;
+}
+header .bottom nav {
+  display: flex;
+  gap: 100px;
+  padding-left: 100px;
+}
+header .bottom .logout-link {
+  display: flex;
+  align-items: center;
+  background-color: #2b50a1;
+  height: 100%;
+  padding: 30px;
+}
+
+.primary-button {
+  display: inline-block;
+  background-color: #005693;
+  color: #ffffff;
+  padding: 5px 26px;
+}
+
+.secondary-button {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #343434;
+  padding: 5px 26px;
+  border: #005693 3px solid;
+}
+
+.tertiary-button {
+  display: inline-block;
+  background-color: #ffffff;
+  color: #343434;
+  padding: 5px 26px;
+}
+
+.edit-button {
+  background-color: #005693;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+}
+
+.input-text {
+  background-color: #ffffff;
+  color: #343434;
+  padding: 4px;
+  border: 3px solid #e5e5e5;
+}
+.input-text::placeholder {
+  color: #e5e5e5;
+}
+
+.filter-field,
+.dropdown-select {
+  background-color: #ffffff;
+  color: #0084c4;
+  border: 3px solid #e5e5e5;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.filter-field option,
+.dropdown-select option {
+  background-color: #ffffff;
+  color: #0084c4;
+  border: 3px solid #e5e5e5;
+}
+
+#room-overview {
+  display: flex;
+  font-family: sans-serif;
+  padding: 3% 5% 0% 5%;
+  gap: 5%;
+}
+#room-overview .margin-top {
+  margin-top: 10px;
+}
+#room-overview .left-side {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  gap: 1rem;
+}
+#room-overview .left-side .filter {
+  background-color: #F5F5F5;
+  height: 100px;
+  width: 82.5;
+}
+#room-overview .left-side h2 {
+  text-align: center;
+  font-size: 50px;
+}
+#room-overview .left-side .rooms-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#room-overview .left-side .rooms-container .room-item {
+  box-shadow: #e5e5e5 2px 2px 5px;
+  border: solid 2px #006ead;
+  height: 150px;
+  width: 300px;
+  padding: 5px 30px 5px 15px;
+  margin-bottom: 2.9%;
+}
+#room-overview .left-side .rooms-container .room-item div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#room-overview .right-side {
+  background-color: #005693;
+  color: #ffffff;
+  min-height: 500px;
+  width: 20%;
+  padding: 10px 20px;
+}
+#room-overview .right-side h2 {
+  text-align: center;
+  font-size: 38px;
+}
+#room-overview .right-side p {
+  font-size: 20px;
+}
+#room-overview .right-side div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: 800;
+  height: 10rem;
+}
+
+#room-info {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+}
+#room-info h2 {
+  font-size: 2rem;
+  margin: 3rem 0 2rem 0;
+}
+#room-info article {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+#room-info article .info-section {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1rem 1.5rem;
+  background-color: #ffffff;
+  border: 2px solid #005693;
+  margin-right: 3rem;
+}
+#room-info article .info-section .info-box {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-bottom: 1rem;
+}
+#room-info article .info-section .info-box .info-container {
+  height: fit-content;
+  margin: 0rem 1rem 0.5rem 0;
+}
+#room-info article .info-section .info-box .info-container h4 {
+  color: #005693;
+}
+#room-info article .info-section .info-box .info-container p {
+  display: inline-block;
+  height: fit-content;
+}
+#room-info article .info-section .info-box .info-container p span {
+  font-weight: bold;
+}
+#room-info article .info-section .button-container {
+  padding-top: 0.5rem;
+}
+#room-info article .info-section .button-container button {
+  height: 35px;
+  width: 120px;
+}
+#room-info article .reservation-schedule {
+  display: flex;
+  flex-flow: column nowrap;
+  height: fit-content;
+  width: fit-content;
+  padding: 1rem 1rem 4rem 1rem;
+  border: 2px solid #005693;
+  margin-bottom: 1.5rem;
+  background-color: #005693;
+}
+#room-info article .reservation-schedule h3 {
+  color: #ffffff;
+}
+#room-info article .reservation-schedule .timeslot {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height: 30px;
+  width: fit-content;
+  margin-top: 0.5rem;
+}
+#room-info article .reservation-schedule .timeslot p {
+  display: inline-block;
+  background-color: #ffffff;
+  margin-right: 0.5rem;
+  padding: 0 0.5rem;
+}
+#room-info article .reservation-schedule .timeslot button {
+  background-color: #ffffff;
+  font-size: 0.5rem;
+  color: #005693;
+}
+#room-info > .button-container a {
+  height: 35px;
+  width: 120px;
+  text-align: center;
+}
+
+#room-create {
+  padding: 5rem;
+}
+#room-create .container-create {
+  margin: 0 auto;
+  width: 700px;
+}
+#room-create .container-create h1 {
+  margin-left: 1.5rem;
+}
+#room-create .container-create form {
+  display: flex;
+}
+#room-create .container-create form .left, #room-create .container-create form .middle, #room-create .container-create form .right {
+  margin-top: 2rem;
+}
+#room-create .container-create form .left, #room-create .container-create form .middle {
+  display: flex;
+  flex-direction: column;
+}
+#room-create .container-create form .middle {
+  gap: 5px;
+}
+#room-create .container-create form input, #room-create .container-create form select {
+  margin: 0.5rem;
+  width: 15rem;
+}
+#room-create .container-create form select {
+  border-radius: 0;
+}
+#room-create .container-create form label {
+  color: #cbcbcb;
+  margin: 8px;
+  font-size: 22px;
+}
+#room-create .container-create form input[type=checkbox] {
+  border: 3px solid #e5e5e5;
+  background-color: #ffffff;
+  height: 30.4px;
+  width: 30.4px;
+  margin: 8px;
+  padding: 4px;
+}
+#room-create .buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 5rem;
+}
+#room-create .buttons .button {
+  font-weight: 600;
+  height: 45px;
+  width: 150px;
+}
+#room-create .buttons .gray-bg {
+  background-color: #cbcbcb;
+  color: #005693;
+}
+
+#room-edit-description {
+  height: 9rem;
+}
+
+#room-edit {
+  padding: 5rem;
+}
+#room-edit .three-column-mid-stretch {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+}
+#room-edit .edit-room-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+#room-edit .edit-room-form > * {
+  margin-block: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  flex-grow: 0;
+}
+#room-edit .padding-inline-5rem {
+  padding-inline: 5rem;
+}
+#room-edit .delete-form {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#room-edit input {
+  width: 100%;
+}
+#room-edit .buttons {
+  padding: 5rem;
+}
+#room-edit .babybed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#room-edit .babybed input {
+  height: 2rem;
+  width: 2rem;
+}
+#room-edit .flex-space-between {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+}
+#room-edit select {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+}
+#room-edit .container-edit .delete-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 0;
+}
+#room-edit .buttons,
+#room-edit .delete-button-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 5rem 5rem 0 5rem;
+}
+#room-edit .buttons .button,
+#room-edit .delete-button-container .button {
+  font-weight: 600;
+  height: 45px;
+  width: 150px;
+}
+#room-edit .buttons .gray-bg,
+#room-edit .delete-button-container .gray-bg {
+  background-color: #cbcbcb;
+  color: #005693;
+}
+#room-edit #room-edit-description {
+  height: 9rem;
+}
