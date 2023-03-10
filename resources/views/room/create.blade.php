@@ -14,7 +14,6 @@
             <div class="middle">
                 <div>
                     <label for="baby-bed">Baby bed possible:</label>
-                    <input type="hidden" name="babybed" value="0">
                     <input type="checkbox" class="input-text" name="babybed" value="1">
                 </div>
                 <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description">
