@@ -40,6 +40,6 @@ Route::get('/room/create', [RoomController::class, 'viewRoomCreate'])->name('roo
 Route::post('/room/create', [RoomController::class, 'handleCreateRoom']);
 Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
 Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
-Route::delete('/room/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
+Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
 require __DIR__.'/auth.php';
