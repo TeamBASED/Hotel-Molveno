@@ -20,7 +20,8 @@ class Room extends Model
         'baby_bed_possible',
         'description',
         'room_view_id',
-        'room_type_id'
+        'room_type_id',
+        'cleaningh_status_id'
     ];
 
     public function cleaningStatus() {

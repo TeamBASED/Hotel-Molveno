@@ -35,6 +35,16 @@ class RoomController extends Controller
         return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
 
+    public function handleCreateRoom() {
+        $this->createRoom();
+        return redirect(route('room.overview'));
+    }
+
+    public function handleUpdateRoom(Request $request) {
+        $this->updateRoom($request->id);
+        return redirect(route('room.overview'));
+    }
+
     public function handleDeleteRoom(Request $request) {
         Room::deleteRoomData($request->id);
         return redirect(route('room.overview'));
@@ -51,8 +61,6 @@ class RoomController extends Controller
             'room_view_id' => $request->view,
             'room_type_id' => $request->type,
         ]);
-
-        return redirect('/room/overview');
     }
 
     public function updateRoom(Request $request, int $id) {
@@ -62,12 +70,10 @@ class RoomController extends Controller
             'capacity' => $request->capacity,
             'base_price_per_night' => $request->price,
             'bed_configuration' => $request->configuration,
-            'baby_bed_possible' => $request->babybed,
+            'baby_bed_possible' => isset($request->babybed),
             'description' => $request->description,
             'room_view_id' => $request->view,
             'room_type_id' => $request->type
         ]);
-
-        return redirect('/room/overview');
     }
 }

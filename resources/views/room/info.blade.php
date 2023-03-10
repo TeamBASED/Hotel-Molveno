@@ -21,7 +21,7 @@
                     <div class="info-container"><h4>Description&colon;</h4><p> {{ $room->description }}</p></div>
                 </div>
                 <div class="button-container">
-                    <x-buttons.primary-button>Edit</x-buttons.primary-button>
+                    <x-buttons.primary-button :href="route('room.edit', ['id' => $room->id])">Edit</x-buttons.primary-button>
                 </div>
             </section>
             <section class="reservation-schedule">

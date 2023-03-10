@@ -37,9 +37,9 @@ Route::get('/', function () {
 Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
 Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
 Route::get('/room/create', [RoomController::class, 'viewRoomCreate'])->name('room.create');
-Route::post('/room/create', [RoomController::class, 'createRoom']);
+Route::post('/room/create', [RoomController::class, 'handleCreateRoom']);
 Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
-Route::patch('/room/{id}/update', [RoomController::class, 'updateRoom'])->name('room.update');
+Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
 Route::delete('/room/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
 require __DIR__.'/auth.php';
