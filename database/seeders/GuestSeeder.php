@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Guest;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class GuestSeeder extends Seeder
 {
@@ -14,6 +15,11 @@ class GuestSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $idNumber = 0;
+        while ($idNumber <= 10) {
+        Guest::factory()->create(['contact_id' => $idNumber]);
+        $idNumber++;
+        }
+        Guest::factory(50)->create();
     }
 }
