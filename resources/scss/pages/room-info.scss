@@ -1,0 +1,90 @@
+#room-info {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    h2 {
+        font-size: 2rem;
+        margin: 3rem 0 2rem 0;
+    }
+    article {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        .info-section {
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 1rem 1.5rem;
+            background-color: $color-white;
+            border: 2px solid $color-700;
+            margin-right: 3rem;
+            .info-box {
+                display: flex;
+                flex-flow: column nowrap;
+                margin-bottom: 1rem;
+                .info-container {
+                    height: fit-content;
+                    margin: 0rem 1rem 0.5rem 0;
+                    h4 {
+                        color: $color-700;
+                    }
+                    p {
+                        display: inline-block;
+                        height: fit-content;  
+                        span {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .button-container {
+                padding-top: 0.5rem;
+                button {
+                    height: 35px;
+                    width: 120px;
+                }
+            }
+        }
+        .reservation-schedule {
+            display: flex;
+            flex-flow: column nowrap;
+            height: fit-content;
+            width: fit-content;
+            padding: 1rem 1rem 4rem 1rem;
+            border: 2px solid $color-700;
+            margin-bottom: 1.5rem;
+            background-color: $color-700;
+            h3 {
+                color: $color-white;
+            }
+            .timeslot {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-between;
+                height: 30px;
+                width: fit-content;
+                margin-top: 0.5rem;
+                p {
+                    display: inline-block;
+                    background-color: $color-white;
+                    margin-right: 0.5rem;
+                    padding: 0 0.5rem;
+                }
+                button {
+                    background-color: $color-white;
+                    font-size: 0.5rem;
+                    color: $color-700;
+                }
+            }
+
+        }
+    }
+    > .button-container {
+        a {
+            height: 35px;
+            width: 120px;
+            text-align: center;
+        }
+    }
+}

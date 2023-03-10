@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Breeze stuff
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -27,5 +27,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// for now redirect, this should be home page
+Route::get('/', function () {
+    return redirect(route('room.overview'));
+});
+
+// Room routes
+Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
+Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
+Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
+Route::get('room/create', [RoomController::class, 'viewRoomCreate'])->name('room.create');
+Route::delete('room/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
 require __DIR__.'/auth.php';

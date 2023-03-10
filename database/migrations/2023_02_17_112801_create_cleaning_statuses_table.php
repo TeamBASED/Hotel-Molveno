@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('room_maintenance', function (Blueprint $table) {
+        Schema::create('cleaning_statuses', function (Blueprint $table) {
             $table->id();
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('room_maintenance');
+        Schema::dropIfExists('cleaning_statuses');
     }
 };
