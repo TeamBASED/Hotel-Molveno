@@ -1,4 +1,4 @@
-@props(['options', 'name'])
+@props(['options'])
 
 <select class="dropdown-select">
 
