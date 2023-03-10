@@ -17,7 +17,8 @@ class ReservationRoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'room_id' => fake()->unique()->numberBetween(1, 20)
+
         ];
     }
 }

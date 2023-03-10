@@ -18,6 +18,6 @@ class GuestReservationFactory extends Factory
     {
         return [
             //
-        ];
+                ];
     }
 }
