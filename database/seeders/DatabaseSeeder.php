@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CleaningStatusSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(GuestSeeder::class);
-
         $this->call(ContactSeeder::class);
+
         $this->call(ReservationSeeder::class);
         $this->call(GuestReservationSeeder::class);
         $this->call(ReservationRoomSeeder::class);

@@ -15,7 +15,7 @@ class GuestSeeder extends Seeder
      */
     public function run()
     {
-        $idNumber = 0;
+        $idNumber = 1;
         while ($idNumber <= 10) {
         Guest::factory()->create(['contact_id' => $idNumber]);
         $idNumber++;
