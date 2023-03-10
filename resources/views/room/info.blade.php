@@ -24,7 +24,7 @@
             </section>
             <section class="reservation-schedule">
                 <h3>Reservation Schedule</h3>
-                <div class="timeslot">
+                {{-- <div class="timeslot">
                     <p>Placeholder 23-05 - 28-05</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="timeslot">
                     <p>Placeholder 02-08 - 18-08</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                </div>
+                </div> --}}
             </section>
         </article>
         <div class="button-container">
