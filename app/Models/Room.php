@@ -21,7 +21,7 @@ class Room extends Model
         'description',
         'room_view_id',
         'room_type_id',
-        'cleaningh_status_id'
+        'cleaning_status_id'
     ];
 
     public function cleaningStatus() {
