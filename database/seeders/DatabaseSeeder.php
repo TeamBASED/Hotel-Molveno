@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $this->call(RoomViewSeeder::class); 
         $this->call(RoomTypeSeeder::class);
         $this->call(RoomSeeder::class); //echte data
@@ -28,8 +27,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ReservationSeeder::class);
         $this->call(GuestReservationSeeder::class);
         $this->call(ReservationRoomSeeder::class);
-
         
+        $this->call(BedConfigurationsSeeder::class);
+        $this->call(RoomBedConfigurationsSeeder::class);
+        $this->call(RoomMaintenanceSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 
