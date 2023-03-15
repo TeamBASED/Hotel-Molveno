@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\BedConfigurations;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class BedConfigurationsSeeder extends Seeder
 {
@@ -14,6 +15,13 @@ class BedConfigurationsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        BedConfigurations::insert([
+            'configuration' => 'single',
+        ]);
+
+        BedConfigurations::insert([
+            'configuration' => 'double',
+        ]);
+
     }
 }

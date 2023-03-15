@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('room_maintenances', function (Blueprint $table) {
             $table->id();
+            $table->integer('room_id');
             $table->text('comments');
             $table->float('costs');
             $table->timestamps();

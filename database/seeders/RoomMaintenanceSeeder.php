@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\RoomMaintenance;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class RoomMaintenanceSeeder extends Seeder
 {
@@ -14,6 +15,6 @@ class RoomMaintenanceSeeder extends Seeder
      */
     public function run()
     {
-        //
+        RoomMaintenance::factory(30)->create();
     }
 }

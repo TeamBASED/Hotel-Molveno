@@ -17,7 +17,9 @@ class RoomMaintenanceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'room_id' => fake()->numberBetween(1, 25),
+            'comments' => fake()->sentence(),
+            'costs'=> fake()->randomFloat(2, 0, 500),
         ];
     }
 }

@@ -27,10 +27,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ReservationSeeder::class);
         $this->call(GuestReservationSeeder::class);
         $this->call(ReservationRoomSeeder::class);
-        
         $this->call(BedConfigurationsSeeder::class);
-        $this->call(RoomBedConfigurationsSeeder::class);
         $this->call(RoomMaintenanceSeeder::class);
+
+
+        $this->call(RoomBedConfigurationsSeeder::class);
 
         // \App\Models\User::factory(10)->create();
 
