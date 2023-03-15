@@ -9,7 +9,7 @@
         <div>
             <x-input-label for="username" :value="__('Username')" />
             <x-text-input id="username" type="username" name="username" :value="old('username')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('username')" />
+            <x-input-error :messages="$errors->get('name')" />
         </div>
 
         <!-- Password -->
