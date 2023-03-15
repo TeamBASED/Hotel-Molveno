@@ -1,5 +1,14 @@
 <x-layout.base>
 <main id="room-create">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container-create">
         <h1>Create room</h1>
         <form action="/room/create" method="POST">
@@ -36,7 +45,7 @@
         </form>
     </div>
     <div class="buttons">
-        <x-buttons.primary-button class="button gray-bg">Cancel</x-buttons.primary-button>
+        <x-buttons.primary-button :href="route('room.overview')" class="button gray-bg">Cancel</x-buttons.primary-button>
     </div>
 </main>
 </x-layout.base>

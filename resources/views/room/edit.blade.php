@@ -1,5 +1,14 @@
 <x-layout.base>
 <main id="room-edit">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="container-edit">
         <div class="three-column-mid-stretch padding-inline-5rem">
@@ -57,7 +66,7 @@
         <div class="blank"></div>
     </div>
     <div class="flex-space-between buttons">
-        <x-buttons.primary-button class="button gray-bg">Cancel</x-buttons.primary-button>
+        <x-buttons.primary-button :href="route('room.info', $room->id)" class="button gray-bg">Cancel</x-buttons.primary-button>
     </div>
 </main>
 </x-layout.base>
