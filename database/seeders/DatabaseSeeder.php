@@ -18,17 +18,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $this->call(RoomViewSeeder::class);
+        $this->call(RoomViewSeeder::class); 
         $this->call(RoomTypeSeeder::class);
-        $this->call(RoomSeeder::class);
+        $this->call(RoomSeeder::class); //echte data
         $this->call(CleaningStatusSeeder::class);
         $this->call(RolesSeeder::class);
         $this->call(GuestSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(ReservationSeeder::class);
-        
         $this->call(GuestReservationSeeder::class);
         $this->call(ReservationRoomSeeder::class);
+
+        
 
         // \App\Models\User::factory(10)->create();
 

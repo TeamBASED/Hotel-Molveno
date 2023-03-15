@@ -18,7 +18,6 @@ class ReservationRoomFactory extends Factory
     {
         return [
             'room_id' => fake()->unique()->numberBetween(1, 20)
-
         ];
     }
 }
