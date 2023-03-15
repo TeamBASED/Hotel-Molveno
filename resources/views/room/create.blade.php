@@ -11,7 +11,7 @@
     @endif
     <div class="container-create">
         <h1>Create room</h1>
-        <form action="/room/create" method="POST">
+        <form action="{{ route('room.store') }}" method="POST">
             @csrf
             <div class="left">
                 <input type="text" class="input-text" required placeholder="Room number" name="number">

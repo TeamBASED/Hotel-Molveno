@@ -45,7 +45,7 @@ class RoomController extends Controller
             'type' => 'required'
         ]);
 
-        $this->createRoom($request);
+        $this->storeRoom($request);
         return redirect(route('room.overview'));
     }
 
@@ -69,7 +69,7 @@ class RoomController extends Controller
         return redirect(route('room.overview'));
     }
 
-    public function createRoom(Request $request) {
+    public function storeRoom(Request $request) {
         $room = Room::create([
             'room_number' => $request->number,
             'capacity' => $request->capacity,
