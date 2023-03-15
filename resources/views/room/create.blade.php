@@ -5,10 +5,10 @@
         <form action="/room/create" method="POST">
             @csrf
             <div class="left">
-                <input type="text" class="input-text" placeholder="Room number" name="number">
-                <input type="text" class="input-text" placeholder="Capacity" name="capacity">
-                <input type="text" class="input-text" placeholder="Price per night" name="price">
-                <input type="text" class="input-text" placeholder="Bed configuration" name="configuration">
+                <input type="text" class="input-text" required placeholder="Room number" name="number">
+                <input type="text" class="input-text" required placeholder="Capacity" name="capacity">
+                <input type="text" class="input-text" required placeholder="Price per night" name="price">
+                <input type="text" class="input-text" required placeholder="Bed configuration" name="configuration">
                 <!-- view = dropdown -->
             </div>
             <div class="middle">
@@ -19,12 +19,12 @@
                 <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description">
             </div>
             <div class="right">
-                <select class="dropdown-select" name="type">
+                <select class="dropdown-select" name="type" required>
                     @foreach ($roomViews as $option)
                         <option class="filter-field-option" value="{{$option->id}}">{{$option->type}}</option>
                     @endforeach
                 </select>
-                <select class="dropdown-select" name="view">
+                <select class="dropdown-select" name="view" required>
                     @foreach ($roomViews as $option)
                         <option class="filter-field-option" value="{{$option->id}}">{{$option->type}}</option>
                     @endforeach

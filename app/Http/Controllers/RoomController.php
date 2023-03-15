@@ -37,13 +37,10 @@ class RoomController extends Controller
 
     public function handleCreateRoom(Request $request) {
         $validated = $request->validate([
-            'id' => 'required',
             'room_number' => 'required',
             'capacity' => 'required',
             'base_price_per_night' => 'required',
             'bed_configuration' => 'required',
-            'baby_bed_possible' => 'required',
-            'description' => 'required',
             'room_view_id' => 'required',
             'room_type_id' => 'required'
         ]);
@@ -58,8 +55,6 @@ class RoomController extends Controller
             'capacity' => 'required',
             'base_price_per_night' => 'required',
             'bed_configuration' => 'required',
-            'baby_bed_possible' => 'required',
-            'description' => 'required',
             'room_view_id' => 'required',
             'room_type_id' => 'required'
         ]);
