@@ -14,7 +14,7 @@
         <div class="three-column-mid-stretch padding-inline-5rem">
             <div class="blank"></div>
             <h1>Edit room</h1>
-            <form action="/room/{{$room->id}}/delete" method="POST" class="delete-form">
+            <form action="{{ route('room.delete', $room->id) }}" method="POST" class="delete-form">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value="{{ $room->id }}">
