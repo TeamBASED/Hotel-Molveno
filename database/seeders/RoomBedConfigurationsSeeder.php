@@ -14,6 +14,6 @@ class RoomBedConfigurationsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }
