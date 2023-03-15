@@ -19,7 +19,7 @@ class RoomFactory extends Factory
     {
         return [
             // 'capacity' => fake()->numberBetween(1, 4),
-            'bed_configuration' => fake()->randomElement(["single", "double"]),
+            // 'bed_configuration' => fake()->randomElement(["single", "double"]),
             // 'room_number' => fake()->unique()->numberBetween(100, 400),
             // 'base_price_per_night' => fake()->numberBetween(100, 1000),
             'cleaning_status_id' => fake()->numberBetween(1, 4),
