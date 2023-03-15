@@ -1,0 +1,20 @@
+.main-content {
+    width: 100%;
+    padding: 4rem;
+
+    position: relative;
+}
+
+.grid-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.right-aligned {
+    text-align: right;
+}
+
+.grid-span-2 {
+    grid-column: span 2;
+}
