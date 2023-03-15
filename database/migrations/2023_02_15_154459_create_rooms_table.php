@@ -19,12 +19,12 @@ return new class extends Migration
             $table->tinyText('bed_configuration');
             $table->tinyText('room_number');
             $table->float('base_price_per_night');
-            $table->foreignId('cleaning_status_id');
+            $table->foreignId('cleaning_status_id')->default('1');
             $table->boolean('baby_bed_possible');
             $table->foreignId('room_view_id');
             $table->foreignId('room_type_id');
-            $table->mediumText('description');
-            $table->mediumText('status_comment');
+            $table->mediumText('description')->nullable();
+            $table->mediumText('status_comment')->nullable();
             $table->timestamps();
         });
     }

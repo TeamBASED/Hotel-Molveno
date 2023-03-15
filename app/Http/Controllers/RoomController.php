@@ -21,18 +21,47 @@ class RoomController extends Controller
     }
 
     public function viewRoomEdit(int $id) {
-        $roomTypes = RoomType::pluck("type");
-        $roomViews = RoomView::pluck("type");
+        $roomTypes = RoomType::get();
+        $roomViews = RoomView::get();
         $room = Room::getRoomData($id);
 
         return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room]);
     }
 
     public function viewRoomCreate() {
-        $roomTypes = RoomType::pluck("type");
-        $roomViews = RoomView::pluck("type");
+        $roomTypes = RoomType::get();
+        $roomViews = RoomView::get();
         
         return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+    }
+
+    public function handleCreateRoom(Request $request) {
+        $validated = $request->validate([
+            'number' => 'required',
+            'capacity' => 'required',
+            'price' => 'required',
+            'configuration' => 'required',
+            'view' => 'required',
+            'type' => 'required'
+        ]);
+
+        $this->storeRoom($request);
+        return redirect(route('room.overview'));
+    }
+
+    public function handleUpdateRoom(Request $request) {
+        $validated = $request->validate([
+            'id' => 'required',
+            'number' => 'required',
+            'capacity' => 'required',
+            'price' => 'required',
+            'configuration' => 'required',
+            'view' => 'required',
+            'type' => 'required'
+        ]);
+
+        $this->updateRoom($request, $request->id);
+        return redirect(route('room.overview'));
     }
 
     public function handleDeleteRoom(Request $request) {
@@ -40,4 +69,30 @@ class RoomController extends Controller
         return redirect(route('room.overview'));
     }
 
+    public function storeRoom(Request $request) {
+        $room = Room::create([
+            'room_number' => $request->number,
+            'capacity' => $request->capacity,
+            'base_price_per_night' => $request->price,
+            'bed_configuration' => $request->configuration,
+            'baby_bed_possible' => isset($request->babybed),
+            'description' => $request->description,
+            'room_view_id' => $request->view,
+            'room_type_id' => $request->type,
+        ]);
+    }
+
+    public function updateRoom(Request $request, int $id) {
+        $room = Room::getRoomData($id);
+        $room->update([
+            'room_number' => $request->number,
+            'capacity' => $request->capacity,
+            'base_price_per_night' => $request->price,
+            'bed_configuration' => $request->configuration,
+            'baby_bed_possible' => isset($request->babybed),
+            'description' => $request->description,
+            'room_view_id' => $request->view,
+            'room_type_id' => $request->type
+        ]);
+    }
 }
