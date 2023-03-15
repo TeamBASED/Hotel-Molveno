@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('baby_bed_possible');
             $table->foreignId('room_view_id');
             $table->foreignId('room_type_id');
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->mediumText('status_comment')->nullable();
             $table->timestamps();
         });

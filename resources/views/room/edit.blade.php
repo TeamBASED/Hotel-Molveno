@@ -32,16 +32,25 @@
             <div class="right">
                 <select class="dropdown-select" name="type" required>
                     @foreach ($roomTypes as $option)
-                        <option class="filter-field-option" value="{{$option->id}}" selected={{$option->id == old('type', $room->room_type_id) ? 'selected' : ''}}>{{$option->type}}</option>
+                        <option class="filter-field-option" value="{{$option->id}}" 
+                            @if ($option->id == old('type', $room->room_type_id))
+                                selected="selected"
+                            @endif
+                                >{{$option->type}}</option>
                     @endforeach
                 </select>
                 <select class="dropdown-select" name="view" required>
                     @foreach ($roomViews as $option)
-                        <option class="filter-field-option" value="{{$option->id}}" selected={{$option->id == old('view', $room->room_view_id) ? 'selected' : ''}}>{{$option->type}}</option>
+                        <option class="filter-field-option" value="{{$option->id}}" 
+                            @if ($option->id == old('view', $room->room_view_id))
+                                selected="selected"
+                            @endif
+                                >{{$option->type}}</option>
                     @endforeach
                 </select>
                 {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> Doesn't quite work as expected or desired --}}
                 {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> Doesn't quite work as expected or desired --}}
+                <input type="hidden" name="id" value="{{ $room->id }}">
             </div>
             <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
         </form>

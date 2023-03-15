@@ -37,12 +37,12 @@ class RoomController extends Controller
 
     public function handleCreateRoom(Request $request) {
         $validated = $request->validate([
-            'room_number' => 'required',
+            'number' => 'required',
             'capacity' => 'required',
-            'base_price_per_night' => 'required',
-            'bed_configuration' => 'required',
-            'room_view_id' => 'required',
-            'room_type_id' => 'required'
+            'price' => 'required',
+            'configuration' => 'required',
+            'view' => 'required',
+            'type' => 'required'
         ]);
 
         $this->createRoom($request);
@@ -51,12 +51,13 @@ class RoomController extends Controller
 
     public function handleUpdateRoom(Request $request) {
         $validated = $request->validate([
-            'room_number' => 'required',
+            'id' => 'required',
+            'number' => 'required',
             'capacity' => 'required',
-            'base_price_per_night' => 'required',
-            'bed_configuration' => 'required',
-            'room_view_id' => 'required',
-            'room_type_id' => 'required'
+            'price' => 'required',
+            'configuration' => 'required',
+            'view' => 'required',
+            'type' => 'required'
         ]);
 
         $this->updateRoom($request, $request->id);
