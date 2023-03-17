@@ -32,7 +32,7 @@
 
             </div>
             <section class="reservation-schedule">
-                <h3>Reservation Schedule</h3>
+                <h3 class="white-text">Reservation Schedule</h3>
                 <div class="reservations grid-two-columns">
                     <p class="white-background">Placeholder 23-05 - 28-05</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>

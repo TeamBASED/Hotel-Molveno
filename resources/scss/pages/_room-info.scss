@@ -1,6 +1,5 @@
 #room-info {
 
-
     .info-section {
         max-width: 40rem;
         padding: 1rem 1.5rem;
@@ -9,40 +8,18 @@
     }
 
     .reservation-schedule {
-        display: flex;
-        flex-flow: column nowrap;
         height: fit-content;
-        width: fit-content;
         padding: 1rem 1rem 4rem 1rem;
-        border: 2px solid $color-700;
-        margin-bottom: 1.5rem;
         background-color: $color-700;
 
         .reservations {
             grid-template-columns: 1fr auto;
         }
 
-
-        .reservations .timeslot {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            height: 30px;
-            width: fit-content;
-            margin-top: 0.5rem;
-
-            p {
-                display: inline-block;
-                background-color: $color-white;
-                margin-right: 0.5rem;
-                padding: 0 0.5rem;
-            }
-
-            button {
-                background-color: $color-white;
-                font-size: 0.5rem;
-                color: $color-700;
-            }
+        button {
+            background-color: $color-white;
+            font-size: 0.5rem;
+            color: $color-700;
         }
 
     }
