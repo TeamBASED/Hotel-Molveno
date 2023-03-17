@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\RoomType;
 use Illuminate\Database\Seeder;
+use App\Models\BedConfiguration;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class RoomTypeSeeder extends Seeder
+class BedConfigurationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,16 +15,13 @@ class RoomTypeSeeder extends Seeder
      */
     public function run()
     {
-        RoomType::create([
-            'type' => 'economy',
+        BedConfiguration::create([
+            'configuration' => 'single',
         ]);
 
-        RoomType::create([
-            'type' => 'standard',
+        BedConfiguration::create([
+            'configuration' => 'double',
         ]);
 
-        RoomType::create([
-            'type' => 'luxurious',
-        ]);
     }
 }

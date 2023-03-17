@@ -17,16 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $this->call(RoomViewSeeder::class);
+        $this->call(RoomViewSeeder::class); 
         $this->call(RoomTypeSeeder::class);
-        $this->call(RoomSeeder::class);
+        $this->call(RoomSeeder::class); //echte data
         $this->call(CleaningStatusSeeder::class);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(RoleSeeder::class);
+        $this->call(GuestSeeder::class);
+        $this->call(ContactSeeder::class);
+        $this->call(ReservationSeeder::class);
+        $this->call(GuestReservationSeeder::class);
+        $this->call(ReservationRoomSeeder::class);
+        $this->call(BedConfigurationSeeder::class);
+        $this->call(RoomMaintenanceSeeder::class);
+        $this->call(RoomBedConfigurationSeeder::class);
     }
 }

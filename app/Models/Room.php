@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\RoomType;
 use App\Models\RoomView;
 use App\Models\CleaningStatus;
+use App\Models\RoomMaintenance;
+use App\Models\BedConfigurations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -46,6 +48,14 @@ class Room extends Model
     
     public static function getRoomData(int $roomId) : Room {
         return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType'])->first();
+    }
+
+    public function bedConfigurations() : BelongsToMany {
+        return $this->belongsToMany(BedConfigurations::class, 'room_bed_configuration');
+    }
+
+    public function roomMaintenances() {
+        return $this->hasMany(RoomMaintenance::class);
     }
 }
 
