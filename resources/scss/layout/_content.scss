@@ -1,0 +1,33 @@
+.main-content {
+    width: 100%;
+    padding: 4rem;
+
+    position: relative;
+}
+
+.grid-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.right-aligned {
+    text-align: right;
+}
+
+.grid-span-2 {
+    grid-column: span 2;
+}
+
+.flex-space-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.margin-block {
+    margin-block: 2rem;
+}
+
+.white-background {
+    background-color: $color-white;
+}
