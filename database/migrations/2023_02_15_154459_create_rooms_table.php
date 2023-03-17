@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->integer('capacity');
-            // $table->tinyText('bed_configuration');
             $table->tinyText('room_number');
             $table->float('base_price_per_night');
             $table->foreignId('cleaning_status_id');
