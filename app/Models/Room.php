@@ -50,11 +50,11 @@ class Room extends Model
         return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType'])->first();
     }
 
-    public function bedConfiguration() : BelongsToMany {
+    public function bedConfigurations() : BelongsToMany {
         return $this->belongsToMany(BedConfigurations::class, 'room_bed_configuration');
     }
 
-    public function roomMaintenance() {
+    public function roomMaintenances() {
         return $this->hasMany(RoomMaintenance::class);
     }
 }
