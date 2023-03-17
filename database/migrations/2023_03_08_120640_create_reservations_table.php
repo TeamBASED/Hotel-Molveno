@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->integer('contact_id');
+            $table->foreignId('contact_id');
             $table->date('date_of_arrival');
             $table->date('date_of_departure');
-            $table->integer('bill_id');
+            $table->foreignId('bill_id');
             $table->timestamps();
         });
     }
