@@ -18,6 +18,9 @@
         margin-bottom: 1.5rem;
         background-color: $color-700;
 
+        .reservations {
+            grid-template-columns: 1fr auto;
+        }
 
 
         .reservations .timeslot {

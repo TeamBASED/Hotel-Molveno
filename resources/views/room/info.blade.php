@@ -34,32 +34,25 @@
             <section class="reservation-schedule">
                 <h3>Reservation Schedule</h3>
                 <div class="reservations grid-two-columns">
-                    <p class="white-text">Placeholder 23-05 - 28-05</p>
+                    <p class="white-background">Placeholder 23-05 - 28-05</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 
-                    <p class="white-text">Placeholder 30-05 - 01-06</p>
+                    <p class="white-background">Placeholder 30-05 - 01-06</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 
-                </div>
-                <div class="timeslot">
+                    <p class="white-background">Placeholder 03-06 - 10-06</p>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
 
-                </div>
-                <div class="timeslot">
-                    <p>Placeholder 03-06 - 10-06</p>
+                    <p class="white-background">Placeholder 23-06 - 28-06</p>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
+
+                    <p class="white-background">Placeholder 23-07 - 27-07</p>
+                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
+
+                    <p class="white-background">Placeholder 02-08 - 18-08</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
-                <div class="timeslot">
-                    <p>Placeholder 23-06 - 28-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                </div>
-                <div class="timeslot">
-                    <p>Placeholder 23-07 - 27-07</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                </div>
-                <div class="timeslot">
-                    <p>Placeholder 02-08 - 18-08</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                </div>
+
             </section>
         </article>
 
