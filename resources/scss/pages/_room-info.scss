@@ -18,11 +18,9 @@
         margin-bottom: 1.5rem;
         background-color: $color-700;
 
-        h3 {
-            color: $color-white;
-        }
 
-        .timeslot {
+
+        .reservations .timeslot {
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
