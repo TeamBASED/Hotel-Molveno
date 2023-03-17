@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\BedConfigurations;
+use App\Models\BedConfiguration;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class BedConfigurationsSeeder extends Seeder
+class BedConfigurationSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,11 +15,11 @@ class BedConfigurationsSeeder extends Seeder
      */
     public function run()
     {
-        BedConfigurations::create([
+        BedConfiguration::create([
             'configuration' => 'single',
         ]);
 
-        BedConfigurations::create([
+        BedConfiguration::create([
             'configuration' => 'double',
         ]);
 

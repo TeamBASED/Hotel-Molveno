@@ -21,14 +21,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomTypeSeeder::class);
         $this->call(RoomSeeder::class); //echte data
         $this->call(CleaningStatusSeeder::class);
-        $this->call(RolesSeeder::class);
+        $this->call(RoleSeeder::class);
         $this->call(GuestSeeder::class);
         $this->call(ContactSeeder::class);
         $this->call(ReservationSeeder::class);
         $this->call(GuestReservationSeeder::class);
         $this->call(ReservationRoomSeeder::class);
-        $this->call(BedConfigurationsSeeder::class);
+        $this->call(BedConfigurationSeeder::class);
         $this->call(RoomMaintenanceSeeder::class);
-        $this->call(RoomBedConfigurationsSeeder::class);
+        $this->call(RoomBedConfigurationSeeder::class);
     }
 }

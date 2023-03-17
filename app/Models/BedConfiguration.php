@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\RoomBedConfigurations;
+use App\Models\RoomBedConfiguration;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class BedConfigurations extends Model
+class BedConfiguration extends Model
 {
     use HasFactory;
     public function rooms() : BelongsToMany {
