@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\RoomType;
 use App\Models\RoomView;
+use App\Models\Reservation;
 use App\Models\CleaningStatus;
 use App\Models\RoomMaintenance;
 use App\Models\BedConfigurations;
@@ -52,6 +53,10 @@ class Room extends Model
 
     public function bedConfigurations() : BelongsToMany {
         return $this->belongsToMany(BedConfigurations::class, 'room_bed_configuration');
+    }
+
+    public function reservations() : BelongsToMany {
+        return $this->belongsToMany(Reservation::class, 'reservation_room');
     }
 
     public function roomMaintenances() {
