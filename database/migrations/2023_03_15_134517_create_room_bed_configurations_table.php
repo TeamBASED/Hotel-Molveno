@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('room_bed_configurations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id');
-            $table->foreignId('bed_configurations_id');
+            $table->foreignId('bed_configuration_id');
             $table->string('amount');
             $table->timestamps();
         });
