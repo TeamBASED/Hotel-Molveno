@@ -2,10 +2,26 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Contact;
+use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reservation extends Model
 {
     use HasFactory;
+
+    public function rooms() : BelongsToMany {
+        return $this->belongsToMany(Room::class, 'reservation_room');
+    }
+
+    public function contactId() {
+        return $this->belongsTo(Contact::class);
+    }
+
+    public function invoice() {
+        return $this->hasOne(Invoice::class);
+    }
+
+
 }
