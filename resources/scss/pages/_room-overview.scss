@@ -13,11 +13,6 @@
         width: 82.5;
     }
 
-    h2 {
-        text-align: center;
-        font-size: 50px;
-    }
-
     #rooms-container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -56,11 +51,6 @@
         padding: 1.5rem 3rem;
         height: max-content;
         min-height: 40rem;
-
-        h2 {
-            text-align: center;
-            font-size: 38px;
-        }
 
         p {
             font-size: 20px;

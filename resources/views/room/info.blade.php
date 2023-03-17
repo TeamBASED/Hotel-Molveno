@@ -1,27 +1,36 @@
 <x-layout.base>
-    <main id="room-info">
+    <main id="room-info" class="main-content">
         <h2>
             Room info
         </h2>
-        <article>
-            <section class="info-section">
-                <div class="info-box">
-                    <div class="info-container"><h4>Room no.&colon;</h4><p> {{ $room->room_number}}</p></div>
-                    
-                    <div class="info-container"><h4>Capacity&colon;</h4><p>{{ $room->capacity }}</p></div>
-                    
-                    <div class="info-container"><h4>Price per night&colon;</h4><p> {{ $room->base_price_per_night }}</p></div>
-                    
-                    <div class="info-container"><h4>View&colon;</h4><p> {{ $room->roomView->type }}</p></div>
+        
+        <article class="flex-space-around">
+            <div class="info-wrapper">
+                <section class="info-section">
 
-                    <div class="info-container"><h4>Bed configuration&colon;</h4><p> {{ $room->bed_configuration }}</p></div>
- 
-                    <div class="info-container"><h4>Description&colon;</h4><p> {{ $room->description }}</p></div>
-                </div>
-                <div class="button-container">
-                    <x-buttons.primary-button>Edit</x-buttons.primary-button>
-                </div>
-            </section>
+
+                    <div class="grid-two-columns margin-block">
+                        <h4>Room no.&colon;</h4>
+                        <p class="right-aligned"> {{ $room->room_number}}</p>
+                        <h4>Capacity&colon;</h4>
+                        <p class="right-aligned">{{ $room->capacity }}</p>
+                        <h4>Price per night&colon;</h4>
+                        <p class="right-aligned"> {{ $room->base_price_per_night }}</p>
+                        <h4>View&colon;</h4>
+                        <p class="right-aligned"> {{ $room->roomView->type }}</p>
+                        <h4>Bed configuration&colon;</h4>
+                        <p class="right-aligned"> {{ $room->bed_configuration }}</p>
+                        <h4 class="grid-span-2">Description&colon;</h4>
+                        <p class="grid-span-2"> {{ $room->description }}</p>
+                    </div>
+
+                    
+                        <x-buttons.primary-button>Edit</x-buttons.primary-button>
+
+                </section>
+                    <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
+
+            </div>
             <section class="reservation-schedule">
                 <h3>Reservation Schedule</h3>
                 <div class="timeslot">
@@ -50,8 +59,6 @@
                 </div>
             </section>
         </article>
-        <div class="button-container">
-            <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
-        </div>
+
     </main>
 </x-layout.base>
