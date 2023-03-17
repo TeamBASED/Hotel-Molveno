@@ -15,23 +15,23 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        Roles::insert([
+        Roles::create([
             'title' => 'owner',
         ]);
 
-        Roles::insert([
+        Roles::create([
             'title' => 'hotel manager',
         ]);
 
-        Roles::insert([
+        Roles::create([
             'title' => 'head-housekeeping',
         ]);
 
-        Roles::insert([
+        Roles::create([
             'title' => 'housekeeping',
         ]);
 
-        Roles::insert([
+        Roles::create([
             'title' => 'reception',
         ]);
     }

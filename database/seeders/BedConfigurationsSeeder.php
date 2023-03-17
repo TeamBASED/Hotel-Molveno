@@ -15,11 +15,11 @@ class BedConfigurationsSeeder extends Seeder
      */
     public function run()
     {
-        BedConfigurations::insert([
+        BedConfigurations::create([
             'configuration' => 'single',
         ]);
 
-        BedConfigurations::insert([
+        BedConfigurations::create([
             'configuration' => 'double',
         ]);
 

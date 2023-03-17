@@ -15,15 +15,15 @@ class RoomTypeSeeder extends Seeder
      */
     public function run()
     {
-        RoomType::insert([
+        RoomType::create([
             'type' => 'economy',
         ]);
 
-        RoomType::insert([
+        RoomType::create([
             'type' => 'standard',
         ]);
 
-        RoomType::insert([
+        RoomType::create([
             'type' => 'luxurious',
         ]);
     }

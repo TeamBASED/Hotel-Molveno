@@ -17,7 +17,7 @@ class GuestReservationSeeder extends Seeder
     public function run()
     {
         for ($id = 1; $id <= 10; $id++) {
-            GuestReservation::insert([
+            GuestReservation::create([
                 'reservation_id' => $id,
                 'guest_id' => $id,
             ]);

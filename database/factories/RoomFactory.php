@@ -19,7 +19,7 @@ class RoomFactory extends Factory
     {
         return [
             'cleaning_status_id' => fake()->numberBetween(1, 4),
-            'description' => fake()->sentence(),
+            'description' => fake()->paragraph(),
             'status_comment' => fake()->paragraph(),
         ];
     }

@@ -16,7 +16,7 @@ class ReservationSeeder extends Seeder
     public function run()
     {
         for ($id = 1; $id <= 10; $id++) {
-            Reservation::factory()->create(['contact_id' => $id, 'bill_id' => $id]);
+            Reservation::factory()->create(['contact_id' => $id, 'invoice_id' => $id]);
         }
     }
 }

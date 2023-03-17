@@ -18,8 +18,8 @@ class RoomMaintenanceFactory extends Factory
     {
         return [
             'room_id' => fake()->numberBetween(1, 25),
-            'comments' => fake()->sentence(),
-            'costs'=> fake()->randomFloat(2, 0, 500),
+            'comment' => fake()->sentence(),
+            'cost'=> fake()->randomFloat(2, 0, 500),
         ];
     }
 }
