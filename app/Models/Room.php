@@ -62,5 +62,30 @@ class Room extends Model
     public function roomMaintenances() {
         return $this->hasMany(RoomMaintenance::class);
     }
+
+    // Local scopes
+
+    public function scopeWithRoomType($query, $roomType) {
+        return $query->where('room_type_id', $roomType);
+    }
+
+    public function scopeWithRoomView($query, $roomView) {
+        return $query->where('room_view_id', $roomView);
+    }
+
+    // I'm still trying to figure out this query!
+    // public function scopeWithBedConfiguration($query, $bedConfiguration) {
+    //     return $query->whereExists(function($query) use($bedConfiguration) {
+    //         $query->from('bed_configurations')->where('room_id', $bedConfiguration);
+    //     });
+    // }
+
+    public function scopeWithCapacity($query, $capacity) {
+        return $query->where('capacity', $capacity);
+    }
+
+    public function scopeWithNumber($query, $number) {
+        return $query->where('room_number', 'like', "%" . $number . "%");
+    }
 }
 

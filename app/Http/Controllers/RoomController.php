@@ -14,8 +14,10 @@ class RoomController extends Controller
         return view('room.info', ['room' => $room]);
     }
 
-    public function viewRoomOverview() {
-        $rooms = Room::getAllRoomData();
+    public function viewRoomOverview(Request $request) {
+        $rooms = $this->filterRoomResults($request);
+
+        
 
         return view('room.overview', ['rooms' => $rooms]);
     }
@@ -94,5 +96,17 @@ class RoomController extends Controller
             'room_view_id' => $request->view,
             'room_type_id' => $request->type
         ]);
+    }
+
+    private function filterRoomResults(Request $request) {
+        $filterQuery = Room::where('id', '>', 0);
+
+        if($request->capacity) $filterQuery->withCapacity($request->capacity);
+        if($request->number) $filterQuery->withNumber($request->number);
+        if($request->roomType) $filterQuery->withRoomType($request->roomType);
+        if($request->roomView) $filterQuery->withRoomView($request->roomView);
+        // if($request->bedConfiguration) $filterQuery->withBedConfiguration($request->bedConfiguration);
+
+        return $filterQuery->get();
     }
 }
