@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Room;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
     public function viewReservationOverview() {
-        $rooms = Room::getAllRoomData();
+        $reservations = Reservation::getAllReservationData();
 
-        return view('reservation.overview', ['rooms' => $rooms]);
+        return view('reservation.overview', ['reservations' => $reservations]);
     }
 }

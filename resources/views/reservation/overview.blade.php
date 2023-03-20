@@ -1,61 +1,34 @@
 <x-layout.base>
-
     <main id="reservation-overview">
+    <h2>Reservations</h2>
 
-    
+    <article class="flex-space-around">
+        <div class="flex-column left-side">
+            <h3>Search reservation</h3>
+            Hier komen zoekvelden.
+        </div>
+        <div class="right-side">
+            <div class="grid-two-columns">
+            <h3>Contact</h3>
+            <h3>Room Nr.</h3>
 
 
-
-<!-- 
-
-        <div class="left-side">
-            <div class="filter">
-
-            </div>
-            <h2>Rooms</h2>
             <div id="rooms-container">
+           
+            @foreach ($reservations as $reservation)
 
-                @foreach ($rooms as $room)
+                    <p>{{ $reservation->contact_id }}</p>
+                    <p>{{ $reservation->room_id }}</p>
+                        
+                    @endforeach
+    
+</div>
 
-                    <x-room.card :room="$room" />
-                    
-                @endforeach
-                    
-            </div>
-        </div>
-        <div id="details-section" class="hidden">
-            <h2>Details</h2>
-
-            <p class="details-label">Number</p>
-            <p id="details-number"></p>
-
-            <p class="details-label">Type</p>
-            <p id="details-type"></p>
-
-            <p class="details-label">Capacity</p>
-            <p id="details-capacity"></p>
-
-            <p class="details-label">Price per night</p>
-            <p id="details-price-per-night"></p>
-
-            <p class="details-label">View</p>
-            <p id="details-view"></p>
-
-            <p class="details-label">Bed configuration</p>
-            <p id="details-bed-configuration"></p>
-
-            <p class="details-label">Description</p>
-            <p id="details-description"></p>
-
-            <p class="details-label">Cleaning status</p>
-            <p id="details-cleaning-status"></p>
-
-            <div class="bottom-buttons"> -->
-                <!-- <x-buttons.secondary-button id="details-reservation-button">Make reservation</x-buttons.secondary-button> -->
-            <!--    <x-buttons.secondary-button id="details-info-button" :href="route('room.info', ['id' => 1])">Open room info</x-buttons.secondary-button>
             </div>
 
-            <p id="select-room-message">Click a room to view details.</p>
         </div>
-    </main> -->
+    
+    </article>
+
+    </main>
 </x-layout.base> 
