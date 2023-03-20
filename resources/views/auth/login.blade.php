@@ -6,7 +6,7 @@
         <h1>Hotel Molveno</h1>
     </header>
     <main id="login-page">
-        <section id="login-form">
+        <section id="form-container">
             <div id="heading-container">
                 <h2>Login</h2>
             </div>
@@ -16,7 +16,7 @@
                 <!-- Email Address -->
                 <div>
                     {{-- <x-input-label for="username" :value="__('Username')" /> --}}
-                    <x-text-input id="username" type="username" placeholder="Username" name="username" :value="old('username')" required autofocus autocomplete="username" />
+                    <x-text-input id="username" type="text" placeholder="Username" name="username" :value="old('username')" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('username')" />
                 </div>
         

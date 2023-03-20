@@ -2,14 +2,13 @@
     <main id="register-page" class="main-content">
         <section id="form-container">
             <div id="heading-container">
-                <h2>Login</h2>
+                <h2>Register User</h2>
             </div>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <!-- Name -->
                 <div>
-                    <x-input-label for="username" :value="__('Username')" />
                     <x-text-input id="username" placeholder="Username" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('username')" />
                 </div>
@@ -17,21 +16,17 @@
                 <!-- Email Address -->
 
                 <div>
-                    <x-input-label for="firstname" :value="__('Firstname')" />
                     <x-text-input id="firstname" placeholder="Firstname" type="text" name="firstname" :value="old('firstname')" required autocomplete="firstname" />
                     <x-input-error :messages="$errors->get('firstname')" />
                 </div>
 
                 <div>
-                    <x-input-label for="lastname" :value="__('Lastname')" />
                     <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname" :value="old('lastname')" required autocomplete="lastname" />
                     <x-input-error :messages="$errors->get('lastname')" />
                 </div>
 
                 <!-- Password -->
                 <div>
-                    <x-input-label for="password" :value="__('Password')" />
-
                     <x-text-input id="password"
                                     placeholder="Password"
                                     type="password"
@@ -43,8 +38,6 @@
 
                 <!-- Confirm Password -->
                 <div>
-                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
                     <x-text-input id="password_confirmation"
                                     placeholder="Confirm Password"
                                     type="password"
@@ -54,6 +47,7 @@
                 </div>
 
                 <div>
+                    <x-input-label for="password_confirmation" :value="__('Role:')" />
                     <select class="dropdown-select" name="role" required>
                         @foreach ($roles as $option)
                             <option class="filter-field-option" value="{{$option->id}}" 
