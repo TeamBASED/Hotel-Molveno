@@ -1,6 +1,9 @@
 #reservation-overview {
 
 
+    article {
+        max-height: 25rem;
+    }
 
     .left-side {
         background-color: $color-700;
@@ -12,13 +15,16 @@
     }
 
     .right-side {
-        border: 2px solid $color-700; 
+        border: 2px solid $color-700;
         display: flex;
         justify-content: space-around;
 
-        h3 {
-            color: $color-700;
-        }
+
+
+
+        overflow-y: scroll;
+
+
     }
 
 }

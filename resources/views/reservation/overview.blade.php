@@ -8,21 +8,26 @@
             Hier komen zoekvelden.
         </div>
         <div class="right-side">
-            <div class="grid-two-columns">
+            <div class="grid-two-columns no-horizontal-gap ">
             <h3>Contact</h3>
             <h3>Room Nr.</h3>
 
 
-            <div id="rooms-container">
+           
            
             @foreach ($reservations as $reservation)
 
-                    <p>{{ $reservation->contact_id }}</p>
-                    <p>{{ $reservation->room_id }}</p>
-                        
+                <p class="gray-background">{{ $reservation->contact->first_name }} {{ $reservation->contact->last_name }}</p>
+                <p class="gray-background">
+                    @foreach ($reservation->rooms as $room)
+                        {{ $room->room_number }}
                     @endforeach
+                    
+                </p>
+                        
+            @endforeach
     
-</div>
+
 
             </div>
 

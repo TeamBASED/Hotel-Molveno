@@ -12,14 +12,14 @@ class Reservation extends Model
     use HasFactory;
 
     public static function getAllReservationData() {
-        return Reservation::get();
+        return Reservation::with(['contact','rooms'])->get();
     }
 
-    public function rooms() : BelongsToMany {
-        return $this->belongsToMany(Room::class, 'reservation_room');
+    public function rooms() {
+        return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
 
-    public function contactId() {
+    public function contact() {
         return $this->belongsTo(Contact::class);
     }
 
@@ -27,5 +27,10 @@ class Reservation extends Model
         return $this->hasOne(Invoice::class);
     }
 
+
+
+    // public function contact() {
+    //     return $this->hasOne(Contact::class);
+    // }
 
 }

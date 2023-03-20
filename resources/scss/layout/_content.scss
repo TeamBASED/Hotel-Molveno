@@ -19,6 +19,10 @@
     grid-column: span 2;
 }
 
+.no-horizontal-gap {
+    column-gap: 0;
+}
+
 .flex-space-around {
     display: flex;
     justify-content: space-around;
@@ -30,4 +34,8 @@
 
 .white-background {
     background-color: $color-white;
+}
+
+.gray-background {
+    background-color: $color-grey-300;
 }
