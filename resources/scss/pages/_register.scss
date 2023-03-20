@@ -1,21 +1,6 @@
-#login-header {
-    display: flex;
-    justify-content: left;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10rem;
-    img {
-        width: 8rem;
-        height: auto;
-    }
-    h1 {
-        font-size: 2rem;
-    }
-}
-#login-page {
+#register-page {
     display: flex;
     justify-content: center;
-    width: 100%;
     #heading-container {
         width: 100%;
         background-color: $color-700;
@@ -44,6 +29,9 @@
                         opacity: 0.8;
                         color: $color-700;
                     }
+                }
+                label {
+                    font-weight: bold;
                 }
                 button {
                     height: 2rem;
