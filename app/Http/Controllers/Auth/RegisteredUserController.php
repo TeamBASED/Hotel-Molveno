@@ -49,6 +49,10 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        // for now return to room overview
+        
+        // return redirect(RouteServiceProvider::HOME);
+
+        return redirect(route('room.overview'));
     }
 }
