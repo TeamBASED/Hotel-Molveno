@@ -14,25 +14,25 @@
     
     <div class="container-create">
         
-        <form action="{{ route('room.store') }}" method="POST">
+        <form action="{{ route('room.store') }}" method="POST" class="grid-three-columns">
             @csrf
-            <div class="left">
+            <div class="flex-column padding-block-1rem">
                 <input type="text" class="input-text" required placeholder="Room number" name="number">
                 <input type="text" class="input-text" required placeholder="Capacity" name="capacity">
                 <input type="text" class="input-text" required placeholder="Price per night" name="price">
                 <input type="text" class="input-text" required placeholder="Bed configuration" name="configuration">
                 <!-- view = dropdown -->
             </div>
-            <div class="middle">
-                <div>
+            <div class="flex-column padding-block-1rem">
+                <div class="flex-space-between">
                     <label for="baby-bed">Baby bed possible:</label>
                     <input type="checkbox" class="input-text" name="babybed" value="1">
                 </div>
-                <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description">
+                <textarea class="input-text flex-grow-1" id="room-edit-description" placeholder="Room description" name="description"></textarea>
             </div>
-            <div class="right">
+            <div class="flex-column padding-block-1rem">
                 <select class="dropdown-select" name="type" required>
-                    @foreach ($roomViews as $option)
+                    @foreach ($roomTypes as $option)
                         <option class="filter-field-option" value="{{$option->id}}">{{$option->type}}</option>
                     @endforeach
                 </select>
@@ -41,14 +41,15 @@
                         <option class="filter-field-option" value="{{$option->id}}">{{$option->type}}</option>
                     @endforeach
                 </select>
-                {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> --}}
-                {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> --}}
             </div>
+            
+        
+    
+        <div class="flex-space-between grid-span-3">
+            <x-buttons.primary-button :href="route('room.overview')" class="button gray-background flex-center-center">Cancel</x-buttons.primary-button>
             <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
-        </form>
+        </div>
     </div>
-    <div class="buttons">
-        <x-buttons.primary-button :href="route('room.overview')" class="button gray-bg">Cancel</x-buttons.primary-button>
-    </div>
+</form>
 </main>
 </x-layout.base>

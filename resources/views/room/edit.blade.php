@@ -13,7 +13,7 @@
 
         <div class="three-column-mid-stretch padding-inline-5rem">
             <div class="blank"></div>
-            <h1>Edit room</h1>
+            <h2>Edit room</h2>
             <form action="{{ route('room.delete', $room->id) }}" method="POST" class="flex-flex-end flex-align-center">
                 @csrf
                 @method('DELETE')
