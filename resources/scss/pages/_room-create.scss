@@ -1,35 +1,48 @@
 #room-create {
-    padding: 5rem;
+
     .container-create {
         margin: 0 auto;
-        width: 700px;
+        // width: 700px;
+
         h1 {
             margin-left: 1.5rem;
         }
+
         form {
             display: flex;
-            .left, .middle, .right {
+
+            .left,
+            .middle,
+            .right {
                 margin-top: 2rem;
             }
-            .left, .middle {
+
+            .left,
+            .middle {
                 display: flex;
                 flex-direction: column;
             }
+
             .middle {
                 gap: 5px;
             }
-            input, select {
+
+            input,
+            select {
                 margin: 0.5rem;
                 width: 15rem;
             }
+
             select {
                 border-radius: 0;
             }
+
             label {
                 color: $color-grey-600;
                 margin: 8px;
                 font-size: 22px;
             }
+
             input[type=checkbox] {
                 border: 3px solid $color-grey-400;
                 background-color: $color-white;
@@ -40,15 +53,18 @@
             }
         }
     }
+
     .buttons {
-        display: flex  ;
+        display: flex;
         justify-content: space-between;
         padding: 5rem;
-        .button{
+
+        .button {
             font-weight: 600;
             height: 45px;
             width: 150px;
         }
+
         .gray-bg {
             background-color: $color-grey-600;
             color: $color-700;
@@ -59,4 +75,3 @@
 #room-edit-description {
     height: 9rem;
 }
-

@@ -1,6 +1,6 @@
 .main-content {
     width: 100%;
-    padding: 4rem;
+    padding: 2rem 4rem;
 
     position: relative;
 }
@@ -8,7 +8,13 @@
 .grid-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
+    gap: 1rem;
+}
+
+.grid-three-columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .right-aligned {
@@ -19,9 +25,43 @@
     grid-column: span 2;
 }
 
+.grid-span-3 {
+    grid-column: span 3;
+}
+
+.flex-center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .flex-space-around {
     display: flex;
     justify-content: space-around;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-column {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
 }
 
 .margin-block {
@@ -30,4 +70,22 @@
 
 .white-background {
     background-color: $color-white;
+}
+
+.gray-background {
+    background-color: $color-grey-600;
+    color: $color-700;
+}
+
+.three-column-mid-stretch {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+}
+
+.padding-block-1rem {
+    padding-block: 1rem;
+}
+
+.padding-inline-5rem {
+    padding-inline: 5rem;
 }

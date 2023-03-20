@@ -1,5 +1,5 @@
 <x-layout.base>
-<main id="room-edit">
+<main id="room-edit" class="main-content">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -10,35 +10,35 @@
         </div>
     @endif
 
-    <div class="container-edit">
+
         <div class="three-column-mid-stretch padding-inline-5rem">
             <div class="blank"></div>
             <h1>Edit room</h1>
-            <form action="{{ route('room.delete', $room->id) }}" method="POST" class="delete-form">
+            <form action="{{ route('room.delete', $room->id) }}" method="POST" class="flex-flex-end flex-align-center">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" value="{{ $room->id }}">
-                <x-buttons.primary-button class="button gray-bg right-aligned">Delete</x-buttons.primary-button>
+                <x-buttons.primary-button class="button gray-background right-aligned flex-center-center">Delete</x-buttons.primary-button>
             </form>
         <div class="blank"></div>
-        <form action="{{ route('room.update', $room->id) }}" method="POST" class="edit-room-form">
+        <form action="{{ route('room.update', $room->id) }}" method="POST" class="edit-room-form grid-three-columns">
         @csrf
         @method('PATCH')
-            <div class="left">
+            <div class="flex-column padding-block-1rem">
                 <input type="text" class="input-text" required placeholder="Room number" name="number" value="{{old('number', $room->room_number)}}">
                 <input type="text" class="input-text" required placeholder="Capacity" name="capacity" value="{{old('capacity', $room->capacity)}}">
                 <input type="text" class="input-text" required placeholder="Price per night" name="price" value="{{old('price', $room->base_price_per_night)}}">
                 <input type="text" class="input-text" required placeholder="Bed configuration" name="configuration" value="{{old('configuration', $room->bed_configuration)}}">
                 <!-- view = dropdown -->
             </div>
-            <div class="middle">
-                <div class="babybed">
+            <div class="flex-column padding-block-1rem">
+                <div class="flex-space-between flex-aling-center">
                     <label for="baby-bed">Baby bed possible:</label>
                     <input type="checkbox" class="input-text" name="babybed" value="1" {{$room->baby_bed_possible == 1 ? 'checked' : ''}}>
                 </div>
-                <input type="text" class="input-text" id="room-edit-description" placeholder="Room description" name="description" value="{{old('description', $room->description)}}">
+                <textarea class="input-text flex-grow-1" id="room-edit-description" placeholder="Room description" name="description">{{old('description', $room->description)}}</textarea>
             </div>
-            <div class="right">
+            <div class="flex-column padding-block-1rem">
                 <select class="dropdown-select" name="type" required>
                     @foreach ($roomTypes as $option)
                         <option class="filter-field-option" value="{{$option->id}}" 
@@ -61,12 +61,13 @@
                 {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> Doesn't quite work as expected or desired --}}
                 <input type="hidden" name="id" value="{{ $room->id }}">
             </div>
-            <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
+            
+            <div class="flex-space-between grid-span-3">
+                <x-buttons.primary-button :href="route('room.info', $room->id)" class="button gray-background flex-center-center">Cancel</x-buttons.primary-button>
+                <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
+            </div>
         </form>
         <div class="blank"></div>
-    </div>
-    <div class="flex-space-between buttons">
-        <x-buttons.primary-button :href="route('room.info', $room->id)" class="button gray-bg">Cancel</x-buttons.primary-button>
-    </div>
+
 </main>
 </x-layout.base>

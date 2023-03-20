@@ -1,5 +1,5 @@
 <x-layout.base>
-<main id="room-create">
+<main id="room-create" class="main-content">
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -9,8 +9,11 @@
             </ul>
         </div>
     @endif
+
+    <h2>Create room</h2>
+    
     <div class="container-create">
-        <h1>Create room</h1>
+        
         <form action="{{ route('room.store') }}" method="POST">
             @csrf
             <div class="left">
