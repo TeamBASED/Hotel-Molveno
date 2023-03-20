@@ -9,6 +9,9 @@ class Role extends Model
 {
     use HasFactory;
 
+    public static function getAllRoleData() {
+        return Role::get();
+    }
     public function users() {
         return $this->hasMany(User::class);
     }
