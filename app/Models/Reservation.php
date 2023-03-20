@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
+
+    public static function getAllReservationData() {
+        return Reservation::get();
+    }
 }
