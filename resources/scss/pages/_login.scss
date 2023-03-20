@@ -25,7 +25,7 @@
             font-size: 1.2rem;
         }
     }
-    #login-form {
+    #form-container {
         display: flex;
         justify-content: center;
         flex-flow: row wrap;
@@ -35,7 +35,7 @@
             width: 100%;
             div {
                 padding: 0.7rem 4rem;
-                input[type=username], input[type=password] {
+                input[type=text], input[type=password] {
                     height: 2rem;
                     width: 100%;
                     padding: 0.2rem 0.5rem;
