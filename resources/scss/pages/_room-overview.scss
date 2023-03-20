@@ -1,59 +1,56 @@
 #room-overview {
     display: flex;
     font-family: sans-serif;
-    padding: 4rem;
     gap: 4rem;
 
     .margin-top {
         margin-top: 10px;
     }
 
-    .left-side {
-        display: flex;
-        flex-direction: column;
-        width: 70%;
+    .filter {
+        background-color: #F5F5F5;
+        height: 100px;
+        width: 82.5;
+    }
+
+    #rooms-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
 
-        .filter {
-            background-color: #F5F5F5;
-            height: 100px;
-            width:82.5;      
-        }
-        h2 {
-            text-align: center;
-            font-size: 50px;
-        }
-        #rooms-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+        .room-item {
+            box-shadow: $color-grey-400 2px 2px 5px;
+            border: solid 2px $color-600;
+            padding: 1rem;
 
-            .room-item {
-                box-shadow: $color-grey-400 2px 2px 5px;
-                border: solid 2px $color-600;
-                padding: 1rem;
+            .room-item-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
 
-                div {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                }
+            &>* {
+                margin-block: 0.5rem;
             }
         }
     }
 
+    .left-side {
+        flex-grow: 1;
+    }
+
     #details-section {
+        flex-grow: 0;
+
+        position: sticky;
+        top: 0;
+
         background-color: $color-700;
         color: $color-white;
         width: 30%;
-        padding: 20px;
+        padding: 1.5rem 3rem;
         height: max-content;
         min-height: 40rem;
-
-        h2 {
-            text-align: center;
-            font-size: 38px;
-        }
 
         p {
             font-size: 20px;
@@ -74,7 +71,7 @@
         #details-info-button {
             text-align: center;
         }
-        
+
         #select-room-message {
             display: none;
             color: $color-100;

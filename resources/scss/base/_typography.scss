@@ -1,3 +1,17 @@
 html {
     font-family: sans-serif;
 }
+
+h2 {
+    padding-block: 1rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+h4 {
+    color: $color-700;
+}
+
+.white-text {
+    color: $color-white;
+}
