@@ -53,9 +53,9 @@
         </div>
 
         <div>
-            <a href="{{ route('login') }}">
+            {{-- <a href="{{ route('login') }}">
                 {{ __('Already registered?') }}
-            </a>
+            </a> --}}
 
             <x-primary-button>
                 {{ __('Register') }}
