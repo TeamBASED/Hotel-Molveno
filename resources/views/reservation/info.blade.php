@@ -22,7 +22,7 @@
                 </div>
                 <x-buttons.primary-button>Edit</x-buttons.primary-button>
             </section>
-            <x-buttons.primary-button>Back</x-buttons.primary-button>
+            <x-buttons.primary-button :href="route('reservation.overview')">Back</x-buttons.primary-button>
         </div>
         <section class="reservation-schedule">
             <h3 class="white-text">being reserved by</h3>
