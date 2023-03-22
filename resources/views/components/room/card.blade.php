@@ -9,5 +9,8 @@
     </div>
     <p>{{ $room->roomType->type }}</p>
     <p>available</p>
-    <x-buttons.primary-button :href="route('room.info', ['id' => $room->id])" >Go to info</x-buttons.primary-button>
+    <form action="{{ route('reservation.create') }}" method="GET">
+        <input type="hidden" name="roomId" value="{{ $room->id }}">
+        <x-buttons.primary-button class="button">Make reservation</x-buttons.primary-button></form>
+    <x-buttons.primary-button :href="route('room.create', ['id' => $room->id])" >Go to info</x-buttons.primary-button>
 </div>
