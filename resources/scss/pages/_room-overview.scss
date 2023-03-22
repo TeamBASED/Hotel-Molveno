@@ -9,11 +9,31 @@
 
     .filter {
         background-color: #F5F5F5;
+        padding: 1rem 2rem;
         height: 100px;
         width: 82.5;
 
         display: flex;
-        align-items: start;
+        justify-content: space-between;
+        align-items: center;
+
+        .filter-options {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .filter-item {
+            width: min-content;
+            display: flex;
+            flex-direction: column;
+            white-space: nowrap;
+        }
+
+        .filter-input {
+            border: solid 2px $color-600;
+            width: 4rem;
+        }
     }
 
     #rooms-container {
