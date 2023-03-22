@@ -3,6 +3,7 @@
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 
@@ -46,5 +47,8 @@ Route::middleware('auth')->group(function () {
 // Reservation routes
 Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');
 
+
+// User routes
+Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
 
 require __DIR__.'/auth.php';
