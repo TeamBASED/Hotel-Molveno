@@ -2,8 +2,8 @@
     <main id="reservation-overview">
     <h2>Reservations</h2>
 
-    <article class="flex-space-around">
-        <div class="flex-column left-side">
+    <article class="flex-center">
+        <div class="flex-column left-side padding-inline-1rem padding-block">
             <h3>Search reservation</h3>
             Hier komen zoekvelden.
         </div>

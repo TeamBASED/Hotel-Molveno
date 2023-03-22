@@ -39,6 +39,12 @@
     column-gap: 0;
 }
 
+.flex-center {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
 .flex-space-around {
     display: flex;
     justify-content: space-around;
@@ -72,8 +78,16 @@
     margin-block: 2rem;
 }
 
+.padding-1rem {
+    padding: 1rem;
+}
+
 .padding-block {
     padding-block: 2rem;
+}
+
+.padding-inline-1rem {
+    padding-inline: 1rem;
 }
 
 .padding-inline-5rem {
