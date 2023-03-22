@@ -6,7 +6,7 @@
     <div class="bottom">
         <nav>
             <a class="navigation-link" href="#">Home</a>
-            <a class="navigation-link" href="#">Room</a>
+            <a class="navigation-link" href="#">Rooms</a>
             <a class="navigation-link" href="#">Reservations</a>
         </nav>
         <a class="logout-link" href="#">Logout</a>
