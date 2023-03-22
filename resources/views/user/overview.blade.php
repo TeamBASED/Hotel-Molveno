@@ -1,5 +1,5 @@
 <x-layout.base>
-    <main id="reservation-overview">
+    <main id="user-overview">
     <h2>Users</h2>
 
     <article class="flex-center">
@@ -13,22 +13,12 @@
             <h3>Role</h3>
 
             @foreach ($users as $user)
-
                 <p class="gray-background padding-inline-5rem">{{ $user->first_name }} {{ $user->last_name }}</p>
-                <p class="gray-background padding-inline-5rem">{{ $user->role->title}}</p>
-
-                    
-                </p>
-                        
+                <p class="gray-background padding-inline-5rem">{{ $user->role->title}} </p>
             @endforeach
     
-
-
             </div>
-
         </div>
-    
     </article>
-
     </main>
 </x-layout.base> 
