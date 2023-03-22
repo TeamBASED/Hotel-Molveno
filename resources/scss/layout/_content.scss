@@ -35,6 +35,16 @@
     align-items: center;
 }
 
+.no-horizontal-gap {
+    column-gap: 0;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
 .flex-space-around {
     display: flex;
     justify-content: space-around;
@@ -68,24 +78,26 @@
     margin-block: 2rem;
 }
 
+.padding-1rem {
+    padding: 1rem;
+}
+
+.padding-block {
+    padding-block: 2rem;
+}
+
+.padding-inline-1rem {
+    padding-inline: 1rem;
+}
+
+.padding-inline-5rem {
+    padding-inline: 5rem;
+}
+
 .white-background {
     background-color: $color-white;
 }
 
 .gray-background {
-    background-color: $color-grey-600;
-    color: $color-700;
-}
-
-.three-column-mid-stretch {
-    display: grid;
-    grid-template-columns: 200px 1fr 200px;
-}
-
-.padding-block-1rem {
-    padding-block: 1rem;
-}
-
-.padding-inline-5rem {
-    padding-inline: 5rem;
+    background-color: $color-grey-300;
 }
