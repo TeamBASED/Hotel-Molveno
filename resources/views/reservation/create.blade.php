@@ -14,10 +14,10 @@
                 <h1>Create room</h1>
                 <form action="" method="POST">
                     @csrf
-                    <div>
-                        <input type="text" class="" required placeholder="Contact Name" name="contactname">
+                    <div class="flex-column margin-block">
+                        <input type="text" class="input-text" required placeholder="Contact Name" name="contactname">
                         <label for="arrival">Date of arrival&colon;</label>
-                        <input type="date" class="" required name="arrival">
+                        <input type="date" class="input-text" required name="arrival">
                         <label for="departure">Date of departure&colon;</label>
                         <input type="date" class="input-text" required name="departure">
                     </div>
