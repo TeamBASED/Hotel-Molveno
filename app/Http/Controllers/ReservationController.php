@@ -15,4 +15,9 @@ class ReservationController extends Controller
 
         return view('reservation.create', ['room' => $room]);
     }
+    public function viewReservationOverview() {
+        $reservations = Reservation::getAllReservationData();
+
+        return view('reservation.overview', ['reservations' => $reservations]);
+    }
 }
