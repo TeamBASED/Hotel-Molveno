@@ -65,27 +65,36 @@ class Room extends Model
 
     // Local scopes
 
-    public function scopeWithRoomType($query, $roomType) {
-        return $query->where('room_type_id', $roomType);
-    }
-
-    public function scopeWithRoomView($query, $roomView) {
-        return $query->where('room_view_id', $roomView);
-    }
-
-    // I'm still trying to figure out this query!
-    // public function scopeWithBedConfiguration($query, $bedConfiguration) {
-    //     return $query->whereExists(function($query) use($bedConfiguration) {
-    //         $query->from('bed_configurations')->where('room_id', $bedConfiguration);
-    //     });
-    // }
-
     public function scopeWithCapacity($query, $capacity) {
         return $query->where('capacity', $capacity);
     }
 
     public function scopeWithNumber($query, $number) {
         return $query->where('room_number', 'like', "%" . $number . "%");
+    }
+
+    public function scopeWithRoomType($query, int $typeId) {
+        return $query->where('room_type_id', $typeId);
+    }
+
+    public function scopeWithRoomView($query, int $viewId) {
+        return $query->where('room_view_id', $viewId);
+    }
+
+    public function scopeWithBedConfiguration($query, int $configurationId) {
+        return $query->whereExists(function($query) use($configurationId) {
+            $query->from('room_bed_configurations')
+                ->whereColumn('room_id', 'rooms.id')
+                ->where('bed_configuration_id', $configurationId);
+        });
+    }
+
+    public function scopeWithCleaningStatus($query, int $statusId) {
+        return $query->where('cleaning_status_id', $statusId);
+    }
+
+    public function scopeWithBabyBed($query, int $bedPossible) {
+        return $query->where('cleaning_status_id', $bedPossible);
     }
 }
 

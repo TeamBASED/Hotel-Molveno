@@ -99,13 +99,14 @@ class RoomController extends Controller
     }
 
     private function filterRoomResults(Request $request) {
-        $filterQuery = Room::where('id', '>', 0);
+        $filterQuery = Room::with(['cleaningStatus','roomView','roomType']);
 
         if($request->capacity) $filterQuery->withCapacity($request->capacity);
         if($request->number) $filterQuery->withNumber($request->number);
-        if($request->roomType) $filterQuery->withRoomType($request->roomType);
-        if($request->roomView) $filterQuery->withRoomView($request->roomView);
-        // if($request->bedConfiguration) $filterQuery->withBedConfiguration($request->bedConfiguration);
+        if($request->type) $filterQuery->withRoomType($request->type);
+        if($request->view) $filterQuery->withRoomView($request->view);
+        if($request->bedConfig) $filterQuery->withBedConfiguration($request->bedConfig);
+        if($request->babyBed) $filterQuery->withBabyBed($request->babyBed);
 
         return $filterQuery->get();
     }
