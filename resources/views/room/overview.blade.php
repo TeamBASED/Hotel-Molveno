@@ -6,9 +6,52 @@
 
     <main class="main-content" id="room-overview">
         <div class="left-side">
-            <div class="filter">
+            <form class="filter" action="{{ route('room.overview') }}" method="GET">
+
+                <label for="capacity-filter">Capacity</label>
+                <input id="capacity-filter" type="number" name="capacity" value="{{ request('capacity') }}">
                 
-            </div>
+                <label for="number-filter">Number</label>
+                <input id="number-filter" type="text" name="number" value="{{ request('number') }}">
+
+                <label for="babybed-filter">Baby bed</label>
+                @if (request('babybed'))
+                    <input id="babybed-filter" type="checkbox" name="babybed" checked>
+                @else
+                    <input id="babybed-filter" type="checkbox" name="babybed">
+                @endif
+                
+                <select class="filter-field" name="type">
+                    <option value="">Select all</option>
+
+                    @foreach ($roomTypes as $type)
+
+                        @if (request('type') == $type->id)
+                            <option class="filter-field-option" selected value={{$type->id}}>{{$type->type}}</option>
+                        @else
+                            <option class="filter-field-option" value={{$type->id}}>{{$type->type}}</option>
+                        @endif
+
+                    @endforeach
+                </select>
+
+                <select class="filter-field" name="view">
+                    <option value="">Select all</option>
+
+                    @foreach ($roomViews as $view)
+
+                        @if (request('view') == $view->id)
+                            <option class="filter-field-option" selected value={{$view->id}}>{{$view->type}}</option>
+                        @else
+                            <option class="filter-field-option" value={{$view->id}}>{{$view->type}}</option>
+                        @endif
+
+                    @endforeach
+                </select>
+
+                <x-buttons.secondary-button>Search</x-buttons.secondary-button>
+                
+            </form>
             <h2>Rooms</h2>
             <div id="rooms-container">
 

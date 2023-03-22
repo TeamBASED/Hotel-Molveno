@@ -17,9 +17,10 @@ class RoomController extends Controller
     public function viewRoomOverview(Request $request) {
         $rooms = $this->filterRoomResults($request);
 
-        
+        $roomTypes = RoomType::get();
+        $roomViews = RoomView::get();
 
-        return view('room.overview', ['rooms' => $rooms]);
+        return view('room.overview', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
     }
 
     public function viewRoomEdit(int $id) {
@@ -101,13 +102,17 @@ class RoomController extends Controller
     private function filterRoomResults(Request $request) {
         $filterQuery = Room::with(['cleaningStatus','roomView','roomType']);
 
-        if($request->capacity) $filterQuery->withCapacity($request->capacity);
-        if($request->number) $filterQuery->withNumber($request->number);
-        if($request->type) $filterQuery->withRoomType($request->type);
-        if($request->view) $filterQuery->withRoomView($request->view);
-        if($request->bedConfig) $filterQuery->withBedConfiguration($request->bedConfig);
-        if($request->babyBed) $filterQuery->withBabyBed($request->babyBed);
+        if($this->hasFilter($request->capacity)) $filterQuery->withCapacity($request->capacity);
+        if($this->hasFilter($request->number)) $filterQuery->withNumber($request->number);
+        if($this->hasFilter($request->type)) $filterQuery->withRoomType($request->type);
+        if($this->hasFilter($request->view)) $filterQuery->withRoomView($request->view);
+        if($this->hasFilter($request->bedConfig)) $filterQuery->withBedConfiguration($request->bedConfig);
+        if(isset($request->babybed)) $filterQuery->withBabybed(1);
 
         return $filterQuery->get();
+    }
+
+    private function hasFilter($param) {
+        return $param != "";
     }
 }

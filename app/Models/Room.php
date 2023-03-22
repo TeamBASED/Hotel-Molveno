@@ -66,7 +66,7 @@ class Room extends Model
     // Local scopes
 
     public function scopeWithCapacity($query, $capacity) {
-        return $query->where('capacity', $capacity);
+        return $query->where('capacity', '>=', $capacity)->orderBy('capacity', 'asc');
     }
 
     public function scopeWithNumber($query, $number) {
@@ -93,8 +93,8 @@ class Room extends Model
         return $query->where('cleaning_status_id', $statusId);
     }
 
-    public function scopeWithBabyBed($query, int $bedPossible) {
-        return $query->where('cleaning_status_id', $bedPossible);
+    public function scopeWithBabybed($query, int $bedPossible) {
+        return $query->where('baby_bed_possible', $bedPossible);
     }
 }
 
