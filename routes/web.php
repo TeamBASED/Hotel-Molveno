@@ -46,6 +46,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
+
+    // Reservation routes
+    Route::get('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
+    Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
 });
 
 // Reservation routes
