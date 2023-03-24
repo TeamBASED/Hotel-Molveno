@@ -17,10 +17,11 @@
             <x-buttons.primary-button>Cancel</x-buttons.primary-button>
         </div>
         <div class="right">
+            <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
             <div class="room-info">
-                
+                <h2>Room info</h2>
             </div>
-            <x-buttons.primary-button>Confirm changes</x-buttons.primary-button>
+            <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
         </div>
         </form>
     </main>
