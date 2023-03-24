@@ -13,8 +13,13 @@
             <input type="date" class="input-text" name="arrival">
             <h3>Date of Departure</h3>
             <input type="date" class="input-text" name="departure">
+            <x-buttons.primary-button>Cancel</x-buttons.primary-button>
         </div>
         <div class="right">
+            <div class="room-info">
+                
+            </div>
+            <x-buttons.primary-button>Confirm changes</x-buttons.primary-button>
         </div>
         </form>
     </main>
