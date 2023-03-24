@@ -15,6 +15,9 @@
                 @csrf
                 <div class="flex-space-between">
                     <div id="input-box" class="flex-column padding-block-1rem">
+                        @if (request('contact') == $contact->id)
+
+                        @endif
                         <div class="flex-column">
                             <input type="text" class="input-text" required placeholder="First Name" name="firstname">
                             <input type="text" class="input-text" required placeholder="Last Name" name="lastname">

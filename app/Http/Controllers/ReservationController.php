@@ -39,7 +39,6 @@ class ReservationController extends Controller
             'date_of_arrival' => $request->arrival,
             'date_of_departure' => $request->departure, 
         ]);
-        $contact = new Contact->create();
     }
     
     public function viewReservationInfo(int $id) {
