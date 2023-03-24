@@ -20,13 +20,4 @@ class GuestController extends Controller
 
         $this->updateGuest($request);
     }
-
-    public function updateGuest(Request $request) {
-        
-        // TODO functie reservationId om $id op te halen uit db, deze functie komt in model
-        $id = 1;
-        $guest = Guest::getGuestData($id);
-
-        //Updaten implementeren.
-    }
 }

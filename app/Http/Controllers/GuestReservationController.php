@@ -7,7 +7,12 @@ use App\Models\GuestReservation;
 
 class GuestReservationController extends Controller
 {
-    //functie om een nieuwe row te maken om een guest aan een reservering te koppelen
+    public function storeGuestReservation(Request $request) {
+        $guestReservation = GuestReservation::create([
+            'reservation_id' -> request->reservation_id,
+            'guest_id' -> request->guest_id,
+        ]);
+    }
 
     public function handleRemoveGuestFromReservation() {
         $reservationId = $request->reservationId;
