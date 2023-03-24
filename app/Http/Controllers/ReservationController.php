@@ -14,28 +14,20 @@ class ReservationController extends Controller
     }
 
     public function handleUpdateReservation(Request $request) {
-
-
-
-
-        // $request = new Request::class;
         $validated = $request->validate([
-            // 'id' => 'required',
-            // 'date_of_arrival' => 'required',
-            // 'date_of_departure' => 'required',
-            // 'invoice_id' => 'required',
+            'id' => 'required',
+            'date_of_arrival' => 'required',
+            'date_of_departure' => 'required',
+            'invoice_id' => 'required',
         ]);
         
         dd("test");
         dd($request);
 
-
         $this->updateReservation($request);
-
 
         // return redirect('reservation.overview');
     }
-
 
     public function updateReservation(Request $request) {
         
@@ -44,15 +36,8 @@ class ReservationController extends Controller
 
         dd($reservation);
 
-
         $reservation = Reservation::getReservationData($id);
 
-
-
-
-
-
-        
         // $reservation = Reservation::with('rooms')->find($id);
         // // $reservation->room->
 

@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');
 
 
-Route::get('/reservation/test', [ReservationController::class, 'handleUpdateReservation'])->name('reservation.overview');
+Route::get('/reservation/test', [ReservationController::class, 'handleUpdateGuest'])->name('reservation.overview');
 
 
 // User routes

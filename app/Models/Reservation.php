@@ -31,6 +31,10 @@ class Reservation extends Model
         return $this->hasOne(Invoice::class);
     }
 
+    public static function getGuestByReservationId(int $reservationId) {
+        return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
+    }
+
 
 
     // public function contact() {
