@@ -15,11 +15,19 @@
                 @csrf
                 <div class="flex-space-between">
                     <div id="input-box" class="flex-column padding-block-1rem">
-                        <input type="text" class="input-text" required placeholder="Contact Name" name="contactname">
-                        <label for="arrival">Date of arrival&colon;</label>
-                        <input type="date" class="input-text" required name="arrival">
-                        <label for="departure">Date of departure&colon;</label>
-                        <input type="date" class="input-text" required name="departure">
+                        <div>
+                            <input type="text" class="input-text" required placeholder="First Name" name="firstname">
+                            <input type="text" class="input-text" required placeholder="Last Name" name="lastname">
+                            <input type="text" class="input-text" required placeholder="Email" name="email">
+                            <input type="text" class="input-text" required placeholder="Telephone Number" name="telephone">
+                            <input type="text" class="input-text" required placeholder="Address" name="address">
+                        </div>
+                        <div>
+                            <label for="arrival">Date of arrival&colon;</label>
+                            <input type="date" class="input-text" required name="arrival">
+                            <label for="departure">Date of departure&colon;</label>
+                            <input type="date" class="input-text" required name="departure">
+                        </div>
                     </div>
                     <x-room.infobox :room="$room" />
                 </div>
