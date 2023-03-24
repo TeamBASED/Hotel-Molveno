@@ -39,4 +39,10 @@ class ReservationController extends Controller
             'date_of_departure' => $request->departure, 
         ]);
     }
+    
+    public function viewReservationInfo(int $id) {
+        $reservation = null;
+
+        return view('reservation.info', ['reservation' => $reservation]);
+    }
 }

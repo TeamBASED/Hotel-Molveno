@@ -12,28 +12,17 @@
             <h3>Contact</h3>
             <h3>Room Nr.</h3>
 
-
-           
-           
             @foreach ($reservations as $reservation)
-
                 <p class="gray-background padding-inline-5rem">{{ $reservation->contact->first_name }} {{ $reservation->contact->last_name }}</p>
                 <p class="gray-background padding-inline-5rem">
                     @foreach ($reservation->rooms as $room)
                         {{ $room->room_number }}
-                    @endforeach
-                    
-                </p>
-                        
+                    @endforeach                   
+                </p>          
             @endforeach
-    
-
-
-            </div>
 
         </div>
-    
+        </div>
     </article>
-
     </main>
 </x-layout.base> 
