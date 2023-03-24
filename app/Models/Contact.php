@@ -10,6 +10,14 @@ class Contact extends Model
 {
     use HasFactory;
 
+    protected $fillable= [
+        'first_name', 
+        'last_name', 
+        'email',
+        'telephone_number', 
+        'address'
+    ];
+
     public function reservations() {
         return $this->hasMany(Reservation::class);
     }

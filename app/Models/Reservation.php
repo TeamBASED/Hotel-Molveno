@@ -11,6 +11,12 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    protected $fillable= [
+        'contact_id', 
+        'date_of_arrival', 
+        'date_of_departure'
+    ];
+
     public static function getAllReservationData() {
         return Reservation::with(['contact','rooms'])->get();
     }
