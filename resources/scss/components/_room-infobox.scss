@@ -1,0 +1,13 @@
+#room-infobox {
+    margin-bottom: 2rem;
+    border: 1px solid $color-700;
+    > div {
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+    h3 {
+        width: 100%;
+        background-color: $color-700;
+        padding: 0.5rem;
+    }
+}
