@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Contact;
 use Illuminate\View\View;
 use App\Models\Reservation;
-use App\Models\Room;
 use Illuminate\Http\Request;
 
 class ReservationController extends Controller
@@ -38,6 +39,7 @@ class ReservationController extends Controller
             'date_of_arrival' => $request->arrival,
             'date_of_departure' => $request->departure, 
         ]);
+        $contact = new Contact->create();
     }
     
     public function viewReservationInfo(int $id) {
