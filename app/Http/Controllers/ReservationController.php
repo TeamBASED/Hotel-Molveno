@@ -14,8 +14,8 @@ class ReservationController extends Controller
     }
 
     public function viewReservationInfo(int $id) {
-        $reservations = Reservation::getAllReservationData($id);
+        $reservation = null;
 
-        return view('reservation.info', ['reservations' => $reservations]);
+        return view('reservation.info', ['reservation' => $reservation]);
     }
 }
