@@ -89,6 +89,10 @@ class Room extends Model
         });
     }
 
+    // public function scopeWithSingleBeds($query, int $singleBedCount) {
+    //     return $query->where
+    // }
+
     public function scopeWithCleaningStatus($query, int $statusId) {
         return $query->where('cleaning_status_id', $statusId);
     }

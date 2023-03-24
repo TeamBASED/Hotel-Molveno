@@ -6,61 +6,75 @@
 
     <main class="main-content" id="room-overview">
         <div class="left-side">
-            <form class="filter" action="{{ route('room.overview') }}" method="GET">
+            <form class="filter-section" action="{{ route('room.overview') }}" method="GET">
 
                 <div class="filter-options">
 
-                    <div class="filter-item">
-                        <label for="capacity-filter">Capacity</label>
-                        <input id="capacity-filter" class="filter-input" type="number" name="capacity" value="{{ request('capacity') }}">
-                    </div>
-                    
-                    <div class="filter-item">
-                        <label for="number-filter">Number</label>
-                        <input id="number-filter" class="filter-input" type="text" name="number" value="{{ request('number') }}">
-                    </div>
-
-                    <div class="filter-item">
-                        <label for="babybed-filter">Baby bed</label>
-                        @if (request('babybed'))
-                            <input id="babybed-filter" type="checkbox" name="babybed" checked>
-                        @else
-                            <input id="babybed-filter" type="checkbox" name="babybed">
-                        @endif
-                    </div>
-                    
-                    <div class="filter-item">
-                        <select class="filter-field" name="type">
-                            <option value="">select all</option>
-        
-                            @foreach ($roomTypes as $type)
-        
-                                @if (request('type') == $type->id)
-                                    <option class="filter-field-option" selected value={{$type->id}}>{{$type->type}}</option>
-                                @else
-                                    <option class="filter-field-option" value={{$type->id}}>{{$type->type}}</option>
-                                @endif
-        
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="filter-item">
-                        <select class="filter-field" name="view">
-                            <option value="">select all</option>
-        
-                            @foreach ($roomViews as $view)
-        
-                                @if (request('view') == $view->id)
-                                    <option class="filter-field-option" selected value={{$view->id}}>{{$view->type}}</option>
-                                @else
-                                    <option class="filter-field-option" value={{$view->id}}>{{$view->type}}</option>
-                                @endif
-        
-                            @endforeach
-                        </select>
-                    </div>
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label for="capacity-filter">Capacity</label>
+                            <input id="capacity-filter" class="filter-input" type="number" name="capacity" min="0" value="{{ request('capacity') }}">
+                        </div>
                         
+                        <div class="filter-item">
+                            <label for="number-filter">Number</label>
+                            <input id="number-filter" class="filter-input" type="text" name="number" value="{{ request('number') }}">
+                        </div>
+
+                        <div class="filter-item">
+                            <select class="filter-field" name="type">
+                                <option value="">select all</option>
+            
+                                @foreach ($roomTypes as $type)
+            
+                                    @if (request('type') == $type->id)
+                                        <option class="filter-field-option" selected value={{$type->id}}>{{$type->type}}</option>
+                                    @else
+                                        <option class="filter-field-option" value={{$type->id}}>{{$type->type}}</option>
+                                    @endif
+            
+                                @endforeach
+                            </select>
+                        </div>
+    
+                        <div class="filter-item">
+                            <select class="filter-field" name="view">
+                                <option value="">select all</option>
+            
+                                @foreach ($roomViews as $view)
+            
+                                    @if (request('view') == $view->id)
+                                        <option class="filter-field-option" selected value={{$view->id}}>{{$view->type}}</option>
+                                    @else
+                                        <option class="filter-field-option" value={{$view->id}}>{{$view->type}}</option>
+                                    @endif
+            
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter-row">
+                        <div class="filter-item">
+                            <label for="single-bed-filter">Single bed</label>
+                            <input id="single-bed-filter" class="filter-input" type="number" name="singleBed" min="0" value="{{ request('singleBed') }}">
+                        </div>
+    
+                        <div class="filter-item">
+                            <label for="double-bed-filter">Double bed</label>
+                            <input id="double-bed-filter" class="filter-input" type="number" name="doubleBed" min="0" value="{{ request('doubleBed') }}">
+                        </div>
+    
+                        <div class="filter-item">
+                            <label for="babybed-filter">Baby bed</label>
+                            @if (request('babybed'))
+                                <input id="babybed-filter" type="checkbox" name="babybed" checked>
+                            @else
+                                <input id="babybed-filter" type="checkbox" name="babybed">
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
 
                 <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>

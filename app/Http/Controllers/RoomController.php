@@ -106,7 +106,7 @@ class RoomController extends Controller
         if($this->hasFilter($request->number)) $filterQuery->withNumber($request->number);
         if($this->hasFilter($request->type)) $filterQuery->withRoomType($request->type);
         if($this->hasFilter($request->view)) $filterQuery->withRoomView($request->view);
-        if($this->hasFilter($request->bedConfig)) $filterQuery->withBedConfiguration($request->bedConfig);
+        // if($this->hasFilter($request->singleBed)) $filterQuery->withBedConfiguration($request->singleBed);
         if(isset($request->babybed)) $filterQuery->withBabybed(1);
 
         return $filterQuery->get();

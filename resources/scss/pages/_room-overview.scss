@@ -7,11 +7,9 @@
         margin-top: 10px;
     }
 
-    .filter {
+    .filter-section {
         background-color: #F5F5F5;
         padding: 1rem 2rem;
-        height: 100px;
-        width: 82.5;
 
         display: flex;
         justify-content: space-between;
@@ -19,14 +17,21 @@
 
         .filter-options {
             display: flex;
-            align-items: center;
-            gap: 2rem;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 1.2rem;
         }
 
         .filter-item {
             width: min-content;
+            min-width: 6rem;
             display: flex;
             flex-direction: column;
+            align-items: start;
             white-space: nowrap;
         }
 
