@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // reservation routes
-    Route::get('/reservation/info', function () { return view('reservation.info');});
+    Route::get('/reservation/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
