@@ -13,8 +13,8 @@ class ReservationController extends Controller
         return view('reservation.overview', ['reservations' => $reservations]);
     }
 
-    public function viewReservationInfo() {
-        $reservations = Reservation::getAllReservationData();
+    public function viewReservationInfo(int $id) {
+        $reservations = Reservation::getAllReservationData($id);
 
         return view('reservation.info', ['reservations' => $reservations]);
     }
