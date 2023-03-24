@@ -45,6 +45,11 @@ class ReservationController extends Controller
 
         return view('reservation.info', ['reservation' => $reservation]);
     }
+    public function viewReservationEdit(int $id) {
+        $reservation = null;
+
+        return view('reservation.edit', ['reservation' => $reservation]);
+    }
 
     public function handleUpdateReservation(Request $request) {
         $validated = $request->validate([
