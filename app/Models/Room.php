@@ -81,17 +81,14 @@ class Room extends Model
         return $query->where('room_view_id', $viewId);
     }
 
-    public function scopeWithBedConfiguration($query, int $configurationId) {
-        return $query->whereExists(function($query) use($configurationId) {
+    public function scopeWithBedConfiguration($query, int $bedId, int $bedCount) {
+        return $query->whereExists(function($query) use($bedId, $bedCount) {
             $query->from('room_bed_configurations')
                 ->whereColumn('room_id', 'rooms.id')
-                ->where('bed_configuration_id', $configurationId);
+                ->where('bed_configuration_id', $bedId)
+                ->where('amount', '>=', $bedCount);
         });
     }
-
-    // public function scopeWithSingleBeds($query, int $singleBedCount) {
-    //     return $query->where
-    // }
 
     public function scopeWithCleaningStatus($query, int $statusId) {
         return $query->where('cleaning_status_id', $statusId);
