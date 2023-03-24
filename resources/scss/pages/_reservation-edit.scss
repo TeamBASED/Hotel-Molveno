@@ -8,22 +8,39 @@
             gap: 0.5rem;
             width: 70%;
             min-height: 10rem;
+            .graybg {
+                background-color: $color-grey-600;
+            }
             input {
                 width: 30rem;
             }
         }
         .right {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            gap: 2rem;
             width: 30%;
             padding: 1rem 1rem 4rem 1rem;
-            width: 20rem;
             .room-info {
-                min-height: 10rem;
-                background-color: $color-700;
-            }
-            button {
+                border: 2px solid $color-600;
                 background-color: $color-white;
-                font-size: 0.5rem;
-                color: $color-700;
+                color: $color-600;
+                padding: 0.5rem 2rem;
+                height: 23.5rem;
+                width: 20rem;
+                h2 {
+                    font-size: 24px;
+                }
+            }
+            .button {
+                font-size: 0.8rem;
+            }
+            .bluebg {
+                background-color: $color-600;
+            }
+            .delete {
+                background-color: #2b50a1;
             }
         }
         h2 {
