@@ -15,6 +15,10 @@ class Reservation extends Model
         return Reservation::with(['contact','rooms'])->get();
     }
 
+    public static function getReservationData(int $id) {
+        return Reservation::where(['id', $id])->with(['contact','rooms'])->first();
+    }
+
     public function rooms() {
         return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
