@@ -13,11 +13,13 @@
             }
         }
         .right {
-            background-color: $color-700;
             width: 30%;
-            min-height: 10rem;
             padding: 1rem 1rem 4rem 1rem;
             width: 20rem;
+            .room-info {
+                min-height: 10rem;
+                background-color: $color-700;
+            }
             button {
                 background-color: $color-white;
                 font-size: 0.5rem;
