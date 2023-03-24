@@ -17,9 +17,7 @@
         </div>
         <div class="right">
             <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
-            <div class="room-info">
-                <h2>Room info</h2>
-            </div>
+            <x-room.infobox :room="$room" />
             <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
         </div>
         </form>
