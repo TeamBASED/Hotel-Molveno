@@ -12,4 +12,10 @@ class ReservationController extends Controller
 
         return view('reservation.overview', ['reservations' => $reservations]);
     }
+
+    public function viewReservationInfo(int $id) {
+        $reservation = null;
+
+        return view('reservation.info', ['reservation' => $reservation]);
+    }
 }
