@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
 
     // Reservation routes
     Route::get('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
+    Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
 });
 
 // Reservation routes

@@ -20,4 +20,23 @@ class ReservationController extends Controller
 
         return view('reservation.overview', ['reservations' => $reservations]);
     }
+
+    public function handleCreateReservation(Request $request) {
+        $validated = $request->validate([
+            'contact' => 'required',
+            'arrival' => 'required',
+            'departure' => 'required',
+        ]);
+
+        $this->storeReservation($request);
+        return redirect(route('reservation.overview'));
+    }
+
+    public function storeReservation(Request $request) {
+        $room = Reservation::create([
+            'contact_id' => $request->contact,
+            'date_of_arrival' => $request->arrival,
+            'date_of_departure' => $request->departure, 
+        ]);
+    }
 }

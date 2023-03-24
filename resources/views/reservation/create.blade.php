@@ -11,7 +11,7 @@
         @endif
         <h2>Create reservation</h2>
         <div class="margin-block">
-            <form id="reservation-form" class="flex-column padding-block-1rem" action="" method="POST">
+            <form action="{{ route('reservation.store') }}" method="POST" id="reservation-form" class="flex-column padding-block-1rem">
                 @csrf
                 <div class="flex-space-between">
                     <div id="input-box" class="flex-column padding-block-1rem">
