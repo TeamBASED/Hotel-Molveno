@@ -1,6 +1,6 @@
 <x-layout.base>
     <main id="reservation-edit">
-    <form action="" method="" class="">
+    <form action="{{ route('reservation.update', $reservation->id) }}" method="POST" class="">
         @csrf
         <div class="left">
             <h2>Edit Reservation</h2>
@@ -13,6 +13,7 @@
             <input type="date" class="input-text" name="arrival">
             <h3>Date of Departure</h3>
             <input type="date" class="input-text" name="departure">
+            <input type="hidden" name="id" value="{{ $reservation->id }}">
             <x-buttons.primary-button>Cancel</x-buttons.primary-button>
         </div>
         <div class="right">
