@@ -15,14 +15,15 @@
                 @csrf
                 <div class="flex-space-between">
                     <div id="input-box" class="flex-column padding-block-1rem">
-                        <div>
+                        <div class="flex-column">
                             <input type="text" class="input-text" required placeholder="First Name" name="firstname">
                             <input type="text" class="input-text" required placeholder="Last Name" name="lastname">
                             <input type="text" class="input-text" required placeholder="Email" name="email">
                             <input type="text" class="input-text" required placeholder="Telephone Number" name="telephone">
                             <input type="text" class="input-text" required placeholder="Address" name="address">
                         </div>
-                        <div>
+                        <div class="flex-column">
+                            <input type="hidden" required name="contact" >
                             <label for="arrival">Date of arrival&colon;</label>
                             <input type="date" class="input-text" required name="arrival">
                             <label for="departure">Date of departure&colon;</label>
