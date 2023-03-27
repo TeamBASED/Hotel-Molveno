@@ -14,6 +14,7 @@
             <form action="{{ route('reservation.store') }}" method="POST" id="reservation-form" class="flex-column padding-block-1rem">
                 @csrf
                 <div class="flex-space-between">
+                    <input type="hidden" required name="room" value="{{ isset($room) ? $room->id : ''}}">
                     <div id="input-box" class="flex-column padding-block-1rem">
                         <div class="flex-column">
                             <input type="text" class="input-text" required placeholder="First Name" name="firstname" value="{{ isset($contact) ? $contact->first_name : ''}}">

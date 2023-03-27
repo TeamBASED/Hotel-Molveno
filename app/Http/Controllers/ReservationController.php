@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Contact;
+use App\Models\Invoice;
 use Illuminate\View\View;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -24,11 +25,33 @@ class ReservationController extends Controller
     public function handleCreateReservation(Request $request) {
         $this->validateCreateReservation($request);
 
-        $this->storeReservation($request);
+        $reservation = $this->storeReservation($request);
+
+        $this->handleReservationContact($request, $reservation);
+
+        $room = Room::getRoomData($request->room);
+        $reservation->rooms()->sync($room);
+
+        $invoice = $reservation->invoice()->create();
+
         return redirect(route('reservation.overview'));
     }
+
+    private function handleReservationInvoice($reservation){
     
-    public function validateCreateReservation(request $request) {
+        return $invoice;
+    }
+    private function handleReservationContact(Request $request, $reservation) {
+        if (isset($request->contact)) {
+            $contact = Contact::getContactById($request->contact);
+        } else {
+            $contact = new Contact();
+            $contact->handleCreateContact($request);
+        }
+        $contact->reservations()->save($reservation);
+    }
+
+    private function validateCreateReservation(request $request) {
         // TODO: Fix, this is currently empty and gives an error
         $validator = Validator::make($request->all(), [
             'contact' => 'required|integer',
@@ -43,12 +66,13 @@ class ReservationController extends Controller
         }
     }
 
-    public function storeReservation(Request $request) {
-        $room = Reservation::create([
+    private function storeReservation(Request $request) {
+        $reservation = Reservation::create([
             'contact_id' => $request->contact,
             'date_of_arrival' => $request->arrival,
             'date_of_departure' => $request->departure, 
         ]);
+        return $reservation;
     }
     
     public function viewReservationInfo(int $id) {

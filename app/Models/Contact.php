@@ -23,6 +23,10 @@ class Contact extends Model
         return Contact::where('email', $email)->first();
     }
 
+    public static function getContactById(int $id) { 
+        return Contact::where('id', $id)->first();
+    }
+
     public function reservations() {
         return $this->hasMany(Reservation::class);
     }
