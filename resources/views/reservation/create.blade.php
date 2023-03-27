@@ -23,7 +23,7 @@
                             <input type="text" class="input-text" required placeholder="Address" name="address" value="{{ isset($contact) ? $contact->address : ''}}">
                         </div>
                         <div class="flex-column">
-                            <input type="hidden" required name="contact" >
+                            <input type="hidden" required name="contact" value="{{ isset($contact) ? $contact->id : ''}}">
                             <label for="arrival">Date of arrival&colon;</label>
                             <input type="date" id="arrival-date" class="input-text" required name="arrival">
                             <label for="departure">Date of departure&colon;</label>
