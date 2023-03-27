@@ -62,5 +62,40 @@ class Room extends Model
     public function roomMaintenances() {
         return $this->hasMany(RoomMaintenance::class);
     }
+
+    // Local scopes
+
+    public function scopeWithCapacity($query, $capacity) {
+        return $query->where('capacity', '>=', $capacity)->orderBy('capacity', 'asc');
+    }
+
+    public function scopeWithNumber($query, $number) {
+        return $query->where('room_number', 'like', "%" . $number . "%");
+    }
+
+    public function scopeWithRoomType($query, int $typeId) {
+        return $query->where('room_type_id', $typeId);
+    }
+
+    public function scopeWithRoomView($query, int $viewId) {
+        return $query->where('room_view_id', $viewId);
+    }
+
+    public function scopeWithBedConfiguration($query, int $bedId, int $bedCount) {
+        return $query->whereExists(function($query) use($bedId, $bedCount) {
+            $query->from('room_bed_configurations')
+                ->whereColumn('room_id', 'rooms.id')
+                ->where('bed_configuration_id', $bedId)
+                ->where('amount', '>=', $bedCount);
+        });
+    }
+
+    public function scopeWithCleaningStatus($query, int $statusId) {
+        return $query->where('cleaning_status_id', $statusId);
+    }
+
+    public function scopeWithBabybed($query, int $bedPossible) {
+        return $query->where('baby_bed_possible', $bedPossible);
+    }
 }
 

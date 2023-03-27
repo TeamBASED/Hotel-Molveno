@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('room_id');
             $table->foreignId('bed_configuration_id');
-            $table->string('amount');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
