@@ -5,9 +5,9 @@
     </div>
     <div class="bottom">
         <nav>
-            <a class="navigation-link" href="#">Home</a>
-            <a class="navigation-link" href="#">Rooms</a>
-            <a class="navigation-link" href="#">Reservations</a>
+            <a class="navigation-link" href="/">Home</a>
+            <a class="navigation-link" href="{{ route('room.overview') }}">Rooms</a>
+            <a class="navigation-link" href="{{ route('reservation.overview') }}">Reservations</a>
         </nav>
         <a class="logout-link" href="#">Logout</a>
     </div>
