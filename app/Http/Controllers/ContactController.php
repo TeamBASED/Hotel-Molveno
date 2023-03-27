@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function viewReservationCreate($room){
+        return view('reservation.create');
+    }
     public function viewContactVerify(Request $request){
         return view('reservation.contact', ['roomId' => $request->roomId]);
     }
@@ -19,8 +22,8 @@ class ContactController extends Controller
         $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContact($request->email);
         return ($contact===null) 
-            ? view('reservation.create')->with(['room' => $room, 'new_contact' => $request->email])
-            : view('reservation.create')->with(['room' => $room, 'contact' => $contact]);
+            ? redirect()->route('reservation.create')->with(['room' => $room, 'new_contact' => $request->email])
+            : redirect()->route('reservation.create')->with(['room' => $room, 'contact' => $contact]);
     }
 
     public function handleCreateContact(Request $request) {
