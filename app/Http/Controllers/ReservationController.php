@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Contact;
 use Illuminate\View\View;
 use App\Models\Reservation;
-use App\Models\Room;
 use Illuminate\Http\Request;
+use App\Models\ReservationRoom;
 
 class ReservationController extends Controller
 {
@@ -15,12 +17,10 @@ class ReservationController extends Controller
 
         return view('reservation.create', ['room' => $room]);
     }
-    public function viewReservationEdit(Request $request) : View{
-        // $room_id = $request->roomId;
-        $room_id = 3;
-        $room = Room::getRoomData($room_id);
+    public function viewReservationEdit(int $id) : View{
+        $reservation = Reservation::getReservationData($id);
 
-        return view('reservation.edit', ['room' => $room]);
+        return view('reservation.edit', ['reservation' =>$reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
     }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
@@ -52,35 +52,64 @@ class ReservationController extends Controller
 
         return view('reservation.info', ['reservation' => $reservation]);
     }
-    // public function viewReservationEdit(int $id) {
-    //     $reservation = 1;
 
-    //     return view('reservation.edit', ['reservation' => $reservation]);
-    // }
 
     public function handleUpdateReservation(Request $request) {
 
-        dd("test");
         $validated = $request->validate([
             'id' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'date_of_arrival' => 'required',
             'date_of_departure' => 'required',
-            'invoice_id' => 'required',
+            // 'invoice_id' => 'required',
         ]);
-        
-        
-        dd($request);
 
-        $this->updateReservation($request);
 
-        // return redirect('reservation.overview');
+        $this->updateReservation($request, $request->id);
+
+        return redirect(route('reservation.overview'));
     }
 
-    public function updateReservation(Request $request) {
+    public function updateReservation(Request $request, int $id) {
         
-        // TODO functie reservationId om $id op te halen uit db, deze functie komt in model
-        $id = 1;
-        dd($reservation);
         $reservation = Reservation::getReservationData($id);
+
+        $room_numbers_database = collect($reservation->rooms)->map(function ($element) {
+            return $element->room_number;
+        });
+        
+        $room_numbers_form = collect($request->room)->filter();
+
+        if ($room_numbers_database != $room_numbers_form) {
+            ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
+
+            foreach ($room_numbers_form as $room_number) {
+                if (Room::getRoomByNumber($room_number)) {
+                $room_id = Room::getRoomByNumber($room_number)->id;
+
+                ReservationRoom::create([
+                    'reservation_id' => $id,
+                    'room_id' => $room_id,
+                ]);
+                };
+                //NOG GEEN VALIDATIE OF KAMERNUMMER WERKELIJK BESTAAT
+            }
+        };
+
+
+        $reservation->update([
+            'date_of_arrival' => $request->date_of_arrival,
+            'date_of_departure' => $request->date_of_departure,
+        ]);
+
+        $reservation->contact->update([
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'email' => $request->email,
+            'telephone_number' => $request->telephone,
+            'address' => $request->address,
+        ]);
+
     }
 }
