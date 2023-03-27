@@ -15,8 +15,19 @@
 
     .right-side {
         border: 2px solid $color-700;
-        display: flex;
-        justify-content: space-around;
         overflow-y: scroll;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+        gap: .6rem 5rem;
     }
+      
+    .grid-row {
+        padding: .2rem 2rem;
+        display: grid;
+        grid-column: span 2;
+        grid-template-columns: subgrid;
+    }
+         
 }

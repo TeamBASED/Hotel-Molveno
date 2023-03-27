@@ -36,6 +36,9 @@ Route::middleware('auth')->group(function () {
 
     // reservation routes
     Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
+    Route::get('/reservation/{id}/edit', [ReservationController::class, 'viewReservationEdit'])->name('reservation.edit');
+    Route::patch('/reservation/{id}/update', [ReservationController::class, 'handleUpdateReservation'])->name('reservation.update');
+
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
@@ -53,7 +56,6 @@ Route::middleware('auth')->group(function () {
 
 // Reservation routes
 Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');
-
 
 // User routes
 Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
