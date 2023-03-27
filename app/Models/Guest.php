@@ -12,4 +12,8 @@ class Guest extends Model
     public function contact() { 
         return $this->belongsTo(Contact::class);
     }
+
+    public static function getGuestData(int $id) {
+        return Guest::where(['id', $id])->first();
+    }
 }
