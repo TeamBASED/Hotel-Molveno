@@ -15,6 +15,10 @@ class Reservation extends Model
         return Reservation::with(['contact','rooms'])->get();
     }
 
+    public static function getReservationData(int $id) {
+        return Reservation::where(['id', $id])->with(['contact','rooms'])->first();
+    }
+
     public function rooms() {
         return $this->belongsToMany(Room::class, 'reservation_rooms');
     }
@@ -25,5 +29,9 @@ class Reservation extends Model
 
     public function invoice() {
         return $this->hasOne(Invoice::class);
+    }
+
+    public static function getGuestByReservationId(int $reservationId) {
+        return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
     }
 }
