@@ -8,7 +8,6 @@
             <div class="info-wrapper">
                 <section class="info-section">
 
-
                     <div class="grid-two-columns margin-block">
                         <h4>Room no.&colon;</h4>
                         <p class="right-aligned"> {{ $room->room_number}}</p>
@@ -25,13 +24,15 @@
                     </div>
 
                     
-                        <x-buttons.primary-button>Edit</x-buttons.primary-button>
+                    <x-buttons.primary-button :href="route('room.edit', ['id' => $room->id])">Edit</x-buttons.primary-button>
 
                 </section>
-                    <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
+
+                <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
 
             </div>
             <section class="reservation-schedule">
+                
                 <h3 class="white-text">Reservation Schedule</h3>
                 <div class="reservations grid-two-columns">
                     <p class="white-background">Placeholder 23-05 - 28-05</p>
