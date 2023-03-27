@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function handleVerification(Request $request){
+        $validated = $request->validate([
+            'email' => 'required|email|unique',
+        ]);
+    }
+
+    private function verifyContact(Request $request){
+
+    }
+
     public function handleCreateContact(Request $request) {
         $validated = $request->validate([
             'firstname' => 'required',
@@ -18,7 +28,7 @@ class ContactController extends Controller
         $this->storeContact($request);
     }
 
-    public function storeContact(Request $request) {
+    private function storeContact(Request $request) {
         $room = Room::create([
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,

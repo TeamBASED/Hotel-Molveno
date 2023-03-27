@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     // reservation routes
     Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
 
+    Route::post('/reservation/contact', [ReservationController::class, 'handleVerification'])->name('contact.verify');
+
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
     Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
