@@ -79,17 +79,11 @@ class ReservationController extends Controller
 
     public function updateReservation(Request $request, int $id) {
         
-        // TODO functie reservationId om $id op te halen uit db, deze functie komt in model
         $reservation = Reservation::getReservationData($id);
-        // dd($request);
 
         $reservation->update([
-            // 'first_name' => $request->firstname,
-            // 'last_name' => $request->lastname,
             'date_of_arrival' => $request->date_of_arrival,
             'date_of_departure' => $request->date_of_departure,
-            
-
         ]);
 
         $reservation->contact->update([
@@ -99,6 +93,15 @@ class ReservationController extends Controller
             'telephone_number' => $request->telephone,
             'address' => $request->address,
         ]);
+
+
+
+
+        // dd($reservation->rooms);
+
+
+
+        dd($request);
 
 
     }

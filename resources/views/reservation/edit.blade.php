@@ -23,7 +23,9 @@
                 <input type="hidden" name="id" value="{{ $reservation->id }}">
 
                 @foreach ($rooms as $room)
+                    <input type="text" class="input-text" value="{{ $room->room_number }}" name="room[]">
                 @endforeach
+                <input type="text" class="input-text" placeholder="add room" name="room[]">
 
                 <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
             </div>
