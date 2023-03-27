@@ -8,22 +8,27 @@
 
             <div class="left">
                 <h2>Edit Reservation</h2>
-                <input type="text" class="input-text" required value="{{ $contact->first_name }}" name="firstname">
-                <input type="text" class="input-text" required value="{{ $contact->last_name }}" name="lastname">
-                <input type="text" class="input-text" required value="{{ $contact->email }}" name="email">
-                <input type="text" class="input-text" required value="{{ $contact->telephone_number }}"
-                    name="telephone">
-                <input type="text" class="input-text" required value="{{ $contact->address }}" name="adress">
+                <input type="text" class="input-text" required value="{{ old('firstname', $contact->first_name) }}"
+                    name="firstname">
+                <input type="text" class="input-text" required value="{{ old('lastname', $contact->last_name) }}"
+                    name="lastname">
+                <input type="text" class="input-text" required value="{{ old('email', $contact->email) }}"
+                    name="email">
+                <input type="text" class="input-text" required
+                    value="{{ old('telephone', $contact->telephone_number) }}" name="telephone">
+                <input type="text" class="input-text" required value="{{ old('address', $contact->address) }}"
+                    name="address">
                 <h3>Date of Arrival</h3>
-                <input type="date" class="input-text" value="{{ $reservation->date_of_arrival }}"
-                    name="date_of_arrival">
+                <input type="date" class="input-text"
+                    value="{{ old('date_of_arrival', $reservation->date_of_arrival) }}" name="date_of_arrival">
                 <h3>Date of Departure</h3>
-                <input type="date" class="input-text" value="{{ $reservation->date_of_departure }}"
-                    name="date_of_departure">
+                <input type="date" class="input-text"
+                    value="{{ old('date_of_departure', $reservation->date_of_departure) }}" name="date_of_departure">
                 <input type="hidden" name="id" value="{{ $reservation->id }}">
 
                 @foreach ($rooms as $room)
-                    <input type="text" class="input-text" value="{{ $room->room_number }}" name="room[]">
+                    <input type="text" class="input-text" value="{{ old('room', $room->room_number) }}"
+                        name="room[]">
                 @endforeach
                 <input type="text" class="input-text" placeholder="add room" name="room[]">
 

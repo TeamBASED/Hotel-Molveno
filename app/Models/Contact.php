@@ -15,6 +15,7 @@ class Contact extends Model
         'last_name',
         'email',
         'telephone_number',
+        'address',
     ];
 
     public function reservations() {

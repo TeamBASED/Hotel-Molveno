@@ -7,6 +7,7 @@ use App\Models\Contact;
 use Illuminate\View\View;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Models\ReservationRoom;
 
 class ReservationController extends Controller
 {
@@ -51,11 +52,7 @@ class ReservationController extends Controller
 
         return view('reservation.info', ['reservation' => $reservation]);
     }
-    // public function viewReservationEdit(int $id) {
-    //     $reservation = 1;
 
-    //     return view('reservation.edit', ['reservation' => $reservation]);
-    // }
 
     public function handleUpdateReservation(Request $request) {
 
@@ -67,10 +64,7 @@ class ReservationController extends Controller
             'date_of_departure' => 'required',
             // 'invoice_id' => 'required',
         ]);
-        
-        
-        // dd("test");
-        // dd($request);
+
 
         $this->updateReservation($request, $request->id);
 
@@ -80,6 +74,29 @@ class ReservationController extends Controller
     public function updateReservation(Request $request, int $id) {
         
         $reservation = Reservation::getReservationData($id);
+
+        $room_numbers_database = collect($reservation->rooms)->map(function ($element) {
+            return $element->room_number;
+        });
+        
+        $room_numbers_form = collect($request->room)->filter();
+
+        if ($room_numbers_database != $room_numbers_form) {
+            ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
+
+            foreach ($room_numbers_form as $room_number) {
+                if (Room::getRoomByNumber($room_number)) {
+                $room_id = Room::getRoomByNumber($room_number)->id;
+
+                ReservationRoom::create([
+                    'reservation_id' => $id,
+                    'room_id' => $room_id,
+                ]);
+                };
+                //NOG GEEN VALIDATIE OF KAMERNUMMER WERKELIJK BESTAAT
+            }
+        };
+
 
         $reservation->update([
             'date_of_arrival' => $request->date_of_arrival,
@@ -93,16 +110,6 @@ class ReservationController extends Controller
             'telephone_number' => $request->telephone,
             'address' => $request->address,
         ]);
-
-
-
-
-        // dd($reservation->rooms);
-
-
-
-        dd($request);
-
 
     }
 }

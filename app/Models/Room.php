@@ -62,5 +62,9 @@ class Room extends Model
     public function roomMaintenances() {
         return $this->hasMany(RoomMaintenance::class);
     }
+
+    public static function getRoomByNumber(string $roomNumber) {
+        return Room::where('room_number', $roomNumber)->with(['cleaningStatus','roomView','roomType'])->first();
+    }
 }
 
