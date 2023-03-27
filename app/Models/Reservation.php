@@ -14,7 +14,8 @@ class Reservation extends Model
     protected $fillable= [
         'contact_id', 
         'date_of_arrival', 
-        'date_of_departure'
+        'date_of_departure',
+        'invoice_id'
     ];
 
     public static function getAllReservationData() {

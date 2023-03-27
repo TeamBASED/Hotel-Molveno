@@ -25,22 +25,25 @@ class ReservationController extends Controller
     public function handleCreateReservation(Request $request) {
         $this->validateCreateReservation($request);
 
-        $reservation = $this->storeReservation($request);
+        $invoice = $this->handleReservationInvoice();
+
+        $reservation = $this->storeReservation($request, $invoice->id);
 
         $this->handleReservationContact($request, $reservation);
 
         $room = Room::getRoomData($request->room);
         $reservation->rooms()->sync($room);
 
-        $invoice = $reservation->invoice()->create();
-
         return redirect(route('reservation.overview'));
     }
 
-    private function handleReservationInvoice($reservation){
-    
+    private function handleReservationInvoice(){
+        $new_invoice = Invoice::create();
+        $invoice_id = $new_invoice->id;
+        $invoice = $new_invoice->getInvoiceById($invoice_id);
         return $invoice;
     }
+
     private function handleReservationContact(Request $request, $reservation) {
         if (isset($request->contact)) {
             $contact = Contact::getContactById($request->contact);
@@ -52,7 +55,7 @@ class ReservationController extends Controller
     }
 
     private function validateCreateReservation(request $request) {
-        // TODO: Fix, this is currently empty and gives an error
+        // TODO: Apply validators across all relevant controllers
         $validator = Validator::make($request->all(), [
             'contact' => 'required|integer',
             'arrival' => 'required|date',
@@ -66,11 +69,12 @@ class ReservationController extends Controller
         }
     }
 
-    private function storeReservation(Request $request) {
+    private function storeReservation(Request $request, $invoice_id) {
         $reservation = Reservation::create([
             'contact_id' => $request->contact,
             'date_of_arrival' => $request->arrival,
-            'date_of_departure' => $request->departure, 
+            'date_of_departure' => $request->departure,
+            'invoice_id' => $invoice_id
         ]);
         return $reservation;
     }
