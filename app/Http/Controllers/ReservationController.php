@@ -7,6 +7,7 @@ use App\Models\Contact;
 use Illuminate\View\View;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
@@ -21,15 +22,25 @@ class ReservationController extends Controller
     }
 
     public function handleCreateReservation(Request $request) {
-        dd($contact);
-        $validated = $request->validate([
-            //'contact' => 'required', // TODO: Fix, this is currently empty and gives an error
-            'arrival' => 'required',
-            'departure' => 'required'
+        $this->validateCreateReservation($request);
+
+        $this->storeReservation($request);
+        return redirect(route('reservation.overview'));
+    }
+    
+    public function validateCreateReservation(request $request) {
+        // TODO: Fix, this is currently empty and gives an error
+        $validator = Validator::make($request->all(), [
+            'contact' => 'required|integer',
+            'arrival' => 'required|date',
+            'departure' => 'required|date'
         ]);
 
-        // $this->storeReservation($request);
-        // return redirect(route('reservation.overview'));
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
     }
 
     public function storeReservation(Request $request) {
