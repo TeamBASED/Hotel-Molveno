@@ -52,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
     // Reservation routes
+    Route::post('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
     Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
 });
 
