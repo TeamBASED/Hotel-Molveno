@@ -21,15 +21,15 @@ class ContactController extends Controller
         $room = Room::getRoomData($request->room_id);
         $contact = Contact::getContact($request->email);
         return ($contact===null) 
-            ? view('reservation.create', ['room' => $room, 'new_contact' => $request->email])
-            : view('reservation.create', ['room' => $room, 'contact' => $contact]);
+            ? view('reservation.create')->with(['room' => $room, 'new_contact' => $request->email])
+            : view('reservation.create')->with(['room' => $room, 'contact' => $contact]);
     }
 
     public function handleCreateContact(Request $request) {
         $validated = $request->validate([
             'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required',
+            'lastname' => 'required|string',
+            'email' => 'required|email',
             'telephone' => 'required',
             'address' => 'required',
         ]);
@@ -38,7 +38,7 @@ class ContactController extends Controller
     }
 
     private function storeContact(Request $request) {
-        $room = Room::create([
+        $room = Contact::create([
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
             'email' => $request->email,

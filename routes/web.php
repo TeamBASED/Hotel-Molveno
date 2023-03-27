@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
 
-    Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('contact.verify');
+    Route::post('/contact/create', [ContactController::class, 'handleVerification'])->name('contact.create');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
@@ -52,7 +52,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
     // Reservation routes
-    Route::get('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
     Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
 });
 

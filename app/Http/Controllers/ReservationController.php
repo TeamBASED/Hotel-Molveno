@@ -27,9 +27,10 @@ class ReservationController extends Controller
             'arrival' => 'required',
             'departure' => 'required',
         ]);
+        dd($contact);
 
-        $this->storeReservation($request);
-        return redirect(route('reservation.overview'));
+        // $this->storeReservation($request);
+        // return redirect(route('reservation.overview'));
     }
 
     public function storeReservation(Request $request) {
