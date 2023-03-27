@@ -15,6 +15,12 @@ class ReservationController extends Controller
 
         return view('reservation.create', ['room' => $room]);
     }
+    public function viewReservationEdit(Request $request) : View{
+        $room_id = $request->roomId;
+        $room = Room::getRoomData($room_id);
+
+        return view('reservation.edit', ['room' => $room]);
+    }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
 
