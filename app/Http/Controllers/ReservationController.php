@@ -16,7 +16,8 @@ class ReservationController extends Controller
         return view('reservation.create', ['room' => $room]);
     }
     public function viewReservationEdit(Request $request) : View{
-        $room_id = $request->roomId;
+        // $room_id = $request->roomId;
+        $room_id = 3;
         $room = Room::getRoomData($room_id);
 
         return view('reservation.edit', ['room' => $room]);
@@ -51,13 +52,15 @@ class ReservationController extends Controller
 
         return view('reservation.info', ['reservation' => $reservation]);
     }
-    public function viewReservationEdit(int $id) {
-        $reservation = 1;
+    // public function viewReservationEdit(int $id) {
+    //     $reservation = 1;
 
-        return view('reservation.edit', ['reservation' => $reservation]);
-    }
+    //     return view('reservation.edit', ['reservation' => $reservation]);
+    // }
 
     public function handleUpdateReservation(Request $request) {
+
+        dd("test");
         $validated = $request->validate([
             'id' => 'required',
             'date_of_arrival' => 'required',
@@ -65,7 +68,7 @@ class ReservationController extends Controller
             'invoice_id' => 'required',
         ]);
         
-        dd("test");
+        
         dd($request);
 
         $this->updateReservation($request);

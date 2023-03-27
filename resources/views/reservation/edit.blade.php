@@ -20,16 +20,21 @@
                 <input type="date" class="input-text" name="arrival">
                 <h3>Date of Departure</h3>
                 <input type="date" class="input-text" name="departure">
-                {{-- <input type="hidden" name="id" value="{{ $reservation->id }}"> --}}
+                <input type="hidden" name="id"
+                    value="
+                3
+                {{-- {{ $reservation->id }} --}}
+                ">
                 <x-buttons.primary-button>Cancel</x-buttons.primary-button>
             </div>
-            <div class="right">
-                <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
-                <div class="room-info">
-                    <h2>Room info</h2>
-                </div>
-                <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
-            </div>
         </form>
+        <div class="right">
+            <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
+            <div class="room-info">
+                <h2>Room info</h2>
+            </div>
+            <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
+        </div>
+
     </main>
 </x-layout.base>
