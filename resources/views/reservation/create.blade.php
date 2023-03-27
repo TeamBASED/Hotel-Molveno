@@ -25,9 +25,9 @@
                         <div class="flex-column">
                             <input type="hidden" required name="contact" >
                             <label for="arrival">Date of arrival&colon;</label>
-                            <input type="date" class="input-text" required name="arrival">
+                            <input type="date" id="arrival-date" class="input-text" required name="arrival">
                             <label for="departure">Date of departure&colon;</label>
-                            <input type="date" class="input-text" required name="departure">
+                            <input type="date" id="departure-date" class="input-text" required name="departure">
                         </div>
                     </div>
                     <x-room.infobox :room="$room" />
@@ -37,6 +37,23 @@
                     <x-buttons.primary-button type="submit">Save</x-buttons.primary-button>
                 </div>
             </form>
+            <script>
+                var date = new Date();
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var nextMonth = date.getMonth() + 2;
+                var year = date.getFullYear();
+
+                if (month < 10) month = "0" + month;
+                if (nextMonth < 10) nextMonth = "0" + nextMonth;
+                if (day < 10) day = "0" + day;
+
+                var arrival = year + "-" + month + "-" + day;
+                var departure = year + "-" + nextMonth + "-" + day;
+
+                document.getElementById("arrival-date").value = arrival;
+                document.getElementById("departure-date").value = departure;
+            </script>
         </div>
     </main>
 </x-layout.base>

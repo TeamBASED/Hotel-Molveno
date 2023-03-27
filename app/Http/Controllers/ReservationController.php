@@ -21,14 +21,15 @@ class ReservationController extends Controller
     }
 
     public function handleCreateReservation(Request $request) {
+        dd($contact);
         $validated = $request->validate([
             //'contact' => 'required', // TODO: Fix, this is currently empty and gives an error
             'arrival' => 'required',
             'departure' => 'required'
         ]);
 
-        $this->storeReservation($request);
-        return redirect(route('reservation.overview'));
+        // $this->storeReservation($request);
+        // return redirect(route('reservation.overview'));
     }
 
     public function storeReservation(Request $request) {
