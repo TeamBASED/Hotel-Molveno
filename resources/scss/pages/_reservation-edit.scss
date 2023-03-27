@@ -33,9 +33,6 @@
                     font-size: 24px;
                 }
             }
-            .button {
-                font-size: 0.8rem;
-            }
             .bluebg {
                 background-color: $color-600;
             }
@@ -49,5 +46,11 @@
         h3 {
             color: $color-grey-600;
         }
+        .button {
+            font-size: 0.8rem;
+        }
+    }
+    .fix-right {
+            margin: -2rem -10rem 0rem 0rem;
     }
 }
