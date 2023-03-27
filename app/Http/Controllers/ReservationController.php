@@ -39,8 +39,11 @@ class ReservationController extends Controller
         return redirect(route('reservation.overview'));
     }
 
-    public function handleDeleteReservation(int $id) {
-        Reservation::deleteReservation($id);
+    public function handleDeleteReservation(Reservation $reservation) {
+        //hier vinden wat er in reservation zit en dit daarna omschrijven naar id[int]
+        Reservation::deleteReservation($reservation->id);
+        ReservationRoom::deleteReservationRoomData($reservation->id);
+        Contact::deleteContact($reservation->contact->id);
         return redirect(route('reservation.overview'));
     }
 

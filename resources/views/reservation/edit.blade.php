@@ -36,7 +36,7 @@
             </div>
         </form>
         <div class="right">
-            <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
+            <form action="{{ route('reservation.delete', $reservation) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>

@@ -29,4 +29,8 @@ class Contact extends Model
     public static function getContactData(int $id) :Contact {
         return Contact::where('id', $id)->first();
     }
+
+    public static function deleteContact($id) {
+        $deleted = Contact::where('reservation_id', $id)->delete();
+    }
 }
