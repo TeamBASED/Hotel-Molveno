@@ -8,12 +8,19 @@ class ContactController extends Controller
 {
     public function handleVerification(Request $request){
         $validated = $request->validate([
-            'email' => 'required|email|unique',
+            'email' => 'required|email',
         ]);
+
+        $this->verifyContact($request);
     }
 
     private function verifyContact(Request $request){
-
+        $contact = Contact::getContact($request->email);
+        if ($user === null) {
+            return redirect()->route('reservation.create');
+        } else {
+            return redirect()->route('reservation.create')->with($contact);
+        }
     }
 
     public function handleCreateContact(Request $request) {

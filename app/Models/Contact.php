@@ -18,6 +18,11 @@ class Contact extends Model
         'address'
     ];
 
+
+    public function getContact(string $email) { 
+        return Contact::where('email', $email)->first();
+    }
+
     public function reservations() {
         return $this->hasMany(Reservation::class);
     }
