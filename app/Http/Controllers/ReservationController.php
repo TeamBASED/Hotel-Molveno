@@ -22,9 +22,9 @@ class ReservationController extends Controller
 
     public function handleCreateReservation(Request $request) {
         $validated = $request->validate([
-            'contact' => 'required',
+            //'contact' => 'required', // TODO: Fix, this is currently empty and gives an error
             'arrival' => 'required',
-            'departure' => 'required',
+            'departure' => 'required'
         ]);
 
         $this->storeReservation($request);

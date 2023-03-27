@@ -34,7 +34,7 @@
                 </div>
                 <div id="button-box" class="flex-space-between">
                     <x-buttons.primary-button :href="route('room.overview')" class="button gray-background flex-center-center">Cancel</x-buttons.primary-button>
-                    <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
+                    <x-buttons.primary-button type="submit">Save</x-buttons.primary-button>
                 </div>
             </form>
         </div>
