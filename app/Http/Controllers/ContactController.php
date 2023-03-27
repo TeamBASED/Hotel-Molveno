@@ -9,16 +9,14 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function viewContactVerify(Request $request){
-        $room = Room::getRoomData($request->roomId);
-
-        return view('reservation.contact', ['room' => $room]);
+        return view('reservation.contact', ['roomId' => $request->roomId]);
     }
 
     public function handleVerification(Request $request){
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
-        $room = Room::getRoomData($request->room_id);
+        $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContact($request->email);
         return ($contact===null) 
             ? view('reservation.create')->with(['room' => $room, 'new_contact' => $request->email])
