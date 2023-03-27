@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    public function viewContactVerify(Request $request){
+        $room = Room::getRoomData($request->roomId);
+
+        return view('reservation.contact', ['room' => $room]);
+    }
+
     public function handleVerification(Request $request){
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
-
-        $this->verifyContact($request);
-    }
-
-    private function verifyContact(Request $request){
+        $room = Room::getRoomData($request->room_id);
         $contact = Contact::getContact($request->email);
-        if ($user === null) {
-            return redirect()->route('reservation.create');
-        } else {
-            return redirect()->route('reservation.create')->with($contact);
-        }
+        return ($contact===null) 
+            ? view('reservation.create', ['room' => $room, 'new_contact' => $request->email])
+            : view('reservation.create', ['room' => $room, 'contact' => $contact]);
     }
 
     public function handleCreateContact(Request $request) {

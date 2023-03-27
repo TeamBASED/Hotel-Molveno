@@ -11,8 +11,7 @@ use Illuminate\Http\Request;
 class ReservationController extends Controller
 {
     public function viewReservationCreate(Request $request) : View{
-        $room_id = $request->roomId;
-        $room = Room::getRoomData($room_id);
+        $room = $request->room;
 
         return view('reservation.create', ['room' => $room]);
     }

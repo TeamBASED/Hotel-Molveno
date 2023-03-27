@@ -15,15 +15,12 @@
                 @csrf
                 <div class="flex-space-between">
                     <div id="input-box" class="flex-column padding-block-1rem">
-                        @if (request('contact') == $contact->id)
-
-                        @endif
                         <div class="flex-column">
-                            <input type="text" class="input-text" required placeholder="First Name" name="firstname">
-                            <input type="text" class="input-text" required placeholder="Last Name" name="lastname">
-                            <input type="text" class="input-text" required placeholder="Email" name="email">
-                            <input type="text" class="input-text" required placeholder="Telephone Number" name="telephone">
-                            <input type="text" class="input-text" required placeholder="Address" name="address">
+                            <input type="text" class="input-text" required placeholder="First Name" name="firstname" value="{{ isset($contact) ? $contact->first_name : ''}}">
+                            <input type="text" class="input-text" required placeholder="Last Name" name="lastname" value="{{ isset($contact) ? $contact->last_name : ''}}">
+                            <input type="text" class="input-text" required placeholder="Email" name="email" value="{{ isset($contact) ? $contact->email : $new_contact }}">
+                            <input type="text" class="input-text" required placeholder="Telephone Number" name="telephone" value="{{ isset($contact) ? $contact->telephone_number : ''}}">
+                            <input type="text" class="input-text" required placeholder="Address" name="address" value="{{ isset($contact) ? $contact->address : ''}}">
                         </div>
                         <div class="flex-column">
                             <input type="hidden" required name="contact" >

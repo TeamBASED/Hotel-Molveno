@@ -4,6 +4,7 @@ use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 
@@ -37,7 +38,9 @@ Route::middleware('auth')->group(function () {
     // reservation routes
     Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
 
-    Route::post('/reservation/contact', [ReservationController::class, 'handleVerification'])->name('contact.verify');
+    Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
+
+    Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('contact.verify');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');

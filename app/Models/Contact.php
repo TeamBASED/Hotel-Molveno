@@ -19,7 +19,7 @@ class Contact extends Model
     ];
 
 
-    public function getContact(string $email) { 
+    public static function getContact(string $email) { 
         return Contact::where('email', $email)->first();
     }
 
