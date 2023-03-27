@@ -11,12 +11,28 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    protected $fillable= [
+        'date_of_arrival',
+        'date_of_departure',
+        'contact_id',
+        'invoice_id',
+        // 'room_number', 
+        // 'capacity', 
+        // 'base_price_per_night',
+        // 'bed_configuration',
+        // 'baby_bed_possible',
+        // 'description',
+        // 'room_view_id',
+        // 'room_type_id',
+        // 'cleaning_status_id'
+    ];
+
     public static function getAllReservationData() {
         return Reservation::with(['contact','rooms'])->get();
     }
 
     public static function getReservationData(int $id) {
-        return Reservation::where(['id', $id])->with(['contact','rooms'])->first();
+        return Reservation::where('id', $id)->with(['contact','rooms'])->first();
     }
 
     public function rooms() {

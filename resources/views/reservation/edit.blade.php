@@ -1,58 +1,44 @@
 <x-layout.base>
     <main id="reservation-edit">
-        <form
-            action="{{ route(
-                'reservation.update',
-                3,
-                // $reservation->id
-            ) }}"
-            method="POST" class="">
+        <form action="{{ route('reservation.update', $reservation->id) }}" method="POST" class="">
             @csrf
             @method('PATCH')
+
+            {{-- {{ dd($reservation) }} --}}
+
             <div class="left">
                 <h2>Edit Reservation</h2>
-                <input type="text" class="input-text" required placeholder="First name" name="firstname">
-                <input type="text" class="input-text" required placeholder="Last name" name="lastname">
-                <input type="text" class="input-text" required placeholder="E-mail" name="email">
-                <input type="text" class="input-text" required placeholder="Telephone" name="telephone">
-                <input type="text" class="input-text" required placeholder="Adress" name="adress">
+                <input type="text" class="input-text" required value="{{ $contact->first_name }}" name="firstname">
+                <input type="text" class="input-text" required value="{{ $contact->last_name }}" name="lastname">
+                <input type="text" class="input-text" required value="{{ $contact->email }}" name="email">
+                <input type="text" class="input-text" required value="{{ $contact->telephone_number }}"
+                    name="telephone">
+                <input type="text" class="input-text" required value="{{ $contact->address }}" name="adress">
                 <h3>Date of Arrival</h3>
-                <input type="date" class="input-text" name="arrival">
+                <input type="date" class="input-text" value="{{ $reservation->date_of_arrival }}"
+                    name="date_of_arrival">
                 <h3>Date of Departure</h3>
-                <input type="date" class="input-text" name="departure">
-                <input type="hidden" name="id"
-                    value="
-                3
-                {{-- {{ $reservation->id }} --}}
-                ">
-                <x-buttons.primary-button>Cancel</x-buttons.primary-button>
-            </div>
-        </form>
-        <form action="" method="" class="">
-            @csrf
-            <div class="left">
-                <h2>Edit Reservation</h2>
-                <input type="text" class="input-text" required placeholder="First name" name="firstname">
-                <input type="text" class="input-text" required placeholder="Last name" name="lastname">
-                <input type="text" class="input-text" required placeholder="E-mail" name="email">
-                <input type="text" class="input-text" required placeholder="Telephone" name="telephone">
-                <input type="text" class="input-text" required placeholder="Adress" name="adress">
-                <h3>Date of Arrival</h3>
-                <input type="date" class="input-text" name="arrival">
-                <h3>Date of Departure</h3>
-                <input type="date" class="input-text" name="departure">
+                <input type="date" class="input-text" value="{{ $reservation->date_of_departure }}"
+                    name="date_of_departure">
+                <input type="hidden" name="id" value="{{ $reservation->id }}">
+
+                @foreach ($rooms as $room)
+                @endforeach
+
                 <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
             </div>
-
-            <div class="right">
-                <form action="">
-                    <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
-                </form>
+        </form>
+        <div class="right">
+            <form action="">
+                <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
+            </form>
+            @foreach ($rooms as $room)
                 <x-room.infobox :room="$room" />
-                <form action="" class="fix-right">
-                    <x-buttons.primary-button class="button graybg">Cancel</x-buttons.primary-button>
-                </form>
-            </div>
+            @endforeach
+            <form action="" class="fix-right">
+                <x-buttons.primary-button class="button graybg">Cancel</x-buttons.primary-button>
+            </form>
+        </div>
     </main>
-    </form>
+
 </x-layout.base>
