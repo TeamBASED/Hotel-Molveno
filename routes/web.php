@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
     Route::get('/reservation/{id}/edit', [ReservationController::class, 'viewReservationEdit'])->name('reservation.edit');
     Route::patch('/reservation/{id}/update', [ReservationController::class, 'handleUpdateReservation'])->name('reservation.update');
+    Route::delete('/reservation/{id}/delete', [ReservationController::class, 'handleDeleteReservation'])->name('reservation.delete');
 
 
     // Room routes

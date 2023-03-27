@@ -36,7 +36,9 @@
             </div>
         </form>
         <div class="right">
-            <form action="">
+            <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
                 <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
             </form>
             @foreach ($rooms as $room)

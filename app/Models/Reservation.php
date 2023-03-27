@@ -36,7 +36,7 @@ class Reservation extends Model
     }
 
     public static function deleteReservation(int $id) {
-        return Reservation::where('id', $id)->with(['contact','rooms'])->delete();
+        $deleted = Reservation::where('id', $id)->with(['contact','rooms'])->delete();
     }
 
     public function rooms() {
