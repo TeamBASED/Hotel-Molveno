@@ -16,7 +16,7 @@ class Reservation extends Model
     }
 
     public static function getReservationData(int $id) {
-        return Reservation::where(['id', $id])->with(['contact','rooms'])->first();
+        return Reservation::where('id', $id)->with(['contact','rooms'])->first();
     }
 
     public function rooms() {
