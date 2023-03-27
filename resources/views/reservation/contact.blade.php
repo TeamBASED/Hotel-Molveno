@@ -1,7 +1,7 @@
 <x-layout.base>
     <main id="contact-identification">
         <p>Enter Email to verify if a contact already exists.</p>
-        <form action="{{ route('contact.create', ['roomId' => $roomId]) }}" method="POST">
+        <form action="{{ route('reservation.verify', ['roomId' => $roomId]) }}" method="POST">
             @csrf
             <input type="email" name="email" id="" placeholder="Email">
             <x-buttons.primary-button class="button">Verify</x-buttons.primary-button>

@@ -10,11 +10,10 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    public function viewReservationCreate(Request $request) : View{
-        $room = $request->room;
-
-        return view('reservation.create', ['room' => $room]);
+    public function viewReservationCreate($room, $contact){
+        return view('reservation.create', ['room' => $room, 'contact' => $contact]);
     }
+ 
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
 
@@ -27,10 +26,9 @@ class ReservationController extends Controller
             'arrival' => 'required',
             'departure' => 'required',
         ]);
-        dd($contact);
 
-        // $this->storeReservation($request);
-        // return redirect(route('reservation.overview'));
+        $this->storeReservation($request);
+        return redirect(route('reservation.overview'));
     }
 
     public function storeReservation(Request $request) {

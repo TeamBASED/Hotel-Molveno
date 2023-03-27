@@ -35,13 +35,6 @@ Route::middleware('auth')->group(function () {
         return redirect(route('room.overview'));
     });
 
-    // reservation routes
-    Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
-
-    Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
-
-    Route::post('/contact/create', [ContactController::class, 'handleVerification'])->name('contact.create');
-
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
     Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
@@ -51,9 +44,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
+    // Contact routes
+    Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
+    Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
+    
     // Reservation routes
-    Route::post('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
+    Route::get('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
     Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
+    Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
 });
 
 // Reservation routes
