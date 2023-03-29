@@ -17,11 +17,10 @@ class ContactController extends Controller
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
-
         return redirect(route('reservation.create', ['roomId' => $request->roomId, 'contact' => $request->email]));
     }
 
-    public function handleCreateContact(Request $request) {
+    public function handleGetOrCreateContact(Request $request) {
         $validated = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required|string',
@@ -30,11 +29,15 @@ class ContactController extends Controller
             'address' => 'required',
         ]);
 
-        $this->storeContact($request);
+        $contact = isset($request->contact) 
+            ? Contact::getContactById($request->contact)
+            : $this->storeContact($request);
+
+        return $contact;
     }
 
     private function storeContact(Request $request) {
-        $contact->update([
+        $contact = Contact::create([
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
             'email' => $request->email,

@@ -26,6 +26,10 @@ class Contact extends Model
         return Contact::where('id', $id)->first();
     }
 
+    public function saveContact($reservation){
+        $this->reservations()->save($reservation);
+    }
+
     public function reservations() {
         return $this->hasMany(Reservation::class);
     }
@@ -34,7 +38,5 @@ class Contact extends Model
         return $this->hasOne(Guest::class);
     }
 
-    public static function getContactData(int $id) :Contact {
-        return Contact::where('id', $id)->first();
-    }
+
 }

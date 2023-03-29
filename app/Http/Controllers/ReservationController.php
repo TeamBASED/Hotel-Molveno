@@ -17,7 +17,7 @@ class ReservationController extends Controller
         $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContactByEmail($request->contact);
 
-        return view('reservation.create', ['room' => $room, 'contact' => $contact]);
+        return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact]);
     }
     public function viewReservationEdit(int $id) : View{
         $reservation = Reservation::getReservationData($id);
@@ -35,11 +35,12 @@ class ReservationController extends Controller
 
         $invoice_id = InvoiceController::handleReservationInvoice();
 
-        $contact = $this->handleReservationContact($request);
+        $contactController = new ContactController();
+        $contact = $contactController->handleGetOrCreateContact($request);
 
         $reservation = $this->storeReservation($request, $invoice_id, $contact);
 
-        $contact->reservations()->save($reservation);
+        $contact->saveContact($reservation);
 
         $this->handleReservationRoom($request, $reservation);
 
@@ -71,16 +72,6 @@ class ReservationController extends Controller
             'invoice_id' => $invoice_id
         ]);
         return $reservation;
-    }
-
-    private function handleReservationContact(Request $request) {
-        if (isset($request->contact)) {
-            $contact = Contact::getContactById($request->contact);
-        } else {
-            $contact = new Contact();
-            $contact->handleCreateContact($request);
-        }
-        return $contact;
     }
 
     private function handleReservationRoom(Request $request, $reservation) {
