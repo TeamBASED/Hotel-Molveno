@@ -11,12 +11,24 @@ class Contact extends Model
     use HasFactory;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
+        'first_name', 
+        'last_name', 
         'email',
-        'telephone_number',
-        'address',
+        'telephone_number', 
+        'address'
     ];
+
+    public static function getContactByEmail(string $email) { 
+        return Contact::where('email', $email)->first();
+    }
+
+    public static function getContactById(int $id) { 
+        return Contact::where('id', $id)->first();
+    }
+
+    public function saveContact($reservation){
+        $this->reservations()->save($reservation);
+    }
 
     public function reservations() {
         return $this->hasMany(Reservation::class);
@@ -26,7 +38,5 @@ class Contact extends Model
         return $this->hasOne(Guest::class);
     }
 
-    public static function getContactData(int $id) :Contact {
-        return Contact::where('id', $id)->first();
-    }
+
 }

@@ -4,6 +4,7 @@ use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 
@@ -42,7 +43,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/reservation/{id}/update', [ReservationController::class, 'handleUpdateReservation'])->name('reservation.update');
     Route::delete('/reservation/{id}/delete', [ReservationController::class, 'handleDeleteReservation'])->name('reservation.delete');
 
-
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
     Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
@@ -52,7 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
-
+    // Contact routes
+    Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
+    Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
 });
 
 // Reservation routes
