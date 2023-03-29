@@ -35,6 +35,10 @@ class Reservation extends Model
         return Reservation::where('id', $id)->with(['contact','rooms'])->first();
     }
 
+    public static function deleteReservation(int $id) {
+        $deleted = Reservation::where('id', $id)->with(['contact','rooms'])->delete();
+    }
+
     public function rooms() {
         return $this->belongsToMany(Room::class, 'reservation_rooms');
     }

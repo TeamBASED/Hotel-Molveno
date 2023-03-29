@@ -39,22 +39,21 @@
                     @endforeach
                     <input type="text" class="input-text" placeholder="add room" name="room[]">
 
-                    <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
-                </div>
-            </form>
-            <div class="right">
-                <form action="">
-                    <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
-                </form>
-                <div class="room-info-container">
-                    @foreach ($rooms as $room)
-                        <x-room.infobox :room="$room" />
-                    @endforeach
-                </div>
-                <form action="" class="fix-right">
-                    <x-buttons.primary-button class="button graybg">Cancel</x-buttons.primary-button>
-                </form>
+                <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
             </div>
+        </form>
+        <div class="right">
+            <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
+            </form>
+            @foreach ($rooms as $room)
+                <x-room.infobox :room="$room" />
+            @endforeach
+            <form action="" class="fix-right">
+                <x-buttons.primary-button class="button graybg">Cancel</x-buttons.primary-button>
+            </form>
         </div>
     </main>
 
