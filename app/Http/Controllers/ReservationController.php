@@ -56,8 +56,21 @@ class ReservationController extends Controller
     
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
+        
+        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival,$reservation->date_of_departure);
+        $availableRooms = Room::getAllRoomData();
 
-        return view('reservation.info', ['reservation' => $reservation]);
+        foreach ($reservations as $reservation) {
+            foreach ($reservation->rooms as $occupiedRoom) {
+                $availableRooms = $availableRooms->filter(function($item) use ($occupiedRoom) {
+                    return $item->id != $occupiedRoom->id;
+                });
+            }
+        }
+
+
+
+        return view('reservation.info', ['reservation' => $reservation, 'availableRooms' => $availableRooms]);
     }
 
 
