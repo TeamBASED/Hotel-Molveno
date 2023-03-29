@@ -51,8 +51,8 @@ class Room extends Model
         return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType'])->first();
     }
 
-    public function bedConfigurations() : BelongsToMany {
-        return $this->belongsToMany(BedConfigurations::class, 'room_bed_configuration');
+    public function bedConfigurations() {
+        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations');
     }
 
     public function reservations() : BelongsToMany {
