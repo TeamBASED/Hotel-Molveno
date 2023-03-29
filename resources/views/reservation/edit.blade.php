@@ -46,9 +46,11 @@
                 <form action="">
                     <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
                 </form>
-                @foreach ($rooms as $room)
-                    <x-room.infobox :room="$room" />
-                @endforeach
+                <div class="room-info-container">
+                    @foreach ($rooms as $room)
+                        <x-room.infobox :room="$room" />
+                    @endforeach
+                </div>
                 <form action="" class="fix-right">
                     <x-buttons.primary-button class="button graybg">Cancel</x-buttons.primary-button>
                 </form>

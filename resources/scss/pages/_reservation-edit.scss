@@ -8,7 +8,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
-                width: 80%;
+                width: 70%;
                 min-height: 10rem;
                 .graybg {
                     background-color: $color-grey-600;
@@ -23,9 +23,10 @@
             flex-direction: column;
             align-items: end;
             gap: 2rem;
-            width: 20%;
+            width: 50%;
             padding: 2rem 2rem 4rem 1rem;
-            margin: 2rem 0 0 20rem;
+            margin-top: 2rem;
+            align-items: flex-end;
             .room-info {
                 border: 2px solid $color-600;
                 background-color: $color-white;
@@ -42,6 +43,12 @@
             }
             .delete {
                 background-color: #2b50a1;
+            }
+            .room-info-container {
+                display: flex;
+                flex-direction: row-reverse;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
         }
         h2 {
