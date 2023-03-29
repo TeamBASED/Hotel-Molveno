@@ -51,7 +51,7 @@
             @foreach ($rooms as $room)
                 <x-room.infobox :room="$room" />
             @endforeach
-            <x-buttons.primary-button :href="route('reservation.overview')" class="button graybg">Cancel</x-buttons.primary-button>
+            <x-buttons.primary-button :href="route('reservation.info', $reservation->id)" class="button graybg">Cancel</x-buttons.primary-button>
         </div>
     </main>
 
