@@ -40,7 +40,7 @@
             </form>
             <script>
                 var date = new Date();
-                var day = date.getDate();
+                var day = date.getDate() + 1;
                 var month = date.getMonth() + 1;
                 var nextMonth = date.getMonth() + 2;
                 var year = date.getFullYear();

@@ -13,13 +13,16 @@ use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
-    public function viewReservationCreate($room, $contact){
+    public function viewReservationCreate(Request $request){
+        $room = Room::getRoomData($request->roomId);
+        $contact = Contact::getContactByEmail($request->contact);
+
         return view('reservation.create', ['room' => $room, 'contact' => $contact]);
     }
     public function viewReservationEdit(int $id) : View{
         $reservation = Reservation::getReservationData($id);
 
-        return view('reservation.edit', ['reservation' =>$reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
+        return view('reservation.edit', ['reservation' => $reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
     }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
@@ -30,7 +33,7 @@ class ReservationController extends Controller
     public function handleCreateReservation(Request $request) {
         $this->validateCreateReservation($request);
 
-        $invoice_id = $this->handleReservationInvoice();
+        $invoice_id = InvoiceController::handleReservationInvoice();
 
         $contact = $this->handleReservationContact($request);
 
@@ -45,10 +48,12 @@ class ReservationController extends Controller
 
     private function validateCreateReservation(request $request) {
         // TODO: Apply validators across all relevant controllers
+        // $existingReservations = Reservation::getReservationDataByRoomId($request->room);
+        // dd($existingReservations);
         $validator = Validator::make($request->all(), [
             'contact' => 'required|integer',
-            'arrival' => 'required|date',
-            'departure' => 'required|date'
+            'arrival' => 'required|date|before:departure|after:today',
+            'departure' => 'required|date|after:arrival'
         ]);
 
         if ($validator->fails()) {
@@ -56,14 +61,7 @@ class ReservationController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-    }
-
-    private function handleReservationInvoice(){
-        $new_invoice = Invoice::create();
-        $invoice_id = $new_invoice->id;
-
-        return $invoice_id;
-    }
+    } 
 
     private function storeReservation(Request $request, $invoice_id, $contact) {
         $reservation = Reservation::create([
@@ -79,32 +77,9 @@ class ReservationController extends Controller
         if (isset($request->contact)) {
             $contact = Contact::getContactById($request->contact);
         } else {
-            $contact = $this->handleCreateContact($request);
+            $contact = new Contact();
+            $contact->handleCreateContact($request);
         }
-        return $contact;
-    }
-
-    public function handleCreateContact(Request $request) {
-        $validated = $request->validate([
-            'firstname' => 'required',
-            'lastname' => 'required|string',
-            'email' => 'required|email',
-            'telephone' => 'required',
-            'address' => 'required',
-        ]);
-
-        $this->storeContact($request);
-    }
-
-    private function storeContact(Request $request) {
-        $contact = Contact::create([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'email' => $request->email,
-            'telephone_number' => $request->telephone,
-            'address' => $request->address,
-        ]);
-
         return $contact;
     }
 

@@ -17,11 +17,31 @@ class ContactController extends Controller
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
-        $room = Room::getRoomData($request->roomId);
-        $contact = Contact::getContact($request->email);
 
-        return ($contact===null) 
-            ? view('reservation.create', ['room' => $room, 'new_contact' => $request->email])
-            : view('reservation.create', ['room' => $room, 'contact' => $contact]);
+        return redirect(route('reservation.create', ['roomId' => $request->roomId, 'contact' => $request->email]));
+    }
+
+    public function handleCreateContact(Request $request) {
+        $validated = $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required|string',
+            'email' => 'required|email',
+            'telephone' => 'required',
+            'address' => 'required',
+        ]);
+
+        $this->storeContact($request);
+    }
+
+    private function storeContact(Request $request) {
+        $contact->update([
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'email' => $request->email,
+            'telephone_number' => $request->telephone,
+            'address' => $request->address,
+        ]);
+
+        return $contact;
     }
 }

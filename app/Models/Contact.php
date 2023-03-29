@@ -18,7 +18,7 @@ class Contact extends Model
         'address'
     ];
 
-    public static function getContact(string $email) { 
+    public static function getContactByEmail(string $email) { 
         return Contact::where('email', $email)->first();
     }
 
