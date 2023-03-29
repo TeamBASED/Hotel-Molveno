@@ -6,8 +6,7 @@ use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Contact extends Model
-{
+class Contact extends Model {
     use HasFactory;
 
     protected $fillable = [
@@ -26,7 +25,7 @@ class Contact extends Model
         return $this->hasOne(Guest::class);
     }
 
-    public static function getContactData(int $id) :Contact {
+    public static function getContactData(int $id): Contact {
         return Contact::where('id', $id)->first();
     }
 }

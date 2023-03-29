@@ -9,18 +9,24 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\ReservationRoom;
 
-class ReservationController extends Controller
-{
-    public function viewReservationCreate(Request $request) : View{
+class ReservationController extends Controller {
+    public function viewReservationCreate(Request $request): View {
         $roomId = $request->roomId;
         $room = Room::getRoomData($roomId);
 
         return view('reservation.create', ['room' => $room]);
     }
-    public function viewReservationEdit(int $id) : View{
+    public function viewReservationEdit(int $id): View {
         $reservation = Reservation::getReservationData($id);
+        $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
 
-        return view('reservation.edit', ['reservation' =>$reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
+        return view('reservation.edit', [
+            'reservation' => $reservation,
+            'rooms' => $reservation->rooms,
+            'contact' => $reservation->contact,
+            'availableRooms' => $availableRooms,
+            'currentRooms' => $reservation->rooms
+        ]);
     }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
@@ -50,10 +56,10 @@ class ReservationController extends Controller
         $room = Reservation::create([
             'contact_id' => $request->contact,
             'date_of_arrival' => $request->arrival,
-            'date_of_departure' => $request->departure, 
+            'date_of_departure' => $request->departure,
         ]);
     }
-    
+
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
 
@@ -81,13 +87,13 @@ class ReservationController extends Controller
     }
 
     public function updateReservation(Request $request, int $id) {
-        
+
         $reservation = Reservation::getReservationData($id);
 
         $room_numbers_database = collect($reservation->rooms)->map(function ($element) {
             return $element->room_number;
         });
-        
+
         $roomNumbersForm = collect($request->room)->filter();
 
         if ($room_numbers_database != $roomNumbersForm) {
@@ -95,15 +101,17 @@ class ReservationController extends Controller
 
             foreach ($roomNumbersForm as $roomNumber) {
                 if (Room::getRoomByNumber($roomNumber)) {
-                $roomId = Room::getRoomByNumber($roomNumber)->id;
+                    $roomId = Room::getRoomByNumber($roomNumber)->id;
 
-                ReservationRoom::create([
-                    'reservation_id' => $id,
-                    'room_id' => $roomId,
-                ]);
-                };
+                    ReservationRoom::create([
+                        'reservation_id' => $id,
+                        'room_id' => $roomId,
+                    ]);
+                }
+                ;
             }
-        };
+        }
+        ;
 
 
         $reservation->update([
@@ -122,12 +130,12 @@ class ReservationController extends Controller
     }
 
     public function getAvailableRoomsDuringReservation(Reservation $reservation) {
-        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival,$reservation->date_of_departure);
+        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival, $reservation->date_of_departure);
         $availableRooms = Room::getAllRoomData();
 
         foreach ($reservations as $reservation) {
             foreach ($reservation->rooms as $occupiedRoom) {
-                $availableRooms = $availableRooms->filter(function($item) use ($occupiedRoom) {
+                $availableRooms = $availableRooms->filter(function ($item) use ($occupiedRoom) {
                     return $item->id != $occupiedRoom->id;
                 });
             }

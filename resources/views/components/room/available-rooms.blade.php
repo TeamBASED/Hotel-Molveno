@@ -1,13 +1,25 @@
-@props(['availableRooms'])
+{{-- @props(['availableRooms']) --}}
 
 
 
 <div class="allRooms">
+
+    <h3>These are the rooms in the reservation</h3>
+
+    @if (isset($currentRooms))
+        @foreach ($currentRooms as $currentRoom)
+            <p><input type="checkbox" value="1" checked name="{{ $currentRoom->id }}">{{ $currentRoom->room_number }}
+            </p>
+        @endforeach
+    @endif
+
     <h3>These are the available rooms</h3>
 
-    @foreach ($availableRooms as $availableRoom)
-        <p><input type="checkbox" name="{{ $availableRoom->id }}">{{ $availableRoom->room_number }}</p>
-    @endforeach
+    @if (isset($availableRooms))
+        @foreach ($availableRooms as $availableRoom)
+            <p><input type="checkbox" name="{{ $availableRoom->id }}">{{ $availableRoom->room_number }}</p>
+        @endforeach
+    @endif
 
 </div>
 
