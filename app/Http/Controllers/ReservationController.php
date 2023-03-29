@@ -4,23 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Contact;
-use Illuminate\View\View;
+use App\Models\Invoice;
 use App\Models\Reservation;
-use Illuminate\Http\Request;
 use App\Models\ReservationRoom;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller
 {
-    public function viewReservationCreate(Request $request) : View{
-        $room_id = $request->roomId;
-        $room = Room::getRoomData($room_id);
+    public function viewReservationCreate(Request $request){
+        $room = Room::getRoomData($request->roomId);
+        $contact = Contact::getContactByEmail($request->contact);
 
-        return view('reservation.create', ['room' => $room]);
+        return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact]);
     }
     public function viewReservationEdit(int $id) : View{
         $reservation = Reservation::getReservationData($id);
 
-        return view('reservation.edit', ['reservation' =>$reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
+        return view('reservation.edit', ['reservation' => $reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
     }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
@@ -29,22 +31,59 @@ class ReservationController extends Controller
     }
 
     public function handleCreateReservation(Request $request) {
-        $validated = $request->validate([
-            'contact' => 'required',
-            'arrival' => 'required',
-            'departure' => 'required',
-        ]);
+        $this->validateCreateReservation($request);
 
-        $this->storeReservation($request);
+        $invoice_id = InvoiceController::handleReservationInvoice();
+
+        $contactController = new ContactController();
+        $contact = $contactController->handleGetOrCreateContact($request);
+
+        $reservation = $this->storeReservation($request, $invoice_id, $contact);
+
+        $contact->saveContact($reservation);
+
+        $this->handleReservationRoom($request, $reservation);
+
         return redirect(route('reservation.overview'));
     }
 
-    public function storeReservation(Request $request) {
-        $room = Reservation::create([
-            'contact_id' => $request->contact,
-            'date_of_arrival' => $request->arrival,
-            'date_of_departure' => $request->departure, 
+    private function validateCreateReservation(request $request) {
+        // TODO: Apply validators across all relevant controllers
+        // $existingReservations = Reservation::getReservationDataByRoomId($request->room);
+        // dd($existingReservations);
+        $validator = Validator::make($request->all(), [
+            'contact' => 'required|integer',
+            'arrival' => 'required|date|before:departure|after:today',
+            'departure' => 'required|date|after:arrival'
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+    } 
+
+    private function storeReservation(Request $request, $invoice_id, $contact) {
+        $reservation = Reservation::create([
+            'contact_id' => $contact->id,
+            'date_of_arrival' => $request->arrival,
+            'date_of_departure' => $request->departure,
+            'invoice_id' => $invoice_id
+        ]);
+        return $reservation;
+    }
+
+    public function handleDeleteReservation(int $reservationId) {
+
+        Reservation::deleteReservation($reservationId);
+        ReservationRoom::deleteReservationRoomData($reservationId);
+        return redirect(route('reservation.overview'));
+    }
+
+    private function handleReservationRoom(Request $request, $reservation) {
+        $room = Room::getRoomData($request->room);
+        $reservation->rooms()->sync($room);
     }
     
     public function viewReservationInfo(int $id) {
@@ -79,21 +118,20 @@ class ReservationController extends Controller
             return $element->room_number;
         });
         
-        $room_numbers_form = collect($request->room)->filter();
+        $roomNumbersForm = collect($request->room)->filter();
 
-        if ($room_numbers_database != $room_numbers_form) {
+        if ($room_numbers_database != $roomNumbersForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
-            foreach ($room_numbers_form as $room_number) {
-                if (Room::getRoomByNumber($room_number)) {
-                $room_id = Room::getRoomByNumber($room_number)->id;
+            foreach ($roomNumbersForm as $roomNumber) {
+                if (Room::getRoomByNumber($roomNumber)) {
+                $roomId = Room::getRoomByNumber($roomNumber)->id;
 
                 ReservationRoom::create([
                     'reservation_id' => $id,
-                    'room_id' => $room_id,
+                    'room_id' => $roomId,
                 ]);
                 };
-                //NOG GEEN VALIDATIE OF KAMERNUMMER WERKELIJK BESTAAT
             }
         };
 

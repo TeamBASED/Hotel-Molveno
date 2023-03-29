@@ -10,8 +10,8 @@
     <p>{{ $room->roomType->type }}</p>
     <p>available</p>
     {{-- Temporary solution for routing to reservation create--}}
-    <form action="{{ route('reservation.create') }}" method="GET">
+    <form action="{{ route('reservation.contact', ['id' => $room->id]) }}" method="GET">
         <input type="hidden" name="roomId" value="{{ $room->id }}">
-        <x-buttons.primary-button class="button">Make reservation</x-buttons.primary-button></form>
-    <x-buttons.primary-button :href="route('room.info', ['id' => $room->id])" >Go to info</x-buttons.primary-button>
+        <x-buttons.primary-button >Make reservation</x-buttons.primary-button>
+    </form>
 </div>

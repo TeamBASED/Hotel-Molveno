@@ -4,6 +4,7 @@ use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 
@@ -37,8 +38,10 @@ Route::middleware('auth')->group(function () {
     // reservation routes
     Route::get('/reservation/{id}/info', [ReservationController::class, 'viewReservationInfo'])->name('reservation.info');
     Route::get('/reservation/{id}/edit', [ReservationController::class, 'viewReservationEdit'])->name('reservation.edit');
+    Route::get('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
+    Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
     Route::patch('/reservation/{id}/update', [ReservationController::class, 'handleUpdateReservation'])->name('reservation.update');
-
+    Route::delete('/reservation/{id}/delete', [ReservationController::class, 'handleDeleteReservation'])->name('reservation.delete');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
@@ -49,9 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
-    // Reservation routes
-    Route::get('/reservation/create', [ReservationController::class, 'viewReservationCreate'])->name('reservation.create');
-    Route::post('/reservation/store', [ReservationController::class, 'handleCreateReservation'])->name('reservation.store');
+    // Contact routes
+    Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
+    Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
 });
 
 // Reservation routes
