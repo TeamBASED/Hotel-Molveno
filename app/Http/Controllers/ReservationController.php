@@ -115,9 +115,6 @@ class ReservationController extends Controller {
 
         $roomNumbersDatabase = $this->getRoomNumbersFromReservation($reservation);
         $roomNumbersForm = collect($request->room)->filter();
-
-
-
         
         if ($roomNumbersDatabase != $roomNumbersForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
