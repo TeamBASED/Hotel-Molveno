@@ -25,33 +25,17 @@ class ReservationController extends Controller
     public function handleCreateReservation(Request $request) {
         $this->validateCreateReservation($request);
 
-        $invoice = $this->handleReservationInvoice();
+        $invoice_id = $this->handleReservationInvoice();
 
-        $reservation = $this->storeReservation($request, $invoice->id);
+        $contact = $this->handleReservationContact($request);
 
-        $this->handleReservationContact($request, $reservation);
+        $reservation = $this->storeReservation($request, $invoice_id, $contact);
 
-        $room = Room::getRoomData($request->room);
-        $reservation->rooms()->sync($room);
+        $contact->reservations()->save($reservation);
+
+        $this->handleReservationRoom($request, $reservation);
 
         return redirect(route('reservation.overview'));
-    }
-
-    private function handleReservationInvoice(){
-        $new_invoice = Invoice::create();
-        $invoice_id = $new_invoice->id;
-        $invoice = $new_invoice->getInvoiceById($invoice_id);
-        return $invoice;
-    }
-
-    private function handleReservationContact(Request $request, $reservation) {
-        if (isset($request->contact)) {
-            $contact = Contact::getContactById($request->contact);
-        } else {
-            $contact = new Contact();
-            $contact->handleCreateContact($request);
-        }
-        $contact->reservations()->save($reservation);
     }
 
     private function validateCreateReservation(request $request) {
@@ -69,14 +53,59 @@ class ReservationController extends Controller
         }
     }
 
-    private function storeReservation(Request $request, $invoice_id) {
+    private function handleReservationInvoice(){
+        $new_invoice = Invoice::create();
+        $invoice_id = $new_invoice->id;
+
+        return $invoice_id;
+    }
+
+    private function storeReservation(Request $request, $invoice_id, $contact) {
         $reservation = Reservation::create([
-            'contact_id' => $request->contact,
+            'contact_id' => $contact->id,
             'date_of_arrival' => $request->arrival,
             'date_of_departure' => $request->departure,
             'invoice_id' => $invoice_id
         ]);
         return $reservation;
+    }
+
+    private function handleReservationContact(Request $request) {
+        if (isset($request->contact)) {
+            $contact = Contact::getContactById($request->contact);
+        } else {
+            $contact = $this->handleCreateContact($request);
+        }
+        return $contact;
+    }
+
+    public function handleCreateContact(Request $request) {
+        $validated = $request->validate([
+            'firstname' => 'required',
+            'lastname' => 'required|string',
+            'email' => 'required|email',
+            'telephone' => 'required',
+            'address' => 'required',
+        ]);
+
+        $this->storeContact($request);
+    }
+
+    private function storeContact(Request $request) {
+        $contact = Contact::create([
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'email' => $request->email,
+            'telephone_number' => $request->telephone,
+            'address' => $request->address,
+        ]);
+
+        return $contact;
+    }
+
+    private function handleReservationRoom(Request $request, $reservation) {
+        $room = Room::getRoomData($request->room);
+        $reservation->rooms()->sync($room);
     }
     
     public function viewReservationInfo(int $id) {
