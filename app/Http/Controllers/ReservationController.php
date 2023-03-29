@@ -56,19 +56,8 @@ class ReservationController extends Controller
     
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
-        
-        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival,$reservation->date_of_departure);
-        $availableRooms = Room::getAllRoomData();
 
-        foreach ($reservations as $reservation) {
-            foreach ($reservation->rooms as $occupiedRoom) {
-                $availableRooms = $availableRooms->filter(function($item) use ($occupiedRoom) {
-                    return $item->id != $occupiedRoom->id;
-                });
-            }
-        }
-
-
+        $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
 
         return view('reservation.info', ['reservation' => $reservation, 'availableRooms' => $availableRooms]);
     }
@@ -129,6 +118,22 @@ class ReservationController extends Controller
             'telephone_number' => $request->telephone,
             'address' => $request->address,
         ]);
+
+    }
+
+    public function getAvailableRoomsDuringReservation(Reservation $reservation) {
+        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival,$reservation->date_of_departure);
+        $availableRooms = Room::getAllRoomData();
+
+        foreach ($reservations as $reservation) {
+            foreach ($reservation->rooms as $occupiedRoom) {
+                $availableRooms = $availableRooms->filter(function($item) use ($occupiedRoom) {
+                    return $item->id != $occupiedRoom->id;
+                });
+            }
+        }
+
+        return $availableRooms;
 
     }
 }

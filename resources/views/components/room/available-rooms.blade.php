@@ -6,7 +6,7 @@
     <h3>These are the available rooms</h3>
 
     @foreach ($availableRooms as $availableRoom)
-        <p>{{ $availableRoom->room_number }}</p>
+        <p><input type="checkbox" name="{{ $availableRoom->id }}">{{ $availableRoom->room_number }}</p>
     @endforeach
 
 </div>
