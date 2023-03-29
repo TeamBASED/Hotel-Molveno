@@ -14,8 +14,20 @@ class Contact extends Model {
         'last_name',
         'email',
         'telephone_number',
-        'address',
+        'address'
     ];
+
+    public static function getContactByEmail(string $email) {
+        return Contact::where('email', $email)->first();
+    }
+
+    public static function getContactById(int $id) {
+        return Contact::where('id', $id)->first();
+    }
+
+    public function saveContact($reservation) {
+        $this->reservations()->save($reservation);
+    }
 
     public function reservations() {
         return $this->hasMany(Reservation::class);

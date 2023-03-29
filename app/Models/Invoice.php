@@ -9,6 +9,10 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    public function getInvoiceById($id) {
+        return Invoice::where('id', $id)->first();
+    }
+
     public function reservation() { 
         return $this->belongsTo(Reservation::class);
     }
