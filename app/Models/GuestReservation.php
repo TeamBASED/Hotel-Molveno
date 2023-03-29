@@ -12,4 +12,12 @@ class GuestReservation extends Model
     public static function getAllGuestReservationData() {
         return GuestReservation::get();
     }
+    
+    public static function getGuestReservationData(int $reservationId, int $guestId) {
+        return GuestReservation::where(['reservation_id', $reservationId], ['guest_id', $guestId])->first();
+    }
+
+    public static function removeGuestFromReservation(int $reservationId, int $guestId) {
+        $deleted = GuestReservation::where(getGuestReservationData($reservationId, $guestId))->delete();
+    }
 }

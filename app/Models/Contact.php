@@ -10,14 +10,13 @@ class Contact extends Model
 {
     use HasFactory;
 
-    protected $fillable= [
+    protected $fillable = [
         'first_name', 
         'last_name', 
         'email',
         'telephone_number', 
         'address'
     ];
-
 
     public static function getContact(string $email) { 
         return Contact::where('email', $email)->first();
@@ -33,5 +32,9 @@ class Contact extends Model
 
     public function guest() {
         return $this->hasOne(Guest::class);
+    }
+
+    public static function getContactData(int $id) :Contact {
+        return Contact::where('id', $id)->first();
     }
 }
