@@ -12,8 +12,8 @@ use App\Models\ReservationRoom;
 class ReservationController extends Controller
 {
     public function viewReservationCreate(Request $request) : View{
-        $room_id = $request->roomId;
-        $room = Room::getRoomData($room_id);
+        $roomId = $request->roomId;
+        $room = Room::getRoomData($roomId);
 
         return view('reservation.create', ['room' => $room]);
     }
@@ -39,12 +39,10 @@ class ReservationController extends Controller
         return redirect(route('reservation.overview'));
     }
 
-    public function handleDeleteReservation(int $reservation_id) {
+    public function handleDeleteReservation(int $reservationId) {
 
-        // dd($reservation_id);
-        //hier vinden wat er in reservation zit en dit daarna omschrijven naar id[int]
-        Reservation::deleteReservation($reservation_id);
-        ReservationRoom::deleteReservationRoomData($reservation_id);
+        Reservation::deleteReservation($reservationId);
+        ReservationRoom::deleteReservationRoomData($reservationId);
         return redirect(route('reservation.overview'));
     }
 
@@ -88,21 +86,20 @@ class ReservationController extends Controller
             return $element->room_number;
         });
         
-        $room_numbers_form = collect($request->room)->filter();
+        $roomNumbersForm = collect($request->room)->filter();
 
-        if ($room_numbers_database != $room_numbers_form) {
+        if ($room_numbers_database != $roomNumbersForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
-            foreach ($room_numbers_form as $room_number) {
-                if (Room::getRoomByNumber($room_number)) {
-                $room_id = Room::getRoomByNumber($room_number)->id;
+            foreach ($roomNumbersForm as $roomNumber) {
+                if (Room::getRoomByNumber($roomNumber)) {
+                $roomId = Room::getRoomByNumber($roomNumber)->id;
 
                 ReservationRoom::create([
                     'reservation_id' => $id,
-                    'room_id' => $room_id,
+                    'room_id' => $roomId,
                 ]);
                 };
-                //NOG GEEN VALIDATIE OF KAMERNUMMER WERKELIJK BESTAAT
             }
         };
 
