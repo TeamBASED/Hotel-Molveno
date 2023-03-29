@@ -1,18 +1,21 @@
 #reservation-edit {
-    form {
+    .flex-container {
         display: flex;
-        padding: 2rem 10rem;
-        .left {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            width: 70%;
-            min-height: 10rem;
-            .graybg {
-                background-color: $color-grey-600;
-            }
-            input {
-                width: 30rem;
+        flex-direction: row;
+        .form-1 {
+            padding: 2rem 10rem;
+            .left {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                width: 80%;
+                min-height: 10rem;
+                .graybg {
+                    background-color: $color-grey-600;
+                }
+                input {
+                    width: 30rem;
+                }
             }
         }
         .right {
@@ -20,8 +23,9 @@
             flex-direction: column;
             align-items: end;
             gap: 2rem;
-            width: 30%;
-            padding: 1rem 1rem 4rem 1rem;
+            width: 20%;
+            padding: 2rem 2rem 4rem 1rem;
+            margin: 2rem 0 0 20rem;
             .room-info {
                 border: 2px solid $color-600;
                 background-color: $color-white;
@@ -49,8 +53,5 @@
         .button {
             font-size: 0.8rem;
         }
-    }
-    .fix-right {
-            margin: -3rem -10rem 0rem 0rem;
     }
 }
