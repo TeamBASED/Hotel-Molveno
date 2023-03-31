@@ -1,10 +1,18 @@
 #room-edit {
 
-
-
     select {
         display: block;
         width: 100%;
         border-radius: 0;
+    }
+
+    .inline-input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .input-text {
+            width: 6rem;
+        }
     }
 }

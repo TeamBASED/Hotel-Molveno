@@ -14,4 +14,8 @@ class RoomBedConfiguration extends Model
         'bed_configuration_id',
         'amount',
     ];
+
+    public static function getByForeignIds($roomId, $bedConfigurationId) {
+        return RoomBedConfiguration::where('room_id', $roomId)->where('bed_configuration_id', $bedConfigurationId)->first();
+    }
 }
