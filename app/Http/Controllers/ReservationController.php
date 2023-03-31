@@ -91,7 +91,7 @@ class ReservationController extends Controller {
         $room = Room::getRoomData($request->room);
         $reservation->rooms()->sync($room);
     }
-
+    
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
 
@@ -103,7 +103,7 @@ class ReservationController extends Controller {
 
     public function handleUpdateReservation(Request $request) {
 
-        $validated = $request->validate([
+        $request->validate([
             'id' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
@@ -125,10 +125,10 @@ class ReservationController extends Controller {
         $room_numbers_database = collect($reservation->rooms)->map(function ($element) {
             return $element->room_number;
         });
-
+        
         $roomNumbersForm = collect($request->room)->filter();
-
-        if ($room_numbers_database != $roomNumbersForm) {
+        
+        if ($roomNumbersDatabase != $roomNumbersForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
             foreach ($roomNumbersForm as $roomNumber) {
@@ -142,9 +142,11 @@ class ReservationController extends Controller {
                 }
                 ;
             }
-        }
-        ;
+        };
 
+        Reservation::updateReservation($request, $id);
+        Contact::updateContact($request, $id);
+    }
 
         $reservation->update([
             'date_of_arrival' => $request->date_of_arrival,
@@ -176,4 +178,8 @@ class ReservationController extends Controller {
         return $availableRooms;
 
     }
+
+
+
+
 }

@@ -25,9 +25,8 @@
       
     .grid-row {
         padding: .2rem 2rem;
-        display: grid;
         grid-column: span 2;
-        grid-template-columns: subgrid;
+        display: contents;
     }
          
 }
