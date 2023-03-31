@@ -47,7 +47,7 @@
                         @endforeach
                     </div>
 
-                    <x-room.available-rooms :availableRooms="$availableRooms" />
+                    <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
 
                 </section>
             </div>

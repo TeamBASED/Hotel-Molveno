@@ -97,7 +97,8 @@ class ReservationController extends Controller {
 
         $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
 
-        return view('reservation.info', ['reservation' => $reservation, 'availableRooms' => $availableRooms]);
+        return view('reservation.info', ['reservation' => $reservation, 'availableRooms' => $availableRooms,
+            'currentRooms' => $reservation->rooms]);
     }
 
 
@@ -122,44 +123,26 @@ class ReservationController extends Controller {
 
         $reservation = Reservation::getReservationData($id);
 
-        $room_numbers_database = collect($reservation->rooms)->map(function ($element) {
-            return $element->room_number;
+        $roomIdsDatabase = $reservation->rooms->map(function ($element) {
+            return $element->id;
         });
-        
-        $roomNumbersForm = collect($request->room)->filter();
-        
-        if ($roomNumbersDatabase != $roomNumbersForm) {
+
+        $roomIdsForm = array_keys($request->room);
+
+        if ($roomIdsDatabase != $roomIdsForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
-            foreach ($roomNumbersForm as $roomNumber) {
-                if (Room::getRoomByNumber($roomNumber)) {
-                    $roomId = Room::getRoomByNumber($roomNumber)->id;
-
+            foreach ($roomIdsForm as $roomId) {
                     ReservationRoom::create([
                         'reservation_id' => $id,
                         'room_id' => $roomId,
                     ]);
                 }
-                ;
-            }
+
         };
 
         Reservation::updateReservation($request, $id);
         Contact::updateContact($request, $id);
-    }
-
-        $reservation->update([
-            'date_of_arrival' => $request->date_of_arrival,
-            'date_of_departure' => $request->date_of_departure,
-        ]);
-
-        $reservation->contact->update([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'email' => $request->email,
-            'telephone_number' => $request->telephone,
-            'address' => $request->address,
-        ]);
 
     }
 

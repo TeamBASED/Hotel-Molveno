@@ -7,8 +7,9 @@
 
                 {{-- {{ dd($reservation) }} --}}
                 <h2>Edit Reservation</h2>
-                <div class="left flex-center">
-                    <div>
+                <div class="grid-two-columns">
+                    <div class="left flex-column flex-center">
+
                         <h3>Firstname</h3>
                         <input type="text" class="input-text" required
                             value="{{ old('firstname', $contact->first_name) }}" name="firstname">
@@ -33,20 +34,21 @@
                             name="date_of_departure">
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
 
-                        <h3>Room number</h3>
+                        {{-- <h3>Room number</h3>
                         @foreach ($rooms as $room)
                             <input type="text" class="input-text" value="{{ old('room', $room->room_number) }}"
                                 name="room[]">
                         @endforeach
-                        <input type="text" class="input-text" placeholder="add room" name="room[]">
+                        <input type="text" class="input-text" placeholder="add room" name="room[]"> --}}
 
                         <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
-                    </div>
 
-                    <div class="right">
+                    </div>
+                    <div>
                         <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
                     </div>
                 </div>
+
             </form>
             <div class="right">
                 <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
