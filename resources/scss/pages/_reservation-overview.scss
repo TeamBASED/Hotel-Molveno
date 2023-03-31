@@ -25,9 +25,10 @@
       
     .grid-row {
         padding: .2rem 2rem;
-        display: grid;
+        // display: grid;
         grid-column: span 2;
-        grid-template-columns: subgrid;
+        display: contents;
+        // grid-template-columns: subgrid;
     }
          
 }
