@@ -17,8 +17,17 @@
                         <p class="right-aligned"> {{ $room->base_price_per_night }}</p>
                         <h4>View&colon;</h4>
                         <p class="right-aligned"> {{ $room->roomView->type }}</p>
+
                         <h4>Bed configuration&colon;</h4>
-                        <p class="right-aligned"> {{ $room->bed_configuration }}</p>
+                        <div class="right-aligned">
+                            
+                            {{-- Display list of configurations e.g. '2x Single' --}}
+                            @foreach ($room->bedConfigurations as $bedConfig)
+                                <p>{{ $bedConfig->pivot->amount }}x {{ $bedConfig->configuration }}</p>
+                            @endforeach
+
+                        </div>
+
                         <h4 class="grid-span-2">Description&colon;</h4>
                         <p class="grid-span-2"> {{ $room->description }}</p>
                     </div>
