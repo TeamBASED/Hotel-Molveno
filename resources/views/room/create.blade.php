@@ -22,11 +22,11 @@
                 <input type="text" class="input-text" required placeholder="Price per night" name="price">
                 <div class="inline-input">
                     <label for="single-bed-configuration">Single beds</label>
-                    <input id="single-bed-configuration" type="number" class="input-text" required name="singleBeds">
+                    <input id="single-bed-configuration" type="number" class="input-text" required name="singleBeds" value="0">
                 </div>
                 <div class="inline-input">
                     <label for="double-bed-configuration">Double beds</label>
-                    <input id="double-bed-configuration" type="number" class="input-text" required name="doubleBeds">
+                    <input id="double-bed-configuration" type="number" class="input-text" required name="doubleBeds" value="0">
                 </div>
                 <!-- view = dropdown -->
             </div>
