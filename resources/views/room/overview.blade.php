@@ -111,13 +111,7 @@
                 <p id="details-view" class="right-aligned"></p>
 
                 <p class="details-label">Bed configuration</p>
-                <div id="details-bed-configuration" class="right-aligned">
-                    <p>Test bed</p>
-                    <p>Another bed</p>
-                    <p>Another bed</p>
-                    <p>Another bed</p>
-                    <p>Another bed</p>
-                </div>
+                <div id="details-bed-configuration" class="right-aligned"></div>
 
                 <p class="details-label">Cleaning status</p>
                 <p id="details-cleaning-status" class="right-aligned"></p> 

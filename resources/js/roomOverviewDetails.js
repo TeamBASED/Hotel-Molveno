@@ -36,10 +36,8 @@ function showDetailsSection() {
 
 function handleRoomSelect(room) {
     const roomDetails = JSON.parse(room.dataset.roomDetails);
+    console.log(detailsBedConfiguration.childNodes);
     console.log(roomDetails);
-    // const roomType = room.dataset.roomType;
-    // const roomView = room.dataset.roomView;
-    // const cleaningStatus = room.dataset.cleaningStatus;
     
     setRoomDetails(roomDetails);
 
@@ -51,13 +49,19 @@ function setRoomDetails(data) {
     setElementText(detailsType, data.room_type.type);
     setElementText(detailsPricePerNight, data.base_price_per_night);
     setElementText(detailsCapacity, data.capacity);
-    // setElementText(detailsBedConfiguration, roomDetails.bed_configuration);
     setElementText(detailsView, data.room_view.type);
     setElementText(detailsCleaningStatus, data.cleaning_status.status);
+    updateBedConfiguration(data.bed_configurations);
 }
 
-function setBedConfiguration() {
+function updateBedConfiguration(bedConfigurations) {
+    removeAllChildNodes(detailsBedConfiguration);
 
+    for(const config of bedConfigurations) {
+        detailsBedConfiguration.appendChild(
+            buildBedConfigurationRow(config.configuration, config.pivot.amount)
+        );
+    }
 }
 
 function setElementText(element, text) {
@@ -70,6 +74,12 @@ function getPathName(id) {
 
 function buildBedConfigurationRow(bedType, amount) {
     let textElement = document.createElement("p");
-    // textElement.innerText = 
-    // TODO: fill in text, first amount then type maybe? use this to make a list of the bed configs
+    textElement.innerText = `${amount}x ${bedType}`;
+    return textElement;
+}
+
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
 }

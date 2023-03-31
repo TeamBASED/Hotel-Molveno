@@ -26,12 +26,8 @@ class Room extends Model {
         'cleaning_status_id'
     ];
 
-    public function cleaningStatus() {
-        return $this->belongsTo(CleaningStatus::class);
-    }
-
-    public static function deleteRoomData(int $roomId) {
-        $deleted = Room::where('id', '=', $roomId)->delete();
+    public function reservations(): BelongsToMany {
+        return $this->belongsToMany(Reservation::class, 'reservation_room');
     }
 
     public function roomView() {
@@ -42,24 +38,28 @@ class Room extends Model {
         return $this->belongsTo(RoomType::class);
     }
 
+    public function roomMaintenances() {
+        return $this->hasMany(RoomMaintenance::class);
+    }
+
+    public function cleaningStatus() {
+        return $this->belongsTo(CleaningStatus::class);
+    }
+
+    public function bedConfigurations() {
+        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations')->withPivot('amount');
+    }
+
+    public static function deleteRoomData(int $roomId) {
+        $deleted = Room::where('id', '=', $roomId)->delete();
+    }
+
     public static function getAllRoomData() {
         return Room::get();
     }
 
     public static function getRoomData(int $roomId): Room {
         return Room::where('id', $roomId)->with(['cleaningStatus', 'roomView', 'roomType'])->first();
-    }
-
-    public function bedConfigurations() {
-        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations');
-    }
-
-    public function reservations(): BelongsToMany {
-        return $this->belongsToMany(Reservation::class, 'reservation_room');
-    }
-
-    public function roomMaintenances() {
-        return $this->hasMany(RoomMaintenance::class);
     }
 
     public static function getRoomByNumber(string $roomNumber) {
