@@ -37,15 +37,6 @@
             <div class="info-wrapper">
                 <section class="info-section">
 
-                    <h3>Room(s)</h3>
-
-                    <div class="grid-two-columns margin-block">
-
-                        @foreach ($reservation->rooms as $room)
-                            <h4>Room number&colon;</h4>
-                            <p class="right-aligned">{{ $room->room_number }}</p>
-                        @endforeach
-                    </div>
 
                     <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
 
