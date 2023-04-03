@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\RoomTypeSeeder;
 use Database\Seeders\RoomViewSeeder;
@@ -17,16 +18,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $this->call(RoomViewSeeder::class);
+        $this->call(RoomViewSeeder::class); 
         $this->call(RoomTypeSeeder::class);
-        $this->call(RoomSeeder::class);
+        $this->call(RoomSeeder::class); //echte data
         $this->call(CleaningStatusSeeder::class);
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(RoleSeeder::class);
+        $this->call(GuestSeeder::class);
+        $this->call(ContactSeeder::class);
+        $this->call(ReservationSeeder::class);
+        $this->call(GuestReservationSeeder::class);
+        $this->call(ReservationRoomSeeder::class);
+        $this->call(BedConfigurationSeeder::class);
+        $this->call(RoomMaintenanceSeeder::class);
+        $this->call(RoomBedConfigurationSeeder::class);
+        User::create([
+            'username' => 'TeamBased', 
+            'first_name' => 'Team',
+            'last_name' => 'Based',
+            'role_id' => 1,
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
+        ]);
     }
 }

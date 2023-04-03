@@ -4,4 +4,18 @@ html {
 
 h2 {
     padding-block: 1rem;
+    font-size: 3rem;
+    text-align: center;
+}
+
+h3 {
+    color: $color-700;
+}
+
+h4 {
+    color: $color-700;
+}
+
+.white-text {
+    color: $color-white;
 }
