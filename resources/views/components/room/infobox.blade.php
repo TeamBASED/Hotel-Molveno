@@ -20,7 +20,7 @@
         <p class="details-label">Room view</p>
         <p id="details-view" class="right-aligned">{{ $room->roomView->type }}</p>
 
-        <p class="details-label">Bed configuration</p>
+        <p class="details-label">Beds</p>
         <div id="details-bed-configuration" class="right-aligned">
             
             {{-- Display list of configurations e.g. '2x Single' --}}
