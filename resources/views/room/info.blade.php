@@ -28,8 +28,6 @@
 
                         </div>
 
-                        <h4 class="grid-span-2">Description&colon;</h4>
-                        <p class="grid-span-2"> {{ $room->description }}</p>
                     </div>
 
 
@@ -40,30 +38,6 @@
                 <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
 
             </div>
-            {{-- <section class="reservation-schedule">
-                
-                <h3 class="white-text">Reservation Schedule</h3>
-                <div class="reservations grid-two-columns">
-                    <p class="white-background">Placeholder 23-05 - 28-05</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                
-                    <p class="white-background">Placeholder 30-05 - 01-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                
-                    <p class="white-background">Placeholder 03-06 - 10-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder 23-06 - 28-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder 23-07 - 27-07</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder 02-08 - 18-08</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-                </div>
-
-            </section> --}}
         </article>
 
     </main>
