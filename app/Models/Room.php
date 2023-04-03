@@ -48,7 +48,7 @@ class Room extends Model
     }
     
     public static function getRoomData(int $roomId) : Room {
-        return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType'])->first();
+        return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType', 'bedConfigurations'])->first();
     }
 
     public function bedConfigurations() : BelongsToMany {

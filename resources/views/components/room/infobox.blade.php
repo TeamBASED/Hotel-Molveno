@@ -23,6 +23,15 @@
         <p class="details-label">Bed configuration</p>
         <p id="details-bed-configuration" class="right-aligned"></p>
 
+        <div id="details-bed-configuration" class="right-aligned">
+            
+            {{-- Display list of configurations e.g. '2x Single' --}}
+            @foreach ($room->bedConfigurations as $bedConfig)
+                <p>{{ $bedConfig->pivot->amount }}x {{ $bedConfig->configuration }}</p>
+            @endforeach
+
+        </div>
+
         <p class="details-label">Cleaning status</p>
         <p id="details-cleaning-status" class="right-aligned">{{ $room->cleaningStatus->status }}</p> 
 
