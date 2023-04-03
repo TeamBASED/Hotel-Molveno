@@ -16,6 +16,7 @@ class ReservationController extends Controller {
         $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContactByEmail($request->contact);
 
+
         return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact]);
     }
     public function viewReservationEdit(int $id): View {

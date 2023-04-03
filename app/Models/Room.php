@@ -7,6 +7,7 @@ use App\Models\RoomView;
 use App\Models\Reservation;
 use App\Models\CleaningStatus;
 use App\Models\RoomMaintenance;
+use App\Models\BedConfiguration;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -57,9 +58,9 @@ class Room extends Model {
     public static function getAllRoomData() {
         return Room::get();
     }
-
-    public static function getRoomData(int $roomId): Room {
-        return Room::where('id', $roomId)->with(['cleaningStatus', 'roomView', 'roomType'])->first();
+    
+    public static function getRoomData(int $roomId) : Room {
+        return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType', 'bedConfigurations'])->first();
     }
 
     public static function getRoomByNumber(string $roomNumber) {
