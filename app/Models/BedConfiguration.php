@@ -13,4 +13,8 @@ class BedConfiguration extends Model
     public function rooms() : BelongsToMany {
         return $this->belongsToMany(Room::class, 'room_bed_configuration');
     }
+    
+    public static function getIdByConfiguration(string $configuration) {
+        return BedConfiguration::where('configuration', $configuration)->select('id')->first()->id;
+    }
 }

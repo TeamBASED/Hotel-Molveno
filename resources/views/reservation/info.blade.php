@@ -37,15 +37,13 @@
             <div class="info-wrapper">
                 <section class="info-section">
 
-                    <h3>Room(s)</h3>
 
-                    <div class="grid-two-columns margin-block">
+                    <h3>Rooms in the reservation:</h3>
+                    @foreach ($currentRooms as $currentRoom)
+                        <p>{{ $currentRoom->room_number }}
+                        </p>
+                    @endforeach
 
-                        @foreach ($reservation->rooms as $room)
-                            <h4>Room number&colon;</h4>
-                            <p class="right-aligned">{{ $room->room_number }}</p>
-                        @endforeach
-                    </div>
 
                 </section>
             </div>

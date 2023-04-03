@@ -2,22 +2,27 @@
     .flex-container {
         display: flex;
         flex-direction: row;
+
         .form-1 {
             padding: 2rem 10rem;
+
             .left {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
+                // display: flex;
+                // flex-direction: column;
+                // gap: 0.5rem;
                 width: 70%;
                 min-height: 10rem;
+
                 .graybg {
                     background-color: $color-grey-600;
                 }
+
                 input {
                     width: 30rem;
                 }
             }
         }
+
         .right {
             display: flex;
             flex-direction: column;
@@ -27,6 +32,7 @@
             padding: 2rem 2rem 4rem 1rem;
             margin-top: 2rem;
             align-items: flex-end;
+
             .room-info {
                 border: 2px solid $color-600;
                 background-color: $color-white;
@@ -34,16 +40,20 @@
                 padding: 0.5rem 2rem;
                 height: 23.5rem;
                 width: 20rem;
+
                 h2 {
                     font-size: 24px;
                 }
             }
+
             .bluebg {
                 background-color: $color-600;
             }
+
             .delete {
                 background-color: #2b50a1;
             }
+
             .room-info-container {
                 display: flex;
                 flex-direction: row-reverse;
@@ -51,12 +61,15 @@
                 gap: 1rem;
             }
         }
+
         h2 {
             text-align: left;
         }
+
         h3 {
             color: $color-grey-600;
         }
+
         .button {
             font-size: 0.8rem;
             text-align: center;

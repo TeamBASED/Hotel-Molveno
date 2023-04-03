@@ -21,8 +21,15 @@ class ReservationController extends Controller {
     }
     public function viewReservationEdit(int $id): View {
         $reservation = Reservation::getReservationData($id);
+        $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
 
-        return view('reservation.edit', ['reservation' => $reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
+        return view('reservation.edit', [
+            'reservation' => $reservation,
+            'rooms' => $reservation->rooms,
+            'contact' => $reservation->contact,
+            'availableRooms' => $availableRooms,
+            'currentRooms' => $reservation->rooms
+        ]);
     }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
@@ -85,11 +92,11 @@ class ReservationController extends Controller {
         $room = Room::getRoomData($request->room);
         $reservation->rooms()->sync($room);
     }
-
+    
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
 
-        return view('reservation.info', ['reservation' => $reservation]);
+        return view('reservation.info', ['reservation' => $reservation,  'currentRooms' => $reservation->rooms]);
     }
 
 
@@ -114,28 +121,43 @@ class ReservationController extends Controller {
 
         $reservation = Reservation::getReservationData($id);
 
-        $roomNumbersDatabase = $this->getRoomNumbersFromReservation($reservation);
-        $roomNumbersForm = collect($request->room)->filter();
-        
-        if ($roomNumbersDatabase != $roomNumbersForm) {
+        $roomIdsDatabase = $reservation->rooms->map(function ($element) {
+            return $element->id;
+        });
+
+        $roomIdsForm = array_keys($request->room);
+
+        if ($roomIdsDatabase != $roomIdsForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
-            foreach ($roomNumbersForm as $roomNumber) {
-                if (Room::getRoomByNumber($roomNumber)) {
-                    $room = Room::getRoomByNumber($roomNumber);
-                    $reservation->rooms()->save($room);
+            foreach ($roomIdsForm as $roomId) {
+                    ReservationRoom::create([
+                        'reservation_id' => $id,
+                        'room_id' => $roomId,
+                    ]);
                 }
-            }
-        }
+
+        };
 
         Reservation::updateReservation($request, $id);
         Contact::updateContact($request, $id);
+
     }
 
-    public function getRoomNumbersFromReservation(Reservation $reservation) {
-        return collect($reservation->rooms)->map(function ($element) {
-            return $element->room_number;
-        });
+    public function getAvailableRoomsDuringReservation(Reservation $reservation) {
+        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival, $reservation->date_of_departure);
+        $availableRooms = Room::getAllRoomData();
+
+        foreach ($reservations as $reservation) {
+            foreach ($reservation->rooms as $occupiedRoom) {
+                $availableRooms = $availableRooms->filter(function ($item) use ($occupiedRoom) {
+                    return $item->id != $occupiedRoom->id;
+                });
+            }
+        }
+
+        return $availableRooms;
+
     }
 
 

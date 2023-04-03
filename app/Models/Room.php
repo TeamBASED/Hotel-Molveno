@@ -7,17 +7,17 @@ use App\Models\RoomView;
 use App\Models\Reservation;
 use App\Models\CleaningStatus;
 use App\Models\RoomMaintenance;
-use App\Models\BedConfiguration;
+use App\Models\BedConfigurations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Room extends Model
-{
+class Room extends Model {
     use HasFactory;
 
-    protected $fillable= [
-        'room_number', 
-        'capacity', 
+    protected $fillable = [
+        'room_number',
+        'capacity',
         'base_price_per_night',
         'bed_configuration',
         'baby_bed_possible',
@@ -27,12 +27,8 @@ class Room extends Model
         'cleaning_status_id'
     ];
 
-    public function cleaningStatus() {
-        return $this->belongsTo(CleaningStatus::class);
-    } 
-
-    public static function deleteRoomData(int $roomId) {
-        $deleted = Room::where('id', '=', $roomId)->delete();
+    public function reservations(): BelongsToMany {
+        return $this->belongsToMany(Reservation::class, 'reservation_room');
     }
 
     public function roomView() {
@@ -43,6 +39,22 @@ class Room extends Model
         return $this->belongsTo(RoomType::class);
     }
 
+    public function roomMaintenances() {
+        return $this->hasMany(RoomMaintenance::class);
+    }
+
+    public function cleaningStatus() {
+        return $this->belongsTo(CleaningStatus::class);
+    }
+
+    public function bedConfigurations() {
+        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations')->withPivot('amount');
+    }
+
+    public static function deleteRoomData(int $roomId) {
+        $deleted = Room::where('id', '=', $roomId)->delete();
+    }
+
     public static function getAllRoomData() {
         return Room::get();
     }
@@ -51,20 +63,8 @@ class Room extends Model
         return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType', 'bedConfigurations'])->first();
     }
 
-    public function bedConfigurations() {
-        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations')->withPivot('amount');;
-    }
-
-    public function reservations() {
-        return $this->belongsToMany(Reservation::class, 'reservation_room');
-    }
-
-    public function roomMaintenances() {
-        return $this->hasMany(RoomMaintenance::class);
-    }
-
     public static function getRoomByNumber(string $roomNumber) {
-        return Room::where('room_number', $roomNumber)->with(['cleaningStatus','roomView','roomType'])->first();
+        return Room::where('room_number', $roomNumber)->with(['cleaningStatus', 'roomView', 'roomType'])->first();
     }
 
     // Local scopes
@@ -86,7 +86,7 @@ class Room extends Model
     }
 
     public function scopeWithBedConfiguration($query, int $bedId, int $bedCount) {
-        return $query->whereExists(function($query) use($bedId, $bedCount) {
+        return $query->whereExists(function ($query) use ($bedId, $bedCount) {
             $query->from('room_bed_configurations')
                 ->whereColumn('room_id', 'rooms.id')
                 ->where('bed_configuration_id', $bedId)
@@ -102,4 +102,3 @@ class Room extends Model
         return $query->where('baby_bed_possible', $bedPossible);
     }
 }
-

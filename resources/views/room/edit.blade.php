@@ -28,7 +28,14 @@
                 <input type="text" class="input-text" required placeholder="Room number" name="number" value="{{old('number', $room->room_number)}}">
                 <input type="text" class="input-text" required placeholder="Capacity" name="capacity" value="{{old('capacity', $room->capacity)}}">
                 <input type="text" class="input-text" required placeholder="Price per night" name="price" value="{{old('price', $room->base_price_per_night)}}">
-                <input type="text" class="input-text" required placeholder="Bed configuration" name="configuration" value="{{old('configuration', $room->bed_configuration)}}">
+                <div class="inline-input">
+                    <label for="single-bed-configuration">Single beds</label>
+                    <input id="single-bed-configuration" type="number" class="input-text" required name="singleBeds" value="{{old('configuration', $singleBeds)}}">
+                </div>
+                <div class="inline-input">
+                    <label for="double-bed-configuration">Double beds</label>
+                    <input id="double-bed-configuration" type="number" class="input-text" required name="doubleBeds" value="{{old('configuration', $doubleBeds)}}">
+                </div>
                 <!-- view = dropdown -->
             </div>
             <div class="flex-column padding-block-1rem">

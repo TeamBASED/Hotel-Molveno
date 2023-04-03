@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\BedConfiguration;
 use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\RoomView;
@@ -28,7 +29,11 @@ class RoomController extends Controller
         $roomViews = RoomView::get();
         $room = Room::getRoomData($id);
 
-        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room]);
+        $bedConfigController = new RoomBedConfigurationController();
+        $singleBeds = $bedConfigController->getAmountOfBedConfiguration($id, 'single');
+        $doubleBeds = $bedConfigController->getAmountOfBedConfiguration($id, 'double');
+
+        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room, 'singleBeds' => $singleBeds, 'doubleBeds' => $doubleBeds]);
     }
 
     public function viewRoomCreate() {
@@ -40,10 +45,11 @@ class RoomController extends Controller
 
     public function handleCreateRoom(Request $request) {
         $validated = $request->validate([
-            'number' => 'required',
-            'capacity' => 'required',
+            'number' => 'required|string',
+            'capacity' => 'required|numeric',
             'price' => 'required',
-            'configuration' => 'required',
+            'singleBeds' => 'required|integer',
+            'doubleBeds' => 'required|integer',
             'view' => 'required',
             'type' => 'required'
         ]);
@@ -58,7 +64,8 @@ class RoomController extends Controller
             'number' => 'required',
             'capacity' => 'required',
             'price' => 'required',
-            'configuration' => 'required',
+            'singleBeds' => 'required|integer',
+            'doubleBeds' => 'required|integer',
             'view' => 'required',
             'type' => 'required'
         ]);
@@ -69,6 +76,8 @@ class RoomController extends Controller
 
     public function handleDeleteRoom(Request $request) {
         Room::deleteRoomData($request->id);
+        (new RoomBedConfigurationController())->deleteBedConfigurationForRoom($request->id);
+        
         return redirect(route('room.overview'));
     }
 
@@ -77,12 +86,13 @@ class RoomController extends Controller
             'room_number' => $request->number,
             'capacity' => $request->capacity,
             'base_price_per_night' => $request->price,
-            'bed_configuration' => $request->configuration,
             'baby_bed_possible' => isset($request->babybed),
             'description' => $request->description,
             'room_view_id' => $request->view,
             'room_type_id' => $request->type,
         ]);
+
+        (new RoomBedConfigurationController())->createBedConfigurationForRoom($room->id, $request);
     }
 
     public function updateRoom(Request $request, int $id) {
@@ -91,16 +101,17 @@ class RoomController extends Controller
             'room_number' => $request->number,
             'capacity' => $request->capacity,
             'base_price_per_night' => $request->price,
-            'bed_configuration' => $request->configuration,
             'baby_bed_possible' => isset($request->babybed),
             'description' => $request->description,
             'room_view_id' => $request->view,
             'room_type_id' => $request->type
         ]);
+
+        (new RoomBedConfigurationController())->updateBedConfigurationForRoom($room->id, $request);
     }
 
     private function filterRoomResults(Request $request) {
-        $filterQuery = Room::with(['cleaningStatus','roomView','roomType']);
+        $filterQuery = Room::with(['cleaningStatus','roomView','roomType', 'bedConfigurations']);
 
         if($this->hasFilter($request->capacity)) $filterQuery->withCapacity($request->capacity);
         if($this->hasFilter($request->number)) $filterQuery->withNumber($request->number);
