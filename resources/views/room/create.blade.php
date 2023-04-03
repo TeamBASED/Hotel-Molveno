@@ -20,7 +20,14 @@
                 <input type="text" class="input-text" required placeholder="Room number" name="number">
                 <input type="text" class="input-text" required placeholder="Capacity" name="capacity">
                 <input type="text" class="input-text" required placeholder="Price per night" name="price">
-                <input type="text" class="input-text" required placeholder="Bed configuration" name="configuration">
+                <div class="inline-input">
+                    <label for="single-bed-configuration">Single beds</label>
+                    <input id="single-bed-configuration" type="number" class="input-text" required name="singleBeds" value="0">
+                </div>
+                <div class="inline-input">
+                    <label for="double-bed-configuration">Double beds</label>
+                    <input id="double-bed-configuration" type="number" class="input-text" required name="doubleBeds" value="0">
+                </div>
                 <!-- view = dropdown -->
             </div>
             <div class="flex-column padding-block-1rem">

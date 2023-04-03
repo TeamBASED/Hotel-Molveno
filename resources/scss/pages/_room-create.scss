@@ -4,4 +4,14 @@
         margin: 0 auto;
         max-width: 50rem;
     }
+
+    .inline-input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .input-text {
+            width: 6rem;
+        }
+    }
 }
