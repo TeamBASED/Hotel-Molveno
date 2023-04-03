@@ -18,7 +18,7 @@
                         <h4>View&colon;</h4>
                         <p class="right-aligned"> {{ $room->roomView->type }}</p>
 
-                        <h4>Bed configuration&colon;</h4>
+                        <h4>Beds&colon;</h4>
                         <div class="right-aligned">
                             
                             {{-- Display list of configurations e.g. '2x Single' --}}

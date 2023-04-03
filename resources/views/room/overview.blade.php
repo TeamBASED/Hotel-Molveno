@@ -110,7 +110,7 @@
                 <p class="details-label">View</p>
                 <p id="details-view" class="right-aligned"></p>
 
-                <p class="details-label">Bed configuration</p>
+                <p class="details-label">Beds</p>
                 <div id="details-bed-configuration" class="right-aligned"></div>
 
                 <p class="details-label">Cleaning status</p>
