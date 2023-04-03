@@ -52,7 +52,7 @@ class Room extends Model
     }
 
     public function bedConfigurations() {
-        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations');
+        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations')->withPivot('amount');;
     }
 
     public function reservations() {
