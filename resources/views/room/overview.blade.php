@@ -110,17 +110,15 @@
                 <p class="details-label">View</p>
                 <p id="details-view" class="right-aligned"></p>
 
-                <p class="details-label">Bed configuration</p>
-                <p id="details-bed-configuration" class="right-aligned"></p>
+                <p class="details-label">Beds</p>
+                <div id="details-bed-configuration" class="right-aligned"></div>
 
                 <p class="details-label">Cleaning status</p>
                 <p id="details-cleaning-status" class="right-aligned"></p> 
 
-                <p class="details-label" class="grid-span-2">Description</p>
-                <p id="details-description" class="grid-span-2"></p>
-
-                <p class="details-label" class="grid-span-2">Availability</p>
-                <p id="details-availability" class="grid-span-2"></p> 
+                {{-- TODO: vul availability met JS in --}}
+                {{-- <p class="details-label" class="grid-span-2">Availability</p>
+                <p id="details-availability" class="grid-span-2"></p>  --}}
             </div>
             
 
