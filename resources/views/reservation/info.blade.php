@@ -48,7 +48,7 @@
                 </section>
             </div>
 
-            <section class="reservation-schedule">
+            {{-- <section class="reservation-schedule">
                 <h3 class="white-text">Guests</h3>
                 <div class="reservations grid-two-columns">
                     <p class="white-background">Placeholder</p>
@@ -69,7 +69,7 @@
                     <p class="white-background">Placeholder</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
                 </div>
-            </section>
+            </section> --}}
         </article>
     </main>
 </x-layout.base>
