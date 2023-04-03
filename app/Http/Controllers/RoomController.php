@@ -111,7 +111,7 @@ class RoomController extends Controller
     }
 
     private function filterRoomResults(Request $request) {
-        $filterQuery = Room::with(['cleaningStatus','roomView','roomType']);
+        $filterQuery = Room::with(['cleaningStatus','roomView','roomType', 'bedConfigurations']);
 
         if($this->hasFilter($request->capacity)) $filterQuery->withCapacity($request->capacity);
         if($this->hasFilter($request->number)) $filterQuery->withNumber($request->number);

@@ -7,27 +7,26 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Contact extends Model
-{
+class Contact extends Model {
     use HasFactory;
 
     protected $fillable = [
-        'first_name', 
-        'last_name', 
+        'first_name',
+        'last_name',
         'email',
-        'telephone_number', 
+        'telephone_number',
         'address'
     ];
 
-    public static function getContactByEmail(string $email) { 
+    public static function getContactByEmail(string $email) {
         return Contact::where('email', $email)->first();
     }
 
-    public static function getContactById(int $id) { 
+    public static function getContactById(int $id) {
         return Contact::where('id', $id)->first();
     }
 
-    public function saveContact($reservation){
+    public function saveContact($reservation) {
         $this->reservations()->save($reservation);
     }
 
@@ -60,5 +59,7 @@ class Contact extends Model
         //     'date_of_departure' => $request->date_of_departure,
         // ]);
 
-
+    public static function getContactData(int $id): Contact {
+        return Contact::where('id', $id)->first();
+    }
 }
