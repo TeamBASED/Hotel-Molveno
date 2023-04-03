@@ -11,18 +11,24 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ReservationController extends Controller
-{
-    public function viewReservationCreate(Request $request){
+class ReservationController extends Controller {
+    public function viewReservationCreate(Request $request) {
         $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContactByEmail($request->contact);
 
         return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact]);
     }
-    public function viewReservationEdit(int $id) : View{
+    public function viewReservationEdit(int $id): View {
         $reservation = Reservation::getReservationData($id);
+        $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
 
-        return view('reservation.edit', ['reservation' => $reservation, 'rooms' => $reservation->rooms, 'contact' => $reservation->contact]);
+        return view('reservation.edit', [
+            'reservation' => $reservation,
+            'rooms' => $reservation->rooms,
+            'contact' => $reservation->contact,
+            'availableRooms' => $availableRooms,
+            'currentRooms' => $reservation->rooms
+        ]);
     }
     public function viewReservationOverview() {
         $reservations = Reservation::getAllReservationData();
@@ -59,10 +65,10 @@ class ReservationController extends Controller
 
         if ($validator->fails()) {
             return back()
-                        ->withErrors($validator)
-                        ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
-    } 
+    }
 
     private function storeReservation(Request $request, $invoice_id, $contact) {
         $reservation = Reservation::create([
@@ -89,13 +95,13 @@ class ReservationController extends Controller
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
 
-        return view('reservation.info', ['reservation' => $reservation]);
+        return view('reservation.info', ['reservation' => $reservation,  'currentRooms' => $reservation->rooms]);
     }
 
 
     public function handleUpdateReservation(Request $request) {
 
-        $validated = $request->validate([
+        $request->validate([
             'id' => 'required',
             'firstname' => 'required',
             'lastname' => 'required',
@@ -111,43 +117,49 @@ class ReservationController extends Controller
     }
 
     public function updateReservation(Request $request, int $id) {
-        
+
         $reservation = Reservation::getReservationData($id);
 
-        $room_numbers_database = collect($reservation->rooms)->map(function ($element) {
-            return $element->room_number;
+        $roomIdsDatabase = $reservation->rooms->map(function ($element) {
+            return $element->id;
         });
-        
-        $roomNumbersForm = collect($request->room)->filter();
 
-        if ($room_numbers_database != $roomNumbersForm) {
+        $roomIdsForm = array_keys($request->room);
+
+        if ($roomIdsDatabase != $roomIdsForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
-            foreach ($roomNumbersForm as $roomNumber) {
-                if (Room::getRoomByNumber($roomNumber)) {
-                $roomId = Room::getRoomByNumber($roomNumber)->id;
+            foreach ($roomIdsForm as $roomId) {
+                    ReservationRoom::create([
+                        'reservation_id' => $id,
+                        'room_id' => $roomId,
+                    ]);
+                }
 
-                ReservationRoom::create([
-                    'reservation_id' => $id,
-                    'room_id' => $roomId,
-                ]);
-                };
-            }
         };
 
-
-        $reservation->update([
-            'date_of_arrival' => $request->date_of_arrival,
-            'date_of_departure' => $request->date_of_departure,
-        ]);
-
-        $reservation->contact->update([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'email' => $request->email,
-            'telephone_number' => $request->telephone,
-            'address' => $request->address,
-        ]);
+        Reservation::updateReservation($request, $id);
+        Contact::updateContact($request, $id);
 
     }
+
+    public function getAvailableRoomsDuringReservation(Reservation $reservation) {
+        $reservations = Reservation::getAllReservationsInTimeinterval($reservation->date_of_arrival, $reservation->date_of_departure);
+        $availableRooms = Room::getAllRoomData();
+
+        foreach ($reservations as $reservation) {
+            foreach ($reservation->rooms as $occupiedRoom) {
+                $availableRooms = $availableRooms->filter(function ($item) use ($occupiedRoom) {
+                    return $item->id != $occupiedRoom->id;
+                });
+            }
+        }
+
+        return $availableRooms;
+
+    }
+
+
+
+
 }

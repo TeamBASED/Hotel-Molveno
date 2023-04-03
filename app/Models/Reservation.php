@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Contact;
 use App\Models\Invoice;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Reservation extends Model
@@ -29,6 +30,10 @@ class Reservation extends Model
 
     public static function getAllReservationData() {
         return Reservation::with(['contact','rooms'])->get();
+    }
+
+    public static function getAllReservationsInTimeinterval(string $dateOfArrival, string $dateOfDeparture) {
+        return Reservation::where('date_of_departure' ,'>' , $dateOfArrival)->where('date_of_arrival', '<', $dateOfDeparture)->with('rooms')->get();
     }
 
     public static function getReservationData(int $id) {
@@ -61,5 +66,14 @@ class Reservation extends Model
 
     public static function getGuestByReservationId(int $reservationId) {
         return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
+    }
+
+    public static function updateReservation(Request $request, int $id) {
+        $reservation = Reservation::getReservationData($id);
+        // dd($reservation);
+        $reservation->update([
+            'date_of_arrival' => $request->date_of_arrival,
+            'date_of_departure' => $request->date_of_departure,
+        ]);
     }
 }
