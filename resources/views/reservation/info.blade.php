@@ -38,7 +38,13 @@
                 <section class="info-section">
 
 
-                    <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
+                    <h3>Rooms in the reservation:</h3>
+                    @foreach ($currentRooms as $currentRoom)
+                        <p>{{ $currentRoom->room_number }}
+                        </p>
+                    @endforeach
+
+                    {{-- <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms"  /> --}}
 
                 </section>
             </div>
