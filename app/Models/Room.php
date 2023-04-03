@@ -7,7 +7,7 @@ use App\Models\RoomView;
 use App\Models\Reservation;
 use App\Models\CleaningStatus;
 use App\Models\RoomMaintenance;
-use App\Models\BedConfigurations;
+use App\Models\BedConfiguration;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -51,11 +51,11 @@ class Room extends Model
         return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType', 'bedConfigurations'])->first();
     }
 
-    public function bedConfigurations() : BelongsToMany {
-        return $this->belongsToMany(BedConfigurations::class, 'room_bed_configuration');
+    public function bedConfigurations() {
+        return $this->belongsToMany(BedConfiguration::class, 'room_bed_configurations');
     }
 
-    public function reservations() : BelongsToMany {
+    public function reservations() {
         return $this->belongsToMany(Reservation::class, 'reservation_room');
     }
 
