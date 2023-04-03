@@ -44,7 +44,6 @@
                         </p>
                     @endforeach
 
-                    {{-- <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms"  /> --}}
 
                 </section>
             </div>

@@ -95,10 +95,7 @@ class ReservationController extends Controller {
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
 
-        $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
-
-        return view('reservation.info', ['reservation' => $reservation, 'availableRooms' => $availableRooms,
-            'currentRooms' => $reservation->rooms]);
+        return view('reservation.info', ['reservation' => $reservation,  'currentRooms' => $reservation->rooms]);
     }
 
 
