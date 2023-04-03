@@ -7,7 +7,7 @@ use App\Models\RoomView;
 use App\Models\Reservation;
 use App\Models\CleaningStatus;
 use App\Models\RoomMaintenance;
-use App\Models\BedConfigurations;
+use App\Models\BedConfiguration;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
