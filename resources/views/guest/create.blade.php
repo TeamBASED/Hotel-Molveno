@@ -53,12 +53,15 @@
 
                 @foreach ($reservation->guests as $guest)
                     <div class="flex-space-between">
-                        <p>{{ $guest->first_name }}</p>
+                        <p>{{ $guest->first_name }} {{ $guest->last_name }}</p>
                         <x-buttons.edit-button />
                     </div>
                 @endforeach
 
             </div>
+
+            <x-buttons.primary-button :href="route('reservation.info', $reservation->id)" class="button gray-background flex-center-center"> Next
+            </x-buttons.primary-button>
 
 
         </div>

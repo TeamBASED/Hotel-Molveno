@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -23,7 +24,9 @@ class GuestController extends Controller
 
     public function viewAddGuest(int $id) {
 
-
-        return view('guest.create');
+        $reservation = Reservation::getReservationData($id);
+        
+        // dd($reservation);
+        return view('guest.create', ['reservation' => $reservation]);
     }
 }
