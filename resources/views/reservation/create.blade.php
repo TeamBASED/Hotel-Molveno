@@ -22,9 +22,11 @@
                             <input type="text" class="input-text" required placeholder="Email" name="email" value="{{ isset($contact) ? $contact->email : $new_contact }}">
                             <input type="text" class="input-text" required placeholder="Telephone Number" name="telephone" value="{{ isset($contact) ? $contact->telephone_number : ''}}">
                             <input type="text" class="input-text" required placeholder="Address" name="address" value="{{ isset($contact) ? $contact->address : ''}}">
+                            <input type="text" class="input-text" required placeholder="Nationality" name="nationality" value="{{ isset($contact) ? $contact->nationality : ''}}">
+                            <input type="checkbox" name="id_checked" value="1" {{ $contact?->id_checked == 1 ? 'checked' : ''}}>
                         </div>
                         <div class="flex-column">
-                            <input type="hidden" required name="contact" value="{{ isset($contact) ? $contact->id : ''}}">
+                            <input type="hidden" name="contact" value="{{ isset($contact) ? $contact->id : ''}}">
                             <label for="arrival">Date of arrival&colon;</label>
                             <input type="date" id="arrival-date" class="input-text" required name="arrival">
                             <label for="departure">Date of departure&colon;</label>
