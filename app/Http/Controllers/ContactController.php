@@ -27,6 +27,8 @@ class ContactController extends Controller
             'email' => 'required|email',
             'telephone' => 'required',
             'address' => 'required',
+            'nationality' => 'required',
+            'id_checked' => 'required',
         ]);
 
         $contact = isset($request->contact) 
@@ -43,6 +45,8 @@ class ContactController extends Controller
             'email' => $request->email,
             'telephone_number' => $request->telephone,
             'address' => $request->address,
+            'nationality' => $request->nationality,
+            'id_checked' => $request->id_checked
         ]);
 
         return $contact;

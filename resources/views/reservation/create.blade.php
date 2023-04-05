@@ -23,7 +23,7 @@
                             <input type="text" class="input-text" required placeholder="Telephone Number" name="telephone" value="{{ isset($contact) ? $contact->telephone_number : ''}}">
                             <input type="text" class="input-text" required placeholder="Address" name="address" value="{{ isset($contact) ? $contact->address : ''}}">
                             <input type="text" class="input-text" required placeholder="Nationality" name="nationality" value="{{ isset($contact) ? $contact->nationality : ''}}">
-                            <input type="checkbox" required name="id_checked" value="1" {{ isset($contact) ? $contact->id_checked == 1 ? 'checked' : ''}}>
+                            <input type="checkbox" required name="id_checked" value="1" {{ $contact?->id_checked == 1 ? 'checked' : ''}}>
                         </div>
                         <div class="flex-column">
                             <input type="hidden" required name="contact" value="{{ isset($contact) ? $contact->id : ''}}">

@@ -25,7 +25,7 @@ class ContactFactory extends Factory
             'email' => fake()->email(),
             'telephone_number' => fake()->phoneNumber(),
             'address' => fake()->address(),
-            'nationality' => fake()->countryCode(),
+            'nationality' => fake()->country(),
             'id_checked' => fake()->boolean()
         ];
     }
