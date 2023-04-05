@@ -6,14 +6,15 @@
         <div class="grid-two-columns">
 
             <div class="input">
-                <form>
+                <form action="{{ route('guest.store', ['id' => $reservation->id]) }}" method="POST">
+                    @csrf
                     <div class="flex-center">
                         <label for="first-name">First Name:</label>
-                        <input class="input-text" type="text" id="first-name" name="first-name"
+                        <input class="input-text" type="text" id="firstname" name="firstname"
                             placeholder="Enter your first name">
 
                         <label for="last-name">Last Name:</label>
-                        <input class="input-text" type="text" id="last-name" name="last-name"
+                        <input class="input-text" type="text" id="lastname" name="lastname"
                             placeholder="Enter your last name">
                     </div>
 
@@ -25,13 +26,13 @@
 
                     <div class="flex-center">
                         <label for="passport-number">Passport Number:</label>
-                        <input class="input-text" type="text" id="passport-number" name="passport-number"
+                        <input class="input-text" type="text" id="passportnumber" name="passportnumber"
                             placeholder="Enter your passport number">
                     </div>
                     <div class="flex-center">
 
                         <label for="date-of-birth">Date of Birth:</label>
-                        <input class="input-text" type="date" id="date-of-birth" name="date-of-birth"
+                        <input class="input-text" type="date" id="dateofbirth" name="dateofbirth"
                             placeholder="Enter your date of birth">
                     </div>
 
