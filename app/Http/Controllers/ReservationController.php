@@ -134,7 +134,7 @@ class ReservationController extends Controller {
         };
 
         $reservation = $this->updateReservation($request, $id);
-        $contact = $this->updateContact($request, $id);
+        $contact = $this->updateContact($request);
         $contact->saveContact($reservation);
     }
 
@@ -147,8 +147,8 @@ class ReservationController extends Controller {
         return $reservation;
     }
 
-    public function updateContact(Request $request, int $id) {
-        $contact = Contact::getContactByEmail($request->email);
+    public function updateContact(Request $request) {
+        $contact = Contact::getContactById($request->contact_id);
         $contact->update([
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,

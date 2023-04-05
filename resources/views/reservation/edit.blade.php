@@ -37,6 +37,7 @@
                             value="{{ old('date_of_departure', $reservation->date_of_departure) }}"
                             name="date_of_departure">
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
+                        <input type="hidden" name="contact_id" value="{{ $contact->id }}">
 
                         {{-- <h3>Room number</h3>
                         @foreach ($rooms as $room)
