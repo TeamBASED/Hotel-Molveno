@@ -26,7 +26,7 @@
                             <input type="checkbox" name="id_checked" value="1" {{ $contact?->id_checked == 1 ? 'checked' : ''}}>
                         </div>
                         <div class="flex-column">
-                            <input type="hidden" required name="contact" value="{{ isset($contact) ? $contact->id : ''}}">
+                            <input type="hidden" name="contact" value="{{ isset($contact) ? $contact->id : ''}}">
                             <label for="arrival">Date of arrival&colon;</label>
                             <input type="date" id="arrival-date" class="input-text" required name="arrival">
                             <label for="departure">Date of departure&colon;</label>
