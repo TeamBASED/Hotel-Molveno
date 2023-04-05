@@ -40,21 +40,6 @@ class Contact extends Model {
         return $this->hasOne(Guest::class);
     }
 
-    public static function updateContact(Request $request, int $id) {
-        $contact = Contact::getContactById($id);
-        $contact->update([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'email' => $request->email,
-            'telephone_number' => $request->telephone,
-            'address' => $request->address,
-            'nationality' => $request->nationality,
-            'id_checked' => $request->id_checked,
-        ]);
-    }
-
-
-
         // public static function updateReservation(Request $request, int $id) {
         // $reservation = Reservation::getReservationData($id);
         // // dd($reservation);
