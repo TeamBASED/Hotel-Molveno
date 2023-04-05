@@ -48,6 +48,8 @@ class Contact extends Model {
             'email' => $request->email,
             'telephone_number' => $request->telephone,
             'address' => $request->address,
+            'nationality' => $request->nationality,
+            'id_checked' => $request->id_checked,
         ]);
     }
 
