@@ -27,8 +27,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             'telephone' => 'required',
             'address' => 'required',
-            'nationality' => 'required',
-            'id_checked' => 'required',
+            'nationality' => 'required'
         ]);
 
         $contact = isset($request->contact) 
