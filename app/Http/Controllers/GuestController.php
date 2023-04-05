@@ -14,7 +14,7 @@ class GuestController extends Controller
         $this->validateGuest($request);
         
         
-        dd($request);
+        // dd($request);
 
         $this->storeGuest($request);
 
@@ -65,12 +65,13 @@ class GuestController extends Controller
     }
 
     private function storeGuest($request,$reservationId) {
-        // $guest = Guest::create([
-        //     'first_name' => $request->firstname,
-        //     'last_name' => $request->lastname,
-        //     'nationality' => $request->nationality,
-        //     'first_name' => $request->firstname,
+        $guest = Guest::create([
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'nationality' => $request->nationality,
+            'first_name' => $request->firstname,
+        ]);
 
-        // ]);
+
     }
 }
