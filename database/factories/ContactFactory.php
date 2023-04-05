@@ -22,7 +22,7 @@ class ContactFactory extends Factory
         return [
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
-            'email' => fake()->email(),
+            'email' => fake()->unique()->email(),
             'telephone_number' => fake()->phoneNumber(),
             'address' => fake()->address(),
             'nationality' => fake()->country(),
