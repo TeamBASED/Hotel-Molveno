@@ -20,4 +20,10 @@ class GuestController extends Controller
 
         $this->updateGuest($request);
     }
+
+    public function viewAddGuest(int $id) {
+
+
+        return view('guest.create');
+    }
 }
