@@ -75,8 +75,6 @@ class GuestController extends Controller
             'checked_in' => false,
         ]);
 
-        // $reservation = Reservation::getReservationData($reservationId);
-
         $guest->reservation()->sync($reservationId);
 
 

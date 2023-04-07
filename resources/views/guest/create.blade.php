@@ -52,8 +52,10 @@
 
             <div class="flex-space-between">
                 <x-buttons.primary-button form="guest-form">Add Guest</x-buttons.primary-button>
+                <form action="{{ route('reservation.info', ['id' => $reservation->id]) }}">
+                    <x-buttons.primary-button>Complete</x-buttons.primary-button>
+                </form>
 
-                <x-buttons.primary-button>Complete</x-buttons.primary-button>
             </div>
 
         </div>
