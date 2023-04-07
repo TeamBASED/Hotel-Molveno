@@ -40,22 +40,20 @@
                 </div>
 
                 <div class="flex-flex-end">
-                    <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
                 </div>
             </form>
 
             <x-guest.overview-box :$reservation />
 
-            <x-buttons.primary-button
-                :href="route('room.overview')"
-                class="button gray-background flex-center-center"
-            >Cancel</x-buttons.primary-button>
+            <div>
+                <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
+            </div>
 
-            <x-buttons.primary-button
-                :href="route('reservation.info', $reservation->id)"
-                class="button gray-background flex-center-center"
-            >Next</x-buttons.primary-button>
+            <div class="flex-space-between">
+                <x-buttons.primary-button form="guest-form">Add Guest</x-buttons.primary-button>
 
+                <x-buttons.primary-button>Complete</x-buttons.primary-button>
+            </div>
 
         </div>
 

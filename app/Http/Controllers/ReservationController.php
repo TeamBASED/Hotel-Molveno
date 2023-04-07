@@ -103,7 +103,6 @@ class ReservationController extends Controller {
 
 
     public function handleUpdateReservation(Request $request) {
-
         $request->validate([
             'id' => 'required',
             'firstname' => 'required',
@@ -113,14 +112,11 @@ class ReservationController extends Controller {
             // 'invoice_id' => 'required',
         ]);
 
-
-        $this->updateReservation($request, $request->id);
-
+        $this->alterReservation($request, $request->id);
         return redirect(route('reservation.overview'));
     }
 
-    public function updateReservation(Request $request, int $id) {
-
+    public function alterReservation(Request $request, int $id) {
         $reservation = Reservation::getReservationData($id);
 
         $roomIdsDatabase = $reservation->rooms->map(function ($element) {
@@ -128,7 +124,6 @@ class ReservationController extends Controller {
         });
 
         $roomIdsForm = array_keys($request->room);
-
         if ($roomIdsDatabase != $roomIdsForm) {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
@@ -138,12 +133,34 @@ class ReservationController extends Controller {
                         'room_id' => $roomId,
                     ]);
                 }
-
         };
 
-        Reservation::updateReservation($request, $id);
-        Contact::updateContact($request, $id);
+        $reservation = $this->updateReservation($request, $id);
+        $contact = $this->updateContact($request);
+        $contact->saveContact($reservation);
+    }
 
+    public function updateReservation(Request $request, int $id) {
+        $reservation = Reservation::getReservationData($id);
+        $reservation->update([
+            'date_of_arrival' => $request->date_of_arrival,
+            'date_of_departure' => $request->date_of_departure,
+        ]);
+        return $reservation;
+    }
+
+    public function updateContact(Request $request) {
+        $contact = Contact::getContactById($request->contact_id);
+        $contact->update([
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'email' => $request->email,
+            'telephone_number' => $request->telephone,
+            'address' => $request->address,
+            'nationality' => $request->nationality,
+            'id_checked' => isset($request->id_checked)
+        ]);
+        return $contact;
     }
 
     public function getAvailableRoomsDuringReservation(Reservation $reservation) {
