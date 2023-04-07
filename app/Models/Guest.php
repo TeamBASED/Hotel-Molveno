@@ -13,7 +13,12 @@ class Guest extends Model
         return $this->belongsTo(Contact::class);
     }
 
-    public static function getGuestData(int $id) {
-        return Guest::where(['id', $id])->first();
+    public function reservation() {
+        return $this->belongsToMany(Reservation::class, 'guest_reservations');
     }
+
+    public static function getGuestData(int $reservationId) {
+        return Guest::where(['id', $reservationId])->first();
+    }
+
 }

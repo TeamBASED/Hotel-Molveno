@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller {
     public function viewReservationCreate(Request $request) {
+
+        // dd($request);
         $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContactByEmail($request->contact);
 
@@ -51,7 +53,7 @@ class ReservationController extends Controller {
 
         $this->handleReservationRoom($request, $reservation);
 
-        return redirect(route('reservation.overview'));
+        return redirect(route('guest.create'));
     }
 
     private function validateCreateReservation(request $request) {

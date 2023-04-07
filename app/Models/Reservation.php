@@ -37,7 +37,7 @@ class Reservation extends Model
     }
 
     public static function getReservationData(int $id) {
-        return Reservation::where('id', $id)->with(['contact','rooms'])->first();
+        return Reservation::where('id', $id)->with(['contact','rooms','guests'])->first();
     }
 
     public static function getDepartureDateByRoomId(int $id) {
@@ -50,6 +50,10 @@ class Reservation extends Model
     
     public static function deleteReservation(int $id) {
         $deleted = Reservation::where('id', $id)->with(['contact','rooms'])->delete();
+    }
+    
+    public function guests() {
+        return $this->belongsToMany(Guest::class, 'guest_reservations');
     }
 
     public function rooms() {
