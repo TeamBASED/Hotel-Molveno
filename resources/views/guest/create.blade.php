@@ -5,65 +5,55 @@
         <h2>Create guest</h2>
         <div class="grid-two-columns">
 
-            <div class="input">
-                <form action="{{ route('guest.store', ['id' => $reservation->id]) }}" method="POST">
-                    @csrf
-                    <div class="flex-center">
-                        <label for="first-name">First Name:</label>
+            <form id="guest-form" class="flex-column" action="{{ route('guest.store', ['id' => $reservation->id]) }}" method="POST">
+                @csrf
+                <div class="flex-center">
+                    <div class="flex-column half-width">
+                        <label for="firstname">First Name:</label>
                         <input class="input-text" type="text" id="firstname" name="firstname"
-                            placeholder="Enter your first name">
+                            placeholder="Guest's first name">
+                    </div>
 
-                        <label for="last-name">Last Name:</label>
+                    <div class="flex-column half-width">
+                        <label for="lastname">Last Name:</label>
                         <input class="input-text" type="text" id="lastname" name="lastname"
-                            placeholder="Enter your last name">
+                            placeholder="Guest's last name">
                     </div>
+                </div>
 
-                    <div class="flex-center">
-                        <label for="nationality">Nationality:</label>
-                        <input class="input-text" type="text" id="nationality" name="nationality"
-                            placeholder="Enter your nationality">
-                    </div>
+                <div class="flex-column">
+                    <label for="nationality">Nationality:</label>
+                    <input class="input-text" type="text" id="nationality" name="nationality"
+                        placeholder="Guest's nationality">
+                </div>
 
-                    <div class="flex-center">
-                        <label for="passport-number">Passport Number:</label>
-                        <input class="input-text" type="text" id="passportnumber" name="passportnumber"
-                            placeholder="Enter your passport number">
-                    </div>
-                    <div class="flex-center">
+                <div class="flex-column">
+                    <label for="passport-number">Passport Number:</label>
+                    <input class="input-text half-width" type="text" id="passport-number" name="passport_number"
+                        placeholder="Guest's passport number">
+                </div>
 
-                        <label for="date-of-birth">Date of Birth:</label>
-                        <input class="input-text" type="date" id="dateofbirth" name="dateofbirth"
-                            placeholder="Enter your date of birth">
-                    </div>
+                <div class="flex-column">
+                    <label for="date-of-birth">Date of Birth:</label>
+                    <input class="input-text half-width" type="date" id="date-of-birth" name="date_of_birth"
+                        placeholder="Guest's date of birth">
+                </div>
 
-                    <x-buttons.primary-button>Submit</x-buttons.primary-button>
-                </form>
+                <div class="flex-flex-end">
+                </div>
+            </form>
 
-                {{-- <input type="text" placeholder="first name" name="firstname">
-                <input type="text" placeholder="last name" name="lastname">
-                <input type="text" placeholder="nationality" name="nationality">
-                <input type="text" placeholder="passport number" name="passportnumber">
-                <input type="text" placeholder="date of birth" name="dateofbirth"> --}}
+            <x-guest.overview-box :$reservation />
 
-
+            <div>
+                <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
             </div>
 
-            <div class="guestOverview">
+            <div class="flex-space-between">
+                <x-buttons.primary-button form="guest-form">Add Guest</x-buttons.primary-button>
 
-                <h3>Current guests</h3>
-
-                @foreach ($reservation->guests as $guest)
-                    <div class="flex-space-between">
-                        <p>{{ $guest->first_name }} {{ $guest->last_name }}</p>
-                        <x-buttons.edit-button />
-                    </div>
-                @endforeach
-
+                <x-buttons.primary-button>Complete</x-buttons.primary-button>
             </div>
-
-            <x-buttons.primary-button :href="route('reservation.info', $reservation->id)" class="button gray-background flex-center-center"> Next
-            </x-buttons.primary-button>
-
 
         </div>
 
