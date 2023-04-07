@@ -15,7 +15,9 @@ class Contact extends Model {
         'last_name',
         'email',
         'telephone_number',
-        'address'
+        'address',
+        'nationality',
+        'id_checked'
     ];
 
     public static function getContactByEmail(string $email) {
@@ -37,19 +39,6 @@ class Contact extends Model {
     public function guest() {
         return $this->hasOne(Guest::class);
     }
-
-    public static function updateContact(Request $request, int $id) {
-        $contact = Contact::getContactById($id);
-        $contact->update([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'email' => $request->email,
-            'telephone_number' => $request->telephone,
-            'address' => $request->address,
-        ]);
-    }
-
-
 
         // public static function updateReservation(Request $request, int $id) {
         // $reservation = Reservation::getReservationData($id);

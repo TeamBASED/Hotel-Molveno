@@ -71,13 +71,4 @@ class Reservation extends Model
     public static function getGuestByReservationId(int $reservationId) {
         return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
     }
-
-    public static function updateReservation(Request $request, int $id) {
-        $reservation = Reservation::getReservationData($id);
-        // dd($reservation);
-        $reservation->update([
-            'date_of_arrival' => $request->date_of_arrival,
-            'date_of_departure' => $request->date_of_departure,
-        ]);
-    }
 }

@@ -25,6 +25,10 @@
                         <h3>Contact address</h3>
                         <input type="text" class="input-text" required
                             value="{{ old('address', $contact->address) }}" name="address">
+                        <h3>Nationality</h3>
+                        <input type="text" class="input-text" required placeholder="Nationality" name="nationality" value="{{  old('nationality', $contact->nationality)}}">
+                        <h3>ID Checked</h3>
+                        <input type="checkbox" name="id_checked" value="1" {{ old('id_checked', $contact->id_checked == 1 ? 'checked' : '')}}>
                         <h3>Date of Arrival</h3>
                         <input type="date" class="input-text"
                             value="{{ old('date_of_arrival', $reservation->date_of_arrival) }}" name="date_of_arrival">
@@ -33,6 +37,7 @@
                             value="{{ old('date_of_departure', $reservation->date_of_departure) }}"
                             name="date_of_departure">
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
+                        <input type="hidden" name="contact_id" value="{{ $contact->id }}">
 
                         {{-- <h3>Room number</h3>
                         @foreach ($rooms as $room)
