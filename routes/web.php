@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     // for now redirect, this should be home page
     Route::get('/', function () {
         return redirect(route('room.overview'));
-    });
+    })->name('home');
 
     // reservation routes
     Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');
