@@ -5,7 +5,8 @@
         <h2>Create guest</h2>
         <div class="grid-two-columns">
 
-            <form id="guest-form" class="flex-column" action="{{ route('guest.store', ['id' => $reservation->id]) }}" method="POST">
+            <form id="guest-form" class="flex-column" action="{{ route('guest.store', ['id' => $reservation->id]) }}"
+                method="POST">
                 @csrf
                 <div class="flex-center">
                     <div class="flex-column half-width">

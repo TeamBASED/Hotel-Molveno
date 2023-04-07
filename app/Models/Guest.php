@@ -9,6 +9,17 @@ class Guest extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'nationality',
+        'id_number',
+        'date_of_birth',
+        'checked_in',
+
+    ];
+
+
     public function contact() { 
         return $this->belongsTo(Contact::class);
     }

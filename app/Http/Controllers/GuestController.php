@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guest;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class GuestController extends Controller
         
         // dd($request);
 
-        $this->storeGuest($request);
+        $this->storeGuest($request, $reservationId);
 
         return redirect(route('guest.create',['id' => $reservationId]));
 
@@ -64,13 +65,19 @@ class GuestController extends Controller
         }
     }
 
-    private function storeGuest($request,$reservationId) {
+    private function storeGuest(request $request, int $reservationId) {
         $guest = Guest::create([
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
             'nationality' => $request->nationality,
-            'first_name' => $request->firstname,
+            'id_number' => $request->passport_number,
+            'date_of_birth' => $request->date_of_birth,
+            'checked_in' => false,
         ]);
+
+        // $reservation = Reservation::getReservationData($reservationId);
+
+        $guest->reservation()->sync($reservationId);
 
 
     }
