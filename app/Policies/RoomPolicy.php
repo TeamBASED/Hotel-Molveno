@@ -53,7 +53,8 @@ class RoomPolicy
      */
     public function update(User $user, Room $room)
     {
-        //
+        // dd($user->role);
+        return $user->role->title === "owner";
     }
 
     /**

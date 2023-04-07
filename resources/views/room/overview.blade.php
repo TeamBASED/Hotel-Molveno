@@ -3,11 +3,6 @@
     <x-slot:resources>
         @vite('resources/js/roomOverviewDetails.js')
     </x-slot>
-
-    @can('isOwner')
-
-    blub
-    @endcan
         
     <main class="main-content" id="room-overview">
         <div class="left-side">

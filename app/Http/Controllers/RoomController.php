@@ -58,7 +58,7 @@ class RoomController extends Controller
         return redirect(route('room.overview'));
     }
 
-    public function handleUpdateRoom(Request $request) {
+    public function handleUpdateRoom(Room $room, Request $request) {
         $validated = $request->validate([
             'id' => 'required',
             'number' => 'required',
