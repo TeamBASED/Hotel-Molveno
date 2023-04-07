@@ -11,32 +11,32 @@
                     <div class="flex-column half-width">
                         <label for="first-name">First Name:</label>
                         <input class="input-text" type="text" id="first-name" name="first_name"
-                            placeholder="Guest's first name">
+                            placeholder="Guest's first name" value="{{old('first_name', $guest->first_name)}}">
                     </div>
 
                     <div class="flex-column half-width">
                         <label for="last-name">Last Name:</label>
                         <input class="input-text" type="text" id="last-name" name="last_name"
-                            placeholder="Guest's last name">
+                            placeholder="Guest's last name" value="{{old('last_name', $guest->last_name)}}">
                     </div>
                 </div>
 
                 <div class="flex-column">
                     <label for="nationality">Nationality:</label>
                     <input class="input-text" type="text" id="nationality" name="nationality"
-                        placeholder="Guest's nationality">
+                        placeholder="Guest's nationality" value="{{old('nationality', $guest->nationality)}}">
                 </div>
 
                 <div class="flex-column">
                     <label for="passport-number">Passport Number:</label>
                     <input class="input-text half-width" type="text" id="passport-number" name="passport_number"
-                        placeholder="Guest's passport number">
+                        placeholder="Guest's passport number" value="{{old('passport_number', $guest->id_number)}}">
                 </div>
 
                 <div class="flex-column">
                     <label for="date-of-birth">Date of Birth:</label>
                     <input class="input-text half-width" type="date" id="date-of-birth" name="date_of_birth"
-                        placeholder="Guest's date of birth">
+                        placeholder="Guest's date of birth" value="{{old('date_of_birth', $guest->date_of_birth)}}">
                 </div>
 
                 <div class="flex-flex-end">

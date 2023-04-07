@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guest;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +36,9 @@ class GuestController extends Controller
         ]);
 
         $this->updateGuest($request);
+    }
+    public function viewEditGuest(Reservation $reservation, Guest $guest){
+        return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
     }
 
     public function viewAddGuest(int $id) {
