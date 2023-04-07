@@ -78,7 +78,7 @@
         width: 30%;
         padding: 1.5rem 3rem;
         height: max-content;
-        min-height: 40rem;
+        min-height: 30rem;
 
         p {
             font-size: 20px;
@@ -88,16 +88,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            font-weight: 800;
+            gap: 1rem;
             padding: 2rem 0;
         }
 
         .details-label {
             color: $color-100;
-        }
-
-        #details-info-button {
-            text-align: center;
         }
 
         #select-room-message {
