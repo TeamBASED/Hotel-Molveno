@@ -3,8 +3,13 @@
     <main id="guest-edit" class="main-content">
 
         <h2>Edit guest</h2>
+        <form action="{{ route('guest.delete', ['reservation' => $reservation->id, 'guest' => $guest->id]) }}" method="POST" class="flex-flex-end flex-align-center">
+            @csrf
+            @method('DELETE')
+            <input type="hidden" name="id" value="{{ $guest->id }}">
+            <x-buttons.primary-button class="button gray-background right-aligned flex-center-center">Delete</x-buttons.primary-button>
+        </form>
         <div class="grid-two-columns">
-
             <form id="guest-form" class="flex-column" action="{{ route('guest.update', ['reservation' => $reservation->id, 'guest' => $guest->id]) }}" method="POST">
                 @csrf
                 @method('PATCH')

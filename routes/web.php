@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/reservation/{id}/delete', [ReservationController::class, 'handleDeleteReservation'])->name('reservation.delete');
 
     // Guest routes
-    Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest', 'showContact' => '$showContact'])->name('guest.create');
+    Route::get('/reservation/{res}/guest/create', [GuestController::class, 'viewAddGuest', 'showContact' => '$showContact'])->name('guest.create');
     Route::post('/reservation/{id}/guest/store', [GuestController::class, 'handleCreateGuest'])->name('guest.store');
     Route::get('/reservation/{reservation}/guest/{guest}/edit', [GuestController::class, 'viewEditGuest'])->name('guest.edit');
     Route::patch('/reservation/{reservation}/guest/{guest}/update', [GuestController::class, 'handleUpdateGuest'])->name('guest.update');
