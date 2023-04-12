@@ -17,7 +17,7 @@ class RoomPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    static public function viewAny(User $user)
     {
         $title = $user->role->title;
 
@@ -26,7 +26,10 @@ class RoomPolicy
             $title === "head-housekeeping" ||
             $title === "housekeeping" ||
             $title === "reception") {
-                return $title;
+                return true;
+            } 
+            else {
+                return false;
             }
     }
     /**

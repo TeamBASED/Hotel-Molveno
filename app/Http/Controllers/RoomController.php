@@ -1,26 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\BedConfiguration;
 use App\Models\Room;
+use App\Models\User;
 use App\Models\RoomType;
 use App\Models\RoomView;
+use App\Policies\RoomPolicy;
 use Illuminate\Http\Request;
+use App\Models\BedConfiguration;
+use Illuminate\Http\RedirectResponse;
 
 class RoomController extends Controller
 {
-    public function viewRoomInfo(int $id){
-        $room = Room::getRoomData($id);
 
-        return view('room.info', ['room' => $room]);
+    public function viewRoomInfo(int $id, Request $request) {
+        if ($request->user()->can('viewAny', Room::class)) {
+            $room = Room::getRoomData($id);
+            return view('room.info', ['room' => $room]);
+        } else {
+            // return view('room.overview');
+        }
     }
 
     public function viewRoomOverview(Request $request) {
         $rooms = $this->filterRoomResults($request);
-
         $roomTypes = RoomType::get();
         $roomViews = RoomView::get();
-
         return view('room.overview', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
     }
 

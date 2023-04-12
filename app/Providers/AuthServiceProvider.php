@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // Room::class => RoomPolicy::class,
+        // 
     ];
 
     /**
@@ -26,10 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        // Gate::define('isOwner', function(User $user) {
-        //     // dd($user->role->title);
-        //     return $user->role->title == 'owner';
-        // });
     }
 }
