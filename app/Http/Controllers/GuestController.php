@@ -63,6 +63,7 @@ class GuestController extends Controller
             'nationality' => ucfirst($request->nationality),
             'passport_number' => $request->passport_number,
             'date_of_birth' => $request->date_of_birth,
+            'contact_id' => $request->contact_id,
             'passport_checked' => isset($request->passport_checked)
         ]);
     }
