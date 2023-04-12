@@ -26,9 +26,11 @@
                         <input type="text" class="input-text" required
                             value="{{ old('address', $contact->address) }}" name="address">
                         <h3>Nationality</h3>
-                        <input type="text" class="input-text" required placeholder="Nationality" name="nationality" value="{{  old('nationality', $contact->nationality)}}">
+                        <input type="text" class="input-text" required placeholder="Nationality" name="nationality"
+                            value="{{ old('nationality', $contact->nationality) }}">
                         <h3>ID Checked</h3>
-                        <input type="checkbox" name="passport_checked" value="1" {{ old('passport_checked', $contact->passport_checked == 1 ? 'checked' : '')}}>
+                        <input type="checkbox" name="passport_checked" value="1"
+                            {{ old('passport_checked', $contact->passport_checked == 1 ? 'checked' : '') }}>
                         <h3>Date of Arrival</h3>
                         <input type="date" class="input-text"
                             value="{{ old('date_of_arrival', $reservation->date_of_arrival) }}" name="date_of_arrival">
@@ -59,7 +61,9 @@
                 <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
+                    <x-buttons.primary-button class="button delete"
+                        onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete
+                    </x-buttons.primary-button>
                 </form>
                 @foreach ($rooms as $room)
                     <x-room.infobox :room="$room" />
