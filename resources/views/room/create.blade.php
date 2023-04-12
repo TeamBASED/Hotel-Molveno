@@ -47,7 +47,7 @@
                     </select>
                     <select class="dropdown-select" name="view" required>
                         @foreach ($roomViews as $option)
-                            <option class="filter-field-option" value="{{ $option->id }}">{{ $option->type }}</option>
+                            <option class="filter-field-option" value="{{ $option->id }}">{{ $option->view }}</option>
                         @endforeach
                     </select>
                 </div>
