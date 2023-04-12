@@ -13,14 +13,12 @@ class Guest extends Model
         'first_name',
         'last_name',
         'nationality',
-        'id_number',
+        'passport_number',
         'date_of_birth',
         'contact_id',
-        'checked_in',
         'passport_checked',
-
+        'checked_in',
     ];
-
 
     public function contact() { 
         return $this->belongsTo(Contact::class);

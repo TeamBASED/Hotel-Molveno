@@ -9,53 +9,50 @@ use Illuminate\Support\Facades\Validator;
 
 class GuestController extends Controller
 {
+    public function viewEditGuest(Reservation $reservation, Guest $guest){
+        return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
+    }
+
+    public function viewAddGuest(int $reservationId) {
+        $reservation = Reservation::getReservationData($reservationId);
+        
+        return view('guest.create', ['reservation' => $reservation]);
+    }
 
     public function handleCreateGuest (int $reservationId, Request $request) {
-        
         $this->validateGuest($request);
-        
-        
-        // dd($request);
 
         $this->storeGuest($request, $reservationId);
 
         return redirect(route('guest.create',['id' => $reservationId]));
-
     }
     
-    public function handleUpdateGuest(Request $request) {
-        $validated = $request->validate([
-            'id' => 'required',
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'contact_id',
-            'nationality' => 'required',
-            'id_number' => 'required',
-            'date_of_birth' => 'required',
-            'checked_in' => 'required',   
-        ]);
+    public function handleUpdateGuest(Request $request, Reservation $reservation, Guest $guest) {
+        $this->validateGuest($request);
 
-        $this->updateGuest($request);
+        $this->updateGuest($request, $guest);
+
+        return redirect(route('reservation.info',['id' => $request->reservation_id]));
     }
 
     public function viewAddGuest(int $id, $showContact = false) {
-
         $reservation = Reservation::getReservationData($id);
         
-        // dd($reservation);
         return view('guest.create', ['reservation' => $reservation, 'showContact' => $showContact]);
     }
 
-    private function validateGuest(request $request) {
+    private function validateGuest(Request $request) {
         // TODO: Apply validators across all relevant controllers
         // $existingReservations = Reservation::getReservationDataByRoomId($request->room);
         // dd($existingReservations);
         $validator = Validator::make($request->all(), [
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'contact_id' => 'nullable',
             'nationality' => 'required|string',
-            'passportnumber' => 'required|string',
+            'passport_number' => 'required|string',
             'dateofbirth' => 'required|date',
+            'passport_checked' => 'nullable',   
         ]);
 
         if ($validator->fails()) {
@@ -65,8 +62,18 @@ class GuestController extends Controller
         }
     }
 
-    private function storeGuest(request $request, int $reservationId) {
-        $passport_checked = $request->has('checked_in') ? 1 : 0;
+    private function updateGuest(Request $request, Guest $guest) {
+        $guest->update([
+            'first_name' => ucfirst($request->first_name),
+            'last_name' => ucfirst($request->last_name),
+            'nationality' => ucfirst($request->nationality),
+            'passport_number' => $request->passport_number,
+            'date_of_birth' => $request->date_of_birth,
+            'passport_checked' => isset($request->passport_checked)
+        ]);
+    }
+
+    private function storeGuest(Request $request, int $reservationId) {
         $guest = Guest::create([
             'first_name' => ucfirst($request->firstname),
             'last_name' => ucfirst($request->lastname),
@@ -74,11 +81,8 @@ class GuestController extends Controller
             'passport_number' => $request->passport_number,
             'date_of_birth' => $request->date_of_birth,
             'contact_id' => $request->contact_id,
-            'passport_checked' => $passport_checked,
+            'passport_checked' => isset($request->passport_checked)
         ]);
-
         $guest->reservation()->sync($reservationId);
-
-
     }
 }

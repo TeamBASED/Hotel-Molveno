@@ -61,7 +61,7 @@
                             @if ($option->id == old('view', $room->room_view_id))
                                 selected="selected"
                             @endif
-                                >{{$option->type}}</option>
+                                >{{$option->view}}</option>
                     @endforeach
                 </select>
                 {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> Doesn't quite work as expected or desired --}}
