@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Contact;
+use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Guest extends Model
 {
@@ -11,6 +13,10 @@ class Guest extends Model
 
     public function contact() { 
         return $this->belongsTo(Contact::class);
+    }
+
+    public function reservation() { 
+        return $this->belongsTo(Reservation::class);
     }
 
     public static function getGuestData(int $id) {

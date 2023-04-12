@@ -50,6 +50,8 @@
 
             <section class="reservation-schedule">
                 <h3 class="white-text">Guests</h3>
+
+                {{ dd($reservation) }}
                 <div class="reservations grid-two-columns">
                     <p class="white-background">Placeholder</p>
                     <x-buttons.edit-button>Edit</x-buttons.edit-button>
