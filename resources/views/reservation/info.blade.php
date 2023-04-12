@@ -27,12 +27,11 @@
                         <h4>Date departure&colon;</h4>
                         <p class="right-aligned">{{ $reservation->date_of_departure }}</p>
                     </div>
-
+                    @can('update', $reservation)
                     <x-buttons.primary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.primary-button>
+                    @endcan
                 </section>
-                @cannot('update', $reservation)
                 <x-buttons.primary-button :href="route('reservation.overview')">Back</x-buttons.primary-button>
-                @endcannot
             </div>
 
             <div class="info-wrapper">

@@ -47,7 +47,7 @@ class ReservationPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user, Room $room)
+    public function create(User $user, Reservation $reservation)
     {
         return $user->role->title === "owner";
         return $user->role->title === "hotel manager";

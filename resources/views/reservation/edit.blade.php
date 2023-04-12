@@ -45,9 +45,7 @@
                                 name="room[]">
                         @endforeach
                         <input type="text" class="input-text" placeholder="add room" name="room[]"> --}}
-
                         <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
-
                     </div>
                     <div>
                         <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
@@ -59,7 +57,9 @@
                 <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
+                    @can('delete', $reservation)
                     <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
+                    @endcan
                 </form>
                 @foreach ($rooms as $room)
                     <x-room.infobox :room="$room" />
