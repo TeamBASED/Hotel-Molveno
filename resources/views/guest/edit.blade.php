@@ -7,6 +7,7 @@
 
             <form id="guest-form" class="flex-column" action="{{ route('guest.update', ['reservation' => $reservation->id, 'guest' => $guest->id]) }}" method="POST">
                 @csrf
+                @method('PATCH')
                 <div class="flex-center">
                     <div class="flex-column half-width">
                         <label for="first-name">First Name:</label>
@@ -44,6 +45,8 @@
                     <input class="input-text half-width" type="checkbox" id="passport-checked" name="passport_checked"
                         value="1" {{ old('passport_checked', $guest->passport_checked == 1 ? 'checked' : '')}}>
                 </div>
+
+                <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
 
                 <div class="flex-flex-end">
                 </div>
