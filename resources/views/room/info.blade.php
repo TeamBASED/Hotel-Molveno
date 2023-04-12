@@ -32,7 +32,7 @@
                         <p class="grid-span-2"> {{ $room->description }}</p>
                     </div>
 
-                    @cannot('isOwner')
+                    @cannot('update', $room)
                     <x-buttons.primary-button :href="route('room.edit', ['id' => $room->id])">Edit</x-buttons.primary-button>
                     @endcannot
 
