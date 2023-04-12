@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // Reservation::class => ReservationPolicy::class,
+        Reservation::class => ReservationPolicy::class,
     ];
 
     /**
@@ -27,9 +27,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // Gate::define('isOwner', function(User $user) {
-        //     // dd($user->role->title);
-        //     return $user->role->title == 'owner';
-        // });
+        Gate::define('isOwner', function(User $user) {
+            // dd($user->role->title);
+            return $user->role->title == 'owner';
+        });
     }
 }
