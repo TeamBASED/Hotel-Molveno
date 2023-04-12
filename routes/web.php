@@ -47,9 +47,9 @@ Route::middleware('auth')->group(function () {
 
     // Guest routes
     Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest'])->name('guest.create');
-    Route::get('/reservation/{reservation}/guest/{guest}/edit', [GuestController::class, 'viewEditGuest'])->name('guest.edit');
     Route::post('/reservation/{id}/guest/store', [GuestController::class, 'handleCreateGuest'])->name('guest.store');
-
+    Route::get('/reservation/{reservation}/guest/{guest}/edit', [GuestController::class, 'viewEditGuest'])->name('guest.edit');
+    Route::get('/reservation/{reservation}/guest/{guest}/update', [GuestController::class, 'viewEditGuest'])->name('guest.update');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');

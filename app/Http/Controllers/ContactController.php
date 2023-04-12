@@ -45,7 +45,7 @@ class ContactController extends Controller
             'telephone_number' => $request->telephone,
             'address' => $request->address,
             'nationality' => $request->nationality,
-            'id_checked' => isset($request->id_checked)
+            'passport_checked' => isset($request->passport_checked)
         ]);
 
         return $contact;

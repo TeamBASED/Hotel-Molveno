@@ -11,11 +11,8 @@ class GuestController extends Controller
 {
 
     public function handleCreateGuest (int $reservationId, Request $request) {
-        
+
         $this->validateGuest($request);
-        
-        
-        // dd($request);
 
         $this->storeGuest($request);
 
@@ -25,14 +22,13 @@ class GuestController extends Controller
     
     public function handleUpdateGuest(Request $request) {
         $validated = $request->validate([
-            'id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'contact_id',
+            'contact_id' => 'nullable',
             'nationality' => 'required',
-            'id_number' => 'required',
+            'passport_number' => 'required',
             'date_of_birth' => 'required',
-            'checked_in' => 'required',   
+            'checked_in' => 'nullable',   
         ]);
 
         $this->updateGuest($request);
@@ -49,16 +45,18 @@ class GuestController extends Controller
         return view('guest.create', ['reservation' => $reservation]);
     }
 
-    private function validateGuest(request $request) {
+    private function validateGuest(Request $request) {
         // TODO: Apply validators across all relevant controllers
         // $existingReservations = Reservation::getReservationDataByRoomId($request->room);
         // dd($existingReservations);
         $validator = Validator::make($request->all(), [
             'firstname' => 'required|string',
             'lastname' => 'required|string',
+            'contact_id' => 'nullable',
             'nationality' => 'required|string',
-            'passportnumber' => 'required|string',
+            'passport_number' => 'required|string',
             'dateofbirth' => 'required|date',
+            'checked_in' => 'nullable',   
         ]);
 
         if ($validator->fails()) {
@@ -68,6 +66,16 @@ class GuestController extends Controller
         }
     }
 
+    private function updateGuest(Request $request, Guest $guest) {
+        $guest->update([
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'nationality' => $request->nationality,
+            'first_name' => $request->firstname,
+            'passport_checked' => isset($request->passport_checked)
+        ]);
+    }
+
     private function storeGuest($request,$reservationId) {
         $guest = Guest::create([
             'first_name' => $request->firstname,
@@ -75,7 +83,5 @@ class GuestController extends Controller
             'nationality' => $request->nationality,
             'first_name' => $request->firstname,
         ]);
-
-
     }
 }

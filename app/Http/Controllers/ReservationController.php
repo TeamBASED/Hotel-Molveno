@@ -112,11 +112,11 @@ class ReservationController extends Controller {
             // 'invoice_id' => 'required',
         ]);
 
-        $this->alterReservation($request, $request->id);
+        $this->updateReservationRooms($request, $request->id);
         return redirect(route('reservation.overview'));
     }
 
-    public function alterReservation(Request $request, int $id) {
+    public function updateReservationRooms(Request $request, int $id) {
         $reservation = Reservation::getReservationData($id);
 
         $roomIdsDatabase = $reservation->rooms->map(function ($element) {
@@ -158,7 +158,7 @@ class ReservationController extends Controller {
             'telephone_number' => $request->telephone,
             'address' => $request->address,
             'nationality' => $request->nationality,
-            'id_checked' => isset($request->id_checked)
+            'passport_checked' => isset($request->passport_checked)
         ]);
         return $contact;
     }
