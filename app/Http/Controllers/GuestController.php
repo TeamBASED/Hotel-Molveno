@@ -56,6 +56,12 @@ class GuestController extends Controller
         }
     }
 
+    public function deleteGuest(Request $request, Guest $guest){
+        $guest->delete();
+
+        return back();
+    }
+
     private function updateGuest(Request $request, Guest $guest) {
         $guest->update([
             'first_name' => ucfirst($request->first_name),
