@@ -35,6 +35,11 @@
         // &:hover {
         // what should hover status do?
         // }
+        
+
+        &.warning {
+            color: #e24b4b;
+        }
     }
 
     .edit-button {
