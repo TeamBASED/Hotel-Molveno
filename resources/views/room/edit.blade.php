@@ -12,7 +12,7 @@
 
 
         <div class="padding-inline-5rem">
-            <div class="crud-header">
+            <div class="crud-header flex-center-center">
                 <h2>Edit room</h2>
                 <form action="{{ route('room.delete', $room->id) }}" method="POST"
                     class="absolute-right">
