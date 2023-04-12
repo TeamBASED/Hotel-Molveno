@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Reservation;
+use App\Policies\ReservationPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // Reservation::class => ReservationPolicy::class,
     ];
 
     /**
@@ -25,6 +27,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate::define('isOwner', function(User $user) {
+        //     // dd($user->role->title);
+        //     return $user->role->title == 'owner';
+        // });
     }
 }

@@ -30,8 +30,9 @@
 
                     <x-buttons.primary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.primary-button>
                 </section>
-
+                @cannot('update', $reservation)
                 <x-buttons.primary-button :href="route('reservation.overview')">Back</x-buttons.primary-button>
+                @endcannot
             </div>
 
             <div class="info-wrapper">
