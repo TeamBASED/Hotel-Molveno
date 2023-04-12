@@ -13,8 +13,8 @@ class GuestController extends Controller
         return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
     }
 
-    public function viewAddGuest(int $id) {
-        $reservation = Reservation::getReservationData($id);
+    public function viewAddGuest(int $reservationId) {
+        $reservation = Reservation::getReservationData($reservationId);
         
         return view('guest.create', ['reservation' => $reservation]);
     }
