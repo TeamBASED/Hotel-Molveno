@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/reservation/{id}/delete', [ReservationController::class, 'handleDeleteReservation'])->name('reservation.delete');
 
     // Guest routes
-    Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest'])->name('guest.create');
+    Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest', 'showContact' => '$showContact'])->name('guest.create');
     Route::post('/reservation/{id}/guest/store', [GuestController::class, 'handleCreateGuest'])->name('guest.store');
 
 
