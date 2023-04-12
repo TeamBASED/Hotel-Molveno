@@ -38,12 +38,12 @@ class GuestController extends Controller
         $this->updateGuest($request);
     }
 
-    public function viewAddGuest(int $id) {
+    public function viewAddGuest(int $id, $showContact = false) {
 
         $reservation = Reservation::getReservationData($id);
         
         // dd($reservation);
-        return view('guest.create', ['reservation' => $reservation]);
+        return view('guest.create', ['reservation' => $reservation, 'showContact' => $showContact]);
     }
 
     private function validateGuest(request $request) {
@@ -66,12 +66,14 @@ class GuestController extends Controller
     }
 
     private function storeGuest(request $request, int $reservationId) {
+        // dd($request);
         $guest = Guest::create([
             'first_name' => ucfirst($request->firstname),
             'last_name' => ucfirst($request->lastname),
             'nationality' => ucfirst($request->nationality),
             'id_number' => $request->passport_number,
             'date_of_birth' => $request->date_of_birth,
+            'contact_id' => $request->contact_id,
             'checked_in' => false,
         ]);
 

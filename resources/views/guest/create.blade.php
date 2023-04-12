@@ -8,24 +8,31 @@
             <form id="guest-form" class="flex-column" action="{{ route('guest.store', ['id' => $reservation->id]) }}"
                 method="POST">
                 @csrf
+                {{-- {{ dd($_GET) }} --}}
                 <div class="flex-center">
                     <div class="flex-column half-width">
                         <label for="firstname">First Name:</label>
                         <input class="input-text" type="text" id="firstname" name="firstname"
-                            placeholder="Guest's first name" required>
+                            placeholder="Guest's first name"
+                            @if (isset($_GET['showContact'])) value="{{ $reservation->contact->first_name }}" readonly @endif
+                            required>
                     </div>
 
                     <div class="flex-column half-width">
                         <label for="lastname">Last Name:</label>
                         <input class="input-text" type="text" id="lastname" name="lastname"
-                            placeholder="Guest's last name" required>
+                            placeholder="Guest's last name"
+                            @if (isset($_GET['showContact'])) value="{{ $reservation->contact->last_name }}" readonly @endif
+                            required>
                     </div>
                 </div>
 
                 <div class="flex-column">
                     <label for="nationality">Nationality:</label>
                     <input class="input-text" type="text" id="nationality" name="nationality"
-                        placeholder="Guest's nationality" required>
+                        placeholder="Guest's nationality"
+                        @if (isset($_GET['showContact'])) value="{{ $reservation->contact->nationality }}" readonly @endif
+                        required>
                 </div>
 
                 <div class="flex-column">
@@ -39,6 +46,9 @@
                     <input class="input-text half-width" type="date" id="date-of-birth" name="date_of_birth"
                         placeholder="Guest's date of birth" required>
                 </div>
+                @if (isset($_GET['showContact']))
+                    <input type="text" value="{{ $reservation->contact->id }}" name="contact_id">
+                @endif
 
                 <div class="flex-flex-end">
                 </div>
@@ -48,6 +58,12 @@
 
             <div>
                 <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
+                @if (isset($_GET['showContact']))
+                    <x-buttons.secondary-button :href="route('guest.create', ['id' => $reservation->id])">Remove Contact Information
+                    </x-buttons.secondary-button>
+                @else
+                    <x-buttons.secondary-button :href="route('guest.create', ['id' => $reservation->id, 'showContact' => true])">Add Contact Information</x-buttons.secondary-button>
+                @endif
             </div>
 
             <div class="flex-space-between">
