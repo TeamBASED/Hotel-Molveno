@@ -46,6 +46,12 @@
                     <input class="input-text half-width" type="date" id="date-of-birth" name="date_of_birth"
                         placeholder="Guest's date of birth" required>
                 </div>
+
+                <div class="flex-space-between">
+                    <label for="checked_in">Checked in?</label>
+                    <input type="checkbox" name="checked_in" id="checked_in">
+                </div>
+
                 @if (isset($_GET['showContact']))
                     <input type="text" value="{{ $reservation->contact->id }}" name="contact_id">
                 @endif
