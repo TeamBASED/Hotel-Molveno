@@ -67,9 +67,9 @@ class GuestController extends Controller
 
     private function storeGuest(request $request, int $reservationId) {
         $guest = Guest::create([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'nationality' => $request->nationality,
+            'first_name' => ucfirst($request->firstname),
+            'last_name' => ucfirst($request->lastname),
+            'nationality' => ucfirst($request->nationality),
             'id_number' => $request->passport_number,
             'date_of_birth' => $request->date_of_birth,
             'checked_in' => false,

@@ -12,32 +12,32 @@
                     <div class="flex-column half-width">
                         <label for="firstname">First Name:</label>
                         <input class="input-text" type="text" id="firstname" name="firstname"
-                            placeholder="Guest's first name">
+                            placeholder="Guest's first name" required>
                     </div>
 
                     <div class="flex-column half-width">
                         <label for="lastname">Last Name:</label>
                         <input class="input-text" type="text" id="lastname" name="lastname"
-                            placeholder="Guest's last name">
+                            placeholder="Guest's last name" required>
                     </div>
                 </div>
 
                 <div class="flex-column">
                     <label for="nationality">Nationality:</label>
                     <input class="input-text" type="text" id="nationality" name="nationality"
-                        placeholder="Guest's nationality">
+                        placeholder="Guest's nationality" required>
                 </div>
 
                 <div class="flex-column">
                     <label for="passport-number">Passport Number:</label>
                     <input class="input-text half-width" type="text" id="passport-number" name="passport_number"
-                        placeholder="Guest's passport number">
+                        placeholder="Guest's passport number" required>
                 </div>
 
                 <div class="flex-column">
                     <label for="date-of-birth">Date of Birth:</label>
                     <input class="input-text half-width" type="date" id="date-of-birth" name="date_of_birth"
-                        placeholder="Guest's date of birth">
+                        placeholder="Guest's date of birth" required>
                 </div>
 
                 <div class="flex-flex-end">
