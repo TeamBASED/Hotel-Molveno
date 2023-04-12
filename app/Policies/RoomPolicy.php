@@ -18,7 +18,11 @@ class RoomPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->role->title === "owner";
+        return $user->role->title === "hotel manager";
+        return $user->role->title === "head-housekeeping";
+        return $user->role->title === "housekeeping";
+        return $user->role->title === "reception";
     }
 
     /**
@@ -30,7 +34,11 @@ class RoomPolicy
      */
     public function view(User $user, Room $room)
     {
-        //
+        return $user->role->title === "owner";
+        return $user->role->title === "hotel manager";
+        return $user->role->title === "head-housekeeping";
+        return $user->role->title === "housekeeping";
+        return $user->role->title === "reception";
     }
 
     /**
@@ -39,9 +47,10 @@ class RoomPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(User $user, Room $room)
     {
-        //
+        return $user->role->title === "owner";
+        return $user->role->title === "hotel manager";
     }
 
     /**
@@ -55,6 +64,7 @@ class RoomPolicy
     {
         // dd($user->role);
         return $user->role->title === "owner";
+        return $user->role->title === "hotel manager";
     }
 
     /**
@@ -66,7 +76,8 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room)
     {
-        //
+        return $user->role->title === "owner";
+        return $user->role->title === "hotel manager";
     }
 
     /**
@@ -78,7 +89,8 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room)
     {
-        //
+        return $user->role->title === "owner";
+        return $user->role->title === "hotel manager";
     }
 
     /**
