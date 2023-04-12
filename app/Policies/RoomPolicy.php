@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class RoomPolicy
 {
@@ -18,13 +19,16 @@ class RoomPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
-        return $user->role->title === "head-housekeeping";
-        return $user->role->title === "housekeeping";
-        return $user->role->title === "reception";
-    }
+        $title = $user->role->title;
 
+        if ($title === "owner" || 
+            $title === "hotel manager" ||
+            $title === "head-housekeeping" ||
+            $title === "housekeeping" ||
+            $title === "reception") {
+                return $title;
+            }
+    }
     /**
      * Determine whether the user can view the model.
      *
@@ -34,11 +38,13 @@ class RoomPolicy
      */
     public function view(User $user, Room $room)
     {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
-        return $user->role->title === "head-housekeeping";
-        return $user->role->title === "housekeeping";
-        return $user->role->title === "reception";
+        if ($title === "owner" || 
+            $title === "hotel manager" ||
+            $title === "head-housekeeping" ||
+            $title === "housekeeping" ||
+            $title === "reception") {
+                return $title;
+            }
     }
 
     /**
@@ -49,8 +55,10 @@ class RoomPolicy
      */
     public function create(User $user, Room $room)
     {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
+        if ($title === "owner" || 
+            $title === "hotel manager") {
+                return $title;
+            }
     }
 
     /**
@@ -63,8 +71,10 @@ class RoomPolicy
     public function update(User $user, Room $room)
     {
         // dd($user->role);
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
+        if ($title === "owner" || 
+            $title === "hotel manager") {
+                return $title;
+            }
     }
 
     /**
@@ -76,8 +86,10 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room)
     {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
+        if ($title === "owner" || 
+            $title === "hotel manager") {
+                return $title;
+            }
     }
 
     /**
@@ -89,8 +101,10 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room)
     {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
+        if ($title === "owner" || 
+            $title === "hotel manager") {
+                return $title;
+            }
     }
 
     /**
