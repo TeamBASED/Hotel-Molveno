@@ -54,31 +54,38 @@
                     </div>
                     <textarea class="input-text flex-grow-1" id="room-edit-description" placeholder="Room description" name="description">{{ old('description', $room->description) }}</textarea>
                 </div>
-                <div class="flex-column padding-block-1rem">
-                    <select class="dropdown-select" name="type" required>
-                        @foreach ($roomTypes as $option)
-                            <option class="filter-field-option" value="{{ $option->id }}"
-                                @if ($option->id == old('type', $room->room_type_id)) selected="selected" @endif>{{ $option->type }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <select class="dropdown-select" name="view" required>
-                        @foreach ($roomViews as $option)
-                            <option class="filter-field-option" value="{{ $option->id }}"
-                                @if ($option->id == old('view', $room->room_view_id)) selected="selected" @endif>{{ $option->type }}
-                            </option>
-                        @endforeach
-                    </select>
-                    {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> Doesn't quite work as expected or desired --}}
-                    {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> Doesn't quite work as expected or desired --}}
-                    <input type="hidden" name="id" value="{{ $room->id }}">
-                </div>
+                <textarea class="input-text flex-grow-1" id="room-edit-description" placeholder="Room description" name="description">{{old('description', $room->description)}}</textarea>
+            </div>
+            <div class="flex-column padding-block-1rem">
+                <select class="dropdown-select" name="type" required>
+                    @foreach ($roomTypes as $option)
+                        <option class="filter-field-option" value="{{$option->id}}" 
+                            @if ($option->id == old('type', $room->room_type_id))
+                                selected="selected"
+                            @endif
+                                >{{$option->type}}</option>
+                    @endforeach
+                </select>
+                <select class="dropdown-select" name="view" required>
+                    @foreach ($roomViews as $option)
+                        <option class="filter-field-option" value="{{$option->id}}" 
+                            @if ($option->id == old('view', $room->room_view_id))
+                                selected="selected"
+                            @endif
+                                >{{$option->view}}</option>
+                    @endforeach
+                </select>
+                {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> Doesn't quite work as expected or desired --}}
+                {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> Doesn't quite work as expected or desired --}}
+                <input type="hidden" name="id" value="{{ $room->id }}">
+            </div>
+            
+            <div class="flex-space-between grid-span-3">
+                <x-buttons.primary-button :href="route('room.info', $room->id)" class="button gray-background flex-center-center">Cancel</x-buttons.primary-button>
+                <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
+            </div>
+        </form>
+        <div class="blank"></div>
 
-                <div class="flex-space-between grid-span-3">
-                    <x-buttons.secondary-button :href="route('room.info', $room->id)">Cancel</x-buttons.secondary-button>
-                    <x-buttons.primary-button>Save</x-buttons.primary-button>
-                </div>
-            </form>
-        </div>
-    </main>
+</main>
 </x-layout.base>

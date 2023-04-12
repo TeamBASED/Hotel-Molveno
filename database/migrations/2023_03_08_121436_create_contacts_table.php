@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->tinyText('telephone_number');
             $table->tinyText('nationality');
-            $table->boolean('id_checked');
+            $table->boolean('passport_checked');
             $table->tinyText('address');
             $table->timestamps();
         });
