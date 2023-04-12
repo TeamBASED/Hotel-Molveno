@@ -53,7 +53,7 @@ class ReservationController extends Controller {
 
         $this->handleReservationRoom($request, $reservation);
 
-        return redirect(route('guest.create'));
+        return redirect(route('guest.create',['id' => $reservation->id]));
     }
 
     private function validateCreateReservation(request $request) {
@@ -112,11 +112,11 @@ class ReservationController extends Controller {
             // 'invoice_id' => 'required',
         ]);
 
-        $this->alterReservation($request, $request->id);
+        $this->updateReservationRooms($request, $request->id);
         return redirect(route('reservation.overview'));
     }
 
-    public function alterReservation(Request $request, int $id) {
+    public function updateReservationRooms(Request $request, int $id) {
         $reservation = Reservation::getReservationData($id);
 
         $roomIdsDatabase = $reservation->rooms->map(function ($element) {
@@ -152,13 +152,13 @@ class ReservationController extends Controller {
     public function updateContact(Request $request) {
         $contact = Contact::getContactById($request->contact_id);
         $contact->update([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
+            'first_name' => ucfirst($request->firstname),
+            'last_name' => ucfirst($request->lastname),
             'email' => $request->email,
             'telephone_number' => $request->telephone,
             'address' => $request->address,
-            'nationality' => $request->nationality,
-            'id_checked' => isset($request->id_checked)
+            'nationality' => ucfirst($request->nationality),
+            'passport_checked' => isset($request->passport_checked)
         ]);
         return $contact;
     }

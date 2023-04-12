@@ -51,7 +51,7 @@ function setRoomDetails(data) {
     setElementText(detailsType, data.room_type.type);
     setElementText(detailsPricePerNight, data.base_price_per_night);
     setElementText(detailsCapacity, data.capacity);
-    setElementText(detailsView, data.room_view.type);
+    setElementText(detailsView, data.room_view.view);
     setElementText(detailsCleaningStatus, data.cleaning_status.status);
     updateBedConfiguration(data.bed_configurations);
 }
