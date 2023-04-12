@@ -51,25 +51,14 @@
             <section class="reservation-schedule">
                 <h3 class="white-text">Guests</h3>
 
-                {{ dd($reservation) }}
+                {{-- {{ dd($reservation) }} --}}
                 <div class="reservations grid-two-columns">
-                    <p class="white-background">Placeholder</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
 
-                    <p class="white-background">Placeholder</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
+                    @foreach ($reservation->guests as $guest)
+                        <p class="white-background flex-center-center">{{ $guest->first_name }} {{ $guest->last_name }}
+                        </p>
+                        <x-buttons.edit-button>Edit</x-buttons.edit-button>
+                    @endforeach
                 </div>
             </section>
         </article>
