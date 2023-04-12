@@ -65,7 +65,7 @@
                     <select class="dropdown-select" name="view" required>
                         @foreach ($roomViews as $option)
                             <option class="filter-field-option" value="{{ $option->id }}"
-                                @if ($option->id == old('view', $room->room_view_id)) selected="selected" @endif>{{ $option->type }}
+                                @if ($option->id == old('view', $room->room_view_id)) selected="selected" @endif>{{ $option->view }}
                             </option>
                         @endforeach
                     </select>
