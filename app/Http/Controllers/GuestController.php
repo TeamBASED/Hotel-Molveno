@@ -22,7 +22,7 @@ class GuestController extends Controller
     public function handleCreateGuest (int $reservationId, Request $request) {
         $this->validateGuest($request);
 
-        $this->storeGuest($request);
+        $this->storeGuest($request, $reservationId);
 
         return redirect(route('guest.create',['id' => $reservationId]));
     }
@@ -33,6 +33,12 @@ class GuestController extends Controller
         $this->updateGuest($request, $guest);
 
         return redirect(route('reservation.info',['id' => $request->reservation_id]));
+    }
+
+    public function viewAddGuest(int $id, $showContact = false) {
+        $reservation = Reservation::getReservationData($id);
+        
+        return view('guest.create', ['reservation' => $reservation, 'showContact' => $showContact]);
     }
 
     private function validateGuest(Request $request) {
@@ -67,12 +73,16 @@ class GuestController extends Controller
         ]);
     }
 
-    private function storeGuest($request,$reservationId) {
+    private function storeGuest(Request $request, int $reservationId) {
         $guest = Guest::create([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'nationality' => $request->nationality,
-            'first_name' => $request->firstname,
+            'first_name' => ucfirst($request->firstname),
+            'last_name' => ucfirst($request->lastname),
+            'nationality' => ucfirst($request->nationality),
+            'passport_number' => $request->passport_number,
+            'date_of_birth' => $request->date_of_birth,
+            'contact_id' => $request->contact_id,
+            'passport_checked' => isset($request->passport_checked)
         ]);
+        $guest->reservation()->sync($reservationId);
     }
 }
