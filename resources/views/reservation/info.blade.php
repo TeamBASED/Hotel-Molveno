@@ -57,7 +57,8 @@
                     @foreach ($reservation->guests as $guest)
                         <p class="white-background flex-center-center">{{ $guest->first_name }} {{ $guest->last_name }}
                         </p>
-                        <x-buttons.edit-button>Edit</x-buttons.edit-button>
+                        <x-buttons.edit-button :href="route('guest.edit', ['reservation' => $reservation->id, 'guest' => $guest->id])">Edit
+                        </x-buttons.edit-button>
                     @endforeach
                 </div>
             </section>
