@@ -69,8 +69,6 @@
                             </option>
                         @endforeach
                     </select>
-                    {{-- <x-input-fields.dropdown-select :options="$roomTypes" name="type"/> Doesn't quite work as expected or desired --}}
-                    {{-- <x-input-fields.dropdown-select :options="$roomViews" name="view"/> Doesn't quite work as expected or desired --}}
                     <input type="hidden" name="id" value="{{ $room->id }}">
                 </div>
 

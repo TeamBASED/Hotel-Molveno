@@ -21,8 +21,9 @@ class GuestFactory extends Factory
             'first_name' => fake()->firstName(),
             'last_name' => fake()->lastName(),
             'nationality' => fake()->countryCode(),
-            'id_number' => fake()->numberBetween(100000000, 999999999),
+            'passport_number' => fake()->numberBetween(100000000, 999999999),
             'date_of_birth' => fake()->date(),
+            'passport_checked' => fake()->boolean(),
             'checked_in' => fake()->boolean(),
             'contact_id' => null,
 

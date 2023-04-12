@@ -17,7 +17,7 @@ class Contact extends Model {
         'telephone_number',
         'address',
         'nationality',
-        'id_checked'
+        'passport_checked'
     ];
 
     public static function getContactByEmail(string $email) {
