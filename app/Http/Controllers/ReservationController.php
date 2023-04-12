@@ -152,12 +152,12 @@ class ReservationController extends Controller {
     public function updateContact(Request $request) {
         $contact = Contact::getContactById($request->contact_id);
         $contact->update([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
+            'first_name' => ucfirst($request->firstname),
+            'last_name' => ucfirst($request->lastname),
             'email' => $request->email,
             'telephone_number' => $request->telephone,
             'address' => $request->address,
-            'nationality' => $request->nationality,
+            'nationality' => ucfirst($request->nationality),
             'passport_checked' => isset($request->passport_checked)
         ]);
         return $contact;

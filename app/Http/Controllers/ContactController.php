@@ -39,12 +39,12 @@ class ContactController extends Controller
 
     private function storeContact(Request $request) {
         $contact = Contact::create([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
+            'first_name' => ucfirst($request->firstname),
+            'last_name' => ucfirst($request->lastname),
             'email' => $request->email,
             'telephone_number' => $request->telephone,
             'address' => $request->address,
-            'nationality' => $request->nationality,
+            'nationality' => ucfirst($request->nationality),
             'passport_checked' => isset($request->passport_checked)
         ]);
 

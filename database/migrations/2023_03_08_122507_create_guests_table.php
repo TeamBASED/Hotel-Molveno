@@ -19,9 +19,10 @@ return new class extends Migration
             $table->tinyText('last_name');
             $table->foreignId('contact_id')->nullable();
             $table->tinyText('nationality');
-            $table->tinyText('id_number');
+            $table->tinyText('passport_number');
             $table->date('date_of_birth');
-            $table->boolean("checked_in");
+            $table->boolean('passport_checked');
+            $table->boolean('checked_in')->nullable();
             $table->timestamps();
         });
     }

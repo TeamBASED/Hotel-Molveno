@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class GuestController extends Controller
 {
+    public function viewEditGuest(Reservation $reservation, Guest $guest){
+        return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
+    }
+
+    public function viewAddGuest(int $id) {
+        $reservation = Reservation::getReservationData($id);
+        
+        return view('guest.create', ['reservation' => $reservation]);
+    }
 
     public function handleCreateGuest (int $reservationId, Request $request) {
         $this->validateGuest($request);
@@ -18,24 +27,12 @@ class GuestController extends Controller
         return redirect(route('guest.create',['id' => $reservationId]));
     }
     
-    public function handleUpdateGuest(Request $request) {
+    public function handleUpdateGuest(Request $request, Reservation $reservation, Guest $guest) {
         $this->validateGuest($request);
 
-        $this->updateGuest($request);
+        $this->updateGuest($request, $guest);
 
         return redirect(route('reservation.info',['id' => $request->reservation_id]));
-    }
-
-    public function viewEditGuest(Reservation $reservation, Guest $guest){
-        return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
-    }
-
-    public function viewAddGuest(int $id) {
-
-        $reservation = Reservation::getReservationData($id);
-        
-        // dd($reservation);
-        return view('guest.create', ['reservation' => $reservation]);
     }
 
     private function validateGuest(Request $request) {
@@ -43,13 +40,13 @@ class GuestController extends Controller
         // $existingReservations = Reservation::getReservationDataByRoomId($request->room);
         // dd($existingReservations);
         $validator = Validator::make($request->all(), [
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'contact_id' => 'nullable',
             'nationality' => 'required|string',
             'passport_number' => 'required|string',
             'dateofbirth' => 'required|date',
-            'checked_in' => 'nullable',   
+            'passport_checked' => 'nullable',   
         ]);
 
         if ($validator->fails()) {
@@ -61,10 +58,10 @@ class GuestController extends Controller
 
     private function updateGuest(Request $request, Guest $guest) {
         $guest->update([
-            'first_name' => ucfirst($request->firstname),
-            'last_name' => ucfirst($request->lastname),
+            'first_name' => ucfirst($request->first_name),
+            'last_name' => ucfirst($request->last_name),
             'nationality' => ucfirst($request->nationality),
-            'passpord_number' => $request->passport_number,
+            'passport_number' => $request->passport_number,
             'date_of_birth' => $request->date_of_birth,
             'passport_checked' => isset($request->passport_checked)
         ]);
