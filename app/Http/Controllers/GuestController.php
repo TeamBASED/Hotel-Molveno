@@ -67,7 +67,7 @@ class GuestController extends Controller
 
     private function storeGuest(request $request, int $reservationId) {
         // dd($request);
-        $checked_in = $request->has('checked_in') ? 1 : 0;
+        $passport_cecked = $request->has('checked_in') ? 1 : 0;
         $guest = Guest::create([
             'first_name' => ucfirst($request->firstname),
             'last_name' => ucfirst($request->lastname),
@@ -75,7 +75,7 @@ class GuestController extends Controller
             'id_number' => $request->passport_number,
             'date_of_birth' => $request->date_of_birth,
             'contact_id' => $request->contact_id,
-            'checked_in' => $checked_in,
+            'passport_checked' => $passport_cecked,
         ]);
 
         $guest->reservation()->sync($reservationId);

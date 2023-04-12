@@ -17,6 +17,7 @@ class Guest extends Model
         'date_of_birth',
         'contact_id',
         'checked_in',
+        'passport_checked',
 
     ];
 

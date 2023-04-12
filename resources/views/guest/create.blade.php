@@ -48,12 +48,12 @@
                 </div>
 
                 <div class="flex-space-between">
-                    <label for="checked_in">Checked in?</label>
-                    <input type="checkbox" name="checked_in" id="checked_in">
+                    <label for="checked_in">Passport checked?</label>
+                    <input type="checkbox" name="passport_checked" id="passport_checked">
                 </div>
 
                 @if (isset($_GET['showContact']))
-                    <input type="text" value="{{ $reservation->contact->id }}" name="contact_id">
+                    <input type="text" value="{{ $reservation->contact->id }}" name="contact_id" hidden>
                 @endif
 
                 <div class="flex-flex-end">
