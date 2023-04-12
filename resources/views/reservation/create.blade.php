@@ -11,10 +11,11 @@
         @endif
         <h2>Create reservation</h2>
         <div class="margin-block">
-            <form action="{{ route('reservation.store') }}" method="POST" id="reservation-form" class="flex-column padding-block-1rem">
+            <form action="{{ route('reservation.store') }}" method="POST" id="reservation-form"
+                class="flex-column padding-block-1rem">
                 @csrf
                 <div class="flex-space-between">
-                    <input type="hidden" required name="room" value="{{ isset($room) ? $room->id : ''}}">
+                    <input type="hidden" required name="room" value="{{ isset($room) ? $room->id : '' }}">
                     <div id="input-box" class="flex-column padding-block-1rem">
                         <div class="flex-column">
                             <input type="text" class="input-text" required placeholder="First Name" name="firstname" value="{{ isset($contact) ? $contact->first_name : ''}}">
@@ -36,8 +37,9 @@
                     <x-room.infobox :room="$room" />
                 </div>
                 <div id="button-box" class="flex-space-between">
-                    <x-buttons.primary-button :href="route('room.overview')" class="button gray-background flex-center-center">Cancel</x-buttons.primary-button>
-                    <x-buttons.primary-button type="submit">Save</x-buttons.primary-button>
+                    <x-buttons.primary-button :href="route('room.overview')" class="button gray-background flex-center-center">Cancel
+                    </x-buttons.primary-button>
+                    <x-buttons.primary-button type="submit">Next</x-buttons.primary-button>
                 </div>
             </form>
             <script>

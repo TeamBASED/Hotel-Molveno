@@ -1,15 +1,18 @@
     .button {
+        display: inline-block;
+        text-align: center;
         font-weight: 600;
+        padding: .4rem 2rem;
+    }
+
+    .static-size {
         height: 45px;
         width: 150px;
     }
 
-
     .primary-button {
-        display: inline-block;
         background-color: $color-700;
         color: $color-white;
-        padding: 5px 26px;
 
         // &:hover {
         // what should hover status do?
@@ -17,11 +20,8 @@
     }
 
     .secondary-button {
-        display: inline-block;
-        background-color: $color-white;
-        color: $font-color;
-        padding: 5px 26px;
-        border: $color-700 3px solid;
+        background-color: $color-grey-300;  
+        color: $color-700;
 
         // &:hover {
         // what should hover status do?
@@ -29,14 +29,17 @@
     }
 
     .tertiary-button {
-        display: inline-block;
-        background-color: $color-white;
-        color: $font-color;
-        padding: 5px 26px;
+        background-color: inherit;
+        color: $color-700;
 
         // &:hover {
         // what should hover status do?
         // }
+        
+
+        &.warning {
+            color: #e24b4b;
+        }
     }
 
     .edit-button {
