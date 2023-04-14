@@ -27,9 +27,10 @@ Route::get('/dashboard', function () {
 
 // User logged in
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // User routes
+    Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
+    Route::get('register', [UserController::class, 'create'])->name('register');
+    Route::post('register', [UserController::class, 'store']);
 
     // for now redirect, this should be home page
     Route::get('/', function () {
@@ -65,8 +66,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
     Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
 });
-
-// User routes
-Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
 
 require __DIR__.'/auth.php';
