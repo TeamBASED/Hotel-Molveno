@@ -28,7 +28,7 @@
                         <p class="right-aligned">{{ $reservation->date_of_departure }}</p>
                     </div>
 
-                    <x-buttons.primary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.primary-button>
+                    <x-buttons.secondary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.secondary-button>
                 </section>
 
                 <x-buttons.primary-button :href="route('reservation.overview')">Back</x-buttons.primary-button>
