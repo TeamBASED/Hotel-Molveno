@@ -14,31 +14,50 @@ class RoomController extends Controller
 {
 
     public function viewRoomInfo(int $id, Request $request) {
-        if ($request->user()->can('viewAny', Room::class)) {
+        
+        // dd($this->authorize('view', [$request->user(), Room::class]));
+        // if ($request->user()->can('view', [$request->user(), Room::class])) {
+        //     $room = Room::getRoomData($id);
+        //     return view('room.info', ['room' => $room]);
+        // } else {
+        //     return redirect(route('room.overview'));
+        // }
+
+        if ($this->authorize('view', [$request->user])) {
             $room = Room::getRoomData($id);
-            return view('room.info', ['room' => $room]);
-        } else {
-            // return view('room.overview');
-        }
+            return view('room.info', ['room' => $room]); 
+            } else {
+                return redirect(route('room.overview'));
+            }
     }
 
     public function viewRoomOverview(Request $request) {
-        $rooms = $this->filterRoomResults($request);
-        $roomTypes = RoomType::get();
-        $roomViews = RoomView::get();
-        return view('room.overview', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
+        if ($request->user()->can('viewAny', Room::class)) {
+            $rooms = $this->filterRoomResults($request);
+            $roomTypes = RoomType::get();
+            $roomViews = RoomView::get();
+            return view('room.overview', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
+        } else {
+            echo 'This page is unavailable'; //Homepage?
+        }
     }
 
-    public function viewRoomEdit(int $id) {
-        $roomTypes = RoomType::get();
-        $roomViews = RoomView::get();
-        $room = Room::getRoomData($id);
+    public function viewRoomEdit(int $id, Request $request) {
+        // dd($request->user());
+        if ($request->user()->can('update', User::class, Room::class)) {
 
-        $bedConfigController = new RoomBedConfigurationController();
-        $singleBeds = $bedConfigController->getAmountOfBedConfiguration($id, 'single');
-        $doubleBeds = $bedConfigController->getAmountOfBedConfiguration($id, 'double');
+            $roomTypes = RoomType::get();
+            $roomViews = RoomView::get();
+            $room = Room::getRoomData($id);
 
-        return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room, 'singleBeds' => $singleBeds, 'doubleBeds' => $doubleBeds]);
+            $bedConfigController = new RoomBedConfigurationController();
+            $singleBeds = $bedConfigController->getAmountOfBedConfiguration($id, 'single');
+            $doubleBeds = $bedConfigController->getAmountOfBedConfiguration($id, 'double');
+
+            return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room, 'singleBeds' => $singleBeds, 'doubleBeds' => $doubleBeds]);
+        } else {
+            return redirect(route('room.overview'));
+        }
     }
 
     public function viewRoomCreate() {

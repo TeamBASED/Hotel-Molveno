@@ -39,15 +39,14 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Room $room)
+    public function view(User $user) : bool
     {
-        if ($title === "owner" || 
+        $title = $user->role->title;
+            return ($title === "owner" || 
             $title === "hotel manager" ||
             $title === "head-housekeeping" ||
             $title === "housekeeping" ||
-            $title === "reception") {
-                return $title;
-            }
+            $title === "reception");
     }
 
     /**
@@ -58,9 +57,13 @@ class RoomPolicy
      */
     public function create(User $user, Room $room)
     {
+        $title = $user->role->title;
         if ($title === "owner" || 
             $title === "hotel manager") {
-                return $title;
+                return true;
+            } 
+            else {
+                return false;
             }
     }
 
@@ -73,10 +76,13 @@ class RoomPolicy
      */
     public function update(User $user, Room $room)
     {
-        // dd($user->role);
+        $title = $user->role->title;
         if ($title === "owner" || 
             $title === "hotel manager") {
-                return $title;
+                return true;
+            } 
+            else {
+                return false;
             }
     }
 
@@ -89,9 +95,13 @@ class RoomPolicy
      */
     public function delete(User $user, Room $room)
     {
+        $title = $user->role->title;
         if ($title === "owner" || 
             $title === "hotel manager") {
-                return $title;
+                return true;
+            } 
+            else {
+                return false;
             }
     }
 
@@ -104,9 +114,13 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room)
     {
+        $title = $user->role->title;
         if ($title === "owner" || 
             $title === "hotel manager") {
-                return $title;
+                return true;
+            } 
+            else {
+                return false;
             }
     }
 
