@@ -27,7 +27,14 @@ class UserController extends Controller
     {
         $roles = Role::getAllRoleData();
 
-        return view('auth.register', ['roles' => $roles]);
+        return view('user.register', ['roles' => $roles]);
+    }
+
+    public function edit(int $id): View
+    {
+        $roles = Role::getAllRoleData();
+
+        return view('user.register', ['roles' => $roles]);
     }
 
     /**
@@ -35,16 +42,8 @@ class UserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
-    {
-        
-        $request->validate([
-            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'int'],
-        ]);
+    public function store(Request $request): RedirectResponse {
+        $this->validateUser($request);
 
         $user = User::create([
             'username' => $request->username,
@@ -60,6 +59,30 @@ class UserController extends Controller
         
         // return redirect(RouteServiceProvider::HOME);
 
-        return redirect(route('room.overview'));
+        return redirect(route('user.overview'));
+    }
+
+    public function update(Request $request, User $user): RedirectResponse {
+        $this->validateUser($request);
+
+        $user->update([
+            'username' => $request->username,
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role,
+        ]);
+
+        return redirect(route('user.overview'));
+    }
+
+    private function validateUser(Request $request){
+        $request->validate([
+            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => ['required', 'int'],
+        ]);
     }
 }

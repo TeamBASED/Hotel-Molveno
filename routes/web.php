@@ -29,8 +29,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     // User routes
     Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
-    Route::get('register', [UserController::class, 'create'])->name('register');
-    Route::post('register', [UserController::class, 'store']);
+    Route::get('/user/register', [UserController::class, 'create'])->name('user.register');
+    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/edit', [UserController::class, 'create'])->name('user.edit');
+    Route::post('/user/update', [UserController::class, 'store'])->name('user.update');
 
     // for now redirect, this should be home page
     Route::get('/', function () {

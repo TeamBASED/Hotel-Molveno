@@ -4,7 +4,7 @@
             <div id="heading-container">
                 <h2>Register User</h2>
             </div>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('user.store') }}">
                 @csrf
 
                 <!-- Name -->
