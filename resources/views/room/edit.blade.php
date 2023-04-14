@@ -14,14 +14,16 @@
         <div class="three-column-mid-stretch padding-inline-5rem">
             <div class="blank"></div>
             <h2>Edit room</h2>
-            <form action="{{ route('room.delete', $room->id) }}" method="POST" class="flex-flex-end flex-align-center">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="id" value="{{ $room->id }}">
-                <x-buttons.primary-button class="button gray-background right-aligned flex-center-center"
-                    onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete
-                </x-buttons.primary-button>
-            </form>
+
+
+            <x-buttons.primary-button class="button gray-background right-aligned flex-center-center" id="delete-button">
+                Delete
+            </x-buttons.primary-button>
+
+            <x-delete-confirmation :removeId='$room->id' removalRoute='room.delete'></x-delete-confirmation>
+
+
+
             <div class="blank"></div>
             <form action="{{ route('room.update', $room->id) }}" method="POST"
                 class="edit-room-form grid-three-columns">
@@ -75,7 +77,8 @@
                 </div>
 
                 <div class="flex-space-between grid-span-3">
-                    <x-buttons.primary-button :href="route('room.info', $room->id)" class="button gray-background flex-center-center">Cancel
+                    <x-buttons.primary-button :href="route('room.info', $room->id)" class="button gray-background flex-center-center">
+                        Cancel
                     </x-buttons.primary-button>
                     <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
                 </div>

@@ -19,7 +19,7 @@
     }
 
     .secondary-button {
-        background-color: $color-grey-300;  
+        background-color: $color-grey-300;
         color: $color-700;
 
         // &:hover {
@@ -45,4 +45,14 @@
         // &:hover {
         // what should hover status do?
         // }
+    }
+
+    .delete-confirmation {
+        position: absolute;
+        background-color: white;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
     }
