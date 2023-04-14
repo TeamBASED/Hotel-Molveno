@@ -14,21 +14,12 @@ class RoomController extends Controller
 {
 
     public function viewRoomInfo(int $id, Request $request) {
-        
-        // dd($this->authorize('view', [$request->user(), Room::class]));
-        // if ($request->user()->can('view', [$request->user(), Room::class])) {
-        //     $room = Room::getRoomData($id);
-        //     return view('room.info', ['room' => $room]);
-        // } else {
-        //     return redirect(route('room.overview'));
-        // }
-
-        if ($this->authorize('view', [$request->user])) {
+        if ($request->user()->can('view', [Room::class])) {
             $room = Room::getRoomData($id);
-            return view('room.info', ['room' => $room]); 
-            } else {
-                return redirect(route('room.overview'));
-            }
+            return view('room.info', ['room' => $room]);
+        } else {
+            return redirect(route('room.overview'));
+        }
     }
 
     public function viewRoomOverview(Request $request) {
