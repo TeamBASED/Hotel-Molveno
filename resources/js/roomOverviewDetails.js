@@ -15,6 +15,7 @@ const detailsView = document.querySelector('#details-view');
 const detailsCleaningStatus = document.querySelector('#details-cleaning-status');
 
 const detailsInfoButton = document.querySelector('#details-info-button');
+const detailsReserveButton = document.querySelector('#details-reservation-button');
 
 // Methods
 
@@ -41,7 +42,8 @@ function handleRoomSelect(room) {
     
     setRoomDetails(roomDetails);
 
-    detailsInfoButton.pathname = getPathName(roomDetails.id);
+    detailsInfoButton.pathname = getPathToRoomInfo(roomDetails.id);
+    detailsReserveButton.pathname = getPathToReservationContact(roomDetails.id);
 }
 
 function setRoomDetails(data) {
@@ -49,7 +51,7 @@ function setRoomDetails(data) {
     setElementText(detailsType, data.room_type.type);
     setElementText(detailsPricePerNight, data.base_price_per_night);
     setElementText(detailsCapacity, data.capacity);
-    setElementText(detailsView, data.room_view.type);
+    setElementText(detailsView, data.room_view.view);
     setElementText(detailsCleaningStatus, data.cleaning_status.status);
     updateBedConfiguration(data.bed_configurations);
 }
@@ -68,8 +70,12 @@ function setElementText(element, text) {
     element.innerText = text;
 }
 
-function getPathName(id) {
+function getPathToRoomInfo(id) {
     return `/room/${id}/info`;
+}
+
+function getPathToReservationContact(id) {
+    return `/reservation/${id}/contact`;
 }
 
 function buildBedConfigurationRow(bedType, amount) {

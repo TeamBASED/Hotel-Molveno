@@ -1,14 +1,22 @@
 <x-layout.base>
-    <main id="reservation-edit">
-        <div class="flex-container">
-            <form action="{{ route('reservation.update', $reservation->id) }}" method="POST" class="form-1">
-                @csrf
-                @method('PATCH')
+    <main id="reservation-edit" class="main-content">
+        <div class="padding-inline-5rem">
+            <div class="crud-header">
+                <h2>Edit reservation</h2>
+                <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST" class="absolute-right">
+                    @csrf
+                    @method('DELETE')
+                    <x-buttons.tertiary-button class="warning">Delete</x-buttons.tertiary-button>
+                </form>
+            </div>
 
-                {{-- {{ dd($reservation) }} --}}
-                <h2>Edit Reservation</h2>
-                <div class="grid-two-columns">
-                    <div class="left flex-column flex-center">
+            <div class="flex-space-between">
+                <form action="{{ route('reservation.update', $reservation->id) }}" method="POST"
+                    class="form-1 grid-two-columns" id="edit-form">
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="left flex-column">
 
                         <h3>Firstname</h3>
                         <input type="text" class="input-text" required
@@ -48,13 +56,11 @@
                         @endforeach
                         <input type="text" class="input-text" placeholder="add room" name="room[]"> --}}
 
-                        <x-buttons.primary-button class="button bluebg">Confirm changes</x-buttons.primary-button>
-
                     </div>
                     <div>
                         <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
                     </div>
-                </div>
+            </div>
 
             </form>
             <div class="right">
@@ -65,11 +71,19 @@
                         onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete
                     </x-buttons.primary-button>
                 </form>
-                @foreach ($rooms as $room)
-                    <x-room.infobox :room="$room" />
-                @endforeach
-                <x-buttons.primary-button :href="route('reservation.info', $reservation->id)" class="button graybg">Cancel</x-buttons.primary-button>
-            </div>
-    </main>
 
+                <div class="right">
+                    @foreach ($rooms as $room)
+                        <x-room.infobox :room="$room" />
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="bottom-buttons flex-space-between">
+                <x-buttons.secondary-button :href="route('reservation.info', $reservation->id)">Cancel</x-buttons.secondary-button>
+                <x-buttons.primary-button form="edit-form">Save</x-buttons.primary-button>
+            </div>
+
+        </div>
+    </main>
 </x-layout.base>
