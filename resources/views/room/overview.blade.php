@@ -122,8 +122,8 @@
             </div>
             
             <div class="bottom-buttons">
-                <!-- <x-buttons.secondary-button id="details-reservation-button">Make reservation</x-buttons.secondary-button> -->
                 <x-buttons.secondary-button id="details-info-button" :href="route('room.info', ['room' => 1])">Open room info</x-buttons.secondary-button>
+                <x-buttons.secondary-button id="details-reservation-button" :href="route('reservation.contact', ['id' => 1])">Make reservation</x-buttons.secondary-button>
             </div>
 
             <p id="select-room-message">Click a room to view details.</p>

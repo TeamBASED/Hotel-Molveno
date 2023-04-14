@@ -53,7 +53,7 @@ class ReservationController extends Controller {
 
         $this->handleReservationRoom($request, $reservation);
 
-        return redirect(route('guest.create'));
+        return redirect(route('guest.create',['id' => $reservation->id]));
     }
 
     private function validateCreateReservation(request $request) {
