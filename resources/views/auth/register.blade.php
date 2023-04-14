@@ -47,7 +47,7 @@
                 </div>
 
                 <div>
-                    <x-input-label for="password_confirmation" :value="__('Role:')" />
+                    <x-input-label for="role" :value="__('Role:')" />
                     <select class="dropdown-select" name="role" required>
                         @foreach ($roles as $option)
                             <option class="filter-field-option" value="{{$option->id}}" 
