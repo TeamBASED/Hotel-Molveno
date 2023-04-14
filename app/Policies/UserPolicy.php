@@ -18,12 +18,8 @@ class UserPolicy
     public function viewAny(User $user)
     {
         $title = $user->role->title;
-
         return ($title === "owner" || 
-            $title === "hotel manager" ||
-            $title === "head-housekeeping" ||
-            $title === "housekeeping" ||
-            $title === "reception");
+            $title === "hotel manager");
     }
 
     /**
