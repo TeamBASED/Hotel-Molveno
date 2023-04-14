@@ -55,7 +55,7 @@ class RoomPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user, Room $room)
+    public function create(User $user)
     {
         $title = $user->role->title;
         if ($title === "owner" || 
@@ -74,7 +74,7 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Room $room)
+    public function update(User $user)
     {
         $title = $user->role->title;
         if ($title === "owner" || 
@@ -93,7 +93,7 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Room $room)
+    public function delete(User $user)
     {
         $title = $user->role->title;
         if ($title === "owner" || 
@@ -112,7 +112,7 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Room $room)
+    public function restore(User $user)
     {
         $title = $user->role->title;
         if ($title === "owner" || 
@@ -131,7 +131,7 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Room $room)
+    public function forceDelete(User $user)
     {
         //
     }

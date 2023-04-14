@@ -12,9 +12,8 @@ use Illuminate\Http\RedirectResponse;
 
 class RoomController extends Controller
 {
-
     public function viewRoomInfo(int $id, Request $request) {
-        if ($request->user()->can('view', [Room::class])) {
+        if ($request->user()->can('viewAny', Room::class)) {
             $room = Room::getRoomData($id);
             return view('room.info', ['room' => $room]);
         } else {
@@ -34,8 +33,7 @@ class RoomController extends Controller
     }
 
     public function viewRoomEdit(int $id, Request $request) {
-        // dd($request->user());
-        if ($request->user()->can('update', User::class, Room::class)) {
+        if ($request->user()->cannot('update', Room::class)) {
 
             $roomTypes = RoomType::get();
             $roomViews = RoomView::get();
@@ -47,15 +45,18 @@ class RoomController extends Controller
 
             return view('room.edit', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'room' => $room, 'singleBeds' => $singleBeds, 'doubleBeds' => $doubleBeds]);
         } else {
-            return redirect(route('room.overview'));
+            return redirect(route('room.info', $id));
         }
     }
 
-    public function viewRoomCreate() {
-        $roomTypes = RoomType::get();
-        $roomViews = RoomView::get();
-        
-        return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+    public function viewRoomCreate(Request $request) {
+        if ($request->user()->can('create', Room::class)) {
+            $roomTypes = RoomType::get();
+            $roomViews = RoomView::get();
+            return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
+        } else {
+            return redirect(route('room.overview'));
+        }
     }
 
     public function handleCreateRoom(Request $request) {
