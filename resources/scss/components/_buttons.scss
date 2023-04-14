@@ -35,7 +35,7 @@
         // &:hover {
         // what should hover status do?
         // }
-        
+
 
         &.warning {
             color: #e24b4b;
@@ -60,5 +60,5 @@
         top: 50%;
         transform: translate(-50%, -50%);
 
-        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.75);
     }

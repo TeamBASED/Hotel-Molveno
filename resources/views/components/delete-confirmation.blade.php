@@ -20,16 +20,19 @@
 
         <input type="hidden" name="id" value="{{ $removeId }}">
         <label for="password">Please fill in your password:</label>
-        <input type="text" name="password" id="password" class="input-text">
+        <x-text-input id="password" type="password" name="password" placeholder="Password" required
+            autocomplete="current-password" form="delete-confirmation-form" />
+
+        <x-input-error :messages="$errors->get('password')" />
         <div class="flex-space-around margin-block">
-            <x-buttons.primary-button class="button gray-background flex-center-center" id="cancel-delete">
+            <x-buttons.secondary-button id="cancel-delete">
                 Cancel
-            </x-buttons.primary-button>
-            <form action="{{ route($removalRoute, $removeId) }}" method="POST" id="delete-confirmation">
+            </x-buttons.secondary-button>
+            <form action="{{ route($removalRoute, $removeId) }}" method="POST" id="delete-confirmation-form">
                 @csrf
                 @method('DELETE')
-                <x-buttons.primary-button class="button gray-background right-aligned flex-center-center">Delete
-                </x-buttons.primary-button>
+                <x-buttons.tertiary-button class="warning">Delete
+                </x-buttons.tertiary-button>
             </form>
         </div>
     </div>
