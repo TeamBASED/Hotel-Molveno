@@ -11,12 +11,14 @@
                     <div class="grid-two-columns margin-block">
                         <h4>Room no.&colon;</h4>
                         <p class="right-aligned"> {{ $room->room_number }}</p>
+                        <h4>Type&colon;</h4>
+                        <p class="right-aligned"> {{ $room->roomType->type }}</p>
                         <h4>Capacity&colon;</h4>
                         <p class="right-aligned">{{ $room->capacity }}</p>
                         <h4>Price per night&colon;</h4>
                         <p class="right-aligned"> {{ $room->base_price_per_night }}</p>
                         <h4>View&colon;</h4>
-                        <p class="right-aligned"> {{ $room->roomView->type }}</p>
+                        <p class="right-aligned"> {{ $room->roomView->view }}</p>
 
                         <h4>Beds&colon;</h4>
                         <div class="right-aligned">

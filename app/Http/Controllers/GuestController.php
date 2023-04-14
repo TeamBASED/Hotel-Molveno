@@ -56,6 +56,12 @@ class GuestController extends Controller
         }
     }
 
+    public function deleteGuest(Reservation $reservation, Guest $guest){
+        $guest->delete();
+
+        return redirect(route('reservation.info',['id' => $reservation->id]));
+    }
+
     private function updateGuest(Request $request, Guest $guest) {
         $guest->update([
             'first_name' => ucfirst($request->first_name),

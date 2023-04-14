@@ -29,14 +29,16 @@
                     <input id="double-bed-configuration" type="number" class="input-text" required name="doubleBeds"
                         value="0">
                 </div>
-                <div class="flex-column padding-block-1rem">
+
+                <div class="flex-column">
                     <div class="flex-space-between">
                         <label for="baby-bed">Baby bed possible:</label>
                         <input type="checkbox" class="input-text" name="babybed" value="1">
                     </div>
                     <textarea class="input-text flex-grow-1" id="room-edit-description" placeholder="Room description" name="description"></textarea>
                 </div>
-                <div class="flex-column padding-block-1rem">
+
+                <div class="flex-column">
                     <select class="dropdown-select" name="type" required>
                         @foreach ($roomTypes as $option)
                             <option class="filter-field-option" value="{{ $option->id }}">{{ $option->type }}</option>
@@ -49,12 +51,10 @@
                     </select>
                 </div>
 
-
-
-            <div class="flex-space-between grid-span-3">
-                <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
-                <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
-            </div>
+                <div class="flex-space-between grid-span-3">
+                    <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
+                    <x-buttons.primary-button class="button">Save</x-buttons.primary-button>
+                </div>
         </form>
 
     </main>
