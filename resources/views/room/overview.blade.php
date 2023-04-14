@@ -3,7 +3,7 @@
     <x-slot:resources>
         @vite('resources/js/roomOverviewDetails.js')
     </x-slot>
-
+        
     <main class="main-content" id="room-overview">
         <div class="left-side">
             <form class="filter-section" action="{{ route('room.overview') }}" method="GET">
@@ -129,4 +129,5 @@
             <p id="select-room-message">Click a room to view details.</p>
         </div>
     </main>
+
 </x-layout.base> 
