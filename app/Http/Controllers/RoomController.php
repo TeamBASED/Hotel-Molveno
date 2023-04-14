@@ -33,7 +33,7 @@ class RoomController extends Controller
     }
 
     public function viewRoomEdit(int $id, Request $request) {
-        if ($request->user()->cannot('update', Room::class)) {
+        if ($request->user()->can('update', Room::class)) {
 
             $roomTypes = RoomType::get();
             $roomViews = RoomView::get();
