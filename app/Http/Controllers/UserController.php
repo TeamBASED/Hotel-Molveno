@@ -17,24 +17,24 @@ class UserController extends Controller
 {
     public function viewUserOverview () {
         $users = User::getAllUserData();
+
         return view('user.overview', ['users' => $users]);
     }
 
     /**
      * Display the registration view.
      */
-    public function create(): View
-    {
+    public function create(): View {
         $roles = Role::getAllRoleData();
 
         return view('user.register', ['roles' => $roles]);
     }
 
-    public function edit(int $id): View
-    {
+    public function edit(int $userId): View {
+        $user = User::getUserById($userId);
         $roles = Role::getAllRoleData();
 
-        return view('user.register', ['roles' => $roles]);
+        return view('user.edit', ['user' => $user,'roles' => $roles]);
     }
 
     /**
@@ -54,10 +54,6 @@ class UserController extends Controller
         ]);
 
         event(new Registered($user));
-
-        // for now return to room overview
-        
-        // return redirect(RouteServiceProvider::HOME);
 
         return redirect(route('user.overview'));
     }

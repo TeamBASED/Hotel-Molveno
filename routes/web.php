@@ -31,8 +31,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
     Route::get('/user/register', [UserController::class, 'create'])->name('user.register');
     Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/user/edit', [UserController::class, 'create'])->name('user.edit');
-    Route::post('/user/update', [UserController::class, 'store'])->name('user.update');
+    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::patch('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
 
     // for now redirect, this should be home page
     Route::get('/', function () {

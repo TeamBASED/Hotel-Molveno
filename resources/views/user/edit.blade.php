@@ -1,27 +1,27 @@
 <x-layout.base>
-    <main id="user-register-page" class="main-content">
+    <main id="user-edit-page" class="main-content">
         <section id="form-container">
             <div id="heading-container">
-                <h2>Register User</h2>
+                <h2>Edit User</h2>
             </div>
-            <form method="POST" action="{{ route('user.store') }}">
+            <form method="POST" action="{{ route('user.update', ['user' => $user->id]) }}">
                 @csrf
-
+                @method('PATCH')
                 <!-- Name -->
                 <div>
-                    <x-text-input id="username" placeholder="Username" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+                    <x-text-input id="username" placeholder="Username" type="text" name="username" :value="old('username', $user->username)" required autofocus autocomplete="username" />
                     <x-input-error :messages="$errors->get('username')" />
                 </div>
 
                 <!-- Email Address -->
 
                 <div>
-                    <x-text-input id="firstname" placeholder="Firstname" type="text" name="firstname" :value="old('firstname')" required autocomplete="firstname" />
+                    <x-text-input id="firstname" placeholder="Firstname" type="text" name="firstname" :value="old('firstname', $user->first_name)" required autocomplete="firstname" />
                     <x-input-error :messages="$errors->get('firstname')" />
                 </div>
 
                 <div>
-                    <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname" :value="old('lastname')" required autocomplete="lastname" />
+                    <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname" :value="old('lastname', $user->last_name)" required autocomplete="lastname" />
                     <x-input-error :messages="$errors->get('lastname')" />
                 </div>
 
@@ -31,6 +31,7 @@
                                     placeholder="Password"
                                     type="password"
                                     name="password"
+                                    {{-- :value="old('password', $user->password)" --}}
                                     required autocomplete="new-password" />
 
                     <x-input-error :messages="$errors->get('password')" />
@@ -41,7 +42,9 @@
                     <x-text-input id="password_confirmation"
                                     placeholder="Confirm Password"
                                     type="password"
-                                    name="password_confirmation" required autocomplete="new-password" />
+                                    name="password_confirmation" 
+                                    {{-- :value="old('password_confirmation', $user->password)" --}}
+                                    required autocomplete="new-password" />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" />
                 </div>
@@ -51,7 +54,7 @@
                     <select class="dropdown-select" name="role" required>
                         @foreach ($roles as $option)
                             <option class="filter-field-option" value="{{$option->id}}" 
-                                @if ($option->id == old('role'))
+                                @if ($option->id == old('role', $user->role_id))
                                     selected="selected"
                                 @endif
                                 >{{$option->title}}</option>
@@ -65,7 +68,7 @@
                         {{ __('Already registered?') }}
                     </a> --}}
                     <x-primary-button>
-                        {{ __('Register') }}
+                        {{ __('Confirm Changes') }}
                     </x-primary-button>
                 </div>
             </form>
