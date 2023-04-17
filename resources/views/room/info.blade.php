@@ -34,7 +34,9 @@
                         <p class="grid-span-2"> {{ $room->description }}</p>
                     </div>
 
+                    @can('update', $room)
                     <x-buttons.secondary-button :href="route('room.edit', ['id' => $room->id])">Edit</x-buttons.secondary-button>
+                    @endcan
 
                 </section>
 

@@ -2,20 +2,21 @@
 
 namespace App\Providers;
 
+use App\Models\Reservation;
+use App\Policies\ReservationPolicy;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Room;
 use App\Policies\RoomPolicy;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
-{
+class AuthServiceProvider extends ServiceProvider {
     /**
      * The model to policy mappings for the application.
      *
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 
+        Reservation::class => ReservationPolicy::class,
     ];
 
     /**
@@ -23,8 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         $this->registerPolicies();
     }
 }

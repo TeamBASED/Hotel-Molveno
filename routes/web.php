@@ -31,9 +31,12 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 
 // User logged in
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // User routes
+    Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
+    Route::get('/user/register', [UserController::class, 'viewUserRegister'])->name('user.register');
+    Route::post('/user/store', [UserController::class, 'handleUserRegister'])->name('user.store');
+    Route::get('/user/{user}/edit', [UserController::class, 'viewUserEdit'])->name('user.edit');
+    Route::patch('/user/{user}/update', [UserController::class, 'handleUserUpdate'])->name('user.update');
 
     // for now redirect, this should be home page
     Route::get('/', function () {
@@ -70,7 +73,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
 });
 
-// User routes
-Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
