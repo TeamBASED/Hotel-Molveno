@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class UserPolicy {
     use HandlesAuthorization;
@@ -48,9 +49,8 @@ class UserPolicy {
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
-     * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, User $model) {
+    public function update(User $user, User $model) { //$user = huidige ingelogde user, $model = huidig aangeroepen model
         $title = $user->role->title;
         if ($user->id === $model->id) {
             return true;
@@ -85,14 +85,14 @@ class UserPolicy {
         return ($title === "owner" || $title === "hotel manager");
     }
 
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, User $model) {
-        //
-    }
+/**
+ * Determine whether the user can permanently delete the model.
+ *
+ * @param  \App\Models\User  $user
+ * @param  \App\Models\User  $model
+ * @return \Illuminate\Auth\Access\Response|bool
+ */
+// public function forceDelete(User $user, User $model) {
+//     //
+// }
 }

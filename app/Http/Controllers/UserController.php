@@ -15,30 +15,36 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller {
-    public function viewUserOverview(Request $request) {
+    public function viewUserOverview(Request $request): View {
         if ($request->user()->can('viewAny', User::class)) {
             $users = User::getAllUserData();
             return view('user.overview', ['users' => $users]);
         } else {
-            //TODO: redirect toevoegen.
-            echo ("Deze pagina is niet beschikbaar");
+            //TODO: redirect naar homepage toevoegen.
+            dd("Deze pagina is niet beschikbaar");
         }
     }
 
     /**
      * Display the registration view.
      */
-    public function create(): View {
-        $roles = Role::getAllRoleData();
-
-        return view('user.register', ['roles' => $roles]);
+    public function create(Request $request) {
+        if ($request->user()->can('viewAny', User::class)) {
+            $roles = Role::getAllRoleData();
+            return view('user.register', ['roles' => $roles]);
+        } else {
+            return redirect(route('user.overview'));
+        }
     }
 
-    public function edit(int $userId): View {
+    public function edit(int $userId, Request $request) {
         $user = User::getUserById($userId);
-        $roles = Role::getAllRoleData();
-
-        return view('user.edit', ['user' => $user, 'roles' => $roles]);
+        if ($request->user()->can('update', $user)) {
+            $roles = Role::getAllRoleData();
+            return view('user.edit', ['user' => $user, 'roles' => $roles]);
+        } else {
+            return redirect(route('user.overview'));
+        }
     }
 
     /**

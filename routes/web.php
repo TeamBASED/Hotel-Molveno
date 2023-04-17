@@ -2,6 +2,7 @@
 
 use App\Models\Room;
 use App\Models\User;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
