@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function viewContactVerify(Request $request){
-        return view('reservation.contact', ['roomId' => $request->roomId]);
+    public function viewContactVerify(int $roomId){
+        return view('reservation.contact', ['roomId' => $roomId]);
     }
 
     public function handleVerification(Request $request){

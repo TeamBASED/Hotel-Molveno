@@ -1,7 +1,8 @@
     .button {
         display: inline-block;
+        text-align: center;
         font-weight: 600;
-        padding: .6rem 2rem;
+        padding: .4rem 2rem;
     }
 
     .static-size {
@@ -34,6 +35,11 @@
         // &:hover {
         // what should hover status do?
         // }
+        
+
+        &.warning {
+            color: #e24b4b;
+        }
     }
 
     .edit-button {
