@@ -16,8 +16,4 @@ class ReservationRoom extends Model {
     public static function getAllReservationRoomData() {
         return ReservationRoom::get();
     }
-
-    public static function deleteReservationRoomData($reservation_id) {
-        $deleted = ReservationRoom::where('reservation_id', $reservation_id)->delete();
-    }
 }

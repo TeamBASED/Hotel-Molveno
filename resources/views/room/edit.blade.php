@@ -10,17 +10,19 @@
             </div>
         @endif
 
+        @if (isset($_GET['notification']))
+            <p class="notification">{{ $_GET['notification'] }}</p>
+        @endif
+
+
+
 
         <div class="padding-inline-5rem">
             <div class="crud-header flex-center-center">
                 <h2>Edit room</h2>
-                <form action="{{ route('room.delete', $room->id) }}" method="POST"
-                    class="absolute-right">
-                    @csrf
-                    @method('DELETE')
-                    <input type="hidden" name="id" value="{{ $room->id }}">
-                    <x-buttons.tertiary-button class="warning">Delete</x-buttons.tertiary-button>
-                </form>
+                <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
+                </x-buttons.tertiary-button>
+                <x-delete-confirmation :removeId='$room->id' removalRoute='room.delete'></x-delete-confirmation>
             </div>
 
             <form action="{{ route('room.update', $room->id) }}" method="POST"
@@ -54,6 +56,9 @@
                     </div>
                     <textarea class="input-text flex-grow-1" id="room-edit-description" placeholder="Room description" name="description">{{ old('description', $room->description) }}</textarea>
                 </div>
+
+
+
                 <div class="flex-column padding-block-1rem">
                     <select class="dropdown-select" name="type" required>
                         @foreach ($roomTypes as $option)
@@ -72,11 +77,13 @@
                     <input type="hidden" name="id" value="{{ $room->id }}">
                 </div>
 
+
+
+
                 <div class="flex-space-between grid-span-3">
                     <x-buttons.secondary-button :href="route('room.info', $room->id)">Cancel</x-buttons.secondary-button>
                     <x-buttons.primary-button>Save</x-buttons.primary-button>
                 </div>
-            </form>
-        </div>
+
     </main>
 </x-layout.base>
