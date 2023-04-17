@@ -9,8 +9,7 @@ use App\Models\Room;
 use App\Policies\RoomPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
-{
+class AuthServiceProvider extends ServiceProvider {
     /**
      * The model to policy mappings for the application.
      *
@@ -25,13 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot() {
         $this->registerPolicies();
-
-        Gate::define('isOwner', function(User $user) {
-            // dd($user->role->title);
-            return $user->role->title == 'owner';
-        });
     }
 }

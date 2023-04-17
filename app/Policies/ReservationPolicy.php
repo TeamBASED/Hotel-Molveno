@@ -6,8 +6,7 @@ use App\Models\User;
 use App\Models\reservation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ReservationPolicy
-{
+class ReservationPolicy {
     use HandlesAuthorization;
 
     /**
@@ -16,13 +15,9 @@ class ReservationPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
-    {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
-        return $user->role->title === "head-housekeeping";
-        return $user->role->title === "housekeeping";
-        return $user->role->title === "reception";
+    public function viewAny(User $user) {
+        $title = $user->role->title;
+        return ($title === "owner" || $title === "hotel manager" || $title === "head-housekeeping" || $title === "housekeeping" || $title === "reception");
     }
 
     /**
@@ -32,13 +27,9 @@ class ReservationPolicy
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Reservation $reservation)
-    {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
-        return $user->role->title === "head-housekeeping";
-        return $user->role->title === "housekeeping";
-        return $user->role->title === "reception";
+    public function view(User $user, Reservation $reservation) {
+        $title = $user->role->title;
+        return ($title === "owner" || $title === "hotel manager" || $title === "head-housekeeping" || $title === "housekeeping" || $title === "reception");
     }
 
     /**
@@ -47,10 +38,9 @@ class ReservationPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user, Reservation $reservation)
-    {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
+    public function create(User $user, Reservation $reservation) {
+        $title = $user->role->title;
+        return ($title === "owner" || $title === "hotel manager" || $title === "reception");
     }
 
     /**
@@ -60,11 +50,9 @@ class ReservationPolicy
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Reservation $reservation)
-    {
-        // dd($user->role);
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
+    public function update(User $user, Reservation $reservation) {
+        $title = $user->role->title;
+        return ($title === "owner" || $title === "hotel manager" || $title === "reception");
     }
 
     /**
@@ -74,34 +62,8 @@ class ReservationPolicy
      * @param  \App\Models\reservation  $reservation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Reservation $reservation)
-    {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\reservation  $reservation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Reservation $reservation)
-    {
-        return $user->role->title === "owner";
-        return $user->role->title === "hotel manager";
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\reservation  $reservation
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, reservation $reservation)
-    {
-        //
+    public function delete(User $user, Reservation $reservation) {
+        $title = $user->role->title;
+        return ($title === "owner" || $title === "hotel manager" || $title === "reception");
     }
 }
