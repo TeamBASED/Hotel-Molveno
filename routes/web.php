@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -73,4 +74,4 @@ Route::middleware('auth')->group(function () {
 // User routes
 Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
