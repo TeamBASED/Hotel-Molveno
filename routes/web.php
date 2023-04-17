@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // for now redirect, this should be home page
     Route::get('/', function () {
-        return redirect(route('home'));
+        return view('home');
     })->name('home');
 
     // reservation routes
@@ -64,7 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/room/{room}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
     Route::get('/room/create', [RoomController::class, 'viewRoomCreate'])->name('room.create');
     Route::post('/room/store', [RoomController::class, 'handleCreateRoom'])->name('room.store');
-    Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit','notification' => '$notification'])->name('room.edit');
+    Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit', 'notification' => '$notification'])->name('room.edit');
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
