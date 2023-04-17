@@ -9,10 +9,11 @@ use Tests\TestCase;
 
 class RoomOverviewTest extends TestCase {
     use RefreshDatabase;
-    
+
     // TODO: when policies are implemented, make tests for the different roles
 
     public function test_page_loads() {
+        // Create a user, log in (act) as that user and go to room overview, then check if the server returns a page
         $user = User::factory()->create();
 
         $response = $this
@@ -29,6 +30,7 @@ class RoomOverviewTest extends TestCase {
     }
 
     public function test_page_contains_expected_content() {
+        // Create a user, log in (act) as that user and go to room overview, then check if some specific content is shown on page
         $user = User::factory()->create();
 
         $response = (
