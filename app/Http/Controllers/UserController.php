@@ -24,13 +24,13 @@ class UserController extends Controller {
     /**
      * Display the registration view.
      */
-    public function create(): View {
+    public function viewUserRegister(): View {
         $roles = Role::getAllRoleData();
 
         return view('user.register', ['roles' => $roles]);
     }
 
-    public function edit(User $user): View {
+    public function viewUserEdit(User $user): View {
         $roles = Role::getAllRoleData();
 
         return view('user.edit', ['user' => $user, 'roles' => $roles]);
@@ -41,36 +41,10 @@ class UserController extends Controller {
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse {
-        $this->validateNewUser($request);
 
-        $user = User::create([
-            'username' => $request->username,
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'password' => Hash::make($request->password),
-            'role_id' => $request->role,
-        ]);
 
-        event(new Registered($user));
 
-        return redirect(route('user.overview'));
-    }
-
-    public function update(Request $request, User $user): RedirectResponse {
-        $this->validateExistingUser($request, $user);
-
-        $user->update([
-            'username' => $request->username,
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'password' => ($request->password) ? $user->password : Hash::make($request->password),
-            'role_id' => $request->role,
-        ]);
-
-        return redirect(route('user.overview'));
-    }
-    private function validateNewUser(Request $request) {
+    public function handleUserRegister(Request $request): RedirectResponse {
         $request->validate([
             'username' => 'required|string|max:255|unique:' . User::class,
             'firstname' => 'required|string|max:255',
@@ -78,15 +52,46 @@ class UserController extends Controller {
             'password' => 'required|confirmed', Rules\Password::defaults(),
             'role' => 'required|int',
         ]);
+        $user = $this->userRegister($request);
+
+        event(new Registered($user));
+
+        return redirect(route('user.overview'));
     }
 
-    private function validateExistingUser(Request $request, User $user) {
+    private function userRegister(Request $request) {
+        $user = User::create([
+            'username' => $request->username,
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role,
+        ]);
+        return $user;
+    }
+
+
+    public function handleUserUpdate(Request $request, User $user): RedirectResponse {
         $request->validate([
             'username' => 'required|string|max:255', Rule::unique('users')->ignore($user),
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'password' => 'required|confirmed', Rules\Password::defaults(),
             'role' => 'required|int',
+        ]);
+
+        $this->userUpdate($request, $user);
+
+        return redirect(route('user.overview'));
+    }
+
+    private function userUpdate(Request $request, User $user) {
+        $user->update([
+            'username' => $request->username,
+            'first_name' => $request->firstname,
+            'last_name' => $request->lastname,
+            'password' => ($request->password) ? $user->password : Hash::make($request->password),
+            'role_id' => $request->role,
         ]);
     }
 }

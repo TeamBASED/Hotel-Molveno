@@ -33,10 +33,10 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 Route::middleware('auth')->group(function () {
     // User routes
     Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
-    Route::get('/user/register', [UserController::class, 'create'])->name('user.register');
-    Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
-    Route::patch('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
+    Route::get('/user/register', [UserController::class, 'viewUserRegister'])->name('user.register');
+    Route::post('/user/store', [UserController::class, 'handleUserRegister'])->name('user.store');
+    Route::get('/user/{user}/edit', [UserController::class, 'viewUserEdit'])->name('user.edit');
+    Route::patch('/user/{user}/update', [UserController::class, 'handleUserUpdate'])->name('user.update');
 
     // for now redirect, this should be home page
     Route::get('/', function () {
