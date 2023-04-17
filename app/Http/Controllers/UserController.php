@@ -91,12 +91,31 @@ class UserController extends Controller {
     }
 
     private function userUpdate(Request $request, User $user) {
+
         $user->update([
             'username' => $request->username,
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
-            'password' => ($request->password) ? $user->password : Hash::make($request->password),
+            'password' => isset($request->password) ? $user->password : Hash::make($request->password),
             'role_id' => $request->role,
         ]);
+    }
+
+    public function userDelete(User $user): RedirectResponse {
+        $user->delete();
+
+        return redirect(route('user.overview'));
+    }
+
+    public function handleUserDelete(int $userId): RedirectResponse {
+        // dd($request->id);
+        $user = User::getUserById($userId);
+        dd($user);
+        if (UserController::isPasswordCorrect($user->password) && !$user->role_id == 1) {
+            $user->delete();
+            return redirect(route('user.overview', ['notification' => 'User successfully deleted']));
+        } else {
+            return redirect(route('user.edit', ['user' => $user->id, 'notification' => 'Deletion unsuccessful']));
+        }
     }
 }
