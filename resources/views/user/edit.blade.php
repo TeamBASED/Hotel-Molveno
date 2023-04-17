@@ -31,7 +31,8 @@
                                     placeholder="Password"
                                     type="password"
                                     name="password"
-                                    {{-- :value="old('password', $user->password)" --}}
+                                    onfocus="this.value=''"
+                                    :value="old('password', $user->password)"
                                     required autocomplete="new-password" />
 
                     <x-input-error :messages="$errors->get('password')" />
@@ -42,8 +43,9 @@
                     <x-text-input id="password_confirmation"
                                     placeholder="Confirm Password"
                                     type="password"
-                                    name="password_confirmation" 
-                                    {{-- :value="old('password_confirmation', $user->password)" --}}
+                                    name="password_confirmation"
+                                    onfocus="this.value=''"
+                                    :value="old('password_confirmation', $user->password)"
                                     required autocomplete="new-password" />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" />
