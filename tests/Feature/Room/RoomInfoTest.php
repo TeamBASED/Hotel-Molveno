@@ -4,7 +4,12 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use Database\Seeders\RoomSeeder;
+use Database\Seeders\RoomTypeSeeder;
+use Database\Seeders\RoomViewSeeder;
+use Database\Seeders\BedConfigurationSeeder;
 use Illuminate\Foundation\Testing\WithFaker;
+use Database\Seeders\RoomBedConfigurationSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RoomInfoTest extends TestCase {
@@ -13,6 +18,14 @@ class RoomInfoTest extends TestCase {
     // TODO: when policies are implemented, make tests for the different roles
 
     public function test_page_loads() {
+        $this->seed([
+            RoomSeeder::class,
+            RoomTypeSeeder::class,
+            RoomViewSeeder::class,
+            RoomBedConfigurationSeeder::class,
+            BedConfigurationSeeder::class,
+        ]);
+
         $user = User::factory()->create([
             'role_id' => 1,
         ]);
