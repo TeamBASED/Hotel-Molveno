@@ -7,8 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class RoomPolicy
-{
+class RoomPolicy {
     use HandlesAuthorization;
 
     /**
@@ -17,20 +16,18 @@ class RoomPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    static public function viewAny(User $user)
-    {
+    static public function viewAny(User $user) {
         $title = $user->role->title;
 
-        if ($title === "owner" || 
+        if ($title === "owner" ||
             $title === "hotel manager" ||
             $title === "head-housekeeping" ||
             $title === "housekeeping" ||
             $title === "reception") {
-                return true;
-            } 
-            else {
-                return false;
-            }
+            return true;
+        } else {
+            return false;
+        }
     }
     /**
      * Determine whether the user can view the model.
@@ -39,10 +36,9 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user) : bool
-    {
+    public function view(User $user): bool {
         $title = $user->role->title;
-            return ($title === "owner" || 
+        return ($title === "owner" ||
             $title === "hotel manager" ||
             $title === "head-housekeeping" ||
             $title === "housekeeping" ||
@@ -55,16 +51,14 @@ class RoomPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
-    {
+    public function create(User $user) {
         $title = $user->role->title;
-        if ($title === "owner" || 
+        if ($title === "owner" ||
             $title === "hotel manager") {
-                return true;
-            } 
-            else {
-                return false;
-            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -74,16 +68,14 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user)
-    {
+    public function update(User $user) {
         $title = $user->role->title;
-        if ($title === "owner" || 
+        if ($title === "owner" ||
             $title === "hotel manager") {
-                return true;
-            } 
-            else {
-                return false;
-            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -93,16 +85,14 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user)
-    {
+    public function delete(User $user) {
         $title = $user->role->title;
-        if ($title === "owner" || 
+        if ($title === "owner" ||
             $title === "hotel manager") {
-                return true;
-            } 
-            else {
-                return false;
-            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -112,16 +102,14 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user)
-    {
+    public function restore(User $user) {
         $title = $user->role->title;
-        if ($title === "owner" || 
+        if ($title === "owner" ||
             $title === "hotel manager") {
-                return true;
-            } 
-            else {
-                return false;
-            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -131,8 +119,7 @@ class RoomPolicy
      * @param  \App\Models\Room  $room
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user)
-    {
+    public function forceDelete(User $user) {
         //
     }
 }
