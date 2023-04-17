@@ -64,14 +64,6 @@
 
             </form>
             <div class="right">
-                <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    @can('delete', $reservation)
-                    <x-buttons.primary-button class="button delete">Delete</x-buttons.primary-button>
-                    @endcan
-                </form>
-
                 <div class="right">
                     @foreach ($rooms as $room)
                         <x-room.infobox :room="$room" />
