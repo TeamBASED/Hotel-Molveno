@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use Database\Seeders\RoleSeeder;
 use Database\Seeders\RoomSeeder;
 use Database\Seeders\RoomTypeSeeder;
 use Database\Seeders\RoomViewSeeder;
@@ -18,12 +19,15 @@ class RoomInfoTest extends TestCase {
     // TODO: when policies are implemented, make tests for the different roles
 
     public function test_page_loads() {
+        // Load all test data and go to page, check if the server returns a page, this also uses the roomPolicy to check for access
+
         $this->seed([
             RoomSeeder::class,
             RoomTypeSeeder::class,
             RoomViewSeeder::class,
             RoomBedConfigurationSeeder::class,
             BedConfigurationSeeder::class,
+            RoleSeeder::class,
         ]);
 
         $user = User::factory()->create([
@@ -44,6 +48,8 @@ class RoomInfoTest extends TestCase {
     }
 
     public function test_page_contains_expected_content() {
+        // Create a user, log in (act) as that user and go to page, then check if some specific content is shown on page
+
         $user = User::factory()->create();
 
         $response = (

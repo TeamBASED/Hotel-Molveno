@@ -18,6 +18,8 @@ class RoomEditTest extends TestCase {
     // TODO: when policies are implemented, make tests for the different roles
 
     public function test_page_loads() {
+        // Load all test data and go to page, check if the server returns a page
+
         $this->seed([
             RoomSeeder::class,
             RoomTypeSeeder::class,
@@ -42,6 +44,7 @@ class RoomEditTest extends TestCase {
     }
 
     public function test_page_contains_expected_content() {
+        // Create a user, log in (act) as that user and go to page, then check if some specific content is shown on page
         $user = User::factory()->create();
 
         $response = (
