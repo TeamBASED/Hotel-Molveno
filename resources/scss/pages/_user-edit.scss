@@ -1,0 +1,50 @@
+#user-edit-page {
+    display: flex;
+    justify-content: center;
+    #heading-container {
+        width: 100%;
+        background-color: $color-700;
+        padding: 0.5rem;
+        h2 {
+            color: $color-white;
+            font-size: 1.2rem;
+        }
+    }
+    #form-container {
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        width: 25rem;
+        border: 2px solid $color-700;
+        form {
+            width: 100%;
+            div {
+                padding: 0.7rem 4rem;
+                input[type=text], input[type=password] {
+                    height: 2rem;
+                    width: 100%;
+                    padding: 0.2rem 0.5rem;
+                    border: 2px solid $color-700;
+                    &::placeholder {
+                        opacity: 0.8;
+                        color: $color-700;
+                    }
+                }
+                label {
+                    font-weight: bold;
+                }
+                button {
+                    height: 2rem;
+                    width: 100%;
+                    margin-bottom: 1rem;
+                    font-weight: bold;
+                    background-color: $color-700;
+                    color: $color-white;
+                    &:hover {
+                        background-color: $color-600;
+                    }
+                }
+            }
+        }
+    }
+}

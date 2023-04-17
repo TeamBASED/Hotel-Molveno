@@ -49,6 +49,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public static function getUserById(int $id) {
+        return User::find($id);
+    }
     public static function getAllUserData() {
         return User::with(['role'])->get();
     }

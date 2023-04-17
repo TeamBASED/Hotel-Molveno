@@ -1,10 +1,10 @@
 <x-layout.base>
-    <main id="register-page" class="main-content">
+    <main id="user-register-page" class="main-content">
         <section id="form-container">
             <div id="heading-container">
                 <h2>Register User</h2>
             </div>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('user.store') }}">
                 @csrf
 
                 <!-- Name -->
@@ -47,7 +47,7 @@
                 </div>
 
                 <div>
-                    <x-input-label for="password_confirmation" :value="__('Role:')" />
+                    <x-input-label for="role" :value="__('Role:')" />
                     <select class="dropdown-select" name="role" required>
                         @foreach ($roles as $option)
                             <option class="filter-field-option" value="{{$option->id}}" 

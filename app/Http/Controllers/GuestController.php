@@ -7,31 +7,30 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class GuestController extends Controller
-{
-    public function viewEditGuest(Reservation $reservation, Guest $guest){
+class GuestController extends Controller {
+    public function viewEditGuest(Reservation $reservation, Guest $guest) {
         return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
     }
 
-    public function handleCreateGuest (int $reservationId, Request $request) {
+    public function handleCreateGuest(int $reservationId, Request $request) {
         $this->validateGuest($request);
 
         $this->storeGuest($request, $reservationId);
 
-        return redirect(route('guest.create',['id' => $reservationId]));
+        return redirect(route('guest.create', ['id' => $reservationId]));
     }
-    
+
     public function handleUpdateGuest(Request $request, Reservation $reservation, Guest $guest) {
         $this->validateGuest($request);
 
         $this->updateGuest($request, $guest);
 
-        return redirect(route('reservation.info',['id' => $request->reservation_id]));
+        return redirect(route('reservation.info', ['id' => $request->reservation_id]));
     }
 
     public function viewAddGuest(int $reservationId, $showContact = false) {
         $reservation = Reservation::getReservationData($reservationId);
-        
+
         return view('guest.create', ['reservation' => $reservation, 'showContact' => $showContact]);
     }
 
@@ -46,7 +45,7 @@ class GuestController extends Controller
             'nationality' => 'required|string',
             'passport_number' => 'required|string',
             'dateofbirth' => 'required|date',
-            'passport_checked' => 'nullable',   
+            'passport_checked' => 'nullable',
         ]);
 
         if ($validator->fails()) {
@@ -56,10 +55,10 @@ class GuestController extends Controller
         }
     }
 
-    public function deleteGuest(Reservation $reservation, Guest $guest){
+    public function deleteGuest(Reservation $reservation, Guest $guest) {
         $guest->delete();
 
-        return redirect(route('reservation.info',['id' => $reservation->id]));
+        return redirect(route('reservation.info', ['id' => $reservation->id]));
     }
 
     private function updateGuest(Request $request, Guest $guest) {
