@@ -8,6 +8,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,9 @@ use App\Http\Controllers\ReservationController;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// User logout
+Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 // User logged in
 Route::middleware('auth')->group(function () {
@@ -46,13 +50,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/reservation/{id}/delete', [ReservationController::class, 'handleDeleteReservation'])->name('reservation.delete');
 
     // Guest routes
-    Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest'])->name('guest.create');
+    Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest', 'showContact' => '$showContact'])->name('guest.create');
     Route::post('/reservation/{id}/guest/store', [GuestController::class, 'handleCreateGuest'])->name('guest.store');
-
+    Route::get('/reservation/{reservation}/guest/{guest}/edit', [GuestController::class, 'viewEditGuest'])->name('guest.edit');
+    Route::patch('/reservation/{reservation}/guest/{guest}/update', [GuestController::class, 'handleUpdateGuest'])->name('guest.update');
+    Route::delete('/reservation/{reservation}/guest/{guest}/delete', [GuestController::class, 'deleteGuest'])->name('guest.delete');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
-    Route::get('/room/{id}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
+    Route::get('/room/{room}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
     Route::get('/room/create', [RoomController::class, 'viewRoomCreate'])->name('room.create');
     Route::post('/room/store', [RoomController::class, 'handleCreateRoom'])->name('room.store');
     Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
@@ -60,7 +66,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
     // Contact routes
-    Route::get('/reservation/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
+    Route::get('/reservation/{id}/contact', [ContactController::class, 'viewContactVerify'])->name('reservation.contact');
     Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
 });
 

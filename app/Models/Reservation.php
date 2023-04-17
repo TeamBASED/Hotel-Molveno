@@ -29,7 +29,7 @@ class Reservation extends Model
     ];
 
     public static function getAllReservationData() {
-        return Reservation::with(['contact','rooms'])->get();
+        return Reservation::with(['contact','rooms','guests'])->get();
     }
 
     public static function getAllReservationsInTimeinterval(string $dateOfArrival, string $dateOfDeparture) {

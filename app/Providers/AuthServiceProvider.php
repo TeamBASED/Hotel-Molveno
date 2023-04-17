@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Models\Reservation;
 use App\Policies\ReservationPolicy;
 use Illuminate\Support\Facades\Gate;
+use App\Models\Room;
+use App\Policies\RoomPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
