@@ -21,6 +21,11 @@ class UserController extends Controller {
         return view('user.overview', ['users' => $users]);
     }
 
+
+    public static function isPasswordCorrect(string $password): bool {
+        return Hash::check($password, Auth::user()->password);
+    }
+
     /**
      * Display the registration view.
      */

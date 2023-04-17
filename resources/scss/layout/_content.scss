@@ -5,6 +5,10 @@
     position: relative;
 }
 
+.hidden {
+    display: none;
+}
+
 .grid-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -99,5 +103,5 @@
 }
 
 .gray-background {
-    background-color: $color-grey-300;  
+    background-color: $color-grey-300;
 }
