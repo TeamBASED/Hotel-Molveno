@@ -30,8 +30,7 @@ class UserController extends Controller {
         return view('user.register', ['roles' => $roles]);
     }
 
-    public function edit(int $userId): View {
-        $user = User::getUserById($userId);
+    public function edit(User $user): View {
         $roles = Role::getAllRoleData();
 
         return view('user.edit', ['user' => $user, 'roles' => $roles]);
@@ -65,7 +64,7 @@ class UserController extends Controller {
             'username' => $request->username,
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
-            'password' => ($user->password == $request->password) ? $request->password : Hash::make($request->password),
+            'password' => ($request->password) ? $user->password : Hash::make($request->password),
             'role_id' => $request->role,
         ]);
 
