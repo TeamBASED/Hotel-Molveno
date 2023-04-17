@@ -8,8 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -49,9 +48,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public static function getUserById(int $id) {
+        return User::find($id);
+    }
     public static function getAllUserData() {
         return User::with(['role'])->get();
     }
 
-    
+
 }
