@@ -20,17 +20,9 @@ class UserController extends Controller {
             $users = User::getAllUserData();
             return view('user.overview', ['users' => $users]);
         } else {
-            //TODO: redirect naar homepage toevoegen.
-            dd("Deze pagina is niet beschikbaar");
+            return view('home');
         }
     }
-
-
-
-    public static function isPasswordCorrect(string $password): bool {
-        return Hash::check($password, Auth::user()->password);
-    }
-
 
     public static function isPasswordCorrect(string $password): bool {
         return Hash::check($password, Auth::user()->password);
@@ -40,7 +32,7 @@ class UserController extends Controller {
      * Display the registration view.
      */
     public function viewUserRegister(Request $request) {
-        if ($request->user()->can('viewAny', User::class)) {
+        if ($request->user()->can('create', User::class)) {
             $roles = Role::getAllRoleData();
             return view('user.register', ['roles' => $roles]);
         } else {

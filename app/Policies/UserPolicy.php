@@ -50,11 +50,12 @@ class UserPolicy {
      * @param  \App\Models\User  $user
      * @param  \App\Models\User  $model
      */
-    public function update(User $user, User $model) { //$user = huidige ingelogde user, $model = huidig aangeroepen model
+    public function update(User $user, User $model) {
         $title = $user->role->title;
-        if ($user->id === $model->id) {
-            return true;
-        } elseif ($title === "owner" || $title === "hotel manager") {
+        // if ($user->id === $model->id) {
+        //     return true;
+        // } else
+        if ($title === "owner" || $title === "hotel manager") {
             return true;
         } else {
             return false;
