@@ -10,7 +10,7 @@ use Tests\TestCase;
 class RoomOverviewTest extends TestCase {
     use RefreshDatabase;
 
-    // TODO: when policies are implemented, make tests for the different roles
+    // TODO: when page variation for housekeeping is built, test per role
 
     public function test_page_loads() {
         // Create a user, log in (act) as that user and go to room overview, then check if the server returns a page

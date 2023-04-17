@@ -16,8 +16,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class RoomInfoTest extends TestCase {
     use RefreshDatabase;
 
-    // TODO: when policies are implemented, make tests for the different roles
-
     public function test_page_loads() {
         // Load all test data and go to page, check if the server returns a page, this also uses the roomPolicy to check for access
 
@@ -50,7 +48,18 @@ class RoomInfoTest extends TestCase {
     public function test_page_contains_expected_content() {
         // Create a user, log in (act) as that user and go to page, then check if some specific content is shown on page
 
-        $user = User::factory()->create();
+        $this->seed([
+            RoomSeeder::class,
+            RoomTypeSeeder::class,
+            RoomViewSeeder::class,
+            RoomBedConfigurationSeeder::class,
+            BedConfigurationSeeder::class,
+            RoleSeeder::class,
+        ]);
+
+        $user = User::factory()->create([
+            'role_id' => 1,
+        ]);
 
         $response = (
             $this->actingAs($user)
@@ -59,4 +68,28 @@ class RoomInfoTest extends TestCase {
 
         $response->assertSee(['Room info', 'Capacity', 'Description', 'Edit', 'Back']);
     }
+
+// Ik snap niet hoe je naar een specifieke button zoekt, dus deze test doet et nie :(
+
+// public function test_page_hides_edit_button_as_reception() {
+//     $this->seed([
+//         RoomSeeder::class,
+//         RoomTypeSeeder::class,
+//         RoomViewSeeder::class,
+//         RoomBedConfigurationSeeder::class,
+//         BedConfigurationSeeder::class,
+//         RoleSeeder::class,
+//     ]);
+
+//     $user = User::factory()->create([
+//         'role_id' => 1,
+//     ]);
+
+//     $response = (
+//         $this->actingAs($user)
+//             ->get('/room/1/info')
+//     );
+
+//     $response->assertsee('class="button secondary-button">\r\nEdit\r\n</a>');
+// }
 }
