@@ -10,6 +10,12 @@
             </div>
         @endif
 
+        @if (isset($_GET['notification']))
+            <p class="notification">{{ $_GET['notification'] }}</p>
+        @endif
+
+
+
 
         <div class="padding-inline-5rem">
             <div class="crud-header flex-center-center">
@@ -19,7 +25,8 @@
                 <x-delete-confirmation :removeId='$room->id' removalRoute='room.delete'></x-delete-confirmation>
             </div>
 
-            <form action="{{ route('room.update', $room->id) }}" method="POST" class="edit-room-form grid-three-columns">
+            <form action="{{ route('room.update', $room->id) }}" method="POST"
+                class="edit-room-form grid-three-columns">
                 @csrf
                 @method('PATCH')
                 <div class="flex-column padding-block-1rem">

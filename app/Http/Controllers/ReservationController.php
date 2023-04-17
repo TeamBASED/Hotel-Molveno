@@ -53,7 +53,7 @@ class ReservationController extends Controller {
 
         $this->handleReservationRoom($request, $reservation);
 
-        return redirect(route('guest.create',['id' => $reservation->id]));
+        return redirect(route('guest.create', ['id' => $reservation->id]));
     }
 
     private function validateCreateReservation(request $request) {
@@ -83,22 +83,29 @@ class ReservationController extends Controller {
         return $reservation;
     }
 
-    public function handleDeleteReservation(int $reservationId) {
+    public function handleDeleteReservation(Request $request) {
+        // dd($request->id);
 
-        Reservation::deleteReservation($reservationId);
-        ReservationRoom::deleteReservationRoomData($reservationId);
-        return redirect(route('reservation.overview'));
+        if (UserController::isPasswordCorrect($request->password)) {
+
+            Reservation::deleteReservation($request->id);
+            ReservationRoom::deleteReservationRoomData($request->id);
+            return redirect(route('reservation.overview', ['notification' => 'Reservation is deleted']));
+        } else {
+            return redirect(route('reservation.edit', ['id' => $request->id, 'notification' => 'The reservation is not removed']));
+
+        }
     }
 
     private function handleReservationRoom(Request $request, $reservation) {
         $room = Room::getRoomData($request->room);
         $reservation->rooms()->sync($room);
     }
-    
+
     public function viewReservationInfo(int $id) {
         $reservation = Reservation::getReservationData($id);
 
-        return view('reservation.info', ['reservation' => $reservation,  'currentRooms' => $reservation->rooms]);
+        return view('reservation.info', ['reservation' => $reservation, 'currentRooms' => $reservation->rooms]);
     }
 
 
@@ -128,12 +135,13 @@ class ReservationController extends Controller {
             ReservationRoom::where('reservation_id', '=', $reservation->id)->delete();
 
             foreach ($roomIdsForm as $roomId) {
-                    ReservationRoom::create([
-                        'reservation_id' => $id,
-                        'room_id' => $roomId,
-                    ]);
-                }
-        };
+                ReservationRoom::create([
+                    'reservation_id' => $id,
+                    'room_id' => $roomId,
+                ]);
+            }
+        }
+        ;
 
         $reservation = $this->updateReservation($request, $id);
         $contact = $this->updateContact($request);

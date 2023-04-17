@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Room;
 use App\Models\User;
 use App\Models\RoomType;
@@ -8,10 +9,12 @@ use App\Models\RoomView;
 use App\Policies\RoomPolicy;
 use Illuminate\Http\Request;
 use App\Models\BedConfiguration;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\UserController;
 
-class RoomController extends Controller
-{
+class RoomController extends Controller {
 
     public function viewRoomInfo(int $id, Request $request) {
         if ($request->user()->can('viewAny', Room::class)) {
@@ -44,7 +47,7 @@ class RoomController extends Controller
     public function viewRoomCreate() {
         $roomTypes = RoomType::get();
         $roomViews = RoomView::get();
-        
+
         return view('room.create', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews]);
     }
 
@@ -80,10 +83,19 @@ class RoomController extends Controller
     }
 
     public function handleDeleteRoom(Request $request) {
-        Room::deleteRoomData($request->id);
-        (new RoomBedConfigurationController())->deleteBedConfigurationForRoom($request->id);
-        
-        return redirect(route('room.overview'));
+
+        if (UserController::isPasswordCorrect($request->password)) {
+            $roomNumber = Room::getRoomData($request->id)->room_number;
+            Room::deleteRoomData($request->id);
+            (new RoomBedConfigurationController())->deleteBedConfigurationForRoom($request->id);
+            return redirect(route('room.overview', ['notification' => "Room $roomNumber is deleted"]));
+
+        } else {
+
+            return redirect(route('room.edit', ['id' => $request->id, 'notification' => 'The room is not removed']));
+
+        }
+
     }
 
     public function storeRoom(Request $request) {
@@ -116,15 +128,22 @@ class RoomController extends Controller
     }
 
     private function filterRoomResults(Request $request) {
-        $filterQuery = Room::with(['cleaningStatus','roomView','roomType', 'bedConfigurations']);
+        $filterQuery = Room::with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations']);
 
-        if($this->hasFilter($request->capacity)) $filterQuery->withCapacity($request->capacity);
-        if($this->hasFilter($request->number)) $filterQuery->withNumber($request->number);
-        if($this->hasFilter($request->type)) $filterQuery->withRoomType($request->type);
-        if($this->hasFilter($request->view)) $filterQuery->withRoomView($request->view);
-        if($this->hasFilter($request->singleBed)) $filterQuery->withBedConfiguration(1, $request->singleBed);
-        if($this->hasFilter($request->doubleBed)) $filterQuery->withBedConfiguration(2, $request->doubleBed);
-        if(isset($request->babybed)) $filterQuery->withBabybed(1);
+        if ($this->hasFilter($request->capacity))
+            $filterQuery->withCapacity($request->capacity);
+        if ($this->hasFilter($request->number))
+            $filterQuery->withNumber($request->number);
+        if ($this->hasFilter($request->type))
+            $filterQuery->withRoomType($request->type);
+        if ($this->hasFilter($request->view))
+            $filterQuery->withRoomView($request->view);
+        if ($this->hasFilter($request->singleBed))
+            $filterQuery->withBedConfiguration(1, $request->singleBed);
+        if ($this->hasFilter($request->doubleBed))
+            $filterQuery->withBedConfiguration(2, $request->doubleBed);
+        if (isset($request->babybed))
+            $filterQuery->withBabybed(1);
 
         return $filterQuery->get();
     }

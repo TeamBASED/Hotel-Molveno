@@ -1,6 +1,7 @@
 {{-- 
     This component can be inserted at an arbitrary position in the blade page file. 
     It is linked to the button that has the id #delete-button.
+    Make sure the main element in the HTML has a display property of relative
 
     The component uses 2 props:
         - removeId is the id of the element that you want to have removed (eg. $room->id)
@@ -19,9 +20,9 @@
 
 
         <input type="hidden" name="id" value="{{ $removeId }}">
-        <label for="password">Please fill in your password:</label>
+        <label for="password">Please enter your password:</label>
         <x-text-input id="password" type="password" name="password" placeholder="Password" required
-            autocomplete="current-password" form="delete-confirmation-form" />
+            autocomplete="current-password" form="delete-confirmation-form" from="delete-confirmation-form" />
 
         <x-input-error :messages="$errors->get('password')" />
         <div class="flex-space-around margin-block">
