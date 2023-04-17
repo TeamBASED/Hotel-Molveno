@@ -54,7 +54,7 @@ class UserController extends Controller {
             'username' => 'required|string|max:255|unique:' . User::class,
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'password' => 'required|confirmed', Rules\Password::defaults(),
+            'password' => 'required|min:8|confirmed', Rules\Password::defaults(),
             'role' => 'required|int',
         ]);
         $user = $this->userRegister($request);
@@ -81,7 +81,7 @@ class UserController extends Controller {
             'username' => 'required|string|max:255', Rule::unique('users')->ignore($user),
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'password' => 'required|confirmed', Rules\Password::defaults(),
+            'password' => 'nullable|min:8|confirmed', Rules\Password::defaults(),
             'role' => 'required|int',
         ]);
 
