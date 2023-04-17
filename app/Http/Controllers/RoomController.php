@@ -100,7 +100,6 @@ class RoomController extends Controller {
         if (UserController::isPasswordCorrect($request->password)) {
             $roomNumber = Room::getRoomData($request->id)->room_number;
             Room::deleteRoomData($request->id);
-            (new RoomBedConfigurationController())->deleteBedConfigurationForRoom($request->id);
             return redirect(route('room.overview', ['notification' => "Room $roomNumber is deleted"]));
 
         } else {

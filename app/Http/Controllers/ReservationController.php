@@ -89,7 +89,6 @@ class ReservationController extends Controller {
         if (UserController::isPasswordCorrect($request->password)) {
 
             Reservation::deleteReservation($request->id);
-            ReservationRoom::deleteReservationRoomData($request->id);
             return redirect(route('reservation.overview', ['notification' => 'Reservation is deleted']));
         } else {
             return redirect(route('reservation.edit', ['id' => $request->id, 'notification' => 'The reservation is not removed']));
