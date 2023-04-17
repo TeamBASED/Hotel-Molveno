@@ -96,7 +96,7 @@ class UserController extends Controller {
             'username' => $request->username,
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
-            'password' => isset($request->password) ? $user->password : Hash::make($request->password),
+            'password' => ($request->password) ? Hash::make($request->password) : $user->password,
             'role_id' => $request->role,
         ]);
     }
@@ -107,11 +107,10 @@ class UserController extends Controller {
         return redirect(route('user.overview'));
     }
 
-    public function handleUserDelete(int $userId): RedirectResponse {
-        // dd($request->id);
-        $user = User::getUserById($userId);
-        dd($user);
-        if (UserController::isPasswordCorrect($user->password) && !$user->role_id == 1) {
+    public function handleUserDelete(Request $request): RedirectResponse {
+        $user = User::getUserById($request->id);
+
+        if (UserController::isPasswordCorrect($request->password) && !$user->role->id == 1) {
             $user->delete();
             return redirect(route('user.overview', ['notification' => 'User successfully deleted']));
         } else {

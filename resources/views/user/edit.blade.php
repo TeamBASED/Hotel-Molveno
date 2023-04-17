@@ -37,8 +37,7 @@
                 <!-- Password -->
                 <div>
                     <x-input-label for="password" :value="__('Password:')" />
-                    <x-text-input id="password" placeholder="Password" type="password" name="password"
-                        onfocus="this.value=''" required />
+                    <x-text-input id="password" placeholder="Password" type="password" name="password" required />
 
                     <x-input-error :messages="$errors->get('password')" />
                 </div>
@@ -47,7 +46,7 @@
                 <div>
                     <x-input-label for="lastname" :value="__('Confirm Password:')" />
                     <x-text-input id="password_confirmation" placeholder="Confirm Password" type="password"
-                        name="password_confirmation" onfocus="this.value=''" required />
+                        name="password_confirmation" required />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" />
                 </div>
