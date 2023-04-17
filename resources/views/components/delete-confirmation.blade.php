@@ -15,7 +15,7 @@
     @vite('resources/js/deleteConfirmation.js')
     </x-slot>
 
-    <div class="hidden padding-1rem" id="delete-confirmation">
+    <div class="hidden padding-1rem modal" id="delete-confirmation">
 
 
 
