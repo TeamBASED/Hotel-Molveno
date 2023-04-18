@@ -186,7 +186,7 @@ class ReservationController extends Controller {
     }
 
     public static function getAvailableRoomsDuringTimeInterval($date_of_arrival, $date_of_departure) {
-        $reservations = Reservation::getAllReservationsQueryInTimeinterval($date_of_arrival, $date_of_departure);
+        $reservations = Reservation::getAllReservationsInTimeinterval($date_of_arrival, $date_of_departure);
         $availableRooms = Room::getAllRoomData();
 
         foreach ($reservations as $reservation) {

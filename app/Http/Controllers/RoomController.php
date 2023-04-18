@@ -168,7 +168,12 @@ class RoomController extends Controller {
 
         if ($this->hasFilter($request->dateOfArrival) && $this->hasFilter($request->dateOfDeparture)) {
             $availableRooms = ReservationController::getAvailableRoomsDuringTimeInterval($request->dateOfArrival, $request->dateOfDeparture);
-            return $currentRooms->union($availableRooms);
+            // dd($availableRooms);
+
+            $rooms = $currentRooms->intersect($availableRooms);
+
+            // dd($rooms);
+            return $rooms;
         } else {
             return $currentRooms;
         }

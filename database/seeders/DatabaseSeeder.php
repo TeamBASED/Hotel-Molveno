@@ -9,16 +9,14 @@ use Database\Seeders\RoomTypeSeeder;
 use Database\Seeders\RoomViewSeeder;
 use Database\Seeders\CleaningStatusSeeder;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     /**
      * Seed the application's database.
      *
      * @return void
      */
-    public function run()
-    {
-        $this->call(RoomViewSeeder::class); 
+    public function run() {
+        $this->call(RoomViewSeeder::class);
         $this->call(RoomTypeSeeder::class);
         $this->call(RoomSeeder::class); //echte data
         $this->call(CleaningStatusSeeder::class);

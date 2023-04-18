@@ -35,10 +35,6 @@ class Reservation extends Model {
         return Reservation::where('date_of_departure', '>', $dateOfArrival)->where('date_of_arrival', '<', $dateOfDeparture)->with('rooms')->get();
     }
 
-    public static function getAllReservationsQueryInTimeinterval(string $dateOfArrival, string $dateOfDeparture) {
-        return Reservation::where('date_of_departure', '>', $dateOfArrival)->where('date_of_arrival', '<', $dateOfDeparture)->with('rooms');
-    }
-
     public static function getReservationData(int $id) {
         return Reservation::where('id', $id)->with(['contact', 'rooms', 'guests'])->first();
     }
