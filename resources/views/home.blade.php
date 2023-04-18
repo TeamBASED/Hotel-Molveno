@@ -22,23 +22,25 @@
                 <h3>Reception</h3>
                 <x-buttons.primary-button href="room/overview">Overview rooms</x-buttons.primary-button>
 
-                <div class="dates flex-center">
+                {{-- <div class="dates flex-center">
 
-                </div>
+                </div> --}}
                 {{-- TODO: Make new route for date select --> room overview --}}
-                <form action="{{ route('room.overview') }}" id="view-available-rooms" method="GET">
+
+                <div class="dateOfArrival">
+                    <label for="dateOfArrival">Date of arrival</label>
+                    <input type="date" class="input-text" name="dateOfArrival" id="dateOfArrival"
+                        form="view-available-rooms" required value="{{ date('Y-m-d') }}">
+                </div>
+                <div class="dateOfDeparture">
+                    <label for="dateOfDeparture">Date of departure</label>
+                    <input type="date" class="input-text" name="dateOfDeparture" id="dateOfDeparture"
+                        form="view-available-rooms" required>
+                </div>
+                <form action="{{ route('room.overview') }}" class="flex-center-center" id="view-available-rooms"
+                    method="GET">
                     @csrf
-                    <div class="date-of-arrival">
-                        <label for="dateOfArrival">Date of arrival</label>
-                        <input type="date" name="dateOfArrival" id="dateOfArrival" form="view-available-rooms"
-                            required value="{{ date('Y-m-d') }}">
-                    </div>
-                    <div class="dateOfDeparture">
-                        <label for="dateOfDeparture">Date of departure</label>
-                        <input type="date" name="dateOfDeparture" id="dateOfDeparture" form="view-available-rooms"
-                            required>
-                    </div>
-                    <x-buttons.primary-button>View availabele rooms</x-buttons.primary-button>
+                    <x-buttons.primary-button class="flex-grow-1">View availabele rooms</x-buttons.primary-button>
                 </form>
             </div>
 
