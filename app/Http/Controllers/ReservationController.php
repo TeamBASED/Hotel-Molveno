@@ -183,7 +183,21 @@ class ReservationController extends Controller {
         }
 
         return $availableRooms;
+    }
 
+    public static function getAvailableRoomsDuringTimeInterval($date_of_arrival, $date_of_departure) {
+        $reservations = Reservation::getAllReservationsQueryInTimeinterval($date_of_arrival, $date_of_departure);
+        $availableRooms = Room::getAllRoomData();
+
+        foreach ($reservations as $reservation) {
+            foreach ($reservation->rooms as $occupiedRoom) {
+                $availableRooms = $availableRooms->filter(function ($item) use ($occupiedRoom) {
+                    return $item->id != $occupiedRoom->id;
+                });
+            }
+        }
+
+        return $availableRooms;
     }
 
 

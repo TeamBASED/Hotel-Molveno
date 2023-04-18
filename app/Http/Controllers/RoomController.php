@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReservationController;
 
 class RoomController extends Controller {
 
@@ -26,6 +27,7 @@ class RoomController extends Controller {
     }
 
     public function viewRoomOverview(Request $request) {
+        // dd($request);
         if ($request->user()->can('viewAny', Room::class)) {
             $rooms = $this->filterRoomResults($request);
             $roomTypes = RoomType::get();
@@ -142,6 +144,10 @@ class RoomController extends Controller {
     private function filterRoomResults(Request $request) {
         $filterQuery = Room::with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations']);
 
+        // dd($filterQuery);
+
+
+
         if ($this->hasFilter($request->capacity))
             $filterQuery->withCapacity($request->capacity);
         if ($this->hasFilter($request->number))
@@ -157,7 +163,17 @@ class RoomController extends Controller {
         if (isset($request->babybed))
             $filterQuery->withBabybed(1);
 
-        return $filterQuery->get();
+
+        $currentRooms = $filterQuery->get();
+
+        if ($this->hasFilter($request->dateOfArrival) && $this->hasFilter($request->dateOfDeparture)) {
+            $availableRooms = ReservationController::getAvailableRoomsDuringTimeInterval($request->dateOfArrival, $request->dateOfDeparture);
+            return $currentRooms->union($availableRooms);
+        } else {
+            return $currentRooms;
+        }
+
+
     }
 
     private function hasFilter($param) {
