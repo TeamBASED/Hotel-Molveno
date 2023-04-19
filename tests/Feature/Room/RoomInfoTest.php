@@ -65,7 +65,7 @@ class RoomInfoTest extends TestCase {
         $response->assertRedirect('/login');
     }
 
-    public function test_page_contains_expected_content() {
+    public function page_contains_expected_content_format(int $role_id, array $expected_content) {
         // Create a user, log in (act) as that user and go to page, then check if some specific content is shown on page
 
         $this->seed([
@@ -78,7 +78,7 @@ class RoomInfoTest extends TestCase {
         ]);
 
         $user = User::factory()->create([
-            'role_id' => 1,
+            'role_id' => $role_id,
         ]);
 
         $response = (
@@ -86,8 +86,28 @@ class RoomInfoTest extends TestCase {
                 ->get('/room/1/info')
         );
 
-        $response->assertSee(['Room info', 'Capacity', 'Description', 'Edit', 'Back']);
+        $response->assertSee($expected_content);
     }
+
+    public function test_page_contains_expected_content_as_owner() {
+        $this->page_contains_expected_content_format(1, ['Room info', 'Capacity', 'Description', 'Edit', 'Back']);
+    }
+
+    public function test_page_contains_expected_content_as_hotel_manager() {
+        $this->page_contains_expected_content_format(2, ['Room info', 'Capacity', 'Description', 'Edit', 'Back']);
+    }
+    public function test_page_contains_expected_content_as_head_housekeeping() {
+        $this->page_contains_expected_content_format(3, ['Room info', 'Capacity', 'Description', 'Back']);
+    }
+
+    public function test_page_contains_expected_content_as_housekeeping() {
+        $this->page_contains_expected_content_format(4, ['Room info', 'Capacity', 'Description', 'Back']);
+    }
+
+    public function test_page_contains_expected_content_as_reception() {
+        $this->page_contains_expected_content_format(5, ['Room info', 'Capacity', 'Description', 'Back']);
+    }
+
 
 // Ik snap niet hoe je naar een specifieke button zoekt, dus deze test doet et nie :(
 
