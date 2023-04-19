@@ -91,22 +91,22 @@ class RoomInfoTest extends TestCase {
     }
 
     public function test_page_contains_expected_content_as_owner() {
-        $this->page_contains_expected_content_format(1, ['Home', 'Rooms', 'Reservations', 'Room info', 'Capacity', 'Description', 'Edit', 'Back'], []);
+        $this->page_contains_expected_content_format(1, ['Home', 'Rooms', 'Reservations', 'Room info', 'Room no.', 'Type', 'Capacity', 'Price per night', 'View', 'Beds', 'Description', 'Edit', 'Back'], []);
     }
 
     public function test_page_contains_expected_content_as_hotel_manager() {
-        $this->page_contains_expected_content_format(2, ['Home', 'Rooms', 'Reservations', 'Room info', 'Capacity', 'Description', 'Edit', 'Back'], []);
+        $this->page_contains_expected_content_format(2, ['Home', 'Rooms', 'Reservations', 'Room info', 'Room no.', 'Type', 'Capacity', 'Price per night', 'View', 'Beds', 'Description', 'Edit', 'Back'], []);
     }
     public function test_page_contains_expected_content_as_head_housekeeping() {
-        $this->page_contains_expected_content_format(3, ['Home', 'Rooms', 'Room info', 'Capacity', 'Description', 'Back'], ['Reservations', 'Reservation Schedule', 'Edit']);
+        $this->page_contains_expected_content_format(3, ['Home', 'Rooms', 'Room info', 'Room no.', 'Type', 'Capacity', 'Beds', 'Description', 'Back'], ['Reservations', 'Price per night', 'View', 'Reservation Schedule', 'Edit']);
     }
 
     public function test_page_contains_expected_content_as_housekeeping() {
-        $this->page_contains_expected_content_format(4, ['Home', 'Rooms', 'Room info', 'Capacity', 'Description', 'Back'], ['Reservations', 'Reservation Schedule', 'Edit']);
+        $this->page_contains_expected_content_format(4, ['Home', 'Rooms', 'Room info', 'Room no.', 'Type', 'Capacity', 'Beds', 'Description', 'Back'], ['Reservations', 'Price per night', 'View', 'Reservation Schedule', 'Edit']);
     }
 
     public function test_page_contains_expected_content_as_reception() {
-        $this->page_contains_expected_content_format(5, ['Home', 'Rooms', 'Room info', 'Room info', 'Capacity', 'Description', 'Back'], ['Reservations', 'Reservation Schedule', 'Edit']);
+        $this->page_contains_expected_content_format(5, ['Home', 'Rooms', 'Room info', 'Room info', 'Capacity', 'Description', 'Reservations', 'Reservation Schedule', 'Back'], ['Edit']);
     }
 
 
