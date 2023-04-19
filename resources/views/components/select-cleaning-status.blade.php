@@ -12,10 +12,10 @@
             <form action="{{ route('room.status', ['id' => $room->id]) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <select>
-                    @foreach ($roomViews as $option)
-                        <option class="filter-field-option" value="{{ $option->id }}"
-                            @if ($option->id == old('view', $room->room_view_id)) selected="selected" @endif>{{ $option->view }}
+                <select name="cleaning-status" required>
+                    @foreach ($cleaningStatuses as $cleaningStatus)
+                        <option class="filter-field-option" value="{{ $cleaningStatus->id }}"
+                            @if ($cleaningStatus->id == old('cleaning-status', $room->cleaning_status_id)) selected="selected" @endif>{{ $cleaningStatus->status }}
                         </option>
                     @endforeach
                 </select>
