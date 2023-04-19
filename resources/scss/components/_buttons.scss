@@ -3,6 +3,8 @@
         text-align: center;
         font-weight: 600;
         padding: .4rem 2rem;
+        transition-property: background-color color;
+        transition-duration: 200ms;
     }
 
     .static-size {
@@ -14,18 +16,18 @@
         background-color: $color-700;
         color: $color-white;
 
-        // &:hover {
-        // what should hover status do?
-        // }
+        &:hover {
+            background-color: $color-800;
+        }
     }
 
     .secondary-button {
         background-color: $color-grey-300;
         color: $color-700;
 
-        // &:hover {
-        // what should hover status do?
-        // }
+        &:hover {
+            background-color: $color-grey-500;
+        }
     }
 
     .tertiary-button {
@@ -36,9 +38,14 @@
         // what should hover status do?
         // }
 
-
         &.warning {
-            color: #e24b4b;
+            color: $color-warning;
+            border: 2px solid $color-warning;
+
+            &:hover {
+                background-color: $color-warning;
+                color: $color-white;
+            }
         }
     }
 
