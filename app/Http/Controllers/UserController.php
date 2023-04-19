@@ -54,7 +54,7 @@ class UserController extends Controller {
             'username' => 'required|string|max:255|unique:' . User::class,
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'password' => 'required|confirmed', Rules\Password::defaults(),
+            'password' => 'required|min:8|confirmed', Rules\Password::defaults(),
             'role' => 'required|int',
         ]);
         $user = $this->userRegister($request);
@@ -81,7 +81,7 @@ class UserController extends Controller {
             'username' => 'required|string|max:255', Rule::unique('users')->ignore($user),
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'password' => 'required|confirmed', Rules\Password::defaults(),
+            'password' => 'nullable|min:8|confirmed', Rules\Password::defaults(),
             'role' => 'required|int',
         ]);
 
@@ -91,12 +91,28 @@ class UserController extends Controller {
     }
 
     private function userUpdate(Request $request, User $user) {
+
         $user->update([
             'username' => $request->username,
             'first_name' => $request->firstname,
             'last_name' => $request->lastname,
-            'password' => ($request->password) ? $user->password : Hash::make($request->password),
+            'password' => ($request->password) ? Hash::make($request->password) : $user->password,
             'role_id' => $request->role,
         ]);
+    }
+
+    public function userDelete(User $user) {
+        $user->delete();
+    }
+
+    public function handleUserDelete(Request $request): RedirectResponse {
+        $user = User::getUserById($request->id);
+
+        if (UserController::isPasswordCorrect($request->password) && !$user->role->id == 1) {
+            $user->delete();
+            return redirect(route('user.overview', ['notification' => 'User successfully deleted']));
+        } else {
+            return redirect(route('user.edit', ['user' => $user->id, 'notification' => 'Deletion unsuccessful']));
+        }
     }
 }
