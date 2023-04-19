@@ -144,10 +144,6 @@ class RoomController extends Controller {
     private function filterRoomResults(Request $request) {
         $filterQuery = Room::with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations']);
 
-        // dd($filterQuery);
-
-
-
         if ($this->hasFilter($request->capacity))
             $filterQuery->withCapacity($request->capacity);
         if ($this->hasFilter($request->number))
@@ -167,12 +163,10 @@ class RoomController extends Controller {
         $currentRooms = $filterQuery->get();
 
         if ($this->hasFilter($request->dateOfArrival) && $this->hasFilter($request->dateOfDeparture)) {
-            return $this->filterRoomsOnAvailability($currentRooms, $request->dateOfArrival, $request->dateOfDeparture);
-
-        } else {
-            return $currentRooms;
+            $currentRooms = $this->filterRoomsOnAvailability($currentRooms, $request->dateOfArrival, $request->dateOfDeparture);
         }
 
+        return $currentRooms;
 
     }
 
