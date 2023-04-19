@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CleaningStatusController;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Routing\Controllers\Middleware;
@@ -62,6 +63,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/reservation/{reservation}/guest/{guest}/update', [GuestController::class, 'handleUpdateGuest'])->name('guest.update');
     Route::delete('/reservation/{reservation}/guest/{guest}/delete', [GuestController::class, 'deleteGuest'])->name('guest.delete');
 
+    // Cleaning route
+    Route::patch('/room/{id}/status', [CleaningStatusController::class, 'changeCleaningStatus'])->name('cleaning.status');
+
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');
     Route::get('/room/{room}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
@@ -69,7 +73,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/room/store', [RoomController::class, 'handleCreateRoom'])->name('room.store');
     Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit', 'notification' => '$notification'])->name('room.edit');
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
-    Route::patch('/room/{id}/status', [RoomController::class, 'handleCleaningStatus'])->name('room.status');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
     // Contact routes

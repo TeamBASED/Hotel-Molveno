@@ -9,10 +9,10 @@
             <x-buttons.secondary-button id="cancel-status-change">
                 Cancel
             </x-buttons.secondary-button>
-            <form action="{{ route('room.status', ['id' => $room->id]) }}" method="POST">
+            <form action="{{ route('cleaning.status', ['id' => $room->id]) }}" method="POST">
                 @csrf
                 @method('PATCH')
-                <select name="cleaning-status" required>
+                <select name="cleaning_status" required>
                     @foreach ($cleaningStatuses as $cleaningStatus)
                         <option class="filter-field-option" value="{{ $cleaningStatus->id }}"
                             @if ($cleaningStatus->id == old('cleaning-status', $room->cleaning_status_id)) selected="selected" @endif>{{ $cleaningStatus->status }}
