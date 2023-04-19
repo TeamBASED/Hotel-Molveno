@@ -11,12 +11,13 @@
 
         <p class="details-label">Capacity</p>
         <p id="details-capacity" class="right-aligned">{{ $room->capacity }}</p>
+        @can('create', App\Models\Reservation::class)
+            <p class="details-label">Price per night</p>
+            <p id="details-price-per-night" class="right-aligned">{{ $room->base_price_per_night }}</p>
 
-        <p class="details-label">Price per night</p>
-        <p id="details-price-per-night" class="right-aligned">{{ $room->base_price_per_night }}</p>
-
-        <p class="details-label">Room view</p>
-        <p id="details-view" class="right-aligned">{{ $room->roomView->view }}</p>
+            <p class="details-label">Room view</p>
+            <p id="details-view" class="right-aligned">{{ $room->roomView->view }}</p>
+        @endcan
 
         <p class="details-label">Beds</p>
         <div id="details-bed-configuration" class="right-aligned">

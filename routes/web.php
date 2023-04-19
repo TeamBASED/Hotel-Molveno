@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/room/store', [RoomController::class, 'handleCreateRoom'])->name('room.store');
     Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit', 'notification' => '$notification'])->name('room.edit');
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
+    Route::patch('/room/{id}/status', [RoomController::class, 'handleCleaningStatus'])->name('room.status');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
     // Contact routes
