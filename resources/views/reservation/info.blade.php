@@ -27,16 +27,15 @@
                         <h4>Date departure&colon;</h4>
                         <p class="right-aligned">{{ $reservation->date_of_departure }}</p>
                     </div>
-
-                    <x-buttons.secondary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.secondary-button>
+                    @can('update', $reservation)
+                        <x-buttons.secondary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.secondary-button>
+                    @endcan
                 </section>
-
                 <x-buttons.primary-button :href="route('reservation.overview')">Back</x-buttons.primary-button>
             </div>
 
             <div class="info-wrapper">
                 <section class="info-section">
-
 
                     <h3>Rooms in the reservation:</h3>
                     @foreach ($currentRooms as $currentRoom)
@@ -44,14 +43,12 @@
                         </p>
                     @endforeach
 
-
                 </section>
             </div>
 
             <section class="reservation-schedule">
                 <h3 class="white-text">Guests</h3>
 
-                {{-- {{ dd($reservation) }} --}}
                 <div class="reservations grid-two-columns">
 
                     @foreach ($reservation->guests as $guest)
@@ -60,6 +57,7 @@
                         <x-buttons.edit-button :href="route('guest.edit', ['reservation' => $reservation->id, 'guest' => $guest->id])">Edit
                         </x-buttons.edit-button>
                     @endforeach
+
                 </div>
             </section>
         </article>

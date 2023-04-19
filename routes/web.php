@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Room;
+use App\Models\User;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -31,13 +33,17 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 
 // User logged in
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // User routes
+    Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
+    Route::get('/user/register', [UserController::class, 'viewUserRegister'])->name('user.register');
+    Route::post('/user/store', [UserController::class, 'handleUserRegister'])->name('user.store');
+    Route::get('/user/{user}/edit', [UserController::class, 'viewUserEdit'])->name('user.edit');
+    Route::patch('/user/{user}/update', [UserController::class, 'handleUserUpdate'])->name('user.update');
+    Route::delete('/user/{id}/delete', [UserController::class, 'handleUserDelete'])->name('user.delete');
 
     // for now redirect, this should be home page
     Route::get('/', function () {
-        return redirect(route('room.overview'));
+        return view('home');
     })->name('home');
 
     // reservation routes
@@ -61,7 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/room/{room}/info', [RoomController::class, 'viewRoomInfo'])->name('room.info');
     Route::get('/room/create', [RoomController::class, 'viewRoomCreate'])->name('room.create');
     Route::post('/room/store', [RoomController::class, 'handleCreateRoom'])->name('room.store');
-    Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit'])->name('room.edit');
+    Route::get('/room/{id}/edit', [RoomController::class, 'viewRoomEdit', 'notification' => '$notification'])->name('room.edit');
     Route::patch('/room/{id}/update', [RoomController::class, 'handleUpdateRoom'])->name('room.update');
     Route::delete('/room/{id}/delete', [RoomController::class, 'handleDeleteRoom'])->name('room.delete');
 
@@ -70,7 +76,4 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservation/verify', [ContactController::class, 'handleVerification'])->name('reservation.verify');
 });
 
-// User routes
-Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

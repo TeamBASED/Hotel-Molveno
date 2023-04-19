@@ -16,46 +16,5 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
-    {
-        $roles = Role::getAllRoleData();
 
-        return view('auth.register', ['roles' => $roles]);
-    }
-
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        
-        $request->validate([
-            'username' => ['required', 'string', 'max:255', 'unique:'.User::class],
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'int'],
-        ]);
-
-        $user = User::create([
-            'username' => $request->username,
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
-            'password' => Hash::make($request->password),
-            'role_id' => $request->role,
-        ]);
-
-        event(new Registered($user));
-
-        // for now return to room overview
-        
-        // return redirect(RouteServiceProvider::HOME);
-
-        return redirect(route('room.overview'));
-    }
 }

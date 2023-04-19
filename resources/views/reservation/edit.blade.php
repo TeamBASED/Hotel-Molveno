@@ -1,13 +1,17 @@
 <x-layout.base>
     <main id="reservation-edit" class="main-content">
+
+        @if (isset($_GET['notification']))
+            <p class="notification">{{ $_GET['notification'] }}</p>
+        @endif
         <div class="padding-inline-5rem">
             <div class="crud-header">
                 <h2>Edit reservation</h2>
-                <form action="{{ route('reservation.delete', $reservation->id) }}" method="POST" class="absolute-right">
-                    @csrf
-                    @method('DELETE')
-                    <x-buttons.tertiary-button class="warning">Delete</x-buttons.tertiary-button>
-                </form>
+
+                <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
+                </x-buttons.tertiary-button>
+                <x-delete-confirmation :removeId='$reservation->id' removalRoute='reservation.delete'></x-delete-confirmation>
+
             </div>
 
             <div class="flex-space-between">
@@ -48,18 +52,11 @@
                             name="date_of_departure">
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
                         <input type="hidden" name="contact_id" value="{{ $contact->id }}">
-
-                        {{-- <h3>Room number</h3>
-                        @foreach ($rooms as $room)
-                            <input type="text" class="input-text" value="{{ old('room', $room->room_number) }}"
-                                name="room[]">
-                        @endforeach
-                        <input type="text" class="input-text" placeholder="add room" name="room[]"> --}}
-
                     </div>
                     <div>
                         <x-room.available-rooms :currentRooms="$currentRooms" :availableRooms="$availableRooms" />
                     </div>
+
                 </form>
 
                 <div class="right">
@@ -73,6 +70,7 @@
                 <x-buttons.secondary-button :href="route('reservation.info', $reservation->id)">Cancel</x-buttons.secondary-button>
                 <x-buttons.primary-button form="edit-form">Save</x-buttons.primary-button>
             </div>
+
 
         </div>
     </main>

@@ -1,6 +1,9 @@
 <x-layout.base>
     <main id="reservation-overview">
         <h2>Reservations</h2>
+        @if (isset($_GET['notification']))
+            <p class="notification">{{ $_GET['notification'] }}</p>
+        @endif
 
         <article class="flex-center">
             <div class="flex-column left-side padding-inline-1rem padding-block">

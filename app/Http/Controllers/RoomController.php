@@ -9,9 +9,13 @@ use App\Models\RoomView;
 use App\Policies\RoomPolicy;
 use Illuminate\Http\Request;
 use App\Models\BedConfiguration;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\UserController;
 
 class RoomController extends Controller {
+
     public function viewRoomInfo(int $id, Request $request) {
         if ($request->user()->can('viewAny', Room::class)) {
             $room = Room::getRoomData($id);
@@ -92,10 +96,18 @@ class RoomController extends Controller {
     }
 
     public function handleDeleteRoom(Request $request) {
-        Room::deleteRoomData($request->id);
-        (new RoomBedConfigurationController())->deleteBedConfigurationForRoom($request->id);
 
-        return redirect(route('room.overview'));
+        if (UserController::isPasswordCorrect($request->password)) {
+            $roomNumber = Room::getRoomData($request->id)->room_number;
+            Room::deleteRoomData($request->id);
+            return redirect(route('room.overview', ['notification' => "Room $roomNumber is deleted"]));
+
+        } else {
+
+            return redirect(route('room.edit', ['id' => $request->id, 'notification' => 'The room is not removed']));
+
+        }
+
     }
 
     public function storeRoom(Request $request) {
