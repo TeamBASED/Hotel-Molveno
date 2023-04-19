@@ -65,7 +65,7 @@ class RoomInfoTest extends TestCase {
         $response->assertRedirect('/login');
     }
 
-    public function page_contains_expected_content_format(int $role_id, array $expected_content) {
+    public function page_contains_expected_content_format(int $role_id, array $expected_content, array $expected_hidden_content) {
         // Create a user, log in (act) as that user and go to page, then check if some specific content is shown on page
 
         $this->seed([
@@ -87,25 +87,26 @@ class RoomInfoTest extends TestCase {
         );
 
         $response->assertSee($expected_content);
+        $response->assertDontSee($expected_hidden_content);
     }
 
     public function test_page_contains_expected_content_as_owner() {
-        $this->page_contains_expected_content_format(1, ['Room info', 'Capacity', 'Description', 'Edit', 'Back']);
+        $this->page_contains_expected_content_format(1, ['Home', 'Rooms', 'Reservations', 'Room info', 'Capacity', 'Description', 'Edit', 'Back'], []);
     }
 
     public function test_page_contains_expected_content_as_hotel_manager() {
-        $this->page_contains_expected_content_format(2, ['Room info', 'Capacity', 'Description', 'Edit', 'Back']);
+        $this->page_contains_expected_content_format(2, ['Home', 'Rooms', 'Reservations', 'Room info', 'Capacity', 'Description', 'Edit', 'Back'], []);
     }
     public function test_page_contains_expected_content_as_head_housekeeping() {
-        $this->page_contains_expected_content_format(3, ['Room info', 'Capacity', 'Description', 'Back']);
+        $this->page_contains_expected_content_format(3, ['Home', 'Rooms', 'Room info', 'Capacity', 'Description', 'Back'], ['Reservations', 'Reservation Schedule', 'Edit']);
     }
 
     public function test_page_contains_expected_content_as_housekeeping() {
-        $this->page_contains_expected_content_format(4, ['Room info', 'Capacity', 'Description', 'Back']);
+        $this->page_contains_expected_content_format(4, ['Home', 'Rooms', 'Room info', 'Capacity', 'Description', 'Back'], ['Reservations', 'Reservation Schedule', 'Edit']);
     }
 
     public function test_page_contains_expected_content_as_reception() {
-        $this->page_contains_expected_content_format(5, ['Room info', 'Capacity', 'Description', 'Back']);
+        $this->page_contains_expected_content_format(5, ['Home', 'Rooms', 'Room info', 'Room info', 'Capacity', 'Description', 'Back'], ['Reservations', 'Reservation Schedule', 'Edit']);
     }
 
 
