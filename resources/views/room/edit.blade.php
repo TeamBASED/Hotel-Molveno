@@ -29,12 +29,15 @@
                 @csrf
                 @method('PATCH')
                 <div class="flex-column padding-block-1rem">
-                    <input type="text" class="input-text" required placeholder="Room number" name="number"
-                        value="{{ old('number', $room->room_number) }}">
-                    <input type="text" class="input-text" required placeholder="Capacity" name="capacity"
-                        value="{{ old('capacity', $room->capacity) }}">
-                    <input type="text" class="input-text" required placeholder="Price per night" name="price"
-                        value="{{ old('price', $room->base_price_per_night) }}">
+                    <label for="room-number">Room number</label>
+                    <input id="room-number" type="text" class="input-text" required placeholder="Room number"
+                        name="number" value="{{ old('number', $room->room_number) }}">
+                    <label for="capacity">Capacity</label>
+                    <input id="capacity" type="text" class="input-text" required placeholder="Capacity"
+                        name="capacity" value="{{ old('capacity', $room->capacity) }}">
+                    <label for="price-per-night">Price per night</label>
+                    <input id="price-per-night" type="text" class="input-text" required placeholder="Price per night"
+                        name="price" value="{{ old('price', $room->base_price_per_night) }}">
                     <div class="inline-input">
                         <label for="single-bed-configuration">Single beds</label>
                         <input id="single-bed-configuration" type="number" class="input-text" required
@@ -59,14 +62,16 @@
 
 
                 <div class="flex-column padding-block-1rem">
-                    <select class="dropdown-select" name="type" required>
+                    <label for="room-type">Room type</label>
+                    <select id="room-type" class="dropdown-select" name="type" required>
                         @foreach ($roomTypes as $option)
                             <option class="filter-field-option" value="{{ $option->id }}"
                                 @if ($option->id == old('type', $room->room_type_id)) selected="selected" @endif>{{ $option->type }}
                             </option>
                         @endforeach
                     </select>
-                    <select class="dropdown-select" name="view" required>
+                    <label for="room-view">Room view</label>
+                    <select id="room-view" class="dropdown-select" name="view" required>
                         @foreach ($roomViews as $option)
                             <option class="filter-field-option" value="{{ $option->id }}"
                                 @if ($option->id == old('view', $room->room_view_id)) selected="selected" @endif>{{ $option->view }}
