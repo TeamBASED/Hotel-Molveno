@@ -22,12 +22,31 @@
                 <h3>Reception</h3>
                 <x-buttons.primary-button href="room/overview">Overview rooms</x-buttons.primary-button>
 
+                {{-- <div class="dates flex-center">
+
+                </div> --}}
                 {{-- TODO: Make new route for date select --> room overview --}}
-                <x-buttons.primary-button href="room/overview">View availabele rooms</x-buttons.primary-button>
+
+                <div class="dateOfArrival">
+                    <label for="dateOfArrival">Date of arrival</label>
+                    <input type="date" class="input-text" name="dateOfArrival" id="dateOfArrival"
+                        form="view-available-rooms" required value="{{ date('Y-m-d') }}">
+                </div>
+                <div class="dateOfDeparture">
+                    <label for="dateOfDeparture">Date of departure</label>
+                    <input type="date" class="input-text" name="dateOfDeparture" id="dateOfDeparture"
+                        form="view-available-rooms" required>
+                </div>
+                <form action="{{ route('room.overview') }}" class="flex-center-center" id="view-available-rooms"
+                    method="GET">
+                    @csrf
+                    <x-buttons.primary-button class="flex-grow-1">View available rooms</x-buttons.primary-button>
+                </form>
             </div>
 
-            <div class="flex-column home-page-entry">
+            <div class="flex-column align-center home-page-entry">
                 <h3>Housekeeping</h3>
+
 
                 {{-- TODO: Make routes/overviews for housekeeping --}}
                 <x-buttons.primary-button href="room/overview">Overview rooms</x-buttons.primary-button>
