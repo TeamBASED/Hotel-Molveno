@@ -58,6 +58,10 @@
                         </x-buttons.edit-button>
                     @endforeach
 
+                    <x-buttons.secondary-button class="grid-span-2" :href="route('guest.create', ['id' => $reservation->id])">
+                        Add guest
+                    </x-buttons.secondary-button>
+
                 </div>
             </section>
         </article>
