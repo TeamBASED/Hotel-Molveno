@@ -66,7 +66,7 @@
             <x-guest.overview-box :$reservation />
 
             <div>
-                <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
+                <x-buttons.secondary-button :href="route('reservation.info', $reservation->id)">Cancel</x-buttons.secondary-button>
             </div>
 
             <div class="flex-space-between">
