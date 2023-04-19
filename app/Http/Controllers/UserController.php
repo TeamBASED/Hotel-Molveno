@@ -15,12 +15,14 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller {
-    public function viewUserOverview() {
-        $users = User::getAllUserData();
-
-        return view('user.overview', ['users' => $users]);
+    public function viewUserOverview(Request $request): View {
+        if ($request->user()->can('viewAny', User::class)) {
+            $users = User::getAllUserData();
+            return view('user.overview', ['users' => $users]);
+        } else {
+            return view('home');
+        }
     }
-
 
     public static function isPasswordCorrect(string $password): bool {
         return Hash::check($password, Auth::user()->password);
@@ -29,16 +31,22 @@ class UserController extends Controller {
     /**
      * Display the registration view.
      */
-    public function viewUserRegister(): View {
-        $roles = Role::getAllRoleData();
-
-        return view('user.register', ['roles' => $roles]);
+    public function viewUserRegister(Request $request) {
+        if ($request->user()->can('create', User::class)) {
+            $roles = Role::getAllRoleData();
+            return view('user.register', ['roles' => $roles]);
+        } else {
+            return redirect(route('user.overview'));
+        }
     }
 
-    public function viewUserEdit(User $user): View {
-        $roles = Role::getAllRoleData();
-
-        return view('user.edit', ['user' => $user, 'roles' => $roles]);
+    public function viewUserEdit(User $user, Request $request) {
+        if ($request->user()->can('update', $user)) {
+            $roles = Role::getAllRoleData();
+            return view('user.edit', ['user' => $user, 'roles' => $roles]);
+        } else {
+            return redirect(route('user.overview'));
+        }
     }
 
     /**
