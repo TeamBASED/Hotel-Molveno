@@ -101,10 +101,8 @@ class UserController extends Controller {
         ]);
     }
 
-    public function userDelete(User $user): RedirectResponse {
+    public function userDelete(User $user) {
         $user->delete();
-
-        return redirect(route('user.overview'));
     }
 
     public function handleUserDelete(Request $request): RedirectResponse {
