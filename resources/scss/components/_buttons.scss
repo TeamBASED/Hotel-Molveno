@@ -45,8 +45,10 @@
     .edit-button {
         background-color: $color-700;
         color: $color-white;
-        width: 30px;
+        width: 60px;
         height: 30px;
+        text-align: center;
+        padding: 0.2rem;
 
         // &:hover {
         // what should hover status do?
