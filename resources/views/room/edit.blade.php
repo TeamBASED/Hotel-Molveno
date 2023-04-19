@@ -22,11 +22,10 @@
                 <h2>Edit room</h2>
                 <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
                 </x-buttons.tertiary-button>
-                <x-delete-confirmation :removeId='$room->id' removalRoute='room.delete'></x-delete-confirmation>
+                <x-delete-confirmation :removeId='$room->id' :removalRoute="route('room.delete', $room->id)"></x-delete-confirmation>
             </div>
 
-            <form action="{{ route('room.update', $room->id) }}" method="POST"
-                class="edit-room-form grid-three-columns">
+            <form action="{{ route('room.update', $room->id) }}" method="POST" class="edit-room-form grid-three-columns">
                 @csrf
                 @method('PATCH')
                 <div class="flex-column padding-block-1rem">
@@ -77,13 +76,11 @@
                     <input type="hidden" name="id" value="{{ $room->id }}">
                 </div>
 
-
-
-
                 <div class="flex-space-between grid-span-3">
                     <x-buttons.secondary-button :href="route('room.info', $room->id)">Cancel</x-buttons.secondary-button>
                     <x-buttons.primary-button>Save</x-buttons.primary-button>
                 </div>
-
+            </form>
+        </div>
     </main>
 </x-layout.base>

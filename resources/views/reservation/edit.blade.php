@@ -10,7 +10,7 @@
 
                 <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
                 </x-buttons.tertiary-button>
-                <x-delete-confirmation :removeId='$reservation->id' removalRoute='reservation.delete'></x-delete-confirmation>
+                <x-delete-confirmation :removeId='$reservation->id' :removalRoute="route('reservation.delete', $reservation->id)"></x-delete-confirmation>
 
             </div>
 
