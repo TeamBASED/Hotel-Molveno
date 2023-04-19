@@ -16,7 +16,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class RoomInfoTest extends TestCase {
     use RefreshDatabase;
 
-    public function test_page_loads() {
+    public function page_loads_format(int $role_id) {
         // Load all test data and go to page, check if the server returns a page, this also uses the roomPolicy to check for access
 
         $this->seed([
@@ -29,7 +29,7 @@ class RoomInfoTest extends TestCase {
         ]);
 
         $user = User::factory()->create([
-            'role_id' => 1,
+            'role_id' => $role_id,
         ]);
 
         $response = $this
@@ -37,6 +37,26 @@ class RoomInfoTest extends TestCase {
             ->get('/room/1/info');
 
         $response->assertStatus(200);
+    }
+
+    public function test_page_loads_as_owner() {
+        $this->page_loads_format(1);
+    }
+
+    public function test_page_loads_as_hotel_manager() {
+        $this->page_loads_format(2);
+    }
+
+    public function test_page_loads_as_head_housekeeping() {
+        $this->page_loads_format(3);
+    }
+
+    public function test_page_loads_as_housekeeping() {
+        $this->page_loads_format(4);
+    }
+
+    public function test_page_loads_as_reception() {
+        $this->page_loads_format(5);
     }
 
     public function test_page_redirects_to_login_when_guest() {
