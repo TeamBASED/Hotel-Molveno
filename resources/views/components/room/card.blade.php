@@ -1,4 +1,4 @@
-@props(['room', 'user'])
+@props(['room', 'user', 'cleaningStatuses'])
 
 <div class="room-item" data-room-details="{{ json_encode($room) }}">
     <div class="room-item-header">
@@ -14,10 +14,8 @@
             <input type="hidden" name="roomId" value="{{ $room->id }}">
             <x-buttons.primary-button>Make reservation</x-buttons.primary-button>
         </form>
-    @else
-        <x-buttons.tertiary-button class="" id="cleaning-status-button">Change cleaning status
-        </x-buttons.tertiary-button>
-        <x-select-cleaning-status :room='$room'></x-select-cleaning-status>
     @endcan
-
+    <x-buttons.tertiary-button class="cleaning-status-button">Change cleaning status
+    </x-buttons.tertiary-button>
+    <x-select-cleaning-status :room='$room' :cleaningStatuses='$cleaningStatuses'></x-select-cleaning-status>
 </div>

@@ -7,9 +7,6 @@
             <p class="notification">{{ $_GET['notification'] }}</p>
         @endif
         <main class="main-content" id="room-overview">
-
-
-
             <div class="left-side">
                 <form class="filter-section" action="{{ route('room.overview') }}" method="GET">
 
@@ -105,7 +102,7 @@
                 <div id="rooms-container">
 
                     @foreach ($rooms as $room)
-                        <x-room.card :room="$room" />
+                        <x-room.card :room="$room" :cleaningStatuses='$cleaningStatuses' />
                     @endforeach
 
                 </div>
@@ -145,10 +142,24 @@
                     </x-buttons.secondary-button>
                     <x-buttons.secondary-button id="details-reservation-button" :href="route('reservation.contact', ['id' => 1])">Make reservation
                     </x-buttons.secondary-button>
+                    {{-- <x-buttons.secondary-button id="cleaning-status-button">Change cleaning status
+                    </x-buttons.secondary-button> --}}
+                    {{-- <x-select-cleaning-status :room='$room' :cleaningStatuses='$cleaningStatuses'></x-select-cleaning-status> --}}
                 </div>
 
                 <p id="select-room-message">Click a room to view details.</p>
             </div>
+            <script>
+                const toggleButtons = document.querySelectorAll('.cleaning-status-button, #cancel-status-change')
+                const cleaningStatusPanel = document.querySelector('#cleaning-status-panel')
+
+                toggleButtons.forEach((button) => {
+                    button.addEventListener("click", () => {
+                        cleaningStatusPanel.classList.toggle('hidden')
+                        cleaningStatusPanel.classList.toggle('cleaning-status-panel')
+                    })
+                })
+            </script>
         </main>
 
 </x-layout.base>
