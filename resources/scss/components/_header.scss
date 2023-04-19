@@ -13,11 +13,12 @@
             width: 100px;
         }
     }
+
     .bottom {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: #006EAD;
+        background-color: $color-600;
         color: #fff;
         font-size: 22px;
         height: 60px;

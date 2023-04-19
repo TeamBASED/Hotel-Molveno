@@ -6,6 +6,10 @@
 
     border: 3px solid $color-grey-400;
 
+    &:focus {
+        border-color: $color-400;
+    }
+
     &::placeholder {
         color: $color-grey-400;
     }
@@ -21,12 +25,9 @@
     border-radius: 0.5rem;
 
     option {
-
         background-color: $color-white;
         color: $color-400;
         border: 3px solid $color-grey-400;
-
-
     }
 
 }
