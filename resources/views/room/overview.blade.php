@@ -110,7 +110,7 @@
 
                 </div>
             </div>
-            <div id="details-section" class="hidden">
+            <div id="details-section" class="hide-section">
                 <h2>Details</h2>
 
                 <div class="grid-two-columns">

@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class GuestController extends Controller {
-    public function viewEditGuest(Reservation $reservation, Guest $guest) {
-        return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
+    public function viewEditGuest(Reservation $reservation, Guest $guest, Request $request) {
+        if ($request->user()->can('update', Guest::class)) {
+            return view('guest.edit', ['reservation' => $reservation, 'guest' => $guest]);
+        } else {
+            return redirect(route('reservation.info', ['id' => $reservation->id]));
+        }
     }
 
     public function handleCreateGuest(int $reservationId, Request $request) {
@@ -28,10 +32,13 @@ class GuestController extends Controller {
         return redirect(route('reservation.info', ['id' => $request->reservation_id]));
     }
 
-    public function viewAddGuest(int $reservationId, $showContact = false) {
-        $reservation = Reservation::getReservationData($reservationId);
-
-        return view('guest.create', ['reservation' => $reservation, 'showContact' => $showContact]);
+    public function viewAddGuest(Request $request, int $reservationId, $showContact = false) {
+        if ($request->user()->can('create', Guest::class)) {
+            $reservation = Reservation::getReservationData($reservationId);
+            return view('guest.create', ['reservation' => $reservation, 'showContact' => $showContact]);
+        } else {
+            return redirect(route('reservation.info', ['id' => $reservationId]));
+        }
     }
 
     private function validateGuest(Request $request) {

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->tinyText('first_name');
             $table->tinyText('last_name');
-            $table->foreignId('contact_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('contact_id')->nullable();
             $table->tinyText('nationality');
             $table->tinyText('passport_number');
             $table->date('date_of_birth');
