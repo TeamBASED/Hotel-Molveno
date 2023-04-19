@@ -8,9 +8,9 @@
             @csrf
             @method('DELETE')
             {{-- TODO refactor button --}}
-            <x-buttons.primary-button class="button gray-background right-aligned flex-center-center"
+            <x-buttons.tertiary-button class="warning"
                 onclick="return confirm('{{ __('Are you sure you want to delete?') }}')">Delete
-            </x-buttons.primary-button>
+            </x-buttons.tertiary-button>
         </form>
         <div class="grid-two-columns">
             <form id="guest-form" class="flex-column"

@@ -4,6 +4,9 @@
             <div id="heading-container">
                 <h2>Edit User</h2>
             </div>
+            <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
+            </x-buttons.tertiary-button>
+            <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation>
             <form method="POST" action="{{ route('user.update', ['user' => $user->id]) }}">
                 @csrf
                 @method('PATCH')
@@ -34,8 +37,7 @@
                 <!-- Password -->
                 <div>
                     <x-input-label for="password" :value="__('Password:')" />
-                    <x-text-input id="password" placeholder="Password" type="password" name="password"
-                        onfocus="this.value=''" :value="old('password')" required autocomplete="new-password" />
+                    <x-text-input id="password" placeholder="Password" type="password" name="password" />
 
                     <x-input-error :messages="$errors->get('password')" />
                 </div>
@@ -44,8 +46,7 @@
                 <div>
                     <x-input-label for="lastname" :value="__('Confirm Password:')" />
                     <x-text-input id="password_confirmation" placeholder="Confirm Password" type="password"
-                        name="password_confirmation" onfocus="this.value=''" :value="old('password_confirmation')" required
-                        autocomplete="new-password" />
+                        name="password_confirmation" />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" />
                 </div>

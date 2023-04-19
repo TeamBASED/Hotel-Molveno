@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Room;
+use App\Models\User;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -37,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/store', [UserController::class, 'handleUserRegister'])->name('user.store');
     Route::get('/user/{user}/edit', [UserController::class, 'viewUserEdit'])->name('user.edit');
     Route::patch('/user/{user}/update', [UserController::class, 'handleUserUpdate'])->name('user.update');
+    Route::delete('/user/{id}/delete', [UserController::class, 'handleUserDelete'])->name('user.delete');
 
     // for now redirect, this should be home page
     Route::get('/', function () {
