@@ -3,10 +3,10 @@
         <section id="form-container">
             <div id="heading-container">
                 <h2>Edit User</h2>
-                <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
-                </x-buttons.tertiary-button>
-                <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation>
             </div>
+            <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
+            </x-buttons.tertiary-button>
+            <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation>
             <form method="POST" action="{{ route('user.update', ['user' => $user->id]) }}">
                 @csrf
                 @method('PATCH')
