@@ -4,6 +4,7 @@ namespace Tests\Feature\Room;
 
 use Tests\TestCase;
 use App\Models\User;
+use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -14,6 +15,11 @@ class RoomOverviewTest extends TestCase {
 
     public function test_page_loads() {
         // Create a user, log in (act) as that user and go to room overview, then check if the server returns a page
+
+        $this->seed([
+            RoleSeeder::class,
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this
