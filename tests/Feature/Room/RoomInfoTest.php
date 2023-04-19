@@ -23,8 +23,8 @@ class RoomInfoTest extends TestCase {
             RoomSeeder::class,
             RoomTypeSeeder::class,
             RoomViewSeeder::class,
-            RoomBedConfigurationSeeder::class,
             BedConfigurationSeeder::class,
+            RoomBedConfigurationSeeder::class,
             RoleSeeder::class,
         ]);
 
