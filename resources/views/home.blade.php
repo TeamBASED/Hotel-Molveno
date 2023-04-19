@@ -40,7 +40,7 @@
                 <form action="{{ route('room.overview') }}" class="flex-center-center" id="view-available-rooms"
                     method="GET">
                     @csrf
-                    <x-buttons.primary-button class="flex-grow-1">View availabele rooms</x-buttons.primary-button>
+                    <x-buttons.primary-button class="flex-grow-1">View available rooms</x-buttons.primary-button>
                 </form>
             </div>
 
