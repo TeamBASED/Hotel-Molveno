@@ -22,24 +22,24 @@ const detailsReserveButton = document.querySelector('#details-reservation-button
 roomsContainer.addEventListener('click', e => {
     const target = e.target;
 
-    if(target.closest('.room-item')) {
+    if (target.closest('.room-item')) {
         handleRoomSelect(target.closest('.room-item'));
 
-        if(detailsSection.matches('.hidden')) {
+        if (detailsSection.matches('.hide-section')) {
             showDetailsSection();
         }
     }
 })
 
 function showDetailsSection() {
-    detailsSection.classList.remove('hidden');
+    detailsSection.classList.remove('hide-section');
 }
 
 function handleRoomSelect(room) {
     const roomDetails = JSON.parse(room.dataset.roomDetails);
     console.log(detailsBedConfiguration.childNodes);
     console.log(roomDetails);
-    
+
     setRoomDetails(roomDetails);
 
     detailsInfoButton.pathname = getPathToRoomInfo(roomDetails.id);
@@ -59,7 +59,7 @@ function setRoomDetails(data) {
 function updateBedConfiguration(bedConfigurations) {
     removeAllChildNodes(detailsBedConfiguration);
 
-    for(const config of bedConfigurations) {
+    for (const config of bedConfigurations) {
         detailsBedConfiguration.appendChild(
             buildBedConfigurationRow(config.configuration, config.pivot.amount)
         );
