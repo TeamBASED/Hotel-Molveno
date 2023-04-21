@@ -1,48 +1,59 @@
 #user-edit-page {
     display: flex;
     justify-content: center;
-    #heading-container {
+}
+
+.absolute-right {
+    position: absolute;
+    top: 8%;
+    right: 9.5%;
+}
+
+#form-container {
+    display: grid;
+}
+
+#form-container {
+    form {
         width: 100%;
-        background-color: $color-700;
-        padding: 0.5rem;
-        h2 {
-            color: $color-white;
-            font-size: 1.2rem;
+
+        div {
+            padding: 0.7rem 4rem;
+
+            input[type=text],
+            input[type=password] {
+                border: 2px solid $color-grey-500;
+                height: 2rem;
+                width: 100%;
+                padding: 0.2rem 0.5rem;
+
+                &::placeholder {
+                    color: $color-700;
+                    opacity: 0.8;
+                }
+            }
+
+            label {
+                font-weight: bold;
+                color: $color-grey-600;
+                font-size: 1.17em;
+            }
         }
-    }
-    #form-container {
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-        width: 25rem;
-        border: 2px solid $color-700;
-        form {
-            width: 100%;
-            div {
-                padding: 0.7rem 4rem;
-                input[type=text], input[type=password] {
-                    height: 2rem;
-                    width: 100%;
-                    padding: 0.2rem 0.5rem;
-                    border: 2px solid $color-700;
-                    &::placeholder {
-                        opacity: 0.8;
-                        color: $color-700;
-                    }
-                }
-                label {
-                    font-weight: bold;
-                }
-                button {
-                    height: 2rem;
-                    width: 100%;
-                    margin-bottom: 1rem;
-                    font-weight: bold;
-                    background-color: $color-700;
-                    color: $color-white;
-                    &:hover {
-                        background-color: $color-600;
-                    }
+
+        .confirm-button-container {
+            text-align: end;
+            grid-column: 1 / 3;
+
+            button {
+                font-weight: bold;
+                color: $color-white;
+                background-color: $color-700;
+                height: 2rem;
+                width: 42%;
+                margin-bottom: 1rem;
+
+                &:hover {
+                    background-color: $color-600;
                 }
             }
         }
