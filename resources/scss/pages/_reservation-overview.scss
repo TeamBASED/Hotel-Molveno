@@ -22,11 +22,15 @@
         grid-auto-rows: auto;
         gap: .6rem 5rem;
     }
-      
+
     .grid-row {
         padding: .2rem 2rem;
         grid-column: span 2;
         display: contents;
     }
-         
+
+    .light-text {
+        color: $color-100;
+    }
+
 }
