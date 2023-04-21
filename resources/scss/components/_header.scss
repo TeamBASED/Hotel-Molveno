@@ -1,21 +1,24 @@
-header {
+#header {
     font-weight: 600;
     font-family: sans-serif;
 
     .top {
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         align-items: center;
+        padding: 0 3rem;
+
         img {
             height: 100px;
             width: 100px;
         }
     }
+
     .bottom {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: #006EAD;
+        background-color: $color-600;
         color: #fff;
         font-size: 22px;
         height: 60px;
@@ -23,7 +26,7 @@ header {
         nav {
             display: flex;
             gap: 100px;
-            padding-left: 100px;
+            padding-left: 4rem;
         }
 
         .logout-link {

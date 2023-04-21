@@ -19,6 +19,8 @@ return new class extends Migration
             $table->tinyText('last_name');
             $table->string('email');
             $table->tinyText('telephone_number');
+            $table->tinyText('nationality');
+            $table->boolean('passport_checked');
             $table->tinyText('address');
             $table->timestamps();
         });

@@ -4,24 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('guests', function (Blueprint $table) {
             $table->id();
             $table->tinyText('first_name');
             $table->tinyText('last_name');
             $table->foreignId('contact_id')->nullable();
             $table->tinyText('nationality');
-            $table->tinyText('id_number');
+            $table->tinyText('passport_number');
             $table->date('date_of_birth');
-            $table->boolean("checked_in");
+            $table->boolean('passport_checked');
+            $table->boolean('checked_in')->nullable();
             $table->timestamps();
         });
     }
@@ -31,8 +30,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('guests');
     }
 };

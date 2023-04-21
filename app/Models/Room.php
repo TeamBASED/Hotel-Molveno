@@ -56,11 +56,11 @@ class Room extends Model {
     }
 
     public static function getAllRoomData() {
-        return Room::get();
+        return Room::with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations'])->get();
     }
-    
-    public static function getRoomData(int $roomId) : Room {
-        return Room::where('id', $roomId)->with(['cleaningStatus','roomView','roomType', 'bedConfigurations'])->first();
+
+    public static function getRoomData(int $roomId): Room {
+        return Room::where('id', $roomId)->with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations'])->first();
     }
 
     public static function getRoomByNumber(string $roomNumber) {

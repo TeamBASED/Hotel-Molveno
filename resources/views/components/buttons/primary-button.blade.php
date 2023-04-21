@@ -2,13 +2,13 @@
 
 @isset($href)
 
-    <a href='{{$href}}' {{$attributes->merge(['class' => 'primary-button'])}}>
+    <a href='{{$href}}' {{$attributes->merge(['class' => 'button primary-button'])}}>
         {{$slot}}
     </a>
 
 @else
 
-    <button type='submit' {{$attributes->merge(['class' => 'primary-button'])}}>
+    <button type='submit' {{$attributes->merge(['class' => 'button primary-button'])}}>
         {{$slot}}
     </button>
     
