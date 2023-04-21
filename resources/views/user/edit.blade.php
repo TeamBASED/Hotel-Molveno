@@ -8,9 +8,9 @@
             <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
             </x-buttons.tertiary-button>
             <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation>
-            <form method="POST" class="grid-two-columns no-horizontal-gap" action="{{ route('user.update', ['user' => $user->id]) }}" >
+            
             <x-delete-confirmation :removeId="$user->id" :removalRoute="route('user.delete', $user->id)"></x-delete-confirmation>
-            <form method="POST" action="{{ route('user.update', ['user' => $user->id]) }}">
+            <form method="POST" class="grid-two-columns no-horizontal-gap" action="{{ route('user.update', ['user' => $user->id]) }}" >
                 @csrf
                 @method('PATCH')
 
@@ -66,13 +66,13 @@
                     </a> --}}
                 </div>
             </form>
-            <div class="confirm-button-container">
-                    <x-secondary-button class="cancel-button-user-edit">
+            <div class="save-button-container">
+                    <x-buttons.secondary-button :href="route('user.overview')">
                         {{ __('cancel') }}
-                    </x-secondary-button>
-                    <x-primary-button>
+                    </x-buttons.secondary-button>
+                    <x-buttons.primary-button>
                         {{ __('save') }}
-                    </x-primary-button>
+                    </x-buttons.primary-button>
                 </div>
         </section>
     </main>

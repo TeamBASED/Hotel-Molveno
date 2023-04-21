@@ -40,24 +40,10 @@
             }
         }
 
-        .confirm-button-container {
+        .save-button-container {
             display: flex;
             justify-content: space-between;
             padding: 4rem 4rem 0 4rem;
-
-            button {
-                font-weight: bold;
-                color: $color-white;
-                background-color: $color-700;
-                height: 2rem;
-                width: 10%;
-                margin-bottom: 1rem;
-            }
-
-            .cancel-button-user-edit {
-                color: $color-700;
-                background-color: $color-grey-300;
-            }
         }
     }
 }
