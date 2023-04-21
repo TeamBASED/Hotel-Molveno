@@ -9,6 +9,8 @@
             </x-buttons.tertiary-button>
             <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation>
             <form method="POST" class="grid-two-columns no-horizontal-gap" action="{{ route('user.update', ['user' => $user->id]) }}" >
+            <x-delete-confirmation :removeId="$user->id" :removalRoute="route('user.delete', $user->id)"></x-delete-confirmation>
+            <form method="POST" action="{{ route('user.update', ['user' => $user->id]) }}">
                 @csrf
                 @method('PATCH')
 

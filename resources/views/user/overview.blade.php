@@ -5,7 +5,7 @@
         <article class="flex-center">
             <div class="flex-column left-side padding-inline-1rem padding-block">
                 <h3>Search user</h3>
-                Hier komen zoekvelden.
+                <p class="light-text">Hier komen zoekvelden.</p>
             </div>
             <div class="right-side padding-inline-5rem padding-block">
                 <div class="grid-three-columns no-horizontal-gap ">

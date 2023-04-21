@@ -1,19 +1,8 @@
 #reservation-edit {
     .form-1 {
         .left {
-            // display: flex;
-            // flex-direction: column;
-            // gap: 0.5rem;
-            width: 70%;
             min-height: 10rem;
-
-            .graybg {
-                background-color: $color-grey-600;
-            }
-
-            input {
-                width: 30rem;
-            }
+            width: 30rem;
         }
     }
 
@@ -37,24 +26,12 @@
             }
         }
 
-        .bluebg {
-            background-color: $color-600;
-        }
-
-        .delete {
-            background-color: #2b50a1;
-        }
-
         .room-info-container {
             display: flex;
             flex-direction: row-reverse;
             flex-wrap: wrap;
             gap: 1rem;
         }
-    }
-
-    h2 {
-        text-align: left;
     }
 
     h3 {

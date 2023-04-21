@@ -10,7 +10,7 @@
 
                 <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
                 </x-buttons.tertiary-button>
-                <x-delete-confirmation :removeId='$reservation->id' removalRoute='reservation.delete'></x-delete-confirmation>
+                <x-delete-confirmation :removeId='$reservation->id' :removalRoute="route('reservation.delete', $reservation->id)"></x-delete-confirmation>
 
             </div>
 
@@ -22,34 +22,43 @@
 
                     <div class="left flex-column">
 
-                        <h3>Firstname</h3>
-                        <input type="text" class="input-text" required
+                        <label class="input-label" for="first-name">First name:</label>
+                        <input id="first-name" type="text" class="input-text" required
                             value="{{ old('firstname', $contact->first_name) }}" name="firstname">
-                        <h3>Lastname</h3>
-                        <input type="text" class="input-text" required
+
+                        <label class="input-label" for="last-name">Last name:</label>
+                        <input id="last-name" type="text" class="input-text" required
                             value="{{ old('lastname', $contact->last_name) }}" name="lastname">
-                        <h3>E-mail</h3>
-                        <input type="text" class="input-text" required value="{{ old('email', $contact->email) }}"
-                            name="email">
-                        <h3>Telephone number</h3>
-                        <input type="text" class="input-text" required
+
+                        <label class="input-label" for="email">Email:</label>
+                        <input id="email" type="text" class="input-text" required
+                            value="{{ old('email', $contact->email) }}" name="email">
+
+                        <label class="input-label" for="telephone-number">Telephone number:</label>
+                        <input id="telephone-number" type="text" class="input-text" required
                             value="{{ old('telephone', $contact->telephone_number) }}" name="telephone">
-                        <h3>Contact address</h3>
-                        <input type="text" class="input-text" required
+
+                        <label class="input-label" for="address">Address:</label>
+                        <input id="address" type="text" class="input-text" required
                             value="{{ old('address', $contact->address) }}" name="address">
-                        <h3>Nationality</h3>
-                        <input type="text" class="input-text" required placeholder="Nationality" name="nationality"
-                            value="{{ old('nationality', $contact->nationality) }}">
-                        <h3>ID Checked</h3>
-                        <input type="checkbox" name="passport_checked" value="1"
+
+                        <label class="input-label" for="nationality">Nationality:</label>
+                        <input id="nationality" type="text" class="input-text" required placeholder="Nationality"
+                            name="nationality" value="{{ old('nationality', $contact->nationality) }}">
+
+                        <label class="input-label" for="passport-checked">ID Checked:</label>
+                        <input id="passport-checked" type="checkbox" name="passport_checked" value="1"
                             {{ old('passport_checked', $contact->passport_checked == 1 ? 'checked' : '') }}>
-                        <h3>Date of Arrival</h3>
-                        <input type="date" class="input-text"
+
+                        <label class="input-label" for="date-of-arrival">Date of arrival:</label>
+                        <input id="date-of-arrival" type="date" class="input-text"
                             value="{{ old('date_of_arrival', $reservation->date_of_arrival) }}" name="date_of_arrival">
-                        <h3>Date of Departure</h3>
-                        <input type="date" class="input-text"
+
+                        <label class="input-label" for="date-of-departure">Date of departure:</label>
+                        <input id="date-of-departure" type="date" class="input-text"
                             value="{{ old('date_of_departure', $reservation->date_of_departure) }}"
                             name="date_of_departure">
+
                         <input type="hidden" name="id" value="{{ $reservation->id }}">
                         <input type="hidden" name="contact_id" value="{{ $contact->id }}">
                     </div>
