@@ -30,8 +30,6 @@
 
                         </div>
 
-                        <h4 class="grid-span-2">Description&colon;</h4>
-                        <p class="grid-span-2"> {{ $room->description }}</p>
                     </div>
 
                     @can('update', $room)
@@ -43,6 +41,7 @@
                 <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
 
             </div>
+            
             <section class="reservation-schedule">
 
                 <h3 class="white-text">Reservation Schedule</h3>
@@ -69,6 +68,7 @@
                 </div>
 
             </section>
+            
         </article>
-        </main>
+    </main>
 </x-layout.base>
