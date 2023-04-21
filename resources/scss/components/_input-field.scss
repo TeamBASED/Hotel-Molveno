@@ -15,6 +15,11 @@
     }
 }
 
+.input-label {
+    color: $color-grey-700;
+    font-weight: 600;
+}
+
 .filter-field,
 .dropdown-select {
     background-color: $color-white;
