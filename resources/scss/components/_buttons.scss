@@ -56,10 +56,12 @@
         height: 30px;
         text-align: center;
         padding: 0.2rem;
+        transition-property: background-color color;
+        transition-duration: 200ms;
 
-        // &:hover {
-        // what should hover status do?
-        // }
+        &:hover {
+            background-color: $color-800;
+        }
     }
 
     .delete-confirmation {
