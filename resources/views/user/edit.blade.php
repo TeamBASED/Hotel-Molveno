@@ -59,16 +59,19 @@
                         @endforeach
                     </select>
                     <x-input-error :messages="$errors->get('role')" />
-                </div>
-                <div class="confirm-button-container">
                     {{-- <a href="{{ route('login') }}">
                         {{ __('Already registered?') }}
                     </a> --}}
+                </div>
+            </form>
+            <div class="confirm-button-container">
+                    <x-secondary-button class="cancel-button-user-edit">
+                        {{ __('cancel') }}
+                    </x-secondary-button>
                     <x-primary-button>
                         {{ __('save') }}
                     </x-primary-button>
                 </div>
-            </form>
         </section>
     </main>
 </x-layout.base>

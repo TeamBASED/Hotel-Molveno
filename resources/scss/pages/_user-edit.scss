@@ -1,60 +1,62 @@
 #user-edit-page {
     display: flex;
     justify-content: center;
-}
 
-.absolute-right {
-    position: absolute;
-    top: 8%;
-    right: 9.5%;
-}
+    .absolute-right {
+        position: absolute;
+        top: 8%;
+        right: 9.5%;
+    }
 
-#form-container {
-    display: grid;
-}
+    #form-container {
+        display: grid;
+    }
 
-#form-container {
-    form {
-        width: 100%;
+    #form-container {
+        form {
+            width: 100%;
 
-        div {
-            padding: 0.7rem 4rem;
+            div {
+                padding: 0.7rem 4rem;
 
-            input[type=text],
-            input[type=password] {
-                border: 2px solid $color-grey-500;
-                height: 2rem;
-                width: 100%;
-                padding: 0.2rem 0.5rem;
+                input[type=text],
+                input[type=password] {
+                    border: 2px solid $color-grey-500;
+                    height: 2rem;
+                    width: 100%;
+                    padding: 0.2rem 0.5rem;
 
-                &::placeholder {
-                    color: $color-700;
-                    opacity: 0.8;
+                    &::placeholder {
+                        color: $color-700;
+                        opacity: 0.8;
+                    }
                 }
-            }
 
-            label {
-                font-weight: bold;
-                color: $color-grey-600;
-                font-size: 1.17em;
+                label {
+                    font-weight: bold;
+                    color: $color-grey-600;
+                    font-size: 1.17em;
+                }
             }
         }
 
         .confirm-button-container {
-            text-align: end;
-            grid-column: 1 / 3;
+            display: flex;
+            justify-content: space-between;
+            padding: 4rem 4rem 0 4rem;
 
             button {
                 font-weight: bold;
                 color: $color-white;
                 background-color: $color-700;
                 height: 2rem;
-                width: 42%;
+                width: 10%;
                 margin-bottom: 1rem;
+            }
 
-                &:hover {
-                    background-color: $color-600;
-                }
+            .cancel-button-user-edit {
+                color: $color-700;
+                background-color: $color-grey-300;
             }
         }
     }
