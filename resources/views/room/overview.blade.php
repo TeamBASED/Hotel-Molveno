@@ -1,7 +1,7 @@
 <x-layout.base>
 
     <x-slot:resources>
-        @vite('resources/js/roomOverviewDetails.js')
+        @vite(['resources/js/roomOverviewDetails.js', 'resources/js/changeCleaningStatus.js'])
         </x-slot>
         @if (isset($_GET['notification']))
             <p class="notification">{{ $_GET['notification'] }}</p>
@@ -98,6 +98,27 @@
                     <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>
 
                 </form>
+                <div class="hidden padding-1rem modal" id="cleaning-status-panel">
+                    <div class="flex-space-around margin-block">
+                        <x-buttons.secondary-button id="cancel-status-change">
+                            Cancel
+                        </x-buttons.secondary-button>
+                        <form action="{{ route('cleaning.status', ['id' => $room->id]) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <select name="cleaning_status" required>
+                                @foreach ($cleaningStatuses as $cleaningStatus)
+                                    <option class="filter-field-option" value="{{ $cleaningStatus->id }}"
+                                        @if ($cleaningStatus->id == old('cleaning-status', $room->cleaning_status_id)) selected="selected" @endif>
+                                        {{ $cleaningStatus->status }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="roomId" value="{{ $room->id }}">
+                            <x-buttons.primary-button>Change cleaning status</x-buttons.primary-button>
+                        </form>
+                    </div>
+                </div>
                 <h2>Rooms</h2>
                 <div id="rooms-container">
 
@@ -142,24 +163,10 @@
                     </x-buttons.secondary-button>
                     <x-buttons.secondary-button id="details-reservation-button" :href="route('reservation.contact', ['id' => 1])">Make reservation
                     </x-buttons.secondary-button>
-                    {{-- <x-buttons.secondary-button id="cleaning-status-button">Change cleaning status
-                    </x-buttons.secondary-button> --}}
-                    {{-- <x-select-cleaning-status :room='$room' :cleaningStatuses='$cleaningStatuses'></x-select-cleaning-status> --}}
                 </div>
 
                 <p id="select-room-message">Click a room to view details.</p>
             </div>
-            <script>
-                const toggleButtons = document.querySelectorAll('.cleaning-status-button, #cancel-status-change')
-                const cleaningStatusPanel = document.querySelector('#cleaning-status-panel')
-
-                toggleButtons.forEach((button) => {
-                    button.addEventListener("click", () => {
-                        cleaningStatusPanel.classList.toggle('hidden')
-                        cleaningStatusPanel.classList.toggle('cleaning-status-panel')
-                    })
-                })
-            </script>
         </main>
 
 </x-layout.base>
