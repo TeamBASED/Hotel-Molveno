@@ -14,21 +14,35 @@
                 <div class="dateOfArrival">
                     <label for="dateOfArrival">Date of arrival</label>
                     <input type="date" class="input-text" name="dateOfArrival" id="dateOfArrival"
-                        form="view-available-rooms" required value="{{ date('Y-m-d') }}">
+                        form="view-available-rooms" value="{{ date('Y-m-d') }}">
                 </div>
                 <div class="dateOfDeparture">
                     <label for="dateOfDeparture">Date of departure</label>
                     <input type="date" class="input-text" name="dateOfDeparture" id="dateOfDeparture"
-                        form="view-available-rooms" required>
+                        form="view-available-rooms">
                 </div>
-                <form action="{{ route('room.overview') }}" class="flex-center-center" id="view-available-rooms"
-                    method="GET">
+                <form action="{{ route('home') }}" {{-- Route + controller maken voor home page
+                    
+                    if($_POST == "makeReservation") {
+                        dd($_POST)
+                    } else {
+                    
+                    } }}" --}} class="flex-center-center"
+                    id="view-available-rooms" method="GET">
                     @csrf
-                    <x-buttons.primary-button class="flex-grow-1">View available rooms</x-buttons.primary-button>
+                    <x-buttons.primary-button name="action" value="viewRooms" class="flex-grow-1">View available rooms
+                    </x-buttons.primary-button>
+                    <x-buttons.primary-button name="action" value="makeReservation">Make new reservation
+                    </x-buttons.primary-button>
                 </form>
 
+                <div class="roomSelect">
+                    <x-room.available-rooms />
+
+                </div>
+
                 {{-- TODO: Make new route for date select --> room select --> route(reservation.create) --}}
-                {{-- <x-buttons.primary-button href="reservation/create">Make new reservation</x-buttons.primary-button> --}}
+
 
                 {{-- 
                 <x-buttons.primary-button href="reservation/overview">View latest reservations</x-buttons.primary-button> --}}

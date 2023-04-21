@@ -4,6 +4,8 @@
 
 <div class="allRooms">
 
+    {{-- {{ dd($availableRooms) }} --}}
+
 
     @if (isset($currentRooms))
         <h3>Rooms in the reservation:</h3>
