@@ -1,16 +1,19 @@
 <x-layout.base>
     <main id="user-edit-page" class="main-content">
-        
+
         <section id="form-container">
             <div id="heading-container">
                 <h2>Edit User</h2>
             </div>
-            <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
-            </x-buttons.tertiary-button>
-            <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation>
-            
+            {{-- This delete button is not functional, I've hidden it for now since we can't show it like that --}}
+            {{-- TODO: fix user delete button --}}
+            {{-- <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
+            </x-buttons.tertiary-button> --}}
+            {{-- <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation> --}}
+
             <x-delete-confirmation :removeId="$user->id" :removalRoute="route('user.delete', $user->id)"></x-delete-confirmation>
-            <form method="POST" class="grid-two-columns no-horizontal-gap" action="{{ route('user.update', ['user' => $user->id]) }}" >
+            <form method="POST" id="user-edit-form" class="grid-two-columns no-horizontal-gap"
+                action="{{ route('user.update', ['user' => $user->id]) }}">
                 @csrf
                 @method('PATCH')
 
@@ -42,14 +45,14 @@
 
                     <x-input-error :messages="$errors->get('password_confirmation')" />
                 </div>
-                
+
                 <div>
                     <x-input-label for="lastname" :value="__('Last Name:')" />
-                    <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname" :value="old('lastname', $user->last_name)"
-                        required autocomplete="lastname" />
+                    <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname"
+                        :value="old('lastname', $user->last_name)" required autocomplete="lastname" />
                     <x-input-error :messages="$errors->get('lastname')" />
                 </div>
-                
+
 
                 <div>
                     <x-input-label for="role" :value="__('Role:')" />
@@ -67,13 +70,13 @@
                 </div>
             </form>
             <div class="save-button-container">
-                    <x-buttons.secondary-button :href="route('user.overview')">
-                        {{ __('cancel') }}
-                    </x-buttons.secondary-button>
-                    <x-buttons.primary-button>
-                        {{ __('save') }}
-                    </x-buttons.primary-button>
-                </div>
+                <x-buttons.secondary-button :href="route('user.overview')">
+                    {{ __('cancel') }}
+                </x-buttons.secondary-button>
+                <x-buttons.primary-button form="user-edit-form">
+                    {{ __('save') }}
+                </x-buttons.primary-button>
+            </div>
         </section>
     </main>
 </x-layout.base>
