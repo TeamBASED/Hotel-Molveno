@@ -7,11 +7,10 @@
             </div>
             {{-- This delete button is not functional, I've hidden it for now since we can't show it like that --}}
             {{-- TODO: fix user delete button --}}
-            {{-- <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
-            </x-buttons.tertiary-button> --}}
-            {{-- <x-delete-confirmation :removeId="$user->id" removalRoute='user.delete'></x-delete-confirmation> --}}
-
+            <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
+            </x-buttons.tertiary-button>
             <x-delete-confirmation :removeId="$user->id" :removalRoute="route('user.delete', $user->id)"></x-delete-confirmation>
+
             <form method="POST" id="user-edit-form" class="grid-two-columns no-horizontal-gap"
                 action="{{ route('user.update', ['user' => $user->id]) }}">
                 @csrf
