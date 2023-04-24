@@ -119,7 +119,7 @@ class ReservationController extends Controller {
         ]);
 
         $this->updateReservationRooms($request, $request->id);
-        return redirect(route('reservation.overview'));
+        return redirect(route('reservation.info', $request->id));
     }
 
     public function updateReservationRooms(Request $request, int $id) {
