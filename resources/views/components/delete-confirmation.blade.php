@@ -20,7 +20,7 @@
         <input type="hidden" name="id" value="{{ $removeId }}">
         <label for="password">Please enter your password:</label>
         <x-text-input id="password" type="password" name="password" placeholder="Password" required
-            autocomplete="current-password" form="delete-confirmation-form" from="delete-confirmation-form" />
+            autocomplete="current-password" form="delete-confirmation-form" />
 
         <x-input-error :messages="$errors->get('password')" />
         <div class="flex-space-around margin-block">

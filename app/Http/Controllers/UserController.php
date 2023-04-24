@@ -116,7 +116,7 @@ class UserController extends Controller {
     public function handleUserDelete(Request $request): RedirectResponse {
         $user = User::getUserById($request->id);
 
-        if (UserController::isPasswordCorrect($request->password) && !$user->role->id == 1) {
+        if (UserController::isPasswordCorrect($request->password) && $user->role->id != 1) {
             $user->delete();
             return redirect(route('user.overview', ['notification' => 'User successfully deleted']));
         } else {
