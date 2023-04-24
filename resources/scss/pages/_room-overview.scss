@@ -32,12 +32,23 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            justify-content: flex-end;
             white-space: nowrap;
         }
 
         .filter-input {
             border: solid 2px $color-600;
             width: 4rem;
+        }
+
+        .filter-input-wide {
+            border: solid 2px $color-600;
+            width: 8rem;
+        }
+
+        input[type=checkbox] {
+            height: 1.6rem;
+            width: 1.6rem;
         }
     }
 
@@ -71,12 +82,12 @@
         flex-grow: 0;
 
         position: sticky;
-        top: 0;
+        top: 2rem;
 
         background-color: $color-700;
         color: $color-white;
-        width: 30%;
-        padding: 1.5rem 3rem;
+        width: 25%;
+        padding: 1.5rem 2rem;
         height: max-content;
         min-height: 30rem;
 

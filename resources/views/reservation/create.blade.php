@@ -18,27 +18,47 @@
                     <input type="hidden" required name="room" value="{{ isset($room) ? $room->id : '' }}">
                     <div id="input-box" class="flex-column padding-block-1rem">
                         <div class="flex-column">
-                            <input type="text" class="input-text" required placeholder="First Name" name="firstname"
-                                value="{{ isset($contact) ? $contact->first_name : '' }}">
-                            <input type="text" class="input-text" required placeholder="Last Name" name="lastname"
-                                value="{{ isset($contact) ? $contact->last_name : '' }}">
-                            <input type="text" class="input-text" required placeholder="Email" name="email"
-                                value="{{ isset($contact) ? $contact->email : $new_contact }}">
-                            <input type="text" class="input-text" required placeholder="Telephone Number"
-                                name="telephone" value="{{ isset($contact) ? $contact->telephone_number : '' }}">
-                            <input type="text" class="input-text" required placeholder="Address" name="address"
-                                value="{{ isset($contact) ? $contact->address : '' }}">
-                            <input type="text" class="input-text" required placeholder="Nationality"
+
+                            <label class="input-label" for="first-name">First name:</label>
+                            <input id="first-name" type="text" class="input-text" required placeholder="First Name"
+                                name="firstname" value="{{ isset($contact) ? $contact->first_name : '' }}">
+
+                            <label class="input-label" for="last-name">Last name:</label>
+                            <input id="last-name" type="text" class="input-text" required placeholder="Last Name"
+                                name="lastname" value="{{ isset($contact) ? $contact->last_name : '' }}">
+
+                            <label class="input-label" for="email">Email:</label>
+                            <input id="email" type="text" class="input-text" required placeholder="Email"
+                                name="email" value="{{ isset($contact) ? $contact->email : $new_contact }}">
+
+                            <label class="input-label" for="telephone-number">Telephone number:</label>
+                            <input id="telephone-number" type="text" class="input-text" required
+                                placeholder="Telephone Number" name="telephone"
+                                value="{{ isset($contact) ? $contact->telephone_number : '' }}">
+
+                            <label class="input-label" for="address">Address:</label>
+                            <input id="address" type="text" class="input-text" required placeholder="Address"
+                                name="address" value="{{ isset($contact) ? $contact->address : '' }}">
+
+                            <label class="input-label" for="nationality">Nationality:</label>
+                            <input id="nationality" type="text" class="input-text" required placeholder="Nationality"
                                 name="nationality" value="{{ isset($contact) ? $contact->nationality : '' }}">
-                            <input type="checkbox" name="id_checked" value="1"
+
+                            <label class="input-label" for="passport-checked">ID Checked:</label>
+                            <input id="passport-checked" type="checkbox" name="id_checked" value="1"
                                 {{ $contact?->id_checked == 1 ? 'checked' : '' }}>
+
                         </div>
                         <div class="flex-column">
+
                             <input type="hidden" name="contact" value="{{ isset($contact) ? $contact->id : '' }}">
-                            <label for="arrival">Date of arrival&colon;</label>
-                            <input type="date" id="arrival-date" class="input-text" required name="arrival">
-                            <label for="departure">Date of departure&colon;</label>
-                            <input type="date" id="departure-date" class="input-text" required name="departure">
+
+                            <label class="input-label" for="date-of-arrival">Date of arrival:</label>
+                            <input type="date" id="date-of-arrival" class="input-text" required name="arrival">
+
+                            <label class="input-label" for="date-of-departure">Date of departure:</label>
+                            <input type="date" id="date-of-departure" class="input-text" required name="departure">
+
                         </div>
                     </div>
                     <x-room.infobox :room="$room" />
@@ -63,8 +83,8 @@
                 var arrival = year + "-" + month + "-" + day;
                 var departure = year + "-" + nextMonth + "-" + day;
 
-                document.getElementById("arrival-date").value = arrival;
-                document.getElementById("departure-date").value = departure;
+                document.getElementById("date-of-arrival").value = arrival;
+                document.getElementById("date-of-departure").value = departure;
             </script>
         </div>
     </main>

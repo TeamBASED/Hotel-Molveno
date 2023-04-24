@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReservationController;
 
 class RoomController extends Controller {
 
@@ -26,6 +27,7 @@ class RoomController extends Controller {
     }
 
     public function viewRoomOverview(Request $request) {
+        // dd($request);
         if ($request->user()->can('viewAny', Room::class)) {
             $rooms = $this->filterRoomResults($request);
             $roomTypes = RoomType::get();
@@ -157,10 +159,23 @@ class RoomController extends Controller {
         if (isset($request->babybed))
             $filterQuery->withBabybed(1);
 
-        return $filterQuery->get();
+
+        $currentRooms = $filterQuery->get();
+
+        if ($this->hasFilter($request->dateOfArrival) && $this->hasFilter($request->dateOfDeparture)) {
+            $currentRooms = $this->filterRoomsOnAvailability($currentRooms, $request->dateOfArrival, $request->dateOfDeparture);
+        }
+
+        return $currentRooms;
+
     }
 
     private function hasFilter($param) {
         return $param != "";
+    }
+
+    private function filterRoomsOnAvailability($rooms, $dateOfArrival, $dateOfDeparture) {
+        $availableRooms = ReservationController::getAvailableRoomsDuringTimeInterval($dateOfArrival, $dateOfDeparture);
+        return $rooms->intersect($availableRooms);
     }
 }

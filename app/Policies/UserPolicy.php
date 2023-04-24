@@ -29,7 +29,6 @@ class UserPolicy {
      */
     public function view(User $user, User $model) {
         $title = $user->role->title;
-        dd($user->id === $model->id);
         return ($title === "owner" || $title === "hotel manager" || $user->id === $model->id);
     }
 

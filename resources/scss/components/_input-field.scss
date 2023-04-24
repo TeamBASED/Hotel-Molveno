@@ -6,9 +6,18 @@
 
     border: 3px solid $color-grey-400;
 
+    &:focus {
+        border-color: $color-400;
+    }
+
     &::placeholder {
         color: $color-grey-400;
     }
+}
+
+.input-label {
+    color: $color-grey-700;
+    font-weight: 600;
 }
 
 .filter-field,
@@ -21,12 +30,9 @@
     border-radius: 0.5rem;
 
     option {
-
         background-color: $color-white;
         color: $color-400;
         border: 3px solid $color-grey-400;
-
-
     }
 
 }

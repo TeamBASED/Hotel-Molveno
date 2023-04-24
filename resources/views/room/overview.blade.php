@@ -82,6 +82,18 @@
                                     <input id="babybed-filter" type="checkbox" name="babybed">
                                 @endif
                             </div>
+
+                            <div class="filter-item">
+                                <label for="date-of-arrival-filter">Date of arrival</label>
+                                <input id="date-of-arrival-filter" class="filter-input-wide" type="date"
+                                    name="dateOfArrival" value="{{ request('dateOfArrival') }}">
+                            </div>
+
+                            <div class="filter-item">
+                                <label for="date-of-departure-filter">Date of departure</label>
+                                <input id="date-of-departure-filter" class="filter-input-wide" type="date"
+                                    name="dateOfDeparture" value="{{ request('dateOfDeparture') }}">
+                            </div>
                         </div>
 
                     </div>
