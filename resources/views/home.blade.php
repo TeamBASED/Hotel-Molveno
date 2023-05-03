@@ -21,14 +21,20 @@
                     <input type="date" class="input-text" name="dateOfDeparture" id="dateOfDeparture"
                         form="view-available-rooms">
                 </div>
-                <form action="{{ route('home') }}" {{-- Route + controller maken voor home page
-                    
-                    if($_POST == "makeReservation") {
-                        dd($_POST)
-                    } else {
-                    
-                    } }}" --}} class="flex-center-center"
-                    id="view-available-rooms" method="GET">
+
+                <div class="selectedRoom">
+                    <label for="selectedRoom">Select room to make reservation:</label>
+                    <select name="selectedRoom" id="selectedRoom" form="view-available-rooms" class="input-text">
+                        @foreach ($allRooms as $room)
+                            <option value="{{ $room->id }}" form="view-available-rooms">
+                                {{ $room->room_number }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <form action="{{ route('home') }}" class="flex-column align-center" id="view-available-rooms"
+                    method="GET">
                     @csrf
                     <x-buttons.primary-button name="action" value="viewRooms" class="flex-grow-1">View available rooms
                     </x-buttons.primary-button>
@@ -40,12 +46,6 @@
                     <x-room.available-rooms />
 
                 </div>
-
-                {{-- TODO: Make new route for date select --> room select --> route(reservation.create) --}}
-
-
-                {{-- 
-                <x-buttons.primary-button href="reservation/overview">View latest reservations</x-buttons.primary-button> --}}
             </div>
 
             <div class="flex-column align-center home-page-entry">
@@ -54,10 +54,6 @@
 
                 <x-buttons.primary-button :href="route('room.create')">Add new room</x-buttons.primary-button>
 
-                {{-- <div class="dates flex-center">
-
-                </div> --}}
-                {{-- TODO: Make new route for date select --> room overview --}}
 
             </div>
 
