@@ -23,7 +23,6 @@
                         <h4>Beds&colon;</h4>
                         <div class="right-aligned">
 
-                            {{-- Display list of configurations e.g. '2x Single' --}}
                             @foreach ($room->bedConfigurations as $bedConfig)
                                 <p>{{ $bedConfig->pivot->amount }}x {{ $bedConfig->configuration }}</p>
                             @endforeach
@@ -32,10 +31,11 @@
 
                         <h4 class="grid-span-2">Description&colon;</h4>
                         <p class="grid-span-2"> {{ $room->description }}</p>
+
                     </div>
 
                     @can('update', $room)
-                    <x-buttons.secondary-button :href="route('room.edit', ['id' => $room->id])">Edit</x-buttons.secondary-button>
+                        <x-buttons.secondary-button :href="route('room.edit', ['id' => $room->id])">Edit</x-buttons.secondary-button>
                     @endcan
 
                 </section>
@@ -43,6 +43,7 @@
                 <x-buttons.primary-button :href="route('room.overview')">Back</x-buttons.primary-button>
 
             </div>
+
             <section class="reservation-schedule">
 
                 <h3 class="white-text">Reservation Schedule</h3>
@@ -69,6 +70,7 @@
                 </div>
 
             </section>
+
         </article>
-        </main>
+    </main>
 </x-layout.base>

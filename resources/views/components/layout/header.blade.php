@@ -9,8 +9,10 @@
             <a class="navigation-link" href="{{ route('room.overview') }}">Rooms</a>
             <a class="navigation-link" href="{{ route('reservation.overview') }}">Reservations</a>
         </nav>
+
         <a class="logout-link" href="{{ route('logout') }}" method="POST">
             @csrf
             Logout</a>
+            
     </div>
 </header>

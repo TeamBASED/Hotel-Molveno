@@ -64,6 +64,7 @@
 
                 </div>
             </section>
+            
         </article>
     </main>
 </x-layout.base>

@@ -31,9 +31,6 @@
         <p class="details-label">Cleaning status</p>
         <p id="details-cleaning-status" class="right-aligned">{{ $room->cleaningStatus->status }}</p>
 
-        <p class="details-label">Description</p>
-        <p id="details-description" class="right-aligned"></p>
-
         <p class="details-label">Availability</p>
         <p id="details-availability" class="right-aligned"></p>
     </div>
