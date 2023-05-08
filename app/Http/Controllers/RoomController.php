@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CleaningStatus;
 use App\Models\Room;
 use App\Models\User;
 use App\Models\RoomType;
@@ -31,7 +32,8 @@ class RoomController extends Controller {
             $rooms = $this->filterRoomResults($request);
             $roomTypes = RoomType::get();
             $roomViews = RoomView::get();
-            return view('room.overview', ['roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
+            $cleaningStatuses = CleaningStatus::get();
+            return view('room.overview', ['cleaningStatuses' => $cleaningStatuses, 'roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
         } else {
             // TODO: Redirect to homepage
             echo 'This page is unavailable';
