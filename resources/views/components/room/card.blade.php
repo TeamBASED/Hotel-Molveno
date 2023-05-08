@@ -6,7 +6,11 @@
         <h3>{{ $room->base_price_per_night }} per night</h3>
     </div>
     <p>{{ $room->roomType->type }}</p>
-    <p>{{ $room->cleaningStatus->status }}</p>
+    @if ($room->cleaningStatus->id !== 1)
+        <p>{{ $room->cleaningStatus->status }} cleanup required</p>
+    @else
+        <p>Recently cleaned</p>
+    @endif
     {{-- Temporary solution for routing to reservation create --}}
     @can('create', App\Models\Reservation::class)
         <form action="{{ route('reservation.contact', ['id' => $room->id]) }}" method="GET">
