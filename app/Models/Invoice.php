@@ -9,7 +9,7 @@ class Invoice extends Model {
     use HasFactory;
 
     protected $fillable = [
-        'payment_method',
+        'payment_method_id',
         'value_added_tax',
         'cost_adjustment',
         'final_amount'
@@ -20,7 +20,7 @@ class Invoice extends Model {
     }
 
     public function reservation() {
-        return $this->belongsTo(Reservation::class);
+        return $this->hasOne(Reservation::class);
     }
 
     public function paymentMethod() {
