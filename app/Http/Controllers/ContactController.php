@@ -7,17 +7,16 @@ use App\Models\Contact;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
-{
-    public function viewContactVerify(int $roomId){
+class ContactController extends Controller {
+    public function viewContactVerify(int $roomId) {
         return view('reservation.contact', ['roomId' => $roomId]);
     }
 
-    public function handleVerification(Request $request){
+    public function handleVerification(Request $request) {
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
-        return redirect(route('reservation.create', ['roomId' => $request->roomId, 'contact' => $request->email]));
+        return redirect(route('reservation.create', ['roomId' => $request->roomId, 'contact' => $request->email, 'date_of_arrival' => $request->date_of_arrival, 'date_of_departure' => $request->date_of_departure]));
     }
 
     public function handleGetOrCreateContact(Request $request) {
@@ -30,7 +29,7 @@ class ContactController extends Controller
             'nationality' => 'required'
         ]);
 
-        $contact = isset($request->contact) 
+        $contact = isset($request->contact)
             ? Contact::getContactById($request->contact)
             : $this->storeContact($request);
 

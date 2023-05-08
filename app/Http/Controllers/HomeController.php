@@ -8,7 +8,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ReservationController;
 
 class HomeController extends Controller {
-    public static function viewHome(Request $request) {
+    public static function handleViewHome(Request $request) {
 
         switch ($request->action) {
             case 'viewRooms':
@@ -16,8 +16,9 @@ class HomeController extends Controller {
                 return $roomController->viewRoomOverview($request);
 
             case 'makeReservation':
-                $room = Room::getRoomData($request->selectedRoom);
-                return view("reservation.create", ["new_contact" => null, "contact" => null, "room" => $room]);
+                return view("reservation.contact", ["roomId" => $request->selectedRoom,
+                    'request' => $request,
+                ]);
 
             default:
                 $allRooms = Room::getAllRoomData();

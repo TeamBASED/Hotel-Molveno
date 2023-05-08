@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/{id}/delete', [UserController::class, 'handleUserDelete'])->name('user.delete');
 
     // for now redirect, this should be home page
-    Route::get('/', [HomeController::class, 'viewHome'])->name('home');
+    Route::get('/', [HomeController::class, 'handleViewHome'])->name('home');
 
     // reservation routes
     Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');
