@@ -169,6 +169,7 @@
 
                 <p id="select-room-message">Click a room to view details.</p>
             </div>
+            <div class="darken-bg"></div>
         </main>
 
 </x-layout.base>

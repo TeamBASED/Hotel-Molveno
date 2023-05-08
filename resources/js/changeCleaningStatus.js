@@ -9,6 +9,8 @@ const toggleMenuButtons = document.querySelectorAll('.cleaning-menu-button, #can
 
 const cleaningStatusOptions = document.querySelectorAll('#status-selector > .filter-field-option');
 
+const darkenedBackground = document.querySelector('.darken-bg');
+
 toggleMenuButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
         toggleCleaningStatusMenu(e);
@@ -21,7 +23,13 @@ function toggleCleaningStatusMenu(e) {
 
     const target = e.target;
     if (target.closest('.room-item')) {
+        darkenedBackground.style.display = 'block';
         handleRoomSelect(target.closest('.room-item'));
+    } else if (target.matches("#cancel-status-change")) {
+        darkenedBackground.style.display = 'none';
+        for (const option of cleaningStatusOptions) {
+            option.removeAttribute('selected', '');
+        }
     }
 }
 

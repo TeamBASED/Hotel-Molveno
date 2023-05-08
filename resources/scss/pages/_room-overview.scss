@@ -88,6 +88,17 @@
         flex-grow: 1;
     }
 
+    .darken-bg {
+        display: none;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+        right: 0%;
+        bottom: 0%;
+    }
+
     #details-section {
         flex-grow: 0;
 
