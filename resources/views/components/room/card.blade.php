@@ -15,6 +15,6 @@
             <x-buttons.primary-button>Make reservation</x-buttons.primary-button>
         </form>
     @endcan
-    <x-buttons.secondary-button class="cleaning-status-button">Change cleaning status
+    <x-buttons.secondary-button class="cleaning-menu-button">Change cleaning status
     </x-buttons.secondary-button>
 </div>
