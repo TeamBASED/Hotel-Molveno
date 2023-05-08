@@ -49,7 +49,7 @@ function getPathToRoom(id) {
 function setCleaningStatus(data) {
     for (const option of cleaningStatusOptions) {
         if (option.value == data.cleaning_status.id) {
-            option.setAttribute('selected', '');
+            option.selected = true;
         }
     }
 };
