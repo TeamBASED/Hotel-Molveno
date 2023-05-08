@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder {
         $this->call(RoomMaintenanceSeeder::class);
         $this->call(RoomBedConfigurationSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(InvoiceSeeder::class);
+        $this->call(PaymentMethodSeeder::class);
     }
 }
