@@ -1,14 +1,11 @@
 "use strict";
 
-// Declarations
-
 const passwordInput = document.querySelector('#password');
 const passwordToggle = document.querySelector('#password-visibility-toggle');
 
-const passwordVerifyInput = document.querySelector('#password-verify');
-const passwordVerifyToggle = document.querySelector('#password-verify-visibility-toggle');
+const passwordConfirmationInput = document.querySelector('#password_confirmation');
+const passwordConfirmationToggle = document.querySelector('#password-confirmation-visibility-toggle');
 
-// Functions
 if (passwordToggle) {
     passwordToggle.addEventListener('mousedown', (e) => {
         e.preventDefault();
@@ -21,18 +18,20 @@ if (passwordToggle) {
     });
 }
 
-if (passwordVerifyToggle) {
-    passwordVerifyToggle.addEventListener('mousedown', (e) => {
+if (passwordConfirmationToggle) {
+    passwordConfirmationToggle.addEventListener('mousedown', (e) => {
         e.preventDefault();
-        toggleInput(passwordInput, true);
+        toggleInput(passwordConfirmationInput, true);
     });
 
-    passwordVerifyToggle.addEventListener('click', (e) => {
+    passwordConfirmationToggle.addEventListener('click', (e) => {
         e.preventDefault();
-        toggleInput(passwordInput, false);
+        toggleInput(passwordConfirmationInput, false);
     });
 }
 
 function toggleInput(inputElement, setVisible) {
     inputElement.type = setVisible ? "text" : "password";
 }
+
+console.log("Script loaded");
