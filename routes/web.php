@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Models\Room;
 use App\Models\User;
 use Illuminate\Routing\Controllers\Middleware;
@@ -42,9 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/{id}/delete', [UserController::class, 'handleUserDelete'])->name('user.delete');
 
     // for now redirect, this should be home page
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'handleViewHome'])->name('home');
 
     // reservation routes
     Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');

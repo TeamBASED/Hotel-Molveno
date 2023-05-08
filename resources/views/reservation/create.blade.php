@@ -54,10 +54,12 @@
                             <input type="hidden" name="contact" value="{{ isset($contact) ? $contact->id : '' }}">
 
                             <label class="input-label" for="date-of-arrival">Date of arrival:</label>
-                            <input type="date" id="date-of-arrival" class="input-text" required name="arrival">
+                            <input type="date" id="date-of-arrival" class="input-text" required name="arrival"
+                                value="{{ $date_of_arrival }}">
 
                             <label class="input-label" for="date-of-departure">Date of departure:</label>
-                            <input type="date" id="date-of-departure" class="input-text" required name="departure">
+                            <input type="date" id="date-of-departure" class="input-text" required name="departure"
+                                value="{{ $date_of_departure }}">
 
                         </div>
                     </div>
@@ -69,7 +71,7 @@
                 </div>
             </form>
 
-            <script>
+            {{-- <script>
                 var date = new Date();
                 var day = date.getDate() + 1;
                 var month = date.getMonth() + 1;
@@ -85,7 +87,7 @@
 
                 document.getElementById("date-of-arrival").value = arrival;
                 document.getElementById("date-of-departure").value = departure;
-            </script>
+            </script> --}}
         </div>
     </main>
 </x-layout.base>
