@@ -31,6 +31,10 @@ class Reservation extends Model {
         return Reservation::with(['contact', 'rooms', 'guests'])->get();
     }
 
+    public static function getReservationByRequest(Request $request) {
+
+    }
+
     public static function getAllReservationsInTimeinterval(string $dateOfArrival, string $dateOfDeparture) {
         return Reservation::where('date_of_departure', '>', $dateOfArrival)->where('date_of_arrival', '<', $dateOfDeparture)->with('rooms')->get();
     }
@@ -69,5 +73,9 @@ class Reservation extends Model {
 
     public static function getGuestByReservationId(int $reservationId) {
         return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
+    }
+
+    public function scopeWithRoom($query, $roomId) {
+        return $query->where(['room_id' => $roomId]);
     }
 }

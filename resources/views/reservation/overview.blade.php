@@ -8,6 +8,23 @@
         <article class="flex-center">
             <div class="flex-column left-side padding-inline-1rem padding-block">
                 <h3>Search reservation</h3>
+
+                <form action="{{ route('reservation.overview') }}" method="GET">
+                    @csrf
+
+
+                    <div class="filter-item">
+                        <label for="room-number-filter">Room number:</label>
+                        <select id="room-number-filter" class="filter-input input-text" type="text" name="number">
+                            @foreach ($rooms as $room)
+                                <option value="{{ $room->id }}" class="filter-field-option">{{ $room->room_number }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>
+                </form>
+
                 <p class="light-text">Hier komen zoekvelden.</p>
             </div>
             <div class="right-side padding-inline-5rem padding-block">

@@ -33,10 +33,15 @@ class ReservationController extends Controller {
             'currentRooms' => $reservation->rooms
         ]);
     }
-    public function viewReservationOverview() {
-        $reservations = Reservation::getAllReservationData();
+    public function viewReservationOverview(Request $request) {
+        // if ($request->number) {
+        //     dd($request);
 
-        return view('reservation.overview', ['reservations' => $reservations]);
+        // }
+        $reservations = $this->filterReservationResults($request);
+        $rooms = Room::getAllRoomData();
+
+        return view('reservation.overview', ['reservations' => $reservations, 'rooms' => $rooms]);
     }
 
     public function handleCreateReservation(Request $request) {
@@ -200,6 +205,19 @@ class ReservationController extends Controller {
         return $availableRooms;
     }
 
+    private function filterReservationResults(Request $request) {
+
+        $filterQuery = Reservation::with(['contact', 'rooms', 'guests']);
+        if ($this->hasFilter($request->number)) {
+            $filterQuery->withRoom($filterQuery, $request->number);
+        }
+
+        return $filterQuery->get();
+    }
+
+    private function hasFilter($param) {
+        return $param != "";
+    }
 
 
 
