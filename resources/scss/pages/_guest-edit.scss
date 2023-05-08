@@ -2,6 +2,7 @@
     .grid-two-columns {
         column-gap: 30rem
     }
+
     .half-width {
         width: 50%;
     }
@@ -9,6 +10,18 @@
     #guest-form {
         .flex-column {
             gap: 0;
+        }
+    }
+
+    .crud-header {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .absolute-right {
+            position: absolute;
+            right: 0;
         }
     }
 }

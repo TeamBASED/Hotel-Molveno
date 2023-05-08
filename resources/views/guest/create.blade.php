@@ -11,7 +11,7 @@
                 {{-- {{ dd($_GET) }} --}}
                 <div class="flex-center">
                     <div class="flex-column half-width">
-                        <label for="firstname">First Name:</label>
+                        <label class="input-label" for="firstname">First Name:</label>
                         <input class="input-text" type="text" id="firstname" name="firstname"
                             placeholder="Guest's first name"
                             @if (isset($_GET['showContact'])) value="{{ $reservation->contact->first_name }}" readonly @endif
@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="flex-column half-width">
-                        <label for="lastname">Last Name:</label>
+                        <label class="input-label" for="lastname">Last Name:</label>
                         <input class="input-text" type="text" id="lastname" name="lastname"
                             placeholder="Guest's last name"
                             @if (isset($_GET['showContact'])) value="{{ $reservation->contact->last_name }}" readonly @endif
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="flex-column">
-                    <label for="nationality">Nationality:</label>
+                    <label class="input-label" for="nationality">Nationality:</label>
                     <input class="input-text" type="text" id="nationality" name="nationality"
                         placeholder="Guest's nationality"
                         @if (isset($_GET['showContact'])) value="{{ $reservation->contact->nationality }}" readonly @endif
@@ -36,19 +36,19 @@
                 </div>
 
                 <div class="flex-column">
-                    <label for="passport-number">Passport Number:</label>
+                    <label class="input-label" for="passport-number">Passport Number:</label>
                     <input class="input-text half-width" type="text" id="passport-number" name="passport_number"
                         placeholder="Guest's passport number" required>
                 </div>
 
                 <div class="flex-column">
-                    <label for="date-of-birth">Date of Birth:</label>
+                    <label class="input-label" for="date-of-birth">Date of Birth:</label>
                     <input class="input-text half-width" type="date" id="date-of-birth" name="date_of_birth"
                         placeholder="Guest's date of birth" required>
                 </div>
 
                 <div class="flex-space-between">
-                    <label for="checked_in">Passport checked?</label>
+                    <label class="input-label" for="checked_in">Passport checked?</label>
                     <input type="checkbox" name="passport_checked" id="passport_checked">
                 </div>
 
@@ -63,7 +63,7 @@
             <x-guest.overview-box :$reservation />
 
             <div>
-                <x-buttons.secondary-button :href="route('room.overview')">Cancel</x-buttons.secondary-button>
+                <x-buttons.secondary-button :href="route('reservation.info', $reservation->id)">Cancel</x-buttons.secondary-button>
                 @if (isset($_GET['showContact']))
                     <x-buttons.secondary-button :href="route('guest.create', ['id' => $reservation->id])">Remove Contact Information
                     </x-buttons.secondary-button>

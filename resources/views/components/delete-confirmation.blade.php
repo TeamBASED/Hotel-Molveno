@@ -17,19 +17,17 @@
 
     <div class="hidden padding-1rem modal" id="delete-confirmation">
 
-
-
         <input type="hidden" name="id" value="{{ $removeId }}">
         <label for="password">Please enter your password:</label>
         <x-text-input id="password" type="password" name="password" placeholder="Password" required
-            autocomplete="current-password" form="delete-confirmation-form" from="delete-confirmation-form" />
+            autocomplete="current-password" form="delete-confirmation-form" />
 
         <x-input-error :messages="$errors->get('password')" />
         <div class="flex-space-around margin-block">
             <x-buttons.secondary-button id="cancel-delete">
                 Cancel
             </x-buttons.secondary-button>
-            <form action="{{ route($removalRoute, $removeId) }}" method="POST" id="delete-confirmation-form">
+            <form action="{{ $removalRoute }}" method="POST" id="delete-confirmation-form">
                 @csrf
                 @method('DELETE')
                 <x-buttons.tertiary-button class="warning">Delete
