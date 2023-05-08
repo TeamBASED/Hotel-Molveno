@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Validator;
 class ReservationController extends Controller {
     public function viewReservationCreate(Request $request) {
 
-        // dd($request);
         $room = Room::getRoomData($request->roomId);
         $contact = Contact::getContactByEmail($request->contact);
 
 
-        return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact]);
+        return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact, 'date_of_arrival' => $request->date_of_arrival, 'date_of_departure' => $request->date_of_departure]);
     }
     public function viewReservationEdit(int $id): View {
         $reservation = Reservation::getReservationData($id);
