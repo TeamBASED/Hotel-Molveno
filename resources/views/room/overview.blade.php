@@ -29,7 +29,8 @@
                             </div>
 
                             <div class="filter-item">
-                                <select class="filter-field" name="type">
+                                <label for="type-filter">Room type</label>
+                                <select id="type-filter" class="filter-field" name="type">
                                     <option value="">select all</option>
 
                                     @foreach ($roomTypes as $type)
@@ -45,16 +46,17 @@
                             </div>
 
                             <div class="filter-item">
-                                <select class="filter-field" name="view">
+                                <label for="view-filter">Room view</label>
+                                <select id="view-filter" class="filter-field" name="view">
                                     <option value="">select all</option>
 
                                     @foreach ($roomViews as $view)
                                         @if (request('view') == $view->id)
                                             <option class="filter-field-option" selected value={{ $view->id }}>
-                                                {{ $view->type }}</option>
+                                                {{ $view->view }}</option>
                                         @else
                                             <option class="filter-field-option" value={{ $view->id }}>
-                                                {{ $view->type }}</option>
+                                                {{ $view->view }}</option>
                                         @endif
                                     @endforeach
                                 </select>

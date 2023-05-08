@@ -27,7 +27,6 @@ class RoomController extends Controller {
     }
 
     public function viewRoomOverview(Request $request) {
-        // dd($request);
         if ($request->user()->can('viewAny', Room::class)) {
             $rooms = $this->filterRoomResults($request);
             $roomTypes = RoomType::get();
