@@ -50,10 +50,14 @@
 
                 <div class="reservations grid-two-columns">
 
+
                     @foreach ($room->reservations as $reservation)
-                        <p class="white-background">{{ $reservation->date_of_arrival }} :
-                            {{ $reservation->contact->first_name }}
-                            {{ $reservation->contact->last_name }}</p>
+                        <p class="white-background flex-center flex-start">
+                            <span>{{ $reservation->date_of_arrival }}<br>{{ $reservation->date_of_departure }}</span><span
+                                style="align-self: center">
+                                {{ $reservation->contact->first_name }}
+                                {{ $reservation->contact->last_name }}</span>
+                        </p>
                         <x-buttons.edit-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.edit-button>
                     @endforeach
 

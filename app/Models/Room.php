@@ -105,7 +105,4 @@ class Room extends Model {
         return $query->where('baby_bed_possible', $bedPossible);
     }
 
-    public static function getRoomWithReservations(int $roomId) {
-        return Room::where('id', $roomId)->with('reservations')->all();
-    }
 }
