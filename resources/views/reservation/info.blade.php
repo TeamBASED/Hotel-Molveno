@@ -15,7 +15,7 @@
                         <p class="right-aligned">{{ $reservation->contact->email }}</p>
                         <h4>Telephone&colon;</h4>
                         <p class="right-aligned">{{ $reservation->contact->telephone_number }}</p>
-                        <h4>Adress&colon;</h4>
+                        <h4>Address&colon;</h4>
                         <p class="right-aligned">{{ $reservation->contact->address }}</p>
                     </div>
 
