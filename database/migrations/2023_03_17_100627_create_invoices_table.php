@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->float("value_added_tax");
             $table->float("cost_adjustment");
             $table->float("final_amount");
+            $table->mediumText("comment");
         });
     }
 

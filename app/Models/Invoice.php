@@ -12,7 +12,8 @@ class Invoice extends Model {
         'payment_method_id',
         'value_added_tax',
         'cost_adjustment',
-        'final_amount'
+        'final_amount',
+        'comment',
     ];
 
     public function getInvoiceById($id) {
