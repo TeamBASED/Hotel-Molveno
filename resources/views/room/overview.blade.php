@@ -106,9 +106,10 @@
                         <form action="" id="cleaning-status-form" method="POST">
                             @csrf
                             @method('PATCH')
-                            <select name="cleaning_status" required>
+                            <select name="cleaning_status" id="status-selector" required>
                                 @foreach ($cleaningStatuses as $cleaningStatus)
                                     <option class="filter-field-option" value="{{ $cleaningStatus->id }}">
+                                        {{ $cleaningStatus->status }}
                                     </option>
                                 @endforeach
                             </select>

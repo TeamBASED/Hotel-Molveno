@@ -7,6 +7,8 @@ const detailsCleaningStatus = document.querySelector('#details-cleaning-status')
 
 const toggleMenuButtons = document.querySelectorAll('.cleaning-menu-button, #cancel-status-change');
 
+const cleaningStatusOptions = document.querySelectorAll('#status-selector > .filter-field-option');
+
 toggleMenuButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
         toggleCleaningStatusMenu(e);
@@ -27,7 +29,7 @@ function handleRoomSelect(room) {
     const roomDetails = JSON.parse(room.dataset.roomDetails);
     console.log(roomDetails);
 
-    setRoomDetails(roomDetails);
+    setCleaningStatus(roomDetails);
 
     cleaningStatusForm.action = getPathToRoom(roomDetails.id);
 }
@@ -36,10 +38,10 @@ function getPathToRoom(id) {
     return `/room/${id}/status`;
 }
 
-function setRoomDetails(data) {
-    setElementText(detailsCleaningStatus, data.cleaning_status.status);
-}
-
-function setElementText(element, text) {
-    element.innerText = text;
-}
+function setCleaningStatus(data) {
+    for (const option of cleaningStatusOptions) {
+        if (option.value == data.cleaning_status.id) {
+            option.setAttribute('selected', '');
+        }
+    }
+};

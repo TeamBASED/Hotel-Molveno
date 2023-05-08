@@ -15,6 +15,8 @@
             <x-buttons.primary-button>Make reservation</x-buttons.primary-button>
         </form>
     @endcan
-    <x-buttons.secondary-button class="cleaning-menu-button">Change cleaning status
-    </x-buttons.secondary-button>
+    @can('update', App\Models\CleaningStatus::class)
+        <x-buttons.secondary-button class="cleaning-menu-button">Change cleaning status
+        </x-buttons.secondary-button>
+    @endcan
 </div>

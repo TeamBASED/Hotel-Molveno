@@ -47,8 +47,12 @@ class CleaningStatusPolicy {
      * @param  \App\Models\CleaningStatus  $cleaningStatus
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, CleaningStatus $cleaningStatus) {
-        //
+    public function update(User $user) {
+        $title = $user->role->title;
+        return ($title === "owner" ||
+            $title === "hotel manager" ||
+            $title === "head-housekeeping" ||
+            $title === "reception");
     }
 
     /**
