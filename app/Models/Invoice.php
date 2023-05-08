@@ -22,4 +22,8 @@ class Invoice extends Model {
     public function reservation() {
         return $this->belongsTo(Reservation::class);
     }
+
+    public function paymentMethod() {
+        return $this->belongsTo(PaymentMethod::class);
+    }
 }
