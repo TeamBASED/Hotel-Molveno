@@ -4,9 +4,6 @@
             <div id="heading-container">
                 <h2>Register User</h2>
             </div>
-            <!-- <x-buttons.tertiary-button class="warning absolute-right" id="delete-button">Delete
-            </x-buttons.tertiary-button>
-            <x-delete-confirmation :removeId="$user->id" :removalRoute="route('user.delete', $user->id)"></x-delete-confirmation> -->
             <form method="POST" action="{{ route('user.store') }}">
                 @csrf
 
