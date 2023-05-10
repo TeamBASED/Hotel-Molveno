@@ -15,7 +15,7 @@
                         <p class="right-aligned">{{ $reservation->contact->email }}</p>
                         <h4>Telephone&colon;</h4>
                         <p class="right-aligned">{{ $reservation->contact->telephone_number }}</p>
-                        <h4>adress&colon;</h4>
+                        <h4>Address&colon;</h4>
                         <p class="right-aligned">{{ $reservation->contact->address }}</p>
                     </div>
 
@@ -23,9 +23,9 @@
 
                     <div class="grid-two-columns margin-block">
                         <h4>Date arrival&colon;</h4>
-                        <p class="right-aligned">{{ $reservation->date_of_arrival }}</p>
+                        <p class="right-aligned">{{ date('d-m-Y', strtotime($reservation->date_of_arrival)) }}</p>
                         <h4>Date departure&colon;</h4>
-                        <p class="right-aligned">{{ $reservation->date_of_departure }}</p>
+                        <p class="right-aligned">{{ date('d-m-Y', strtotime($reservation->date_of_departure)) }}</p>
                     </div>
                     @can('update', $reservation)
                         <x-buttons.secondary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.secondary-button>
@@ -64,7 +64,7 @@
 
                 </div>
             </section>
-            
+
         </article>
     </main>
 </x-layout.base>
