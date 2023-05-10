@@ -4,7 +4,7 @@
             <div id="heading-container">
                 <h2>Register User</h2>
             </div>
-            <form method="POST" action="{{ route('user.store') }}">
+            <form id="register-user-form" class="grid-two-columns no-horizontal-gap" method="POST" action="{{ route('user.store') }}">
                 @csrf
 
                 <div>
@@ -14,19 +14,6 @@
                     <x-input-error :messages="$errors->get('username')" />
                 </div>
 
-                <div>
-                    <x-input-label for="firstname" :value="__('First Name:')" />
-                    <x-text-input id="firstname" placeholder="Firstname" type="text" name="firstname"
-                        :value="old('firstname')" required autocomplete="firstname" />
-                    <x-input-error :messages="$errors->get('firstname')" />
-                </div>
-
-                <div>
-                    <x-input-label for="lastname" :value="__('Last Name:')" />
-                    <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname" :value="old('lastname')"
-                        required autocomplete="lastname" />
-                    <x-input-error :messages="$errors->get('lastname')" />
-                </div>
 
                 <div>
                     <x-input-label for="password" :value="__('Password:')" />
@@ -37,11 +24,25 @@
                 </div>
 
                 <div>
+                    <x-input-label for="firstname" :value="__('First Name:')" />
+                    <x-text-input id="firstname" placeholder="Firstname" type="text" name="firstname"
+                        :value="old('firstname')" required autocomplete="firstname" />
+                    <x-input-error :messages="$errors->get('firstname')" />
+                </div>
+
+                <div>
                     <x-input-label for="password_confirmation" :value="__('Confirm Password:')" />
                     <x-text-input id="password_confirmation" placeholder="Confirm Password" type="password"
                         name="password_confirmation" required autocomplete="new-password" />
 
                     <x-input-error :messages="$errors->get('password_confirmation')" />
+                </div>
+
+                <div>
+                    <x-input-label for="lastname" :value="__('Last Name:')" />
+                    <x-text-input id="lastname" placeholder="Lastname" type="text" name="lastname" :value="old('lastname')"
+                        required autocomplete="lastname" />
+                    <x-input-error :messages="$errors->get('lastname')" />
                 </div>
 
                 <div>
@@ -55,16 +56,15 @@
                     </select>
                     <x-input-error :messages="$errors->get('role')" />
                 </div>
-
-                <div class="save-button-container">
-                    <x-buttons.secondary-button :href="route('user.overview')">
+            </form>
+            <div class="save-button-container">
+                    <x-buttons.secondary-button :href="route('user.overview')" form="register-user-form">
                         {{ __('cancel') }}
                     </x-buttons.secondary-button>
-                    <x-buttons.primary-button form="user-edit-form">
-                        {{ __('save') }}
+                    <x-buttons.primary-button form="user-edit-form" form="register-user-form">
+                        {{ __('register') }}
                     </x-buttons.primary-button>
                 </div>
-            </form>
         </section>
     </main>
 </x-layout.base>
