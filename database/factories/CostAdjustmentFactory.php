@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Invoice>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CostAdjustment>
  */
-class InvoiceFactory extends Factory {
+class CostAdjustmentFactory extends Factory {
     /**
      * Define the model's default state.
      *
@@ -15,9 +15,8 @@ class InvoiceFactory extends Factory {
      */
     public function definition() {
         return [
-            'payment_method_id' => fake()->numberBetween(1, 3),
-            'value_added_tax' => fake()->numberBetween(10, 30),
-            'final_amount' => fake()->numberBetween(600, 2000),
+            'invoice_id' => fake()->numberBetween(1, 10),
+            'amount' => fake()->numberBetween(-400, 400),
             'description' => fake()->sentence(),
         ];
     }
