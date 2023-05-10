@@ -11,14 +11,9 @@ class Invoice extends Model {
     protected $fillable = [
         'payment_method_id',
         'value_added_tax',
-        'cost_adjustment',
         'final_amount',
         'description',
     ];
-
-    public function getInvoiceById($id) {
-        return Invoice::where('id', $id)->first();
-    }
 
     public function reservation() {
         return $this->hasOne(Reservation::class);
@@ -26,5 +21,13 @@ class Invoice extends Model {
 
     public function paymentMethod() {
         return $this->belongsTo(PaymentMethod::class);
+    }
+
+    public function costAdjustments() {
+        return $this->hasMany(CostAdjustment::class);
+    }
+
+    public function getInvoiceById($id) {
+        return Invoice::where('id', $id)->first();
     }
 }
