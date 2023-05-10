@@ -19,7 +19,7 @@ class InvoiceFactory extends Factory {
             'value_added_tax' => fake()->numberBetween(10, 30),
             'cost_adjustment' => fake()->numberBetween(0, 100),
             'final_amount' => fake()->numberBetween(600, 2000),
-            'comment' => fake()->sentence(),
+            'description' => fake()->sentence(),
         ];
     }
 }
