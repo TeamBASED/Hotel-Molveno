@@ -9,7 +9,12 @@ use Illuminate\Http\Request;
 class InvoiceController extends Controller {
     public function viewInvoiceInfo(Reservation $reservation) {
         $invoice = Invoice::getInvoiceByReservationId($reservation->id);
-        // return view()
+        // TODO: get rooms of reservation
+
+        return view("invoice.info", [
+            // 'rooms' => $rooms,
+            'invoice' => $invoice,
+        ]);
     }
 
     public function createInvoiceForReservation(int $reservationId) {
