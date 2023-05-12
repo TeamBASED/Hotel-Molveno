@@ -38,6 +38,13 @@
                             name="date_of_departure" />
                     </div>
 
+                    <div class="filter-item">
+                        <label for="contact-name-filter">Name of contact:</label>
+                        <input id="contact-name-filter" class="filter-input input-text" type="text"
+                            name="contact_name" />
+                    </div>
+
+
                     <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>
                 </form>
 

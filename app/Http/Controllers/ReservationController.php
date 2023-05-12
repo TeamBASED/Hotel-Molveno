@@ -212,7 +212,11 @@ class ReservationController extends Controller {
             $filterQuery->withDateOfArrival($request->date_of_arrival);
         if ($this->hasFilter($request->date_of_departure))
             $filterQuery->withDateOfDeparture($request->date_of_departure);
+        if ($this->hasFilter($request->contact_name))
+            $filterQuery->withContactName($request->contact_name);
 
+
+        // dd($filterQuery);
 
 
         return $filterQuery->get();
