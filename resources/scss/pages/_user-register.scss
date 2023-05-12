@@ -1,13 +1,8 @@
 #user-register-page {
     display: flex;
     justify-content: center;
-    #form-container {
-        display: flex;
-        justify-content: center;
-        flex-flow: row wrap;
-        width: 25rem;
-        border: 2px solid $color-700;
 
+    #form-container {
         form {
             display: grid;
             width: 100%;
