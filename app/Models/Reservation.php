@@ -64,7 +64,7 @@ class Reservation extends Model {
     }
 
     public function invoice() {
-        return $this->hasOne(Invoice::class);
+        return $this->belongsTo(Invoice::class);
     }
 
     public static function getGuestByReservationId(int $reservationId) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Room;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
@@ -13,11 +13,11 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Database\Seeders\RoomBedConfigurationSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class RoomEditTest extends TestCase {
-    use RefreshDatabase;
+class RoomCreateTest extends TestCase {
 
     //TODO: Checken of er labels zijn toegevoegd aan de inputvelden.
 
+    use RefreshDatabase;
     public function page_loads_format(int $role_id) {
         // Load all test data and go to page, check if the server returns a page
 
@@ -36,7 +36,7 @@ class RoomEditTest extends TestCase {
 
         $response = $this
             ->actingAs($user)
-            ->get('/room/1/edit');
+            ->get('/room/create');
 
         $response->assertStatus(200);
     }
@@ -49,7 +49,7 @@ class RoomEditTest extends TestCase {
         $this->page_loads_format(2);
     }
 
-    public function page_redirects_to_info_page_format(int $role_id) {
+    public function page_redirects_to_overview_page_format(int $role_id) {
         $this->seed([
             RoomSeeder::class,
             RoomTypeSeeder::class,
@@ -65,25 +65,25 @@ class RoomEditTest extends TestCase {
 
         $response = $this
             ->actingAs($user)
-            ->get('/room/1/edit');
+            ->get('/room/create');
 
-        $response->assertRedirect('/room/1/info');
+        $response->assertRedirect('/room/overview');
     }
 
-    public function test_page_redirects_to_login_when_head_housekeeping() {
-        $this->page_redirects_to_info_page_format(3);
+    public function test_page_redirects_to_overview_when_head_housekeeping() {
+        $this->page_redirects_to_overview_page_format(3);
     }
 
-    public function test_page_redirects_to_login_when_housekeeping() {
-        $this->page_redirects_to_info_page_format(4);
+    public function test_page_redirects_to_overview_when_housekeeping() {
+        $this->page_redirects_to_overview_page_format(4);
     }
 
-    public function test_page_redirects_to_info_with_role_reception() {
-        $this->page_redirects_to_info_page_format(5);
+    public function test_page_redirects_to_overview_with_role_reception() {
+        $this->page_redirects_to_overview_page_format(5);
     }
 
     public function test_page_redirects_to_login_when_guest() {
-        $response = $this->get('/room/1/edit');
+        $response = $this->get('/room/create');
         $response->assertRedirect('/login');
     }
 
@@ -95,7 +95,7 @@ class RoomEditTest extends TestCase {
 
         $response = (
             $this->actingAs($user)
-                ->get('/room/1/edit')
+                ->get('/room/create')
         );
 
         $response->assertSee($expected_content, $escaped = false);
@@ -103,12 +103,11 @@ class RoomEditTest extends TestCase {
     }
 
     public function test_page_contains_expected_content_as_owner() {
-        $this->page_contains_expected_content_format(1, ['Home', 'Rooms', 'Reservations', 'Edit Room', 'Room number', 'Capacity', 'Price per night', 'Single beds', 'Double beds', 'Baby bed possible', 'Room description', 'Room type', 'View type', 'Cancel', 'Save'], []);
+        $this->page_contains_expected_content_format(1, ['Home', 'Rooms', 'Reservations', 'Create Room', 'Room number', 'Capacity', 'Price per night', 'Single beds', 'Double beds', 'Baby bed possible', 'Room description', 'Room type', 'View type', 'Cancel', 'Save'], []);
     }
 
     public function test_page_contains_expected_content_as_hotel_manager() {
-        $this->page_contains_expected_content_format(2, ['Home', 'Rooms', 'Reservations', 'Edit room', 'Room number', 'Capacity', 'Price per night', 'Single beds', 'Double beds', 'Baby bed possible', 'Room description', 'Room type', 'View type', 'Cancel', 'Save'], []);
+        $this->page_contains_expected_content_format(2, ['Home', 'Rooms', 'Reservations', 'Create room', 'Room number', 'Capacity', 'Price per night', 'Single beds', 'Double beds', 'Baby bed possible', 'Room description', 'Room type', 'View type', 'Cancel', 'Save'], []);
     }
-
 
 }

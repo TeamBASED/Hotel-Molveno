@@ -4,6 +4,8 @@ use App\Models\Room;
 use App\Models\User;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CleaningStatusController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GuestController;
@@ -42,9 +44,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/user/{id}/delete', [UserController::class, 'handleUserDelete'])->name('user.delete');
 
     // for now redirect, this should be home page
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'handleViewHome'])->name('home');
 
     // reservation routes
     Route::get('/reservation/overview', [ReservationController::class, 'viewReservationOverview'])->name('reservation.overview');
@@ -61,6 +61,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/{reservation}/guest/{guest}/edit', [GuestController::class, 'viewEditGuest'])->name('guest.edit');
     Route::patch('/reservation/{reservation}/guest/{guest}/update', [GuestController::class, 'handleUpdateGuest'])->name('guest.update');
     Route::delete('/reservation/{reservation}/guest/{guest}/delete', [GuestController::class, 'deleteGuest'])->name('guest.delete');
+
+    // Cleaning route
+    Route::patch('/room/{id}/status', [CleaningStatusController::class, 'changeCleaningStatus'])->name('cleaning.status');
 
     // Room routes
     Route::get('/room/overview', [RoomController::class, 'viewRoomOverview'])->name('room.overview');

@@ -1,15 +1,12 @@
 <x-layout.base>
 
     <x-slot:resources>
-        @vite('resources/js/roomOverviewDetails.js')
+        @vite(['resources/js/roomOverviewDetails.js', 'resources/js/changeCleaningStatus.js'])
         </x-slot>
         @if (isset($_GET['notification']))
             <p class="notification">{{ $_GET['notification'] }}</p>
         @endif
         <main class="main-content" id="room-overview">
-
-
-
             <div class="left-side">
                 <form class="filter-section" action="{{ route('room.overview') }}" method="GET">
 
@@ -29,7 +26,8 @@
                             </div>
 
                             <div class="filter-item">
-                                <select class="filter-field" name="type">
+                                <label for="type-filter">Room type</label>
+                                <select id="type-filter" class="filter-field" name="type">
                                     <option value="">select all</option>
 
                                     @foreach ($roomTypes as $type)
@@ -45,16 +43,17 @@
                             </div>
 
                             <div class="filter-item">
-                                <select class="filter-field" name="view">
+                                <label for="view-filter">Room view</label>
+                                <select id="view-filter" class="filter-field" name="view">
                                     <option value="">select all</option>
 
                                     @foreach ($roomViews as $view)
                                         @if (request('view') == $view->id)
                                             <option class="filter-field-option" selected value={{ $view->id }}>
-                                                {{ $view->type }}</option>
+                                                {{ $view->view }}</option>
                                         @else
                                             <option class="filter-field-option" value={{ $view->id }}>
-                                                {{ $view->type }}</option>
+                                                {{ $view->view }}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -101,11 +100,32 @@
                     <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>
 
                 </form>
+                <div class="hidden padding-1rem modal" id="cleaning-status-panel">
+                    <div class="flex-space-around margin-block">
+                        <x-buttons.secondary-button id="cancel-status-change">
+                            Cancel
+                        </x-buttons.secondary-button>
+                        <form action="" id="cleaning-status-form" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <select name="cleaning_status" id="status-selector" required>
+                                @foreach ($cleaningStatuses as $cleaningStatus)
+                                    <option class="filter-field-option" value="{{ $cleaningStatus->id }}">
+                                        {{ $cleaningStatus->status }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            {{-- <input type="hidden" name="roomId" value="{{ $room->id }}"> --}}
+                            <x-buttons.primary-button id="cleaning-status-button">Change cleaning status
+                            </x-buttons.primary-button>
+                        </form>
+                    </div>
+                </div>
                 <h2>Rooms</h2>
                 <div id="rooms-container">
 
                     @foreach ($rooms as $room)
-                        <x-room.card :room="$room" />
+                        <x-room.card :room="$room" :cleaningStatuses='$cleaningStatuses' />
                     @endforeach
 
                 </div>
@@ -149,6 +169,7 @@
 
                 <p id="select-room-message">Click a room to view details.</p>
             </div>
+            <div class="darken-bg"></div>
         </main>
 
 </x-layout.base>

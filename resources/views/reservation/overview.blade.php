@@ -21,13 +21,13 @@
                         href="{{ route('reservation.info', ['id' => $reservation->id]) }}">
                         <div class="gray-background grid-span-2 grid-two-columns">
                             <p>{{ $reservation->contact->first_name }} {{ $reservation->contact->last_name }}</p>
-                            <p>{{ $reservation->date_of_arrival }}</p>
+                            <p>{{ date('d-m-Y', strtotime($reservation->date_of_arrival)) }}</p>
                             <p>
                                 @foreach ($reservation->rooms as $room)
                                     {{ $room->room_number }}
                                 @endforeach
                             </p>
-                            <p>{{ $reservation->date_of_departure }}</p>
+                            <p>{{ date('d-m-Y', strtotime($reservation->date_of_departure)) }}</p>
                         </div>
                     </a>
                 @endforeach

@@ -46,26 +46,21 @@
 
             <section class="reservation-schedule">
 
-                <h3 class="white-text">Reservation Schedule</h3>
+                <h3 class="white-text">Upcoming Reservations</h3>
+
                 <div class="reservations grid-two-columns">
-                    <p class="white-background">Placeholder 23-05 - 28-05</p>
 
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
 
-                    <p class="white-background">Placeholder 30-05 - 01-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
+                    @foreach ($room->reservations as $reservation)
+                        <p class="white-background flex-center flex-start">
+                            <span>{{ $reservation->date_of_arrival }}<br>{{ $reservation->date_of_departure }}</span><span
+                                style="align-self: center">
+                                {{ $reservation->contact->first_name }}
+                                {{ $reservation->contact->last_name }}</span>
+                        </p>
+                        <x-buttons.edit-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.edit-button>
+                    @endforeach
 
-                    <p class="white-background">Placeholder 03-06 - 10-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder 23-06 - 28-06</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder 23-07 - 27-07</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
-
-                    <p class="white-background">Placeholder 02-08 - 18-08</p>
-                    <x-buttons.edit-button>Edit</x-buttons.edit-button>
 
                 </div>
 
