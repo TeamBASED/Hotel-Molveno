@@ -76,6 +76,9 @@ class Reservation extends Model {
     }
 
     public function scopeWithRoom($query, $roomId) {
-        return $query->where(['room_id' => $roomId]);
+        return $query->whereExists(function ($query) use ($roomId) {
+            $query->from('reservation_rooms')->whereColumn('reservation_id', 'reservations.id')->where('room_id', $roomId);
+        }
+        );
     }
 }

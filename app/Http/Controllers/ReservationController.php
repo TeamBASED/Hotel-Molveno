@@ -33,11 +33,13 @@ class ReservationController extends Controller {
         ]);
     }
     public function viewReservationOverview(Request $request) {
-        // if ($request->number) {
-        //     dd($request);
+        if ($request->room_id) {
+            // dd($request);
+            $reservations = $this->filterReservationResults($request);
 
-        // }
-        $reservations = $this->filterReservationResults($request);
+        } else {
+            $reservations = Reservation::getAllReservationData();
+        }
         $rooms = Room::getAllRoomData();
 
         return view('reservation.overview', ['reservations' => $reservations, 'rooms' => $rooms]);
@@ -207,9 +209,10 @@ class ReservationController extends Controller {
     private function filterReservationResults(Request $request) {
 
         $filterQuery = Reservation::with(['contact', 'rooms', 'guests']);
-        if ($this->hasFilter($request->number)) {
-            $filterQuery->withRoom($filterQuery, $request->number);
+        if ($this->hasFilter($request->room_id)) {
+            $filterQuery->withRoom($request->room_id);
         }
+
 
         return $filterQuery->get();
     }
