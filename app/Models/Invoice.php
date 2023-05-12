@@ -15,6 +15,8 @@ class Invoice extends Model {
         'description',
     ];
 
+    // Relations
+
     public function reservation() {
         return $this->hasOne(Reservation::class);
     }
@@ -27,7 +29,13 @@ class Invoice extends Model {
         return $this->hasMany(CostAdjustment::class);
     }
 
-    public function getInvoiceById($id) {
+    // Methods
+
+    public static function getInvoiceById($id) {
         return Invoice::where('id', $id)->first();
+    }
+
+    public static function getInvoiceByReservationId($reservationId) {
+        return Invoice::where('reservation_id', $reservationId)->first();
     }
 }
