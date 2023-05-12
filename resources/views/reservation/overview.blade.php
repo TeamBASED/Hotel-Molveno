@@ -17,6 +17,20 @@
                     <div class="filter-item">
                         <label for="room-number-filter">Room number:</label>
                         <select id="room-number-filter" class="filter-input input-text" type="text" name="room_id">
+                            <option value="" class="filter-field-option">Select
+                            </option>
+                            @foreach ($rooms as $room)
+                                <option value="{{ $room->id }}" class="filter-field-option">{{ $room->room_number }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="filter-item">
+                        <label for="room-number-filter">Room number:</label>
+                        <select id="room-number-filter" class="filter-input input-text" type="text" name="room_id">
+                            <option value="" class="filter-field-option">Select
+                            </option>
                             @foreach ($rooms as $room)
                                 <option value="{{ $room->id }}" class="filter-field-option">{{ $room->room_number }}
                                 </option>
