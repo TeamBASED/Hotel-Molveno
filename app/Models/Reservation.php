@@ -81,4 +81,12 @@ class Reservation extends Model {
         }
         );
     }
+
+    public function scopeWithDateOfArrival($query, $dateOfArrival) {
+        return $query->where('date_of_arrival', $dateOfArrival);
+    }
+
+    public function scopeWithDateOfDeparture($query, $dateOfDepature) {
+        return $query->where('date_of_departure', $dateOfDepature);
+    }
 }

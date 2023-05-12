@@ -27,16 +27,17 @@
                     </div>
 
                     <div class="filter-item">
-                        <label for="room-number-filter">Room number:</label>
-                        <select id="room-number-filter" class="filter-input input-text" type="text" name="room_id">
-                            <option value="" class="filter-field-option">Select
-                            </option>
-                            @foreach ($rooms as $room)
-                                <option value="{{ $room->id }}" class="filter-field-option">{{ $room->room_number }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <label for="date-of-arrival-filter">Date of arrival:</label>
+                        <input id="date-of-arrival-filter" class="filter-input input-text" type="date"
+                            name="date_of_arrival" value="{{ request('dateOfArrival') }}" />
                     </div>
+
+                    <div class="filter-item">
+                        <label for="date-of-departure-filter">Date of departure:</label>
+                        <input id="date-of-departure-filter" class="filter-input input-text" type="date"
+                            name="date_of_departure" />
+                    </div>
+
                     <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>
                 </form>
 
