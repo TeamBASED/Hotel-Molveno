@@ -13,6 +13,10 @@ class InvoiceSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        Invoice::factory()->count(10)->create();
+        for ($id = 1; $id <= 10; $id++) {
+            Invoice::factory()->create([
+                'reservation_id' => $id
+            ]);
+        }
     }
 }

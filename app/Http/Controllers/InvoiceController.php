@@ -12,10 +12,10 @@ class InvoiceController extends Controller {
         // return view()
     }
 
-    public static function handleReservationInvoice() {
-        $new_invoice = Invoice::create();
-        $invoice_id = $new_invoice->id;
-
-        return $invoice_id;
+    public function createInvoiceForReservation(int $reservationId) {
+        // TODO: fill in all values, remove use of factory
+        Invoice::factory()->create([
+            'reservation_id' => $reservationId,
+        ]);
     }
 }

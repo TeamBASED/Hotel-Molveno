@@ -10,6 +10,7 @@ class Invoice extends Model {
 
     protected $fillable = [
         'payment_method_id',
+        'reservation_id',
         'value_added_tax',
         'final_amount',
         'description',
@@ -18,7 +19,7 @@ class Invoice extends Model {
     // Relations
 
     public function reservation() {
-        return $this->hasOne(Reservation::class);
+        return $this->belongsTo(Reservation::class);
     }
 
     public function paymentMethod() {
