@@ -27,8 +27,8 @@ class Room extends Model {
         'cleaning_status_id'
     ];
 
-    public function reservations(): BelongsToMany {
-        return $this->belongsToMany(Reservation::class, 'reservation_room');
+    public function reservations() {
+        return $this->belongsToMany(Reservation::class, 'reservation_rooms')->with('contact');
     }
 
     public function roomView() {
@@ -60,7 +60,10 @@ class Room extends Model {
     }
 
     public static function getRoomData(int $roomId): Room {
-        return Room::where('id', $roomId)->with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations'])->first();
+        return Room::where('id', $roomId)->with(['cleaningStatus', 'roomView', 'roomType', 'bedConfigurations', 'reservations' => function ($q) {
+            $q->where('date_of_arrival', '>', date('Y-m-d'))->orderBy('date_of_arrival', 'asc');
+        }])
+            ->first();
     }
 
     public static function getRoomByNumber(string $roomNumber) {
@@ -101,4 +104,5 @@ class Room extends Model {
     public function scopeWithBabybed($query, int $bedPossible) {
         return $query->where('baby_bed_possible', $bedPossible);
     }
+
 }
