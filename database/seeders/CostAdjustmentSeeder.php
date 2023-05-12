@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Invoice;
+use App\Models\CostAdjustment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class InvoiceSeeder extends Seeder {
+class CostAdjustmentSeeder extends Seeder {
     /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run() {
-        Invoice::factory()->count(10)->create();
+        CostAdjustment::factory()->count(10)->create();
     }
 }
