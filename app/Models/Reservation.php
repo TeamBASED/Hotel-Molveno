@@ -15,16 +15,6 @@ class Reservation extends Model {
         'date_of_arrival',
         'date_of_departure',
         'contact_id',
-        'invoice_id',
-        // 'room_number', 
-        // 'capacity', 
-        // 'base_price_per_night',
-        // 'bed_configuration',
-        // 'baby_bed_possible',
-        // 'description',
-        // 'room_view_id',
-        // 'room_type_id',
-        // 'cleaning_status_id'
     ];
 
     public static function getAllReservationData() {
@@ -54,6 +44,7 @@ class Reservation extends Model {
     public static function deleteReservation(int $id) {
         $deleted = Reservation::where('id', $id)->with(['contact', 'rooms'])->delete();
     }
+    // Relations
 
     public function guests() {
         return $this->belongsToMany(Guest::class, 'guest_reservations');
@@ -68,7 +59,33 @@ class Reservation extends Model {
     }
 
     public function invoice() {
-        return $this->belongsTo(Invoice::class);
+        return $this->hasOne(Invoice::class);
+    }
+
+    // Methods
+
+    public static function getAllReservationData() {
+        return Reservation::with(['contact', 'rooms', 'guests'])->get();
+    }
+
+    public static function getAllReservationsInTimeinterval(string $dateOfArrival, string $dateOfDeparture) {
+        return Reservation::where('date_of_departure', '>', $dateOfArrival)->where('date_of_arrival', '<', $dateOfDeparture)->with('rooms')->get();
+    }
+
+    public static function getReservationData(int $id) {
+        return Reservation::where('id', $id)->with(['contact', 'rooms', 'guests'])->first();
+    }
+
+    public static function getDepartureDateByRoomId(int $roomId) {
+        return Reservation::with(['rooms'])->whereRelation('rooms', 'rooms.id', '=', $roomId)->orderBy('date_of_departure', 'desc')->first();
+    }
+
+    public static function getArrivalDateByRoomId(int $roomId) {
+        return Reservation::with(['rooms'])->whereRelation('rooms', 'rooms.id', '=', $roomId)->orderBy('date_of_arrival', 'asc')->first();
+    }
+
+    public static function deleteReservation(int $id) {
+        Reservation::where('id', $id)->with(['contact', 'rooms'])->delete();
     }
 
     public static function getGuestByReservationId(int $reservationId) {
