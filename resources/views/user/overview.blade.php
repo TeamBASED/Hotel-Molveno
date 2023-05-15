@@ -8,21 +8,27 @@
                 <form action="{{ route('user.overview') }}" method="GET">
 
                     <label for="username-filter">Username</label>
-                    <input id="username-filter"type="text" name="username">
+                    <input id="username-filter"type="text" name="username" value="{{ request('username') }}">
 
                     <label for="first-name-filter">First Name</label>
-                    <input id="first-name-filter"type="text" name="first_name">
+                    <input id="first-name-filter"type="text" name="first_name" value="{{ request('first_name') }}">
 
                     <label for="last-name-filter">Last Name</label>
-                    <input id="last-name-filter"type="text" name="last_name">
+                    <input id="last-name-filter"type="text" name="last_name" value="{{ request('last_name') }}">
 
                     <label for="role-filter">Role</label>
                     <select id="role-filter" name="role">
                         <option value="">Select All</option>
                         @foreach ($roles as $role)
-                            <option class="filter-field-option" value="{{ $role->id }}"
-                                @if ($role->id == old('role')) selected="selected" @endif>{{ $role->title }}
-                            </option>
+                            @if (request('role') == $role->id)
+                                <option class="filter-field-option" selected value="{{ $role->id }}">
+                                    {{ $role->title }}
+                                </option>
+                            @else
+                                <option class="filter-field-option" value="{{ $role->id }}">
+                                    {{ $role->title }}
+                                </option>
+                            @endif
                         @endforeach
                     </select>
 
