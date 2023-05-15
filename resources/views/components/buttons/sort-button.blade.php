@@ -4,7 +4,7 @@
     <input type="hidden" name="column" value="{{ $column }}">
     @if (!isset($_GET['order']))
         <input type="hidden" name="order" value="asc">
-    @elseif ($_GET['order'] == 'asc')
+    @elseif ($_GET['order'] == 'asc' && $_GET['column'] == $column)
         <input type="hidden" name="order" value="desc">
     @else
         <input type="hidden" name="order" value="asc">
