@@ -36,8 +36,8 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name(
 
 // User logged in
 Route::middleware('auth')->group(function () {
-    // Users
-    Route::get('/user/overview', [UserController::class, 'viewUserOverview'])->name('user.overview');
+    // User routes
+    Route::get('/user/overview', [UserController::class, 'handleViewUserOverview'])->name('user.overview');
     Route::get('/user/register', [UserController::class, 'viewUserRegister'])->name('user.register');
     Route::post('/user/store', [UserController::class, 'handleUserRegister'])->name('user.store');
     Route::get('/user/{user}/edit', [UserController::class, 'viewUserEdit'])->name('user.edit');

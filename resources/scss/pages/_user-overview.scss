@@ -6,10 +6,31 @@
 
     .left-side {
         background-color: $color-700;
-        max-width: 40rem;
+        max-width: 15rem;
 
         h3 {
             color: $color-grey-300;
+        }
+
+        form {
+            display: flex;
+            flex-flow: column nowrap;
+
+            label {
+                color: $color-white;
+            }
+
+            input[type=text] {
+                margin-bottom: 1rem;
+                background-color: $color-white;
+            }
+
+            select {
+                height: 1.5rem;
+                margin-bottom: 1rem;
+                padding-left: 0.5rem;
+                background-color: $color-white;
+            }
         }
     }
 
@@ -18,9 +39,50 @@
         display: flex;
         justify-content: space-around;
         overflow-y: scroll;
+
+        .grid-four-columns {
+            .primary-button {
+                height: 2.2rem;
+            }
+
+            p {
+                text-align: left;
+                padding-left: 0.5rem;
+                height: 1.9rem;
+            }
+        }
+
+        h3 {
+            height: 2.2rem;
+
+            form {
+                display: inline-block;
+                height: 2.2rem;
+
+                .submit-container {
+                    background-color: $color-700;
+                    display: flex;
+                    justify-content: center;
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    padding-bottom: 0.1rem;
+                    border-radius: 0.5rem;
+
+                    input[type=submit] {
+                        font-size: 1.2rem;
+                        color: $color-white;
+
+                    }
+                }
+            }
+        }
     }
 
     .light-text {
         color: $color-100;
+    }
+
+    .sort-button {
+        cursor: pointer;
     }
 }

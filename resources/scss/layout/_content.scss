@@ -21,6 +21,12 @@
     gap: 1rem;
 }
 
+.grid-four-columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
 .right-aligned {
     text-align: right;
 }
