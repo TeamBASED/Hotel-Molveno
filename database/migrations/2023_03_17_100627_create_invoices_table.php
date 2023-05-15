@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->float("value_added_tax");
             $table->float("final_amount");
             $table->mediumText("description");
+            $table->boolean("is_paid");
         });
     }
 

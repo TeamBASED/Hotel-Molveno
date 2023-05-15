@@ -14,6 +14,7 @@ class Invoice extends Model {
         'value_added_tax',
         'final_amount',
         'description',
+        'is_paid',
     ];
 
     // Relations

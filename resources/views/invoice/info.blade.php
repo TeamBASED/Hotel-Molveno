@@ -10,6 +10,11 @@
             </div>
 
             <div class="info-item">
+                <p class="label">Status:</p>
+                <p>{{ $invoice->is_paid ? 'paid' : 'not yet paid' }}</p>
+            </div>
+
+            <div class="info-item">
                 <p class="label">Payment method:</p>
                 <p>{{ $invoice->paymentMethod->method }}</p>
             </div>
