@@ -17,6 +17,7 @@ class Reservation extends Model {
         'contact_id',
     ];
 
+
     // Relations
 
     public function guests() {
@@ -63,5 +64,35 @@ class Reservation extends Model {
 
     public static function getGuestByReservationId(int $reservationId) {
         return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
+    }
+
+    public function scopeWithRoom($query, $roomId) {
+        return $query->whereExists(function ($query) use ($roomId) {
+            $query->from('reservation_rooms')->whereColumn('reservation_id', 'reservations.id')->where('room_id', $roomId);
+        }
+        );
+    }
+
+    public function scopeWithDateOfArrival($query, $dateOfArrival) {
+        return $query->where('date_of_arrival', $dateOfArrival);
+    }
+
+    public function scopeWithDateOfDeparture($query, $dateOfDepature) {
+        return $query->where('date_of_departure', $dateOfDepature);
+    }
+
+
+    public function scopeWithContactName($query, $contactName) {
+        return $query->whereExists(function ($query) use ($contactName) {
+            $query->from('contacts')
+                ->whereColumn('id', 'reservations.contact_id')
+                ->where(function ($query) use ($contactName) {
+                    $query->where('first_name', 'LIKE', '%' . $contactName . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $contactName . '%');
+
+                });
+        }
+        );
+
     }
 }
