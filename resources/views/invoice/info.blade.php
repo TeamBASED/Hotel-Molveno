@@ -59,7 +59,7 @@
         </article>
 
         <div>
-            <x-buttons.secondary-button :href="route('reservation.info', ['id' => $invoice->reservation_id])">Back</x-buttons.secondary-button>
+            <x-buttons.primary-button :href="route('reservation.info', ['id' => $invoice->reservation_id])">Back</x-buttons.primary-button>
         </div>
 
     </main>
