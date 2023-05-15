@@ -18,11 +18,11 @@ class UserController extends Controller {
     public function handleViewUserOverview(Request $request) {
         if ($request->user()->can('viewAny', User::class)) {
 
+            $roles = Role::getAllRoleData();
             $users = isset($request->column)
                 ? User::getAllUsersSorted($request->column, $request->order)
-                : User::getAllUserData();
-
-            return view('user.overview', ['users' => $users]);
+                : $this->filterUserResults($request);
+            return view('user.overview', ['users' => $users, 'roles' => $roles]);
         } else {
             return view('home');
         }
@@ -123,4 +123,25 @@ class UserController extends Controller {
             return redirect(route('user.edit', ['user' => $user->id, 'notification' => 'Deletion unsuccessful']));
         }
     }
+
+    private function filterUserResults(Request $request) {
+        $filterQuery = User::with(['role']);
+
+        if ($this->hasFilter($request->username))
+            $filterQuery->withUsername($request->username);
+        if ($this->hasFilter($request->first_name))
+            $filterQuery->withFirstName($request->first_name);
+        if ($this->hasFilter($request->last_name))
+            $filterQuery->withLastName($request->last_name);
+        if ($this->hasFilter($request->role))
+            $filterQuery->withUserRole($request->role);
+
+        $users = $filterQuery->get();
+        return $users;
+    }
+
+    private function hasFilter($param) {
+        return $param != "";
+    }
+
 }

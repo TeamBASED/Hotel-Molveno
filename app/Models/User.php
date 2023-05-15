@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -70,4 +71,21 @@ class User extends Authenticatable {
 
         return $query->get();
     }
+
+    public function scopeWithUsername($query, string $username) {
+        return $query->where('username', 'LIKE', '%' . $username . '%');
+    }
+
+    public function scopeWithFirstName($query, string $firstName) {
+        return $query->where('first_name', 'LIKE', '%' . $firstName . '%');
+    }
+
+    public function scopeWithLastName($query, string $lastName) {
+        return $query->where('last_name', 'LIKE', '%' . $lastName . '%');
+    }
+
+    public function scopeWithUserRole($query, int $roleId) {
+        return $query->where('role_id', $roleId);
+    }
+
 }

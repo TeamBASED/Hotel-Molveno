@@ -6,11 +6,25 @@
             <div class="flex-column left-side padding-inline-1rem padding-block">
                 <h3>Search user</h3>
                 <form action="{{ route('user.overview') }}" method="GET">
+
+                    <label for="username-filter">Username</label>
+                    <input id="username-filter"type="text" name="username">
+
+                    <label for="first-name-filter">First Name</label>
+                    <input id="first-name-filter"type="text" name="first_name">
+
                     <label for="last-name-filter">Last Name</label>
                     <input id="last-name-filter"type="text" name="last_name">
 
                     <label for="role-filter">Role</label>
-                    <input id="role-filter" type="text" name="role">
+                    <select id="role-filter" name="role">
+                        <option value="">Select All</option>
+                        @foreach ($roles as $option)
+                            <option class="filter-field-option" value="{{ $option->id }}"
+                                @if ($option->id == old('role')) selected="selected" @endif>{{ $option->title }}
+                            </option>
+                        @endforeach
+                    </select>
 
                     <x-buttons.secondary-button class="search-button">Search</x-buttons.secondary-button>
                 </form>
