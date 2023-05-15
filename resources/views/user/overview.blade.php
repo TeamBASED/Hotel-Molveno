@@ -32,49 +32,13 @@
             <div class="right-side padding-inline-5rem padding-block">
                 <div class="grid-four-columns no-horizontal-gap ">
                     <h3>Username
-                        <form class="sort-button" action="{{ route('user.overview') }}" method="GET">
-                            <input type="hidden" name="column" value="username">
-                            @if (!isset($_GET['order']))
-                                <input type="hidden" name="order" value="asc">
-                            @elseif ($_GET['order'] == 'asc')
-                                <input type="hidden" name="order" value="desc">
-                            @else
-                                <input type="hidden" name="order" value="asc">
-                            @endif
-                            <div class="submit-container">
-                                <input type="submit" value="&vArr;">
-                            </div>
-                        </form>
+                        <x-buttons.sort-button column="username"></x-buttons.sort-button>
                     </h3>
                     <h3>Name
-                        <form class="sort-button" action="{{ route('user.overview') }}" method="GET">
-                            <input type="hidden" name="column" value="last_name">
-                            @if (!isset($_GET['order']))
-                                <input type="hidden" name="order" value="asc">
-                            @elseif ($_GET['order'] == 'asc')
-                                <input type="hidden" name="order" value="desc">
-                            @else
-                                <input type="hidden" name="order" value="asc">
-                            @endif
-                            <div class="submit-container">
-                                <input type="submit" value="&vArr;">
-                            </div>
-                        </form>
+                        <x-buttons.sort-button column="last_name"></x-buttons.sort-button>
                     </h3>
                     <h3>Role
-                        <form class="sort-button" action="{{ route('user.overview') }}" method="GET">
-                            <input type="hidden" name="column" value="title">
-                            @if (!isset($_GET['order']))
-                                <input type="hidden" name="order" value="asc">
-                            @elseif ($_GET['order'] == 'asc')
-                                <input type="hidden" name="order" value="desc">
-                            @else
-                                <input type="hidden" name="order" value="asc">
-                            @endif
-                            <div class="submit-container">
-                                <input type="submit" value="&vArr;">
-                            </div>
-                        </form>
+                        <x-buttons.sort-button column="title"></x-buttons.sort-button>
                     </h3>
                     <x-buttons.primary-button :href="route('user.register')">Register User
                     </x-buttons.primary-button>
