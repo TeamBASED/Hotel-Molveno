@@ -19,9 +19,9 @@
                     <label for="role-filter">Role</label>
                     <select id="role-filter" name="role">
                         <option value="">Select All</option>
-                        @foreach ($roles as $option)
-                            <option class="filter-field-option" value="{{ $option->id }}"
-                                @if ($option->id == old('role')) selected="selected" @endif>{{ $option->title }}
+                        @foreach ($roles as $role)
+                            <option class="filter-field-option" value="{{ $role->id }}"
+                                @if ($role->id == old('role')) selected="selected" @endif>{{ $role->title }}
                             </option>
                         @endforeach
                     </select>
