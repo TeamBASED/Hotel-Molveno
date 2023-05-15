@@ -90,11 +90,16 @@ class Reservation extends Model {
         return $query->where('date_of_departure', $dateOfDepature);
     }
 
+
     public function scopeWithContactName($query, $contactName) {
         return $query->whereExists(function ($query) use ($contactName) {
-            $query->from('contacts')->whereColumn('id', 'reservations.contact_id')
-                ->where('first_name', 'LIKE', '%' . $contactName . '%')
-                ->orWhere('last_name', 'LIKE', '%' . $contactName . '%');
+            $query->from('contacts')
+                ->whereColumn('id', 'reservations.contact_id')
+                ->where(function ($query) use ($contactName) {
+                    $query->where('first_name', 'LIKE', '%' . $contactName . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $contactName . '%');
+
+                });
         }
         );
 
