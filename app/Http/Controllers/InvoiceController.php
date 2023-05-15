@@ -43,6 +43,10 @@ class InvoiceController extends Controller {
         dd("Update functionality is not yet implemented");
     }
 
+    public function handleRecalculateInvoice(Reservation $reservation, Request $request) {
+        dd("Recalculate functionality is not yet implemented");
+    }
+
     private function calculateRoomPrices($rooms, int $daysReserved) {
         $result = [];
 

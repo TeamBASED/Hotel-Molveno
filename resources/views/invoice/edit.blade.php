@@ -9,8 +9,8 @@
             <h2>Edit invoice</h2>
 
             <div class="flex-space-between">
-                <form action="{{ route('invoice.update', $invoice->id) }}" method="POST" class="form-1 grid-two-columns"
-                    id="edit-form">
+                <form action="{{ route('invoice.update', $invoice->reservation_id) }}" method="POST"
+                    class="form-1 grid-two-columns" id="edit-form">
                     @csrf
                     @method('PATCH')
 
@@ -78,6 +78,10 @@
                             <p class="label">Total amount:</p>
                             <p>{{ $invoice->final_amount }}</p>
                         </div>
+
+                        <x-buttons.secondary-button :formaction="route('invoice.recalculate', $invoice->reservation_id)">Recalculate total amount
+                        </x-buttons.secondary-button>
+
                     </div>
 
                 </form>

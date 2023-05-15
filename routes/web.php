@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/{reservation}/invoice/info', [InvoiceController::class, 'viewInvoiceInfo'])->name('invoice.info');
     Route::get('/reservation/{reservation}/invoice/edit', [InvoiceController::class, 'viewInvoiceEdit'])->name('invoice.edit');
     Route::patch('/reservation/{reservation}/invoice/update', [InvoiceController::class, 'handleUpdateInvoice'])->name('invoice.update');
+    Route::patch('/reservation/{reservation}/invoice/recalculate', [InvoiceController::class, 'handleRecalculateInvoice'])->name('invoice.recalculate');
 
     // Guests
     Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest', 'showContact' => '$showContact'])->name('guest.create');
