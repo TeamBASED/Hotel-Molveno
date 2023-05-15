@@ -11,12 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller {
-    public function viewReservationOverview() {
-        $reservations = Reservation::getAllReservationData();
-
-        return view('reservation.overview', ['reservations' => $reservations]);
-    }
-
     public function viewReservationCreate(Request $request) {
 
         $room = Room::getRoomData($request->roomId);
@@ -38,11 +32,12 @@ class ReservationController extends Controller {
             'currentRooms' => $reservation->rooms
         ]);
     }
+    public function viewReservationOverview(Request $request) {
 
-    public function viewReservationInfo(int $id) {
-        $reservation = Reservation::getReservationData($id);
+        $reservations = $this->filterReservationResults($request);
+        $rooms = Room::getAllRoomData();
 
-        return view('reservation.info', ['reservation' => $reservation, 'currentRooms' => $reservation->rooms]);
+        return view('reservation.overview', ['reservations' => $reservations, 'rooms' => $rooms]);
     }
 
     public function handleCreateReservation(Request $request) {
@@ -196,6 +191,30 @@ class ReservationController extends Controller {
         return $availableRooms;
     }
 
+    private function filterReservationResults(Request $request) {
+
+        // dd($request);
+
+        $filterQuery = Reservation::with(['contact', 'rooms', 'guests']);
+        if ($this->hasFilter($request->room_id))
+            $filterQuery->withRoom($request->room_id);
+        if ($this->hasFilter($request->date_of_arrival))
+            $filterQuery->withDateOfArrival($request->date_of_arrival);
+        if ($this->hasFilter($request->date_of_departure))
+            $filterQuery->withDateOfDeparture($request->date_of_departure);
+        if ($this->hasFilter($request->contact_name))
+            $filterQuery->withContactName($request->contact_name);
+
+
+        // dd($filterQuery);
+
+
+        return $filterQuery->get();
+    }
+
+    private function hasFilter($param) {
+        return $param != "";
+    }
 
 
 
