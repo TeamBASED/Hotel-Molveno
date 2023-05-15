@@ -12,11 +12,19 @@ class PaymentMethod extends Model {
         'method',
     ];
 
+    // Relations
+
     public function Invoices() {
         return $this->hasMany(Invoice::class);
     }
 
-    public function getPaymentMethod(int $methodId) {
+    // Public methods
+
+    public static function getPaymentMethod(int $methodId) {
         return PaymentMethod::find($methodId);
+    }
+
+    public static function getAllPaymentMethods() {
+        return PaymentMethod::get();
     }
 }
