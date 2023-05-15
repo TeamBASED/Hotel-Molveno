@@ -1,6 +1,6 @@
-@props(['column'])
+@props(['column', 'action'])
 
-<form class="sort-button" action="{{ route('user.overview') }}" method="GET">
+<form class="sort-button" action={{ $action }} method="GET">
     <input type="hidden" name="column" value="{{ $column }}">
     @if (!isset($_GET['order']))
         <input type="hidden" name="order" value="asc">

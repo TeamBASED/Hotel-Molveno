@@ -32,13 +32,13 @@
             <div class="right-side padding-inline-5rem padding-block">
                 <div class="grid-four-columns no-horizontal-gap ">
                     <h3>Username
-                        <x-buttons.sort-button column="username"></x-buttons.sort-button>
+                        <x-buttons.sort-button :action="route('user.overview')" column="username"></x-buttons.sort-button>
                     </h3>
                     <h3>Name
-                        <x-buttons.sort-button column="last_name"></x-buttons.sort-button>
+                        <x-buttons.sort-button :action="route('user.overview')" column="last_name"></x-buttons.sort-button>
                     </h3>
                     <h3>Role
-                        <x-buttons.sort-button column="title"></x-buttons.sort-button>
+                        <x-buttons.sort-button :action="route('user.overview')" column="title"></x-buttons.sort-button>
                     </h3>
                     <x-buttons.primary-button :href="route('user.register')">Register User
                     </x-buttons.primary-button>
