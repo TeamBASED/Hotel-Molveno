@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId("invoice_id");
             $table->float("amount");
-            $table->string("descriptions");
+            $table->string("description");
             $table->timestamps();
         });
     }

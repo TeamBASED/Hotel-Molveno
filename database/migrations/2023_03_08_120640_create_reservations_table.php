@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->foreignId('contact_id');
             $table->date('date_of_arrival');
             $table->date('date_of_departure');
-            $table->foreignId('invoice_id');
             $table->timestamps();
         });
     }
