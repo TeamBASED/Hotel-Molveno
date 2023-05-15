@@ -17,33 +17,7 @@ class Reservation extends Model {
         'contact_id',
     ];
 
-    public static function getAllReservationData() {
-        return Reservation::with(['contact', 'rooms', 'guests'])->get();
-    }
 
-    public static function getReservationByRequest(Request $request) {
-
-    }
-
-    public static function getAllReservationsInTimeinterval(string $dateOfArrival, string $dateOfDeparture) {
-        return Reservation::where('date_of_departure', '>', $dateOfArrival)->where('date_of_arrival', '<', $dateOfDeparture)->with('rooms')->get();
-    }
-
-    public static function getReservationData(int $id) {
-        return Reservation::where('id', $id)->with(['contact', 'rooms', 'guests'])->first();
-    }
-
-    public static function getDepartureDateByRoomId(int $id) {
-        return Reservation::with(['rooms'])->whereRelation('rooms', 'rooms.id', '=', $id)->orderBy('date_of_departure', 'desc')->first();
-    }
-
-    public static function getArrivalDateByRoomId(int $id) {
-        return Reservation::with(['rooms'])->whereRelation('rooms', 'rooms.id', '=', $id)->orderBy('date_of_arrival', 'asc')->first();
-    }
-
-    public static function deleteReservation(int $id) {
-        $deleted = Reservation::where('id', $id)->with(['contact', 'rooms'])->delete();
-    }
     // Relations
 
     public function guests() {
