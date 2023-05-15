@@ -18,9 +18,35 @@
         display: flex;
         justify-content: space-around;
         overflow-y: scroll;
+
+        h3 {
+            form {
+                display: inline-block;
+
+                .submit-container {
+                    background-color: $color-700;
+                    display: flex;
+                    justify-content: center;
+                    width: 1.8rem;
+                    height: 1.8rem;
+                    padding-bottom: 0.1rem;
+                    border-radius: 0.5rem;
+
+                    input[type=submit] {
+                        font-size: 1.2rem;
+                        color: $color-white;
+
+                    }
+                }
+            }
+        }
     }
 
     .light-text {
         color: $color-100;
+    }
+
+    .sort-button {
+        cursor: pointer;
     }
 }

@@ -55,5 +55,19 @@ class User extends Authenticatable {
         return User::with(['role'])->get();
     }
 
+    public static function getAllUsersSorted(string $column, string $order) {
+        $query = User::select([
+            'users.*',
+            'roles.title',
+            'roles.id',
+        ])->join('roles', 'roles.id', '=', 'users.role_id');
 
+        if ($column == 'last_name') {
+            $query->orderBy('users.last_name', $order);
+        } else if ($column == 'title') {
+            $query->orderBy('roles.title', $order);
+        }
+
+        return $query->get();
+    }
 }
