@@ -30,6 +30,7 @@
                     @can('update', $reservation)
                         <x-buttons.secondary-button :href="route('reservation.edit', ['id' => $reservation->id])">Edit</x-buttons.secondary-button>
                     @endcan
+                    <x-buttons.secondary-button :href="route('invoice.info', ['reservation' => $reservation->id])">View invoice</x-buttons.secondary-button>
                 </section>
                 <x-buttons.primary-button :href="route('reservation.overview')">Back</x-buttons.primary-button>
             </div>

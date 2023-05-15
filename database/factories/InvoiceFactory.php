@@ -19,6 +19,7 @@ class InvoiceFactory extends Factory {
             'value_added_tax' => fake()->numberBetween(10, 30),
             'final_amount' => fake()->numberBetween(600, 2000),
             'description' => fake()->sentence(),
+            'is_paid' => fake()->boolean(),
         ];
     }
 }
