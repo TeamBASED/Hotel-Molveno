@@ -11,6 +11,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller {
+    public function viewReservationOverview(Request $request) {
+
+        $reservations = $this->filterReservationResults($request);
+        $rooms = Room::getAllRoomData();
+
+        return view('reservation.overview', ['reservations' => $reservations, 'rooms' => $rooms]);
+    }
+
+    public function viewReservationInfo(int $id) {
+        $reservation = Reservation::getReservationData($id);
+
+        return view('reservation.info', ['reservation' => $reservation, 'currentRooms' => $reservation->rooms]);
+    }
+
     public function viewReservationCreate(Request $request) {
 
         $room = Room::getRoomData($request->roomId);
@@ -31,13 +45,6 @@ class ReservationController extends Controller {
             'availableRooms' => $availableRooms,
             'currentRooms' => $reservation->rooms
         ]);
-    }
-    public function viewReservationOverview(Request $request) {
-
-        $reservations = $this->filterReservationResults($request);
-        $rooms = Room::getAllRoomData();
-
-        return view('reservation.overview', ['reservations' => $reservations, 'rooms' => $rooms]);
     }
 
     public function handleCreateReservation(Request $request) {
