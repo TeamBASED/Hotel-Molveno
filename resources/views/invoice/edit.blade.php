@@ -34,11 +34,31 @@
                         <input id="value-added-tax" type="number" class="input-text" required
                             value="{{ old('value_added_tax', $invoice->value_added_tax) }}" name="value_added_tax">
 
+                        <p class="input-label">Room costs:</p>
+                        <div class="costs-list">
+                            @foreach ($roomPrices as $room)
+                                <div class="costs-item">
+                                    <div class="info-item">
+                                        <p class="label">Number:</p>
+                                        <p>{{ $room['room_number'] }}</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <p class="label">Calculation:</p>
+                                        <p>{{ $room['price_per_night'] }} per night x {{ $daysReserved }} days</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <p class="label">Total:</p>
+                                        <p>{{ $room['price'] }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
                         <p class="input-label">Adjustments:</p>
-                        <div class="cost-adjustments-list">
+                        <div class="costs-list">
                             @if (count($invoice->costAdjustments) > 0)
                                 @foreach ($invoice->costAdjustments as $costAdjustment)
-                                    <div class="cost-adjustments-item">
+                                    <div class="costs-item">
                                         <div class="info-item">
                                             <p class="label">Amount:</p>
                                             <p>{{ $costAdjustment->amount }}</p>
