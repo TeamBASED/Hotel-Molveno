@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Room;
 use App\Models\Contact;
-use App\Models\Invoice;
 use App\Models\Reservation;
 use App\Models\ReservationRoom;
 use Illuminate\View\View;
@@ -12,6 +11,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ReservationController extends Controller {
+    public function viewReservationOverview(Request $request) {
+
+        $reservations = $this->filterReservationResults($request);
+        $rooms = Room::getAllRoomData();
+
+        return view('reservation.overview', ['reservations' => $reservations, 'rooms' => $rooms]);
+    }
+
+    public function viewReservationInfo(int $id) {
+        $reservation = Reservation::getReservationData($id);
+
+        return view('reservation.info', ['reservation' => $reservation, 'currentRooms' => $reservation->rooms]);
+    }
+
     public function viewReservationCreate(Request $request) {
 
         $room = Room::getRoomData($request->roomId);
@@ -20,6 +33,7 @@ class ReservationController extends Controller {
 
         return view('reservation.create', ['room' => $room, 'contact' => $contact, 'new_contact' => $request->contact, 'date_of_arrival' => $request->date_of_arrival, 'date_of_departure' => $request->date_of_departure]);
     }
+
     public function viewReservationEdit(int $id): View {
         $reservation = Reservation::getReservationData($id);
         $availableRooms = $this->getAvailableRoomsDuringReservation($reservation);
@@ -32,21 +46,17 @@ class ReservationController extends Controller {
             'currentRooms' => $reservation->rooms
         ]);
     }
-    public function viewReservationOverview() {
-        $reservations = Reservation::getAllReservationData();
-
-        return view('reservation.overview', ['reservations' => $reservations]);
-    }
 
     public function handleCreateReservation(Request $request) {
         $this->validateCreateReservation($request);
 
-        $invoice_id = InvoiceController::handleReservationInvoice();
-
         $contactController = new ContactController();
         $contact = $contactController->handleGetOrCreateContact($request);
 
-        $reservation = $this->storeReservation($request, $invoice_id, $contact);
+        $reservation = $this->storeReservation($request, $contact);
+
+        $invoiceController = new InvoiceController();
+        $invoiceController->createInvoiceForReservation($reservation->id);
 
         $contact->saveContact($reservation);
 
@@ -57,8 +67,7 @@ class ReservationController extends Controller {
 
     private function validateCreateReservation(request $request) {
         // TODO: Apply validators across all relevant controllers
-        // $existingReservations = Reservation::getReservationDataByRoomId($request->room);
-        // dd($existingReservations);
+
         $validator = Validator::make($request->all(), [
             'contact' => 'required|integer',
             'arrival' => 'required|date|before:departure|after:today',
@@ -72,38 +81,29 @@ class ReservationController extends Controller {
         }
     }
 
-    private function storeReservation(Request $request, $invoice_id, $contact) {
+    private function storeReservation(Request $request, $contact) {
         $reservation = Reservation::create([
             'contact_id' => $contact->id,
             'date_of_arrival' => $request->arrival,
             'date_of_departure' => $request->departure,
-            'invoice_id' => $invoice_id
         ]);
         return $reservation;
     }
 
     public function handleDeleteReservation(Request $request) {
-        // dd($request->id);
-
         if (UserController::isPasswordCorrect($request->password)) {
 
             Reservation::deleteReservation($request->id);
+
             return redirect(route('reservation.overview', ['notification' => 'Reservation is deleted']));
         } else {
             return redirect(route('reservation.edit', ['id' => $request->id, 'notification' => 'The reservation is not removed']));
-
         }
     }
 
     private function handleReservationRoom(Request $request, $reservation) {
         $room = Room::getRoomData($request->room);
         $reservation->rooms()->sync($room);
-    }
-
-    public function viewReservationInfo(int $id) {
-        $reservation = Reservation::getReservationData($id);
-
-        return view('reservation.info', ['reservation' => $reservation, 'currentRooms' => $reservation->rooms]);
     }
 
 
@@ -114,7 +114,6 @@ class ReservationController extends Controller {
             'lastname' => 'required',
             'date_of_arrival' => 'required',
             'date_of_departure' => 'required',
-            // 'invoice_id' => 'required',
         ]);
 
         $this->updateReservationRooms($request, $request->id);
@@ -199,6 +198,30 @@ class ReservationController extends Controller {
         return $availableRooms;
     }
 
+    private function filterReservationResults(Request $request) {
+
+        // dd($request);
+
+        $filterQuery = Reservation::with(['contact', 'rooms', 'guests']);
+        if ($this->hasFilter($request->room_id))
+            $filterQuery->withRoom($request->room_id);
+        if ($this->hasFilter($request->date_of_arrival))
+            $filterQuery->withDateOfArrival($request->date_of_arrival);
+        if ($this->hasFilter($request->date_of_departure))
+            $filterQuery->withDateOfDeparture($request->date_of_departure);
+        if ($this->hasFilter($request->contact_name))
+            $filterQuery->withContactName($request->contact_name);
+
+
+        // dd($filterQuery);
+
+
+        return $filterQuery->get();
+    }
+
+    private function hasFilter($param) {
+        return $param != "";
+    }
 
 
 
