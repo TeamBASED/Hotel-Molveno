@@ -62,10 +62,10 @@ class User extends Authenticatable {
             'roles.id',
         ])->join('roles', 'roles.id', '=', 'users.role_id');
 
-        if ($column == 'last_name') {
-            $query->orderBy('users.last_name', $order);
-        } else if ($column == 'title') {
+        if ($column == 'title') {
             $query->orderBy('roles.title', $order);
+        } else {
+            $query->orderBy('users.' . $column, $order);
         }
 
         return $query->get();

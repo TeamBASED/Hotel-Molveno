@@ -6,10 +6,24 @@
 
     .left-side {
         background-color: $color-700;
-        max-width: 40rem;
+        max-width: 15rem;
 
         h3 {
             color: $color-grey-300;
+        }
+
+        form {
+            display: flex;
+            flex-flow: column nowrap;
+
+            label {
+                color: $color-white;
+            }
+
+            input[type=text] {
+                background-color: $color-white;
+                margin-bottom: 1rem;
+            }
         }
     }
 
@@ -18,6 +32,13 @@
         display: flex;
         justify-content: space-around;
         overflow-y: scroll;
+
+        .grid-four-columns {
+            p {
+                text-align: left;
+                padding-left: 0.5rem;
+            }
+        }
 
         h3 {
             form {
