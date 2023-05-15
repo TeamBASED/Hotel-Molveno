@@ -78,7 +78,20 @@
         position: fixed;
         background-color: white;
         left: 50%;
-        top: 20%;
+        top: 50%;
         transform: translate(-50%, -50%);
         z-index: 2;
+
+        div {
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 1rem;
+            margin-top: 1, 5rem;
+
+            form {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
     }
