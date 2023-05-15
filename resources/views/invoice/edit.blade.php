@@ -14,7 +14,7 @@
                     @csrf
                     @method('PATCH')
 
-                    <div class="left flex-column">
+                    <div class="flex-column">
 
                         <label class="input-label" for="paid">Invoice paid:</label>
                         <input id="paid" type="checkbox" name="paid" value="1"
@@ -34,26 +34,24 @@
                         <input id="value-added-tax" type="number" class="input-text" required
                             value="{{ old('value_added_tax', $invoice->value_added_tax) }}" name="value_added_tax">
 
-                        <div class="info-item col">
-                            <p class="label">Adjustments:</p>
-                            <div class="cost-adjustments-list">
-                                @if (count($invoice->costAdjustments) > 0)
-                                    @foreach ($invoice->costAdjustments as $costAdjustment)
-                                        <div class="cost-adjustments-item">
-                                            <div class="info-item">
-                                                <p class="label">Amount:</p>
-                                                <p>{{ $costAdjustment->amount }}</p>
-                                            </div>
-                                            <div class="info-item">
-                                                <p class="label">Description:</p>
-                                                <p>{{ $costAdjustment->description }}</p>
-                                            </div>
+                        <p class="input-label">Adjustments:</p>
+                        <div class="cost-adjustments-list">
+                            @if (count($invoice->costAdjustments) > 0)
+                                @foreach ($invoice->costAdjustments as $costAdjustment)
+                                    <div class="cost-adjustments-item">
+                                        <div class="info-item">
+                                            <p class="label">Amount:</p>
+                                            <p>{{ $costAdjustment->amount }}</p>
                                         </div>
-                                    @endforeach
-                                @else
-                                    <p>No adjustments</p>
-                                @endif
-                            </div>
+                                        <div class="info-item">
+                                            <p class="label">Description:</p>
+                                            <p>{{ $costAdjustment->description }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p>No adjustments</p>
+                            @endif
                         </div>
 
                         <div class="info-item">
@@ -69,7 +67,6 @@
                 <x-buttons.secondary-button :href="route('invoice.info', $invoice->id)">Cancel</x-buttons.secondary-button>
                 <x-buttons.primary-button form="edit-form">Save</x-buttons.primary-button>
             </div>
-
 
         </div>
 
