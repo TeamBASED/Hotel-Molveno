@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use App\Models\PaymentMethod;
 use App\Models\Reservation;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller {
@@ -25,7 +26,7 @@ class InvoiceController extends Controller {
         $invoice = $reservation->invoice;
         $paymentMethods = PaymentMethod::getAllPaymentMethods();
         $daysReserved = $reservation->getDurationInDays();
-        $roomPrices = $this->calculateRoomPrices($reservation->rooms, $daysReserved);
+        $roomPrices = $this->calculateRoomCostsOfStay($reservation->rooms, $daysReserved);
 
         return view("invoice.edit", [
             'invoice' => $invoice,
@@ -39,7 +40,7 @@ class InvoiceController extends Controller {
 
     public function handleUpdateInvoice(Reservation $reservation, Request $request) {
         $invoice = $reservation->invoice;
-        // dd($request);
+
         $validated = $request->validate([
             'payment_method' => 'required',
             'value_added_tax' => 'required',
@@ -64,16 +65,14 @@ class InvoiceController extends Controller {
     }
 
     private function updateInvoice(Invoice $invoice, Request $request) {
-        // calculate final amount in new function
-        // set final_amount to that value
-
+        $totalCosts = $this->calculateTotalInvoiceCosts($invoice);
 
         $invoice->update([
             'value_added_tax' => $request->value_added_tax,
             'payment_method_id' => $request->payment_method,
             'description' => $request->description,
             'is_paid' => isset($request->is_paid),
-            // 'final_amount'
+            'final_amount' => $totalCosts,
         ]);
     }
 
@@ -95,10 +94,36 @@ class InvoiceController extends Controller {
         return $result;
     }
 
-    private function calculateTotalCosts(Invoice $invoice) {
-        // TODO: get total base costs of rooms, get total costs of adjustments, add these 2 together, add taxes, and return final amount
+    private function calculateTotalInvoiceCosts(Invoice $invoice) {
+        $costsOfRooms = $this->calculateTotalCostsOfRooms(
+            $invoice->reservation->rooms,
+            $invoice->reservation->getDurationInDays()
+        );
+
+        $costsOfAdjustments = $this->calculateTotalCostsOfAdjustments(
+            $invoice->costAdjustments
+        );
+
+        $costsBeforeTax = $costsOfRooms + $costsOfAdjustments;
+        $costsAfterTax = $costsBeforeTax + $costsBeforeTax * $invoice->value_added_tax / 100;
+
+        return $costsAfterTax;
     }
 
+    private function calculateTotalCostsOfRooms(Collection $roomsInReservation, int $daysReserved) {
+        $totalCosts = 0;
+        foreach ($roomsInReservation as $room) {
+            $totalCosts += $room->base_price_per_night * $daysReserved;
+        }
+        return $totalCosts;
+    }
 
+    private function calculateTotalCostsOfAdjustments(Collection $costAdjustments) {
+        $totalCosts = 0;
+        foreach ($costAdjustments as $costAdjustment) {
+            $totalCosts += $costAdjustment->amount;
+        }
+        return $totalCosts;
+    }
 
 }
