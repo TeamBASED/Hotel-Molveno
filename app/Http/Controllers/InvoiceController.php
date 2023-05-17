@@ -41,18 +41,31 @@ class InvoiceController extends Controller {
     public function handleUpdateInvoice(Reservation $reservation, Request $request) {
         $invoice = $reservation->invoice;
 
-        $validated = $request->validate([
-            'payment_method' => 'required',
-            'value_added_tax' => 'required',
-            'description' => 'required',
-        ]);
+        $this->validateUpdateInvoice($request);
 
         $this->updateInvoice($invoice, $request);
         return redirect(route('invoice.info', $reservation->id));
     }
 
+    private function validateUpdateInvoice(Request $request) {
+        return $request->validate([
+            'payment_method' => 'required',
+            'value_added_tax' => 'required',
+            'description' => 'required',
+        ]);
+    }
+
     public function handleRecalculateInvoice(Reservation $reservation, Request $request) {
-        dd("Recalculate functionality is not yet implemented");
+        $invoice = $reservation->invoice;
+
+        $this->validateUpdateInvoice($request);
+
+        $invoice->update([
+            'value_added_tax' => $request->value_added_tax,
+            'final_amount' => $this->calculateTotalInvoiceCosts($invoice, $request->value_added_tax),
+        ]);
+
+        return redirect(route('invoice.edit', $reservation->id));
     }
 
     // Methods
@@ -65,7 +78,7 @@ class InvoiceController extends Controller {
     }
 
     private function updateInvoice(Invoice $invoice, Request $request) {
-        $totalCosts = $this->calculateTotalInvoiceCosts($invoice);
+        $totalCosts = $this->calculateTotalInvoiceCosts($invoice, $request->value_added_tax);
 
         $invoice->update([
             'value_added_tax' => $request->value_added_tax,
@@ -94,7 +107,7 @@ class InvoiceController extends Controller {
         return $result;
     }
 
-    private function calculateTotalInvoiceCosts(Invoice $invoice) {
+    private function calculateTotalInvoiceCosts(Invoice $invoice, float $taxAmount) {
         $costsOfRooms = $this->calculateTotalCostsOfRooms(
             $invoice->reservation->rooms,
             $invoice->reservation->getDurationInDays()
@@ -105,7 +118,7 @@ class InvoiceController extends Controller {
         );
 
         $costsBeforeTax = $costsOfRooms + $costsOfAdjustments;
-        $costsAfterTax = $costsBeforeTax + $costsBeforeTax * $invoice->value_added_tax / 100;
+        $costsAfterTax = $costsBeforeTax + $costsBeforeTax * $taxAmount / 100;
 
         return $costsAfterTax;
     }
