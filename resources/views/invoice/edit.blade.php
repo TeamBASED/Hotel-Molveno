@@ -16,6 +16,13 @@
 
                     <div class="grid-two-columns edit-list">
 
+                        <p class="input-label">Total amount:</p>
+                        <p>{{ $invoice->final_amount }}</p>
+
+                        <label class="input-label" for="value-added-tax">Value added tax:</label>
+                        <input id="value-added-tax" type="number" class="input-text" required
+                            value="{{ old('value_added_tax', $invoice->value_added_tax) }}" name="value_added_tax">
+
                         <label class="input-label" for="is-paid">Invoice paid:</label>
                         <input id="is-paid" type="checkbox" name="is_paid" value="1"
                             {{ old('is-paid', $invoice->is_paid == 1 ? 'checked' : '') }}>
@@ -32,10 +39,6 @@
 
                         <label class="input-label" for="description">Description:</label>
                         <textarea class="input-text flex-grow-1" id="description" placeholder="Write extra information here" name="description">{{ old('description', $invoice->description) }}</textarea>
-
-                        <label class="input-label" for="value-added-tax">Value added tax:</label>
-                        <input id="value-added-tax" type="number" class="input-text" required
-                            value="{{ old('value_added_tax', $invoice->value_added_tax) }}" name="value_added_tax">
 
                         <p class="input-label">Room costs:</p>
                         <div class="costs-list">
@@ -91,9 +94,6 @@
                             </x-buttons.secondary-button>
 
                         </div>
-
-                        <p class="input-label">Total amount:</p>
-                        <p>{{ $invoice->final_amount }}</p>
 
                         <x-buttons.secondary-button :formaction="route('invoice.recalculate', $invoice->reservation_id)">Recalculate total amount
                         </x-buttons.secondary-button>

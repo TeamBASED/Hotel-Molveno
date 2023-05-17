@@ -10,6 +10,16 @@
             </div>
 
             <div class="info-item">
+                <p class="label">Total amount:</p>
+                <p>{{ $invoice->final_amount }}</p>
+            </div>
+
+            <div class="info-item">
+                <p class="label">Tax percentage:</p>
+                <p>{{ $invoice->value_added_tax }}%</p>
+            </div>
+
+            <div class="info-item">
                 <p class="label">Status:</p>
                 <p>{{ $invoice->is_paid ? 'paid' : 'not yet paid' }}</p>
             </div>
@@ -19,14 +29,9 @@
                 <p>{{ $invoice->paymentMethod->method }}</p>
             </div>
 
-            <div class="info-item">
-                <p class="label">Total amount:</p>
-                <p>{{ $invoice->final_amount }}</p>
-            </div>
-
-            <div class="info-item">
-                <p class="label">Tax percentage:</p>
-                <p>{{ $invoice->value_added_tax }}%</p>
+            <div class="info-item col">
+                <p class="label">Description:</p>
+                <p>{{ $invoice->description }}</p>
             </div>
 
             <p class="label">Room costs:</p>
@@ -69,11 +74,6 @@
                         <p>No adjustments</p>
                     @endif
                 </div>
-            </div>
-
-            <div class="info-item col">
-                <p class="label">Description:</p>
-                <p>{{ $invoice->description }}</p>
             </div>
 
             <div>
