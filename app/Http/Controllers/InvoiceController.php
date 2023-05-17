@@ -22,7 +22,7 @@ class InvoiceController extends Controller {
         $invoice = Invoice::getInvoiceByReservationId($reservation->id);
         $paymentMethods = PaymentMethod::getAllPaymentMethods();
         $daysReserved = $reservation->getDurationInDays();
-        $roomPrices = $this->calculateRoomPrices($reservation->rooms, $daysReserved);
+        $roomPrices = $this->calculateRoomCostsOfStay($reservation->rooms, $daysReserved);
 
         return view("invoice.edit", [
             'invoice' => $invoice,
