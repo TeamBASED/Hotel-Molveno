@@ -64,11 +64,16 @@ class InvoiceController extends Controller {
     }
 
     private function updateInvoice(Invoice $invoice, Request $request) {
+        // calculate final amount in new function
+        // set final_amount to that value
+
+
         $invoice->update([
             'value_added_tax' => $request->value_added_tax,
             'payment_method_id' => $request->payment_method,
             'description' => $request->description,
             'is_paid' => isset($request->is_paid),
+            // 'final_amount'
         ]);
     }
 
@@ -89,5 +94,11 @@ class InvoiceController extends Controller {
 
         return $result;
     }
+
+    private function calculateTotalCosts(Invoice $invoice) {
+        // TODO: get total base costs of rooms, get total costs of adjustments, add these 2 together, add taxes, and return final amount
+    }
+
+
 
 }
