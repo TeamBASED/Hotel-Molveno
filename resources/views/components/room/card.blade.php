@@ -11,6 +11,15 @@
     @else
         <p>Recently cleaned</p>
     @endif
+
+    @if (!isset($room->availableUntil))
+        <p>Not currently available</p>
+    @elseif ($room->availableUntil > date('Y-m-d', strtotime('+10 Years')))
+        <p>Available</p>
+    @else
+        <p>Available until: {{ $room->availableUntil }}</p>
+    @endif
+
     {{-- Temporary solution for routing to reservation create --}}
     @can('create', App\Models\Reservation::class)
         <form action="{{ route('reservation.contact', ['id' => $room->id]) }}" method="GET">
