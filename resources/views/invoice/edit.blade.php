@@ -79,13 +79,13 @@
 
                             <p>Add cost adjustment</p>
 
-                            <label class="input-label" for="value-added-tax">Amount:</label>
-                            <input id="value-added-tax" type="number" class="input-text" required
-                                name="value_added_tax" form="cost-adjustment-form">
+                            <label class="input-label" for="adjustment-amount">Amount:</label>
+                            <input id="adjustment-amount" type="number" class="input-text" required name="amount"
+                                form="cost-adjustment-form">
 
-                            <label class="input-label" for="description">Description:</label>
-                            <textarea class="input-text flex-grow-1" id="description" placeholder="Write extra information here" name="description"
-                                form="cost-adjustment-form"></textarea>
+                            <label class="input-label" for="adjustment-description">Description:</label>
+                            <textarea class="input-text flex-grow-1" id="adjustment-description" placeholder="Write extra information here"
+                                name="description" form="cost-adjustment-form"></textarea>
 
                             <x-buttons.secondary-button form="cost-adjustment-form">Add adjustment
                             </x-buttons.secondary-button>
@@ -102,7 +102,8 @@
 
                 </form>
 
-                <form action="{{ route('costAdjustment.create') }}" method="POST" id="cost-adjustment-form">
+                <form action="{{ route('costAdjustment.create', $invoice->reservation_id) }}" method="POST"
+                    id="cost-adjustment-form">
                     @csrf
                     <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
                 </form>

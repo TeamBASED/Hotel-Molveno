@@ -65,7 +65,7 @@ Route::middleware('auth')->group(function () {
 
     // Cost adjustments
 
-    Route::post('/costAdjustment/create', [CostAdjustmentController::class, 'handleCreateCostAdjustment'])->name('costAdjustment.create');
+    Route::post('/reservation/{reservation}/costAdjustment/create', [CostAdjustmentController::class, 'handleCreateCostAdjustment'])->name('costAdjustment.create');
 
     // Guests
     Route::get('/reservation/{id}/guest/create', [GuestController::class, 'viewAddGuest', 'showContact' => '$showContact'])->name('guest.create');
