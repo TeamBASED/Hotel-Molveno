@@ -12,11 +12,7 @@
             display: flex;
             justify-content: space-between;
 
-            .label {
-                display: inline-block;
-                color: $color-700;
-                font-weight: bold;
-            }
+
 
             &.col {
                 flex-direction: column;
@@ -24,7 +20,13 @@
             }
         }
 
-        .cost-adjustments-list {
+        .label {
+            display: inline-block;
+            color: $color-700;
+            font-weight: bold;
+        }
+
+        .costs-list {
             margin-left: 2rem;
             border: 2px solid $color-700;
             padding: 1rem;
