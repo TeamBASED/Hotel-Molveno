@@ -8,8 +8,11 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller {
+
+    // Views
+
     public function viewInvoiceInfo(Reservation $reservation) {
-        $invoice = Invoice::getInvoiceByReservationId($reservation->id);
+        $invoice = $reservation->invoice;
         // TODO: get rooms of reservation, to display price per night
 
         return view("invoice.info", [
@@ -19,7 +22,7 @@ class InvoiceController extends Controller {
     }
 
     public function viewInvoiceEdit(Reservation $reservation) {
-        $invoice = Invoice::getInvoiceByReservationId($reservation->id);
+        $invoice = $reservation->invoice;
         $paymentMethods = PaymentMethod::getAllPaymentMethods();
         $daysReserved = $reservation->getDurationInDays();
         $roomPrices = $this->calculateRoomPrices($reservation->rooms, $daysReserved);
@@ -32,6 +35,27 @@ class InvoiceController extends Controller {
         ]);
     }
 
+    // Handlers
+
+    public function handleUpdateInvoice(Reservation $reservation, Request $request) {
+        $invoice = $reservation->invoice;
+        // dd($request);
+        $validated = $request->validate([
+            'payment_method' => 'required',
+            'value_added_tax' => 'required',
+            'description' => 'required',
+        ]);
+
+        $this->updateInvoice($invoice, $request);
+        return redirect(route('invoice.info', $reservation->id));
+    }
+
+    public function handleRecalculateInvoice(Reservation $reservation, Request $request) {
+        dd("Recalculate functionality is not yet implemented");
+    }
+
+    // Methods
+
     public function createInvoiceForReservation(int $reservationId) {
         // TODO: fill in all values, remove use of factory
         Invoice::factory()->create([
@@ -39,13 +63,16 @@ class InvoiceController extends Controller {
         ]);
     }
 
-    public function handleUpdateInvoice(Reservation $reservation, Request $request) {
-        dd("Update functionality is not yet implemented");
+    private function updateInvoice(Invoice $invoice, Request $request) {
+        $invoice->update([
+            'value_added_tax' => $request->value_added_tax,
+            'payment_method_id' => $request->payment_method,
+            'description' => $request->description,
+            'is_paid' => isset($request->is_paid),
+        ]);
     }
 
-    public function handleRecalculateInvoice(Reservation $reservation, Request $request) {
-        dd("Recalculate functionality is not yet implemented");
-    }
+    // Calculations
 
     private function calculateRoomPrices($rooms, int $daysReserved) {
         $result = [];
