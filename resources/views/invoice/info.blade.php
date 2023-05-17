@@ -30,7 +30,7 @@
             </div>
 
             <div class="info-item col">
-                <p class="label">Description:</p>
+                <p class="label">Comments:</p>
                 <p>{{ $invoice->description }}</p>
             </div>
 

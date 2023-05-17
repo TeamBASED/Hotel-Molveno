@@ -37,7 +37,7 @@
                             @endforeach
                         </select>
 
-                        <label class="input-label" for="description">Description:</label>
+                        <label class="input-label" for="description">Comments:</label>
                         <textarea class="input-text flex-grow-1" id="description" placeholder="Write extra information here" name="description">{{ old('description', $invoice->description) }}</textarea>
 
                         <p class="input-label">Room costs:</p>
