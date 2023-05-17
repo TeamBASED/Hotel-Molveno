@@ -79,7 +79,7 @@ class InvoiceController extends Controller {
 
     // Calculations
 
-    private function calculateRoomPrices($rooms, int $daysReserved) {
+    private function calculateRoomCostsOfStay($rooms, int $daysReserved) {
         $result = [];
 
         foreach ($rooms as $room) {
