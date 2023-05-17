@@ -16,9 +16,9 @@
 
                     <div class="grid-two-columns edit-list">
 
-                        <label class="input-label" for="paid">Invoice paid:</label>
-                        <input id="paid" type="checkbox" name="paid" value="1"
-                            {{ old('paid', $invoice->is_paid == 1 ? 'checked' : '') }}>
+                        <label class="input-label" for="is-paid">Invoice paid:</label>
+                        <input id="is-paid" type="checkbox" name="is_paid" value="1"
+                            {{ old('is-paid', $invoice->is_paid == 1 ? 'checked' : '') }}>
 
                         <label class="input-label" for="payment-method">Payment method:</label>
                         <select id="payment-method" class="dropdown-select" name="payment_method" required>
@@ -29,6 +29,9 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        <label class="input-label" for="description">Description:</label>
+                        <textarea class="input-text flex-grow-1" id="description" placeholder="Write extra information here" name="description">{{ old('description', $invoice->description) }}</textarea>
 
                         <label class="input-label" for="value-added-tax">Value added tax:</label>
                         <input id="value-added-tax" type="number" class="input-text" required
