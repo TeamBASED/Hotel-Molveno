@@ -14,11 +14,13 @@ class InvoiceController extends Controller {
 
     public function viewInvoiceInfo(Reservation $reservation) {
         $invoice = $reservation->invoice;
-        // TODO: get rooms of reservation, to display price per night
+        $daysReserved = $reservation->getDurationInDays();
+        $roomPrices = $this->calculateRoomCostsOfStay($reservation->rooms, $daysReserved);
 
         return view("invoice.info", [
-            // 'rooms' => $rooms,
             'invoice' => $invoice,
+            'daysReserved' => $daysReserved,
+            'roomPrices' => $roomPrices,
         ]);
     }
 
