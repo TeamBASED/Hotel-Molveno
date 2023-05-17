@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Contact;
 use App\Models\Invoice;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -36,7 +37,7 @@ class Reservation extends Model {
         return $this->hasOne(Invoice::class);
     }
 
-    // Methods
+    // Query methods
 
     public static function getAllReservationData() {
         return Reservation::with(['contact', 'rooms', 'guests'])->get();
@@ -65,6 +66,14 @@ class Reservation extends Model {
     public static function getGuestByReservationId(int $reservationId) {
         return Reservation::where(['reservation_id', $reservationId])->with(['guest'])->get();
     }
+
+    // Utility methods
+
+    public function getDurationInDays(): int {
+        return (new DateTime($this->date_of_arrival))->diff(new DateTime($this->date_of_departure))->days;
+    }
+
+    // Local scopes
 
     public function scopeWithRoom($query, $roomId) {
         return $query->whereExists(function ($query) use ($roomId) {

@@ -56,6 +56,10 @@
                 <p>{{ $invoice->description }}</p>
             </div>
 
+            <div>
+                <x-buttons.secondary-button :href="route('invoice.edit', ['reservation' => $invoice->reservation_id])">Edit</x-buttons.secondary-button>
+            </div>
+
         </article>
 
         <div>
