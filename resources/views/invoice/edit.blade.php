@@ -74,7 +74,7 @@
                             @endif
                         </div>
 
-                        <p class="label">Total amount:</p>
+                        <p class="input-label">Total amount:</p>
                         <p>{{ $invoice->final_amount }}</p>
 
                         <x-buttons.secondary-button :formaction="route('invoice.recalculate', $invoice->reservation_id)">Recalculate total amount
