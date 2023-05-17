@@ -64,7 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/reservation/{reservation}/invoice/recalculate', [InvoiceController::class, 'handleRecalculateInvoice'])->name('invoice.recalculate');
 
     // Cost adjustments
-
     Route::post('/reservation/{reservation}/costAdjustment/create', [CostAdjustmentController::class, 'handleCreateCostAdjustment'])->name('costAdjustment.create');
 
     // Guests
