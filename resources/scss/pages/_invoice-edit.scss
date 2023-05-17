@@ -1,6 +1,13 @@
 #invoice-edit {
+    display: flex;
+    justify-content: center;
+
     #edit-form {
         margin-bottom: 2rem;
+
+        .edit-list {
+            display: grid;
+        }
 
         .info-item {
             display: flex;
@@ -8,17 +15,16 @@
 
             .label {
                 display: inline-block;
-                color: $color-grey-700;
                 font-weight: bold;
+                color: $color-grey-700;
             }
         }
 
         .costs-list {
-            margin-left: 2rem;
-            border: 2px solid $color-700;
-            padding: 1rem;
             display: flex;
             flex-direction: column;
+            border: 3px solid $color-grey-400;
+            padding: 1rem;
             gap: 1rem;
         }
     }

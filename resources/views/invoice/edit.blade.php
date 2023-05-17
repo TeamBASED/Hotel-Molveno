@@ -10,15 +10,15 @@
 
             <div class="flex-space-between">
                 <form action="{{ route('invoice.update', $invoice->reservation_id) }}" method="POST"
-                    class="form-1 grid-two-columns" id="edit-form">
+                    class="form-1" id="edit-form">
                     @csrf
                     @method('PATCH')
 
-                    <div class="flex-column">
+                    <div class="grid-two-columns edit-list">
 
-                        <label class="input-label" for="paid">Invoice paid:</label>
-                        <input id="paid" type="checkbox" name="paid" value="1"
-                            {{ old('paid', $invoice->is_paid == 1 ? 'checked' : '') }}>
+                        <label class="input-label" for="is-paid">Invoice paid:</label>
+                        <input id="is-paid" type="checkbox" name="is_paid" value="1"
+                            {{ old('is-paid', $invoice->is_paid == 1 ? 'checked' : '') }}>
 
                         <label class="input-label" for="payment-method">Payment method:</label>
                         <select id="payment-method" class="dropdown-select" name="payment_method" required>
@@ -29,6 +29,9 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        <label class="input-label" for="description">Description:</label>
+                        <textarea class="input-text flex-grow-1" id="description" placeholder="Write extra information here" name="description">{{ old('description', $invoice->description) }}</textarea>
 
                         <label class="input-label" for="value-added-tax">Value added tax:</label>
                         <input id="value-added-tax" type="number" class="input-text" required
@@ -74,10 +77,8 @@
                             @endif
                         </div>
 
-                        <div class="info-item">
-                            <p class="label">Total amount:</p>
-                            <p>{{ $invoice->final_amount }}</p>
-                        </div>
+                        <p class="input-label">Total amount:</p>
+                        <p>{{ $invoice->final_amount }}</p>
 
                         <x-buttons.secondary-button :formaction="route('invoice.recalculate', $invoice->reservation_id)">Recalculate total amount
                         </x-buttons.secondary-button>
