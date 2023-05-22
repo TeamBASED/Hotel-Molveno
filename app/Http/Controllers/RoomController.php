@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CleaningStatus;
 use App\Models\Room;
 use App\Models\User;
 use App\Models\RoomType;
 use App\Models\RoomView;
+use App\Models\Reservation;
 use App\Policies\RoomPolicy;
 use Illuminate\Http\Request;
+use App\Models\CleaningStatus;
 use App\Models\BedConfiguration;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -30,9 +31,21 @@ class RoomController extends Controller {
     public function viewRoomOverview(Request $request) {
         if ($request->user()->can('viewAny', Room::class)) {
             $rooms = $this->filterRoomResults($request);
+
+            foreach ($rooms as $room) {
+                $firstReservation = Reservation::getFirstReservationsByRoomId($room->id);
+
+                if (!$firstReservation) {
+                    $room->availableUntil = date("Y-m-d", strtotime("+100 Years"));
+                } elseif ($firstReservation->date_of_arrival > date('Y-m-d')) {
+                    $room->availableUntil = $firstReservation->date_of_arrival;
+                }
+            }
+
             $roomTypes = RoomType::get();
             $roomViews = RoomView::get();
             $cleaningStatuses = CleaningStatus::get();
+
             return view('room.overview', ['cleaningStatuses' => $cleaningStatuses, 'roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
         } else {
             // TODO: Redirect to homepage
@@ -178,5 +191,10 @@ class RoomController extends Controller {
     private function filterRoomsOnAvailability($rooms, $dateOfArrival, $dateOfDeparture) {
         $availableRooms = ReservationController::getAvailableRoomsDuringTimeInterval($dateOfArrival, $dateOfDeparture);
         return $rooms->intersect($availableRooms);
+    }
+
+
+    public function firstReservationForRoom($roomId) {
+        return Reservation::getFirstReservationsByRoomId($roomId);
     }
 }

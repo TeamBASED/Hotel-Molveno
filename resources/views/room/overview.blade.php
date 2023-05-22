@@ -125,7 +125,7 @@
                 <div id="rooms-container">
 
                     @foreach ($rooms as $room)
-                        <x-room.card :room="$room" :cleaningStatuses='$cleaningStatuses' />
+                        <x-room.card :room="$room" :cleaningStatuses='$cleaningStatuses' availableUntil='tomorrow' />
                     @endforeach
 
                 </div>
