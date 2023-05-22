@@ -40,15 +40,12 @@ class RoomController extends Controller {
                 } elseif ($firstReservation->date_of_arrival > date('Y-m-d')) {
                     $room->availableUntil = $firstReservation->date_of_arrival;
                 }
-
-
             }
 
             $roomTypes = RoomType::get();
             $roomViews = RoomView::get();
             $cleaningStatuses = CleaningStatus::get();
 
-            // dd($rooms);
             return view('room.overview', ['cleaningStatuses' => $cleaningStatuses, 'roomTypes' => $roomTypes, 'roomViews' => $roomViews, 'rooms' => $rooms]);
         } else {
             // TODO: Redirect to homepage
