@@ -58,6 +58,10 @@ class Reservation extends Model {
         return Reservation::with(['rooms'])->whereRelation('rooms', 'rooms.id', '=', $roomId)->orderBy('date_of_arrival', 'asc')->first();
     }
 
+    public static function getReservationsByRoomId(int $roomId) {
+        return Reservation::with(['rooms'])->wherRelation('rooms', 'rooms.id', '=', $roomId)->get();
+    }
+
     public static function deleteReservation(int $id) {
         Reservation::where('id', $id)->with(['contact', 'rooms'])->delete();
     }

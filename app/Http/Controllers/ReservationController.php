@@ -147,10 +147,20 @@ class ReservationController extends Controller {
 
     public function updateReservation(Request $request, int $id) {
         $reservation = Reservation::getReservationData($id);
-        $reservation->update([
-            'date_of_arrival' => $request->date_of_arrival,
-            'date_of_departure' => $request->date_of_departure,
-        ]);
+        //are dates overlapping?
+
+        $reservations = $this->getAvailableDatesForRoom($request->room_id);
+
+        $availableRooms = $this->getAvailableRoomsDuringTimeInterval($request->date_of_arrival, $request->date_of_departure);
+        // $availableRooms->merge($reservation->rooms);
+        // dd($reservation->rooms);
+
+        if ($reservation->rooms->intersect($availableRooms))
+
+            $reservation->update([
+                'date_of_arrival' => $request->date_of_arrival,
+                'date_of_departure' => $request->date_of_departure,
+            ]);
         return $reservation;
     }
 
@@ -196,6 +206,14 @@ class ReservationController extends Controller {
         }
 
         return $availableRooms;
+    }
+
+    public static function getAvailableDatesForRoom(int $roomId) {
+        $reservations = Reservation::getArrivalDateByRoomId($roomId);
+        dd($reservations);
+
+
+        return $reservations;
     }
 
     private function filterReservationResults(Request $request) {
