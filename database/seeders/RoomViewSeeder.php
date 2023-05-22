@@ -16,15 +16,15 @@ class RoomViewSeeder extends Seeder
     public function run()
     {
         RoomView::create([
-            'type' => 'standard',
+            'view' => 'standard',
         ]);
 
         RoomView::create([
-            'type' => 'mountain',
+            'view' => 'mountain',
         ]);
 
         RoomView::create([
-            'type' => 'lake',
+            'view' => 'lake',
         ]);
     }
 }

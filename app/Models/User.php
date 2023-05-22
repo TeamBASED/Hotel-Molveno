@@ -3,13 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -49,9 +49,43 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public static function getUserById(int $id) {
+        return User::find($id);
+    }
     public static function getAllUserData() {
         return User::with(['role'])->get();
     }
 
-    
+    public static function getAllUsersSorted(string $column, string $order) {
+        $query = User::select([
+            'users.*',
+            'roles.title',
+            'roles.id',
+        ])->join('roles', 'roles.id', '=', 'users.role_id');
+
+        if ($column == 'title') {
+            $query->orderBy('roles.title', $order);
+        } else {
+            $query->orderBy('users.' . $column, $order);
+        }
+
+        return $query->get();
+    }
+
+    public function scopeWithUsername($query, string $username) {
+        return $query->where('username', 'LIKE', '%' . $username . '%');
+    }
+
+    public function scopeWithFirstName($query, string $firstName) {
+        return $query->where('first_name', 'LIKE', '%' . $firstName . '%');
+    }
+
+    public function scopeWithLastName($query, string $lastName) {
+        return $query->where('last_name', 'LIKE', '%' . $lastName . '%');
+    }
+
+    public function scopeWithUserRole($query, int $roleId) {
+        return $query->where('role_id', $roleId);
+    }
+
 }

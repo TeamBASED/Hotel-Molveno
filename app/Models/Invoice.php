@@ -5,15 +5,39 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Invoice extends Model
-{
+class Invoice extends Model {
     use HasFactory;
 
-    public function getInvoiceById($id) {
+    protected $fillable = [
+        'payment_method_id',
+        'reservation_id',
+        'value_added_tax',
+        'final_amount',
+        'description',
+        'is_paid',
+    ];
+
+    // Relations
+
+    public function reservation() {
+        return $this->belongsTo(Reservation::class);
+    }
+
+    public function paymentMethod() {
+        return $this->belongsTo(PaymentMethod::class);
+    }
+
+    public function costAdjustments() {
+        return $this->hasMany(CostAdjustment::class);
+    }
+
+    // Methods
+
+    public static function getInvoiceById($id) {
         return Invoice::where('id', $id)->first();
     }
 
-    public function reservation() { 
-        return $this->belongsTo(Reservation::class);
+    public static function getInvoiceByReservationId($reservationId) {
+        return Invoice::where('reservation_id', $reservationId)->first();
     }
 }

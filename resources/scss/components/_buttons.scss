@@ -1,51 +1,65 @@
     .button {
+        display: inline-block;
+        text-align: center;
         font-weight: 600;
+        padding: .4rem 2rem;
+        transition-property: background-color color;
+        transition-duration: 200ms;
+    }
+
+    .static-size {
         height: 45px;
         width: 150px;
     }
 
-
     .primary-button {
-        display: inline-block;
         background-color: $color-700;
         color: $color-white;
-        padding: 5px 26px;
 
-        // &:hover {
-        // what should hover status do?
-        // }
+        &:hover {
+            background-color: $color-800;
+        }
     }
 
     .secondary-button {
-        display: inline-block;
-        background-color: $color-white;
-        color: $font-color;
-        padding: 5px 26px;
-        border: $color-700 3px solid;
+        background-color: $color-grey-300;
+        color: $color-700;
 
-        // &:hover {
-        // what should hover status do?
-        // }
+        &:hover {
+            background-color: $color-grey-500;
+        }
     }
 
     .tertiary-button {
-        display: inline-block;
-        background-color: $color-white;
-        color: $font-color;
-        padding: 5px 26px;
+        background-color: inherit;
+        color: $color-700;
 
         // &:hover {
         // what should hover status do?
         // }
+
+        &.warning {
+            color: $color-warning;
+            border: 2px solid $color-warning;
+
+            &:hover {
+                background-color: $color-warning;
+                color: $color-white;
+            }
+        }
     }
 
     .edit-button {
         background-color: $color-700;
         color: $color-white;
-        width: 30px;
+        width: 60px;
         height: 30px;
+        text-align: center;
+        padding: 0.2rem;
+        transition-property: background-color color;
+        transition-duration: 200ms;
 
-        // &:hover {
-        // what should hover status do?
-        // }
+        &:hover {
+            background-color: $color-800;
+        }
     }

@@ -4,9 +4,11 @@
 
 <div class="allRooms">
 
+    {{-- {{ dd($availableRooms) }} --}}
+
 
     @if (isset($currentRooms))
-        <h3>Rooms in the reservation:</h3>
+        <p class="input-label">Rooms in the reservation:</p>
         @foreach ($currentRooms as $currentRoom)
             <p><input type="checkbox" checked name="room[{{ $currentRoom->id }}]">{{ $currentRoom->room_number }}
             </p>
@@ -15,7 +17,7 @@
 
 
     @if (isset($availableRooms))
-        <h3>Available rooms:</h3>
+        <p class="input-label">Available rooms:</p>
         @foreach ($availableRooms as $availableRoom)
             <p><input type="checkbox" name="room[{{ $availableRoom->id }}]">{{ $availableRoom->room_number }}</p>
         @endforeach

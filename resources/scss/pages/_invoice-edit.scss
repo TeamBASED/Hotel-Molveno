@@ -1,0 +1,31 @@
+#invoice-edit {
+    display: flex;
+    justify-content: center;
+
+    #edit-form {
+        margin-bottom: 2rem;
+
+        .edit-list {
+            display: grid;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+
+            .label {
+                display: inline-block;
+                font-weight: bold;
+                color: $color-grey-700;
+            }
+        }
+
+        .costs-list {
+            display: flex;
+            flex-direction: column;
+            border: 3px solid $color-grey-400;
+            padding: 1rem;
+            gap: 1rem;
+        }
+    }
+}

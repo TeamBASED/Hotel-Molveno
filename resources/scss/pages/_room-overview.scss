@@ -7,6 +7,10 @@
         margin-top: 10px;
     }
 
+    .left-side {
+        position: relative;
+    }
+
     .filter-section {
         background-color: #F5F5F5;
         padding: 1rem 2rem;
@@ -14,6 +18,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        z-index: 1;
 
         .filter-options {
             display: flex;
@@ -32,12 +38,27 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            justify-content: flex-end;
             white-space: nowrap;
+        }
+
+        .filter-field {
+            padding: 0.2rem 0.6rem;
         }
 
         .filter-input {
             border: solid 2px $color-600;
             width: 4rem;
+        }
+
+        .filter-input-wide {
+            border: solid 2px $color-600;
+            width: 8rem;
+        }
+
+        input[type=checkbox] {
+            height: 1.6rem;
+            width: 1.6rem;
         }
     }
 
@@ -60,6 +81,17 @@
             &>* {
                 margin-block: 0.5rem;
             }
+
+            form {
+                button {
+                    width: 100%;
+                    margin-top: 20%;
+                }
+            }
+
+            .cleaning-menu-button {
+                width: 100%;
+            }
         }
     }
 
@@ -67,18 +99,29 @@
         flex-grow: 1;
     }
 
+    .darken-bg {
+        display: none;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+        right: 0%;
+        bottom: 0%;
+    }
+
     #details-section {
         flex-grow: 0;
 
         position: sticky;
-        top: 0;
+        top: 2rem;
 
         background-color: $color-700;
         color: $color-white;
-        width: 30%;
-        padding: 1.5rem 3rem;
+        width: 25%;
+        padding: 1.5rem 2rem;
         height: max-content;
-        min-height: 40rem;
+        min-height: 30rem;
 
         p {
             font-size: 20px;
@@ -88,16 +131,12 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            font-weight: 800;
+            gap: 1rem;
             padding: 2rem 0;
         }
 
         .details-label {
             color: $color-100;
-        }
-
-        #details-info-button {
-            text-align: center;
         }
 
         #select-room-message {
@@ -106,7 +145,7 @@
             text-align: center;
         }
 
-        &.hidden {
+        &.hide-section {
             p {
                 display: none;
             }

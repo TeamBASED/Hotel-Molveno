@@ -1,0 +1,49 @@
+#user-edit-page {
+    display: flex;
+    justify-content: center;
+
+    .absolute-right {
+        position: absolute;
+        top: 8%;
+        right: 9.5%;
+    }
+
+    #form-container {
+        display: grid;
+    }
+
+    #form-container {
+        form {
+            width: 100%;
+
+            div {
+                padding: 0.7rem 4rem;
+
+                input[type=text],
+                input[type=password] {
+                    border: 2px solid $color-grey-500;
+                    height: 2rem;
+                    width: 100%;
+                    padding: 0.2rem 0.5rem;
+
+                    &::placeholder {
+                        color: $color-700;
+                        opacity: 0.8;
+                    }
+                }
+
+                label {
+                    font-weight: bold;
+                    color: $color-grey-600;
+                    font-size: 1.17em;
+                }
+            }
+        }
+
+        .save-button-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 4rem 4rem 0 4rem;
+        }
+    }
+}

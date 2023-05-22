@@ -7,17 +7,16 @@ use App\Models\Contact;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
-{
-    public function viewContactVerify(Request $request){
-        return view('reservation.contact', ['roomId' => $request->roomId]);
+class ContactController extends Controller {
+    public function viewContactVerify(int $roomId) {
+        return view('reservation.contact', ['roomId' => $roomId]);
     }
 
-    public function handleVerification(Request $request){
+    public function handleVerification(Request $request) {
         $validated = $request->validate([
             'email' => 'required|email',
         ]);
-        return redirect(route('reservation.create', ['roomId' => $request->roomId, 'contact' => $request->email]));
+        return redirect(route('reservation.create', ['roomId' => $request->roomId, 'contact' => $request->email, 'date_of_arrival' => $request->date_of_arrival, 'date_of_departure' => $request->date_of_departure]));
     }
 
     public function handleGetOrCreateContact(Request $request) {
@@ -27,9 +26,10 @@ class ContactController extends Controller
             'email' => 'required|email',
             'telephone' => 'required',
             'address' => 'required',
+            'nationality' => 'required'
         ]);
 
-        $contact = isset($request->contact) 
+        $contact = isset($request->contact)
             ? Contact::getContactById($request->contact)
             : $this->storeContact($request);
 
@@ -38,11 +38,13 @@ class ContactController extends Controller
 
     private function storeContact(Request $request) {
         $contact = Contact::create([
-            'first_name' => $request->firstname,
-            'last_name' => $request->lastname,
+            'first_name' => ucfirst($request->firstname),
+            'last_name' => ucfirst($request->lastname),
             'email' => $request->email,
             'telephone_number' => $request->telephone,
             'address' => $request->address,
+            'nationality' => ucfirst($request->nationality),
+            'passport_checked' => isset($request->passport_checked)
         ]);
 
         return $contact;

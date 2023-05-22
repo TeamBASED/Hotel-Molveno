@@ -5,6 +5,10 @@
     position: relative;
 }
 
+.hidden {
+    display: none;
+}
+
 .grid-two-columns {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -14,6 +18,12 @@
 .grid-three-columns {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.grid-four-columns {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1rem;
 }
 
@@ -99,5 +109,5 @@
 }
 
 .gray-background {
-    background-color: $color-grey-300;  
+    background-color: $color-grey-300;
 }

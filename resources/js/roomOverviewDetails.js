@@ -15,33 +15,35 @@ const detailsView = document.querySelector('#details-view');
 const detailsCleaningStatus = document.querySelector('#details-cleaning-status');
 
 const detailsInfoButton = document.querySelector('#details-info-button');
+const detailsReserveButton = document.querySelector('#details-reservation-button');
 
 // Methods
 
 roomsContainer.addEventListener('click', e => {
     const target = e.target;
 
-    if(target.closest('.room-item')) {
+    if (target.closest('.room-item')) {
         handleRoomSelect(target.closest('.room-item'));
 
-        if(detailsSection.matches('.hidden')) {
+        if (detailsSection.matches('.hide-section')) {
             showDetailsSection();
         }
     }
 })
 
 function showDetailsSection() {
-    detailsSection.classList.remove('hidden');
+    detailsSection.classList.remove('hide-section');
 }
 
 function handleRoomSelect(room) {
     const roomDetails = JSON.parse(room.dataset.roomDetails);
     console.log(detailsBedConfiguration.childNodes);
     console.log(roomDetails);
-    
+
     setRoomDetails(roomDetails);
 
-    detailsInfoButton.pathname = getPathName(roomDetails.id);
+    detailsInfoButton.pathname = getPathToRoomInfo(roomDetails.id);
+    detailsReserveButton.pathname = getPathToReservationContact(roomDetails.id);
 }
 
 function setRoomDetails(data) {
@@ -49,7 +51,7 @@ function setRoomDetails(data) {
     setElementText(detailsType, data.room_type.type);
     setElementText(detailsPricePerNight, data.base_price_per_night);
     setElementText(detailsCapacity, data.capacity);
-    setElementText(detailsView, data.room_view.type);
+    setElementText(detailsView, data.room_view.view);
     setElementText(detailsCleaningStatus, data.cleaning_status.status);
     updateBedConfiguration(data.bed_configurations);
 }
@@ -57,7 +59,7 @@ function setRoomDetails(data) {
 function updateBedConfiguration(bedConfigurations) {
     removeAllChildNodes(detailsBedConfiguration);
 
-    for(const config of bedConfigurations) {
+    for (const config of bedConfigurations) {
         detailsBedConfiguration.appendChild(
             buildBedConfigurationRow(config.configuration, config.pivot.amount)
         );
@@ -68,8 +70,12 @@ function setElementText(element, text) {
     element.innerText = text;
 }
 
-function getPathName(id) {
+function getPathToRoomInfo(id) {
     return `/room/${id}/info`;
+}
+
+function getPathToReservationContact(id) {
+    return `/reservation/${id}/contact`;
 }
 
 function buildBedConfigurationRow(bedType, amount) {

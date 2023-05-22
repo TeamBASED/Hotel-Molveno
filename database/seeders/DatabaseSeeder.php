@@ -9,16 +9,14 @@ use Database\Seeders\RoomTypeSeeder;
 use Database\Seeders\RoomViewSeeder;
 use Database\Seeders\CleaningStatusSeeder;
 
-class DatabaseSeeder extends Seeder
-{
+class DatabaseSeeder extends Seeder {
     /**
      * Seed the application's database.
      *
      * @return void
      */
-    public function run()
-    {
-        $this->call(RoomViewSeeder::class); 
+    public function run() {
+        $this->call(RoomViewSeeder::class);
         $this->call(RoomTypeSeeder::class);
         $this->call(RoomSeeder::class); //echte data
         $this->call(CleaningStatusSeeder::class);
@@ -31,12 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call(BedConfigurationSeeder::class);
         $this->call(RoomMaintenanceSeeder::class);
         $this->call(RoomBedConfigurationSeeder::class);
-        User::create([
-            'username' => 'TeamBased', 
-            'first_name' => 'Team',
-            'last_name' => 'Based',
-            'role_id' => 1,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', //password
-        ]);
+        $this->call(UserSeeder::class);
+        $this->call(InvoiceSeeder::class);
+        $this->call(PaymentMethodSeeder::class);
+        $this->call(CostAdjustmentSeeder::class);
     }
 }
